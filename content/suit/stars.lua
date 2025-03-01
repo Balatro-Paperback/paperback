@@ -14,6 +14,11 @@ SMODS.Suit {
   ui_pos = { x = 0, y = 1 },
 
   in_pool = function(self, args)
+    -- Allows Eight of Cups to spawn this suit
+    if args and args.paperback and args.paperback.eight_of_cups then
+      return true
+    end
+
     if args and args.initial_deck then
       -- When creating a deck
       local back = G.GAME.selected_back
