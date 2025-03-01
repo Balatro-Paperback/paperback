@@ -67,7 +67,7 @@ return {
         }
       },
       j_paperback_bismuth = {
-        name = "Bismut",
+        name = "Bismuth",
         text = {
           "Played {C:attention}Wild Cards{} have",
           "a {C:green}#1# in #2#{} chance to",
