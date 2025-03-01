@@ -3,8 +3,8 @@ SMODS.Joker {
   config = {
     extra = {
       sell_cost = 10,
-      odds = 5,
-      odds_cap = 4
+      odds = 4,
+      odds_cap = 3
     }
   },
   rarity = 3,
