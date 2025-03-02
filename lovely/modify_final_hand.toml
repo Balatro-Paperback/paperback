@@ -1,0 +1,20 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 0
+
+[[patches]]
+[patches.pattern]
+target = "functions/state_events.lua"
+pattern = "-- TARGET: adding to hand effects"
+position = "after"
+match_indent = true
+payload = '''
+SMODS.calculate_context {
+  paperback = {
+    modify_final_hand = true,
+    scoring_hand = final_scoring_hand,
+    full_hand = G.play.cards
+  }
+}
+'''

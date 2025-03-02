@@ -29,10 +29,12 @@ SMODS.Joker {
   end,
 
   calculate = function(self, card, context)
-    if not context.blueprint and context.before and context.main_eval then
+    local ctx = context.paperback
+
+    if not context.blueprint and ctx and ctx.modify_final_hand then
       local triggered
 
-      for k, v in pairs(context.full_hand) do
+      for k, v in pairs(ctx.full_hand) do
         local roll = pseudorandom('bismuth') < G.GAME.probabilities.normal / card.ability.extra.odds
         if not v.edition and not v.debuff and SMODS.has_enhancement(v, 'm_wild') and roll then
           triggered = true
@@ -43,15 +45,7 @@ SMODS.Joker {
             'e_polychrome'
           })
 
-          G.E_MANAGER:add_event(Event {
-            trigger = 'before',
-            delay = 0.4,
-            func = function()
-              v:set_edition(edition, true)
-              v:juice_up(0.3, 0.5)
-              return true
-            end
-          })
+          v:set_edition(edition)
         end
       end
 
