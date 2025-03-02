@@ -27,24 +27,18 @@ SMODS.Joker {
   end,
 
   calculate = function(self, card, context)
-    if context.before and not context.blueprint then
+    local ctx = context.paperback
+
+    if not context.blueprint and ctx and ctx.modify_final_hand then
       local polychrome_triggered = false
 
       -- Go through each card in the scoring hand and check if it is a valid card
-      for k, v in pairs(context.scoring_hand) do
+      for _, v in pairs(ctx.scoring_hand) do
         if (v:is_suit("Spades") or v:is_suit("Clubs")) and not v.debuff and not v.edition then
           -- If the odds succeed, set the card's edition to polychrome
           if pseudorandom('black_rainbows') < G.GAME.probabilities.normal / card.ability.extra.odds then
             polychrome_triggered = true
-            G.E_MANAGER:add_event(Event({
-              trigger = 'before',
-              delay = 0.4,
-              func = function()
-                v:set_edition({ polychrome = true }, true)
-                v:juice_up(0.3, 0.5)
-                return true
-              end
-            }))
+            v:set_edition('e_polychrome')
           end
         end
       end
