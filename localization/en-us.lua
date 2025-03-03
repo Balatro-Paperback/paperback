@@ -826,6 +826,13 @@ return {
           "{C:inactive}(Resets after each hand played)",
         },
       },
+      j_paperback_clothespin = {
+        name = "Clothespin",
+        text = {
+          "Clips {C:attention}held in hand{}",
+          "provide {C:chips}+#1#{} Chips",
+        }
+      },
       j_paperback_watercolor_joker = {
         name = "Watercolor Joker",
         text = {
