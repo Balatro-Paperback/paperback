@@ -26,6 +26,16 @@ return {
       }
     },
     Joker = {
+      j_paperback_you_are_a_fool = {
+        name = "You Are a Fool!",
+        text = {
+          "If scored hand contains {C:attention}#1#",
+          "or more {C:attention}face{} cards, convert",
+          "all cards in {C:attention}held hand{} to",
+          "the {C:attention}leftmost{} scored card",
+          "{S:1.1,C:red,E:2}self destructs",
+        }
+      },
       j_paperback_kintsugi_joker = {
         name = "Kintsugi Joker",
         text = {

@@ -478,7 +478,7 @@ end
 
 ---This function is basically a copy of how the base game does the flipping animation
 ---on playing cards when using a consumable that modifies them
----@param card table
+---@param card table?
 ---@param cards_to_flip table?
 ---@param action function?
 ---@param sound string?
@@ -488,15 +488,17 @@ function PB_UTIL.use_consumable_animation(card, cards_to_flip, action, sound)
     cards_to_flip = { cards_to_flip }
   end
 
-  G.E_MANAGER:add_event(Event {
-    trigger = 'after',
-    delay = 0.4,
-    func = function()
-      play_sound(sound or 'tarot1')
-      card:juice_up(0.3, 0.5)
-      return true
-    end
-  })
+  if card then
+    G.E_MANAGER:add_event(Event {
+      trigger = 'after',
+      delay = 0.4,
+      func = function()
+        play_sound(sound or 'tarot1')
+        card:juice_up(0.3, 0.5)
+        return true
+      end
+    })
+  end
 
   if cards_to_flip then
     for i = 1, #cards_to_flip do

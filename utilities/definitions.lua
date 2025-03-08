@@ -182,7 +182,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "the_world",
   "paranoia",
   "jestrica",
-  -- "you_are_a_fool",
+  "you_are_a_fool",
   "alert",
   "legacy",
   "weather_radio",
