@@ -19,6 +19,7 @@ SMODS.Joker {
   paperback = {
     requires_enhancements = true
   },
+  enhancement_gate = 'm_paperback_ceramic',
 
   loc_vars = function(self, info_queue, card)
     return {
