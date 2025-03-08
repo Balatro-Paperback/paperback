@@ -292,33 +292,79 @@ PB_UTIL.ENABLED_MINOR_ARCANA = {
 }
 
 PB_UTIL.DECK_SKINS = {
-  steven_universe = {
+  {
+    id = 'steven_universe',
     name = 'Steven Universe',
-    'Spades',
-    'paperback_Stars'
+    suits = {
+      'Spades',
+      'paperback_Stars'
+    }
   },
-  atlyss = {
+  {
+    id = 'atlyss',
     name = 'Atlyss',
-    'Clubs',
-    'bunc_Fleurons'
+    suits = {
+      'Clubs',
+      'bunc_Fleurons'
+    }
   },
-  flight_knight = {
+  {
+    id = 'flight_knight',
     name = 'Flight Knight',
-    'Hearts',
-    'bunc_Halberds'
+    suits = {
+      'Hearts',
+      'bunc_Halberds'
+    }
   },
-  hylics = {
+  {
+    id = 'hylics',
     name = 'Hylics',
-    'Diamonds',
-    'paperback_Crowns'
+    suits = {
+      'Diamonds',
+      'paperback_Crowns'
+    }
   },
-  steel_ball = {
+  {
+    id = 'steel_ball',
     name = "Steel Ball Run",
-    'paperback_Stars'
+    suits = {
+      'paperback_Stars'
+    }
   },
-  cult_of_the_lamb = {
+  {
+    id = 'cult_of_the_lamb',
     name = "Cult of the Lamb",
-    'paperback_Crowns'
+    suits = {
+      'paperback_Crowns'
+    }
+  },
+  {
+    id = 'smiling_friends',
+    name = "Smiling Friends",
+    suits = {
+      'Hearts'
+    }
+  },
+  {
+    id = 'super_mario_bros_z',
+    name = "Super Mario Bros. Z",
+    suits = {
+      'Clubs'
+    }
+  },
+  {
+    id = 'dragon_ball_z',
+    name = "Dragon Ball Z",
+    suits = {
+      'Diamonds'
+    }
+  },
+  {
+    id = 'chrono_trigger',
+    name = "Chrono Trigger",
+    suits = {
+      'Spades'
+    }
   }
 }
 

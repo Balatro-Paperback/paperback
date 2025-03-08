@@ -89,9 +89,9 @@ end
 PB_UTIL.register_items(PB_UTIL.ENABLED_DECKS, "content/deck")
 
 -- Register DeckSkins for Friends of Paperback
-for skin, data in pairs(PB_UTIL.DECK_SKINS) do
-  for _, suit in ipairs(data) do
-    local key = skin .. "_" .. suit:lower()
+for _, data in ipairs(PB_UTIL.DECK_SKINS) do
+  for _, suit in ipairs(data.suits) do
+    local key = data.id .. "_" .. suit:lower()
 
     -- Common ranks used in both palettes
     local ranks = { 'Jack', 'Queen', 'King', 'Ace' }
