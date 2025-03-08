@@ -29,7 +29,7 @@ SMODS.Joker {
       local face_up
 
       for _, v in ipairs(context.scoring_hand) do
-        if v.ability.paperback_ddakji_flipped then
+        if v.ability.paperback_flipped then
           face_down = true
         else
           face_up = true
@@ -56,7 +56,7 @@ SMODS.Joker {
     -- Clear the flipped mark at end of round
     if context.end_of_round and context.main_eval and not context.blueprint then
       for _, v in ipairs(G.playing_cards) do
-        v.ability.paperback_ddakji_flipped = nil
+        v.ability.paperback_flipped = nil
       end
     end
   end
@@ -67,11 +67,19 @@ function Blind.stay_flipped(self, area, card)
   if area == G.hand then
     local _, ddakji = next(SMODS.find_card('j_paperback_ddakji'))
     if ddakji and pseudorandom('ddakji') < G.GAME.probabilities.normal / ddakji.ability.extra.odds then
-      -- Mark the card as flipped, since the card is flipped before scoring
-      card.ability.paperback_ddakji_flipped = true
       return true
     end
   end
 
   return stay_flipped_ref(self, area, card)
+end
+
+local emplace_ref = CardArea.emplace
+function CardArea.emplace(self, card, location, stay_flipped)
+  -- When a card is added to G.play, we check if it was previously flipped and mark it as such
+  -- Since cards are flipped back to the front once played
+  if self == G.play and card.facing == 'back' then
+    card.ability.paperback_flipped = true
+  end
+  return emplace_ref(self, card, location, stay_flipped)
 end
