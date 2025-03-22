@@ -2,22 +2,6 @@
 
 Every context added by Paperback can be easily accessed through the `context` parameter within your `calculate` function, they will all be located under the `context.paperback` field to avoid any conflicts with other mods.
 
-### Entering Shop
-
-This context is used for effects after entering the shop. Note that this happens after every item in the shop is created.
-
-```lua
-context.paperback = {
-  entering_shop = true,
-  create_jokers = true, -- boolean: whether jokers were created instead of loaded
-  create_vouchers = true, -- boolean: whether vouchers were created instead of loaded
-  create_boosters = true -- boolean: whether booster packs were created instead of loaded
-}
-```
-
-> [!TIP]
-> When adding items to the shop, use the corresponding `create_<item>` field to ensure that your item is not repeatedly added to the shop when loading the save file
-
 ### Cashing Out
 
 This context is used for effects that happen when the "Cash Out" button is pressed.
