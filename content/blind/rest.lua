@@ -10,7 +10,7 @@ SMODS.Blind {
 
   stay_flipped = function(self, area, card)
     if area == G.hand then
-      if not card:is_face() then
+      if not card:is_face() and not SMODS.has_no_rank(card) then
         return true
       end
     end
