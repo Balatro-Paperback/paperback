@@ -11,7 +11,7 @@ SMODS.Joker {
   cost = 4,
   unlocked = true,
   discovered = false,
-  blueprint_compat = false,
+  blueprint_compat = true,
   eternal_compat = false,
   pools = {
     Food = true
