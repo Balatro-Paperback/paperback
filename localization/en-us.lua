@@ -1679,6 +1679,9 @@ return {
       paperback_a_round_minus = "-#1# Round",
       paperback_saved = "Saved by #1#",
     },
+    ranks = {
+      paperback_Apostle = 'Apostle',
+    },
     suits_singular = {
       paperback_Crowns = "Crown",
       paperback_Stars = 'Star'

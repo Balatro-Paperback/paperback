@@ -104,6 +104,23 @@ SMODS.Atlas {
   py = 18
 }
 
+--- Registers the atlas for Ranks
+-- Low contrast
+SMODS.Atlas {
+  key = 'ranks_lc',
+  path = 'ranks_lc.png',
+  px = 71,
+  py = 95
+}
+
+-- High contrast
+SMODS.Atlas {
+  key = 'ranks_hc',
+  path = 'ranks_hc.png',
+  px = 71,
+  py = 95
+}
+
 -- Register Stickers atlas
 SMODS.Atlas {
   key = 'stickers_atlas',

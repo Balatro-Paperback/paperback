@@ -428,6 +428,10 @@ PB_UTIL.ENABLED_EDITIONS = {
   'dichrome'
 }
 
+PB_UTIL.ENABLED_RANKS = {
+  'apostle'
+}
+
 PB_UTIL.ENABLED_SUITS = {
   'crowns',
   'stars',
