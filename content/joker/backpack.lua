@@ -19,7 +19,8 @@ SMODS.Joker {
         func = function()
           local key = 'p_buffoon_normal_' .. pseudorandom('backpack', 1, 2)
           local booster = SMODS.add_booster_to_shop(key)
-          booster.cost = 0
+          booster.ability.couponed = true
+          booster:set_cost()
           return true
         end
       })
