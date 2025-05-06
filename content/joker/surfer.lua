@@ -32,7 +32,7 @@ SMODS.Joker {
   calculate = function(self, card, context)
     -- Gains +10 chips for each 10 held in hand at end of round
     if context.joker_main then
-      if card.ability.extra.rank == nil then
+      if not card.ability.extra.rank then
         return {card.ability.extra.rank == 10}
       end
     end
