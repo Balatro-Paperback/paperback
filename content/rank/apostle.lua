@@ -21,8 +21,7 @@ SMODS.Rank {
 -- Ace adjustments to allow for straights with Apostle
 SMODS.Rank:take_ownership('Ace',
   {
-    next = { 'paperback_Apostle', '2' },
+    next = { '2', 'paperback_Apostle' },
     straight_edge = false
-  },
-  true
+  }
 )
