@@ -12,6 +12,15 @@ SMODS.Rank {
   nominal = 12,
   face = true,
 
+  suit_map = {
+    Hearts = 0,
+    Clubs = 1,
+    Diamonds = 2,
+    Spades = 3,
+    paperback_Stars = 4,
+    paperback_Crowns = 5
+  },
+
   in_pool = function(self, args)
     -- for now, never spawn this naturally
     return false
