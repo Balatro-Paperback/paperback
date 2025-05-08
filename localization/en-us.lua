@@ -1528,6 +1528,14 @@ return {
           "disabled in {C:legendary}Paperback",
         }
       },
+      paperback_requires_ranks = {
+        name = "Requires Ranks",
+        text = {
+          "Removed from pool due",
+          "to {C:dark_edition}Ranks{} being",
+          "disabled in {C:legendary}Paperback",
+        }
+      },
 
       -- Stickers
       paperback_energized = {
@@ -1665,6 +1673,7 @@ return {
       paperback_ui_custom_suits_enabled = "Enable Custom Suits",
       paperback_ui_enable_vouchers = "Enable Vouchers",
       paperback_ui_enable_tags = "Enable Tags",
+      paperback_ui_enable_ranks = "Enable Ranks",
       paperback_ui_developers = "Developers",
       paperback_ui_artists = "Artists",
       paperback_ui_localization = "Localization",
