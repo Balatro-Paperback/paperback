@@ -36,6 +36,11 @@ SMODS.current_mod.config_tab = function()
                 label = localize('paperback_ui_enable_paperclips'),
                 ref_table = PB_UTIL.config,
                 ref_value = 'paperclips_enabled',
+              },
+              create_toggle {
+                label = localize('paperback_ui_enable_ranks'),
+                ref_table = PB_UTIL.config,
+                ref_value = 'ranks_enabled',
               }
             }
           },

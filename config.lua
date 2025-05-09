@@ -7,4 +7,5 @@ return {
   paperclips_enabled = true,
   vouchers_enabled = true,
   tags_enabled = true,
+  ranks_enabled = true,
 }
