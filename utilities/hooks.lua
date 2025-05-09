@@ -220,7 +220,7 @@ function G.FUNCS.get_poker_hand_info(_cards)
     end
 
     if has_apostle and all_top then
-      disp_text = "Straight Flush (Rapture)"
+      disp_text = "paperback_Straight Flush (Rapture)"
       loc_disp_text = localize(disp_text, "poker_hands")
     end
   end

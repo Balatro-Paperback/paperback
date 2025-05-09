@@ -1705,7 +1705,7 @@ return {
       ['paperback_Straight Spectrum (Royal)'] = "Royal Spectrum",
       ['paperback_Spectrum House'] = "Spectrum House",
       ['paperback_Spectrum Five'] = "Spectrum Five",
-      ['Straight Flush (Rapture)'] = "Rapture",
+      ['paperback_Straight Flush (Rapture)'] = "Rapture",
     },
     poker_hand_descriptions = {
       ['paperback_Spectrum'] = {
