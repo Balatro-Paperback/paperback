@@ -2,7 +2,7 @@ SMODS.Joker {
   key = 'quartz',
   config = {
     extra = {
-      x_chips = 0.5
+      x_chips = 0.2
     }
   },
   rarity = 2,
