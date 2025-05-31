@@ -39,13 +39,13 @@ SMODS.Joker {
     local dark = false
     if context.before and not context.blueprint then
       for _, v in ipairs(context.scoring_hand) do
-        if not SMODS.has_any_suit(v) and PB_UTIL.is_suit(v, 'light') then
+        if PB_UTIL.is_suit(v, 'light') then
           light = true
           break
         end
       end
       for _, v in ipairs(context.scoring_hand) do
-        if not SMODS.has_any_suit(v) and PB_UTIL.is_suit(v, 'dark') then
+        if PB_UTIL.is_suit(v, 'dark') then
           dark = true
           break
         end
