@@ -673,9 +673,10 @@ return {
       j_paperback_solemn_lament = {
         name = "Solemn Lament",
         text = {
-          "Retrigger {C:attention}first{} scored",
-          "card {C:attention}once{} for every {C:blue}hand",
-          "and {C:red}discard{} remaining"
+          "This Joker gains {X:mult,C:white}X#1# Mult",
+          "if played hand contains both {C:paperback_dark_suit}dark suits{}",
+          "and {C:paperback_light_suit}light suits{}",
+          "{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult)",
         },
       },
       j_paperback_hole_in_one = {
