@@ -383,9 +383,9 @@ return {
       j_paperback_book_of_vengeance = {
         name = "Book of Vengeance",
         text = {
-          "If {C:attention}first hand{} of round defeated the {C:attention}Boss Blind{},",
+          "After defeating a {C:attention}Boss Blind{},",
           "destroys itself and the {C:attention}Joker{} to its left,",
-          "then makes a copy of {C:attention}Joker{} to the right"
+          "then makes a copy of {C:attention}Joker{} to its right"
         }
       },
       j_paperback_b_soda = {

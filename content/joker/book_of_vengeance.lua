@@ -33,29 +33,23 @@ SMODS.Joker {
   end,
 
   calculate = function(self, card, context)
-    if context.first_hand_drawn and G.GAME.blind.boss then
-      local eval = function() return G.GAME.current_round.hands_played == 0 end
-      juice_card_until(card, eval, true)
-    end
-
-    if not context.blueprint and context.end_of_round and context.main_eval
-        and G.GAME.blind.boss and G.GAME.current_round.hands_played <= 1 then
-      local other_joker
+    if not context.blueprint and context.end_of_round and G.GAME.blind.boss and context.main_eval then
+      local right_joker
       local left_joker
 
       for i, v in ipairs(G.jokers.cards) do
         if v == card then
-          other_joker = G.jokers.cards[i + 1]
+          right_joker = G.jokers.cards[i + 1]
           left_joker = G.jokers.cards[i - 1]
           break
         end
       end
 
-      if (other_joker and other_joker ~= card) and (left_joker and left_joker ~= card) then
+      if (right_joker and right_joker ~= card) and (left_joker and left_joker ~= card) then
         PB_UTIL.destroy_joker(card, function()
           if #G.jokers.cards <= G.jokers.config.card_limit then
-            local strip_edition = other_joker.edition and other_joker.edition.negative
-            local copy = copy_card(other_joker, nil, nil, nil, strip_edition)
+            local strip_edition = right_joker.edition and right_joker.edition.negative
+            local copy = copy_card(right_joker, nil, nil, nil, strip_edition)
             copy:add_to_deck()
             G.jokers:emplace(copy)
           end
