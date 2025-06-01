@@ -2,7 +2,7 @@ SMODS.Joker {
   key = "solemn_lament",
   config = {
     extra = {
-      x_mult_mod = 0.25,
+      x_mult_mod = 0.15,
       x_mult = 1,
       BGcolour = G.C.PAPERBACK_SOLEMN_WHITE
     }
