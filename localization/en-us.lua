@@ -87,6 +87,15 @@ return {
       },
     },
     Joker = {
+      j_paperback_as_above_so_below = {
+        name = "As Above, So Below",
+        text = {
+          "If scoring hand contains an {C:attention}Apostle{}",
+          "and {C:attention}five{} cards create a {C:purple}Tarot{} card,",
+          "if played poker hand also contains a {C:attention}Straight{} create a {C:spectral}Spectral{} card instead",
+          "{C:inactive}(Must have room)"
+        }
+      },
       j_paperback_plague_doctor = {
         name = "Plague Doctor",
         text = {
