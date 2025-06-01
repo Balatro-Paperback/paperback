@@ -682,7 +682,7 @@ return {
       j_paperback_solemn_lament = {
         name = "Solemn Lament",
         text = {
-          "This Joker gains {X:mult,C:white}X#1# Mult",
+          "This Joker gains {X:mult,C:white}X#1#{} Mult",
           "if played hand contains both {C:paperback_dark_suit}dark suits{}",
           "and {C:paperback_light_suit}light suits{}",
           "{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult)",

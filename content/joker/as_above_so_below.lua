@@ -2,8 +2,7 @@ SMODS.Joker {
   key = "as_above_so_below",
   config = {
     extra = {
-      odds = 5,
-      enhancement = 'm_paperback_apostle'
+
     }
   },
   rarity = 2,
@@ -15,21 +14,22 @@ SMODS.Joker {
   blueprint_compat = true,
   eternal_compat = true,
   perishable_compat = true,
-  paperback = {
-    requires_enhancements = true,
-  },
-  enhancement_gate = 'm_paperback_apostle',
 
   loc_vars = function(self, info_queue, card)
     return {
       vars = {
-        localize {
-          type = 'name_text',
-          set = 'Enhanced',
-          key = card.ability.extra.enhancement
-        },
+
       }
     }
+  end,
+
+
+  in_pool = function(self, args)
+    for _, v in ipairs(G.playing_cards or {}) do
+      if v:get_id() == SMODS.Ranks['paperback_Apostle'].id then
+        return true
+      end
+    end
   end,
 
   calculate = function(self, card, context)
@@ -37,7 +37,7 @@ SMODS.Joker {
       local apostle = false
       -- Check for apostle
       for _, v in ipairs(context.scoring_hand) do
-        if SMODS.has_enhancement(v, card.ability.extra.enhancement) then
+        if v:get_id() == SMODS.Ranks['paperback_Apostle'].id then
           apostle = true
           break
         end
