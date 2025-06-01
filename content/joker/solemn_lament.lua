@@ -3,7 +3,8 @@ SMODS.Joker {
   config = {
     extra = {
       x_mult_mod = 0.25,
-      x_mult = 1
+      x_mult = 1,
+      BGcolour = G.C.PAPERBACK_SOLEMN_WHITE
     }
   },
   rarity = 3,
@@ -26,6 +27,7 @@ SMODS.Joker {
       vars = {
         card.ability.extra.x_mult_mod,
         card.ability.extra.x_mult
+
       }
     }
   end,
@@ -35,25 +37,57 @@ SMODS.Joker {
   -- end,
 
   calculate = function(self, card, context)
-    local light = false
-    local dark = false
     if context.before and not context.blueprint then
+      local suits = {
+        dark  = 0,
+        light = 0
+      }
+      print("checking normal cards")
       for _, v in ipairs(context.scoring_hand) do
-        if PB_UTIL.is_suit(v, 'light') then
-          light = true
-          break
+        if not SMODS.has_any_suit(v) then
+          if suits.dark == 0 and PB_UTIL.is_suit(v, 'dark') then
+            suits.dark = 1
+            print("found dark")
+          else
+            if suits.light == 0 and PB_UTIL.is_suit(v, 'light') then
+              suits.light = 1
+              print("found dark")
+            end
+          end
         end
       end
+
+      print("checking wild cards")
       for _, v in ipairs(context.scoring_hand) do
-        if PB_UTIL.is_suit(v, 'dark') then
-          dark = true
-          break
+        if SMODS.has_any_suit(v) then
+          if suits.dark == 0 and PB_UTIL.is_suit(v, 'dark') then
+            suits.dark = 1
+            print("found dark")
+          else
+            if suits.light == 0 and PB_UTIL.is_suit(v, 'light') then
+              suits.light = 1
+              print("found dark")
+            end
+          end
         end
       end
-      if light and dark then
+
+
+
+
+
+      if suits.dark == 1 and suits.light == 1 then
         card.ability.extra.x_mult = card.ability.extra.x_mult + card.ability.extra.x_mult_mod
+        if card.ability.extra.BGcolour == G.C.PAPERBACK_SOLEMN_WHITE then
+          card.ability.extra.BGcolour = G.C.BLACK
+          print("message is black")
+        else
+          card.ability.extra.BGcolour = G.C.PAPERBACK_SOLEMN_WHITE
+          print("message is white")
+        end
         return {
-          message = "X" .. card.ability.extra.x_mult
+          message = "X" .. card.ability.extra.x_mult,
+          colour = card.ability.extra.BGcolour
         }
       end
     end
@@ -61,6 +95,10 @@ SMODS.Joker {
 
 
     if context.joker_main then
+      local suits = {
+        dark  = 0,
+        light = 0
+      }
       return {
         x_mult = card.ability.extra.x_mult,
       }
