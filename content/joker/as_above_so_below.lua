@@ -1,12 +1,7 @@
 SMODS.Joker {
   key = "as_above_so_below",
-  config = {
-    extra = {
-
-    }
-  },
   rarity = 2,
-  pos = { x = 0, y = 0 }, -- CHANGE WHEN SPRITE IS ADDED TO ATLAS
+  pos = { x = 0, y = 0 }, -- TODO: CHANGE WHEN SPRITE IS ADDED TO ATLAS
   atlas = "jokers_atlas",
   cost = 6,
   unlocked = true,
@@ -14,15 +9,6 @@ SMODS.Joker {
   blueprint_compat = true,
   eternal_compat = true,
   perishable_compat = true,
-
-  loc_vars = function(self, info_queue, card)
-    return {
-      vars = {
-
-      }
-    }
-  end,
-
 
   in_pool = function(self, args)
     for _, v in ipairs(G.playing_cards or {}) do
