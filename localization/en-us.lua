@@ -105,11 +105,14 @@ return {
       j_paperback_as_above_so_below = {
         name = "As Above, So Below",
         text = {
-          "If scoring hand contains an {C:attention}Apostle{}",
-          "and {C:attention}five{} cards create a {C:purple}Tarot{} card,",
-          "if played poker hand also contains a {C:attention}Straight{}",
+          "Playing a five-card poker hand with an",
+          "{C:attention}Apostle{} creates a {C:purple}Tarot{} card,",
+          "if poker hand also contains a {C:attention}Straight{}",
           "create a {C:spectral}Spectral{} card instead",
           "{C:inactive}(Must have room)"
+        },
+        unlock = {
+          "Play a {C:attention}Rapture{}"
         }
       },
       j_paperback_plague_doctor = {
