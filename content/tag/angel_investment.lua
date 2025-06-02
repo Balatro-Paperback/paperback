@@ -27,7 +27,7 @@ SMODS.Tag {
   end,
 
   apply = function(self, tag, context)
-    if context.type == 'immediate' then
+    if context.type == 'immediate' or context.type == 'eval' then
       tag:yep('+', G.C.MONEY, function()
         return true
       end)

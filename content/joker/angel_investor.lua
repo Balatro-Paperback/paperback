@@ -28,7 +28,7 @@ SMODS.Joker {
   end,
 
   calculate = function(self, card, context)
-    if context.skip_blind then
+    if context.skip_blind or (context.end_of_round and G.GAME.blind.boss and context.main_eval) then
       for i = 1, card.ability.extra.tags do
         -- Only play sound on the last tag
         PB_UTIL.add_tag('tag_paperback_angel_investment', nil, i < card.ability.extra.tags)

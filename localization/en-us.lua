@@ -420,7 +420,8 @@ return {
       j_paperback_angel_investor = {
         name = "Angel Investor",
         text = {
-          "Skipping a {C:attention}Blind{} gives",
+          "Skipping a {C:attention}Blind{} or defeating",
+          "a {C:attention}Boss Blind{} gives",
           "an {C:money}Angel Investment Tag"
         }
       },
