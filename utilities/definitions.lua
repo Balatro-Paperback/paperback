@@ -13,6 +13,39 @@ SMODS.current_mod.reset_game_globals = function(run_start)
   G.GAME.paperback.joke_master_hand = PB_UTIL.get_random_visible_hand('joke_master')
 end
 
+PB_UTIL.credits = {
+  artists = {
+    color = G.C.MULT,
+    entries = {
+      'PaperMoon',
+      '「S_C_R_U_B_Y」',
+      'Firch',
+      'Fennex'
+    }
+  },
+  developers = {
+    color = G.C.GREEN,
+    entries = {
+      'OppositeWolf770, srockw, Nether, B, ejwu2, metanite64, TheSnaz',
+    }
+  },
+  localization = {
+    color = G.C.FILTER,
+    entries = {
+      'pinkmaggit-hub (pt-BR)',
+      'mathieulievre (FR)',
+      'BurAndBY & Tauookie (RU)',
+      'Ethylene (zh_CN)'
+    }
+  },
+  music = {
+    color = G.C.PURPLE,
+    entries = {
+      'Larantula'
+    }
+  }
+}
+
 PB_UTIL.base_poker_hands = {
   "Straight Flush",
   "Four of a Kind",
@@ -158,7 +191,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "blue_marble",
   "triple_moon_goddess",
   "plague_doctor",
-  -- "white_night",
+  "white_night",
   -- "one_sin_and_hundreds_of_good_deeds",
   "angel_investor",
   "shopping_center",
@@ -397,6 +430,20 @@ PB_UTIL.DECK_SKINS = {
     name = "Chrono Trigger",
     suits = {
       'Spades'
+    }
+  },
+  {
+    id = 'deltarune',
+    name = "Deltarune",
+    suits = {
+      'paperback_Stars'
+    }
+  },
+  {
+    id = 'celeste',
+    name = "Celeste",
+    suits = {
+      'paperback_Crowns'
     }
   }
 }

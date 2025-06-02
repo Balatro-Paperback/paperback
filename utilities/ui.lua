@@ -77,146 +77,95 @@ end
 
 -- Create Credits tab in our mod UI
 SMODS.current_mod.extra_tabs = function()
+  local result = {}
+
+  for k, v in pairs(PB_UTIL.credits) do
+    local parsed = {}
+
+    for _, entry in ipairs(v.entries) do
+      parsed[#parsed + 1] = {
+        n = G.UIT.R,
+        config = { align = 'cm', minh = 0.25 },
+        nodes = {
+          { n = G.UIT.T, config = { text = entry, colour = v.color, scale = 0.4 } }
+        }
+      }
+    end
+
+    result[k] = parsed
+  end
+
   local credits_tab = {
     n = G.UIT.ROOT,
-    config = { align = 'tl', padding = 0.05, emboss = 0.05, r = 0.1, colour = G.C.BLACK },
-    nodes = { {
-      n = G.UIT.R,
-      nodes = {
-        {
-          n = G.UIT.C,
-          config = { padding = 0.5 },
-          nodes = {
-            {
-              n = G.UIT.R,
-              nodes = {
-                { n = G.UIT.T, config = { text = localize('paperback_ui_artists'), colour = G.C.CHIPS, scale = 0.75 } },
-              }
-            },
-            {
-              n = G.UIT.R,
-              config = { align = 'cm', minh = 0.25 },
-              nodes = {
-                { n = G.UIT.T, config = { text = 'PaperMoon', colour = G.C.MULT, scale = 0.4 } }
-              }
-            },
-            {
-              n = G.UIT.R,
-              config = { align = 'cm', minh = 0.25 },
-              nodes = {
-                { n = G.UIT.T, config = { text = '「S_C_R_U_B_Y」', colour = G.C.MULT, scale = 0.4 } }
-              }
-            },
-            {
-              n = G.UIT.R,
-              config = { align = 'cm', minh = 0.25 },
-              nodes = {
-                { n = G.UIT.T, config = { text = 'Firch', colour = G.C.MULT, scale = 0.4 } }
-              }
+    config = { align = 'cm', padding = 0.05, emboss = 0.05, r = 0.1, colour = G.C.BLACK },
+    nodes = {
+      {
+        n = G.UIT.R,
+        nodes = {
+          {
+            n = G.UIT.C,
+            config = { padding = 0.5 },
+            nodes = {
+              {
+                n = G.UIT.R,
+                config = { align = 'cm' },
+                nodes = {
+                  { n = G.UIT.T, config = { text = localize('paperback_ui_artists'), colour = G.C.CHIPS, scale = 0.75 } },
+                }
+              },
+              unpack(result.artists)
+            }
+          },
+          {
+            n = G.UIT.C,
+            config = { padding = 0.5 },
+            nodes = {
+              {
+                n = G.UIT.R,
+                config = { align = 'cm' },
+                nodes = {
+                  { n = G.UIT.T, config = { text = localize('paperback_ui_localization'), colour = G.C.CHIPS, scale = 0.75 } },
+                }
+              },
+              unpack(result.localization)
+            }
+          },
+          {
+            n = G.UIT.C,
+            config = { padding = 0.5 },
+            nodes = {
+              {
+                n = G.UIT.R,
+                config = { align = 'cm' },
+                nodes = {
+                  { n = G.UIT.T, config = { text = localize('b_music'), colour = G.C.CHIPS, scale = 0.75 } }
+                }
+              },
+              unpack(result.music)
             }
           }
-        },
-        {
-          n = G.UIT.C,
-          config = { padding = 0.5 },
-          nodes = {
-            {
-              n = G.UIT.R,
-              nodes = {
-                { n = G.UIT.T, config = { text = localize('paperback_ui_developers'), colour = G.C.CHIPS, scale = 0.75 } },
-              }
-            },
-            {
-              n = G.UIT.R,
-              config = { align = 'cm', minh = 0.25 },
-              nodes = {
-                { n = G.UIT.T, config = { text = 'OppositeWolf770', colour = G.C.GREEN, scale = 0.4 } }
-              }
-            },
-            {
-              n = G.UIT.R,
-              config = { align = 'cm', minh = 0.25 },
-              nodes = {
-                { n = G.UIT.T, config = { text = 'srockw', colour = G.C.GREEN, scale = 0.4 } }
-              }
-            },
-            {
-              n = G.UIT.R,
-              config = { align = 'cm', minh = 0.25 },
-              nodes = {
-                { n = G.UIT.T, config = { text = 'Nether', colour = G.C.GREEN, scale = 0.4 } }
-              }
-            },
-            {
-              n = G.UIT.R,
-              config = { align = 'cm', minh = 0.25 },
-              nodes = {
-                { n = G.UIT.T, config = { text = 'B', colour = G.C.GREEN, scale = 0.4 } }
-              }
-            }
-          }
-        },
-        {
-          n = G.UIT.C,
-          config = { padding = 0.5 },
-          nodes = {
-            {
-              n = G.UIT.R,
-              nodes = {
-                { n = G.UIT.T, config = { text = localize('paperback_ui_localization'), colour = G.C.CHIPS, scale = 0.75 } },
-              }
-            },
-            {
-              n = G.UIT.R,
-              config = { align = 'cm', minh = 0.25 },
-              nodes = {
-                { n = G.UIT.T, config = { text = 'pinkmaggit-hub (pt-BR)', colour = G.C.FILTER, scale = 0.4 } }
-              }
-            },
-            {
-              n = G.UIT.R,
-              config = { align = 'cm', minh = 0.25 },
-              nodes = {
-                { n = G.UIT.T, config = { text = 'mathieulievre (FR)', colour = G.C.FILTER, scale = 0.4 } }
-              }
-            },
-            {
-              n = G.UIT.R,
-              config = { align = 'cm', minh = 0.25 },
-              nodes = {
-                { n = G.UIT.T, config = { text = 'BurAndBY (RU)', colour = G.C.FILTER, scale = 0.4 } }
-              }
-            },
-            {
-              n = G.UIT.R,
-              config = { align = 'cm', minh = 0.25 },
-              nodes = {
-                { n = G.UIT.T, config = { text = 'Ethylene (zh_CN)', colour = G.C.FILTER, scale = 0.4 } }
-              }
-            }
-          }
-        },
-        {
-          n = G.UIT.C,
-          config = { padding = 0.5 },
-          nodes = {
-            {
-              n = G.UIT.R,
-              nodes = {
-                { n = G.UIT.T, config = { text = localize('b_music'), colour = G.C.CHIPS, scale = 0.75 } }
-              }
-            },
-            {
-              n = G.UIT.R,
-              config = { align = 'cm', minh = 0.25 },
-              nodes = {
-                { n = G.UIT.T, config = { text = "Larantula", colour = G.C.PURPLE, scale = 0.4 } }
-              }
+        }
+      },
+      {
+        n = G.UIT.R,
+        nodes = {
+          {
+            n = G.UIT.C,
+            config = { padding = 0.5 },
+            nodes = {
+              {
+                n = G.UIT.R,
+                config = { align = 'cm' },
+                nodes = {
+                  { n = G.UIT.T, config = { text = localize('paperback_ui_developers'), colour = G.C.CHIPS, scale = 0.75 } },
+                }
+              },
+              unpack(result.developers)
             }
           }
         }
       }
-    } }
+    }
   }
 
   return {
@@ -379,4 +328,66 @@ function PB_UTIL.paperclip_tooltip(type)
     key = key,
     vars = vars
   }
+end
+
+-- text display function for plague doctor's quotes
+-- adapted from vanilla attention_text()
+--- @param args table
+function PB_UTIL.plague_quote(args)
+  args = args or {}
+  args.text = args.text or 'test'
+  args.scale = args.scale or 1
+  args.colour = copy_table(args.colour or G.C.WHITE)
+  args.hold = (args.hold or 0) + 0.1 * (G.SPEEDFACTOR)
+
+  args.cover_colour = copy_table(G.C.CLEAR)
+
+  args.uibox_config = {
+    align = 'cm',
+    offset = args.offset or { x = 0, y = 0 },
+    major = args.major or nil
+  }
+
+  G.E_MANAGER:add_event(Event({
+    trigger = 'after',
+    delay = 0,
+    blockable = false,
+    blocking = true,
+    func = function()
+      args.AT = UIBox {
+        T = { 0, 0, 0, 0 },
+        definition = {
+          n = G.UIT.ROOT,
+          config = {
+            align = 'cm',
+            minw = 0.001,
+            minh = 0.001,
+            padding = 0.03,
+            r = 0.1,
+            emboss = nil,
+            colour = args.cover_colour
+          },
+          nodes = {
+            { n = G.UIT.O, config = { draw_layer = 1, object = DynaText({ scale = args.scale, string = args.text, maxw = args.maxw, colours = { args.colour }, float = true, shadow = true, silent = true, args.scale, pop_in = 0, pop_in_rate = 1, rotate = nil }) } },
+          }
+        },
+        config = args.uibox_config
+      }
+      args.AT.attention_text = true
+      args.text = args.AT.UIRoot.children[1].config.object
+      return true
+    end
+  }))
+
+  G.E_MANAGER:add_event(Event({
+    trigger = 'after',
+    delay = args.hold,
+    blockable = false,
+    blocking = true,
+    func = function()
+      args.start_time = G.TIMERS.TOTAL
+      args.text:pop_out(3)
+      return true
+    end
+  }))
 end

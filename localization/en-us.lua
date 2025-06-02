@@ -87,6 +87,21 @@ return {
       },
     },
     Joker = {
+      j_paperback_white_night = {
+        name = "WhiteNight",
+        text = {
+          "Destroy all non-{C:attention}Apostle{} cards played",
+          "after hand is scored. Scored {C:attention}Apostles{} give",
+          "{X:mult,C:white}X#1#{} Mult. Playing a hand containing no",
+          "{C:attention}Apostles destroys{} a random Joker.",
+          "Discarded {C:attention}Apostles{} are {C:attention}destroyed{}"
+        },
+        unlock = {
+          "Have #1# or more",
+          "{C:attention}Apostles{} in",
+          "your deck"
+        }
+      },
       j_paperback_as_above_so_below = {
         name = "As Above, So Below",
         text = {
@@ -1703,6 +1718,43 @@ return {
       paperback_ui_artists = "Artists",
       paperback_ui_localization = "Localization",
       paperback_ui_paperclips = "Paperclips",
+
+      -- Plague Doctor's quotes
+      paperback_plague_quote_1_1 = 'On this rock I will build my church, and the',
+      paperback_plague_quote_1_2 = 'gates of hell shall not prevail against it...',
+
+      paperback_plague_quote_2_1 = 'Tell us, when will this happen, and what will be',
+      paperback_plague_quote_2_2 = 'the sign of your coming and the end of an age?',
+
+      paperback_plague_quote_3_1 = 'Do you wish us to call fire down',
+      paperback_plague_quote_3_2 = 'from heaven to destroy them?',
+
+      paperback_plague_quote_4_1 = 'To the apostles he gave the name Boanerges,',
+      paperback_plague_quote_4_2 = 'which means "Sons of Thunder".',
+
+      paperback_plague_quote_5_1 = 'Show us the father, and that',
+      paperback_plague_quote_5_2 = 'will be enough for us.',
+
+      paperback_plague_quote_6_1 = 'He saw a man. "Follow me," he told him,',
+      paperback_plague_quote_6_2 = 'and the Apostle got up and followed him.',
+
+      paperback_plague_quote_7_1 = 'Now for some time the Apostle had',
+      paperback_plague_quote_7_2 = 'practiced sorcery and amazed all people.',
+
+      paperback_plague_quote_8_1 = 'Then the Apostle said to the rest of the disciples,',
+      paperback_plague_quote_8_2 = '"Let us also go, that we may die with him."',
+
+      paperback_plague_quote_9_1 = 'Then the Apostle declared, "You are',
+      paperback_plague_quote_9_2 = 'the son of him, you are the king."',
+
+      paperback_plague_quote_10_1 = 'Then the Apostle said, "But why do you intend',
+      paperback_plague_quote_10_2 = 'to show yourself to us and not the world?"',
+
+      paperback_plague_quote_11_1 = 'From now on, let no one cause me trouble,',
+      paperback_plague_quote_11_2 = 'for I bear on my body the marks of him.',
+
+      paperback_plague_quote_12_1 = 'Have I not chosen you, the Twelve?',
+      paperback_plague_quote_12_2 = 'Yet one of you is a devil.',
     },
     v_dictionary = {
       paperback_a_discards = "+#1# Discards",
