@@ -16,9 +16,6 @@ SMODS.Joker {
   blueprint_compat = true,
   eternal_compat = true,
   soul_pos = nil,
-  paperback = {
-    ignores_the_world = true
-  },
   loc_vars = function(self, info_queue, card)
     info_queue[#info_queue + 1] = PB_UTIL.suit_tooltip('dark')
     info_queue[#info_queue + 1] = PB_UTIL.suit_tooltip('light')
