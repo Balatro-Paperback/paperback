@@ -107,7 +107,8 @@ return {
         text = {
           "If scoring hand contains an {C:attention}Apostle{}",
           "and {C:attention}five{} cards create a {C:purple}Tarot{} card,",
-          "if played poker hand also contains a {C:attention}Straight{} create a {C:spectral}Spectral{} card instead",
+          "if played poker hand also contains a {C:attention}Straight{}",
+          "create a {C:spectral}Spectral{} card instead",
           "{C:inactive}(Must have room)"
         }
       },
