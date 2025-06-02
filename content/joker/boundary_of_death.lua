@@ -2,9 +2,9 @@ SMODS.Joker {
   key = "boundary_of_death",
   config = {
     extra = {
-      enhancement = "m_mult",
       odds = 4,
-      mult = 50
+      rank = "4",
+      retriggers = 4
     }
   },
   rarity = 3,
@@ -16,34 +16,25 @@ SMODS.Joker {
   blueprint_compat = true,
   eternal_compat = true,
   perishable_compat = true,
-  paperback = {
-    requires_enhancements = true,
-  },
-
-  enhancement_gate = "m_mult",
 
   loc_vars = function(self, info_queue, card)
     return {
       vars = {
-        localize {
-          type = 'name_text',
-          set = 'Enhanced',
-          key = card.ability.extra.enhancement
-        },
+        localize(card.ability.extra.rank, 'ranks'),
         G.GAME.probabilities.normal,
         card.ability.extra.odds,
-        card.ability.extra.mult
+        card.ability.extra.retriggers
       }
     }
   end,
 
   calculate = function(self, card, context)
-    if context.individual and context.cardarea == G.play then
-      local enhanced = SMODS.has_enhancement(context.other_card, card.ability.extra.enhancement)
+    if context.repetition and context.cardarea == G.play then
+      local is_rank = PB_UTIL.is_rank(context.other_card, card.ability.extra.rank)
 
-      if enhanced and pseudorandom('boundary_of_death') < G.GAME.probabilities.normal / card.ability.extra.odds then
+      if is_rank and pseudorandom('boundary_of_death') < G.GAME.probabilities.normal / card.ability.extra.odds then
         return {
-          mult = card.ability.extra.mult
+          repetitions = card.ability.extra.retriggers
         }
       end
     end
@@ -53,7 +44,7 @@ SMODS.Joker {
     return {
       reminder_text = {
         { text = '(' },
-        { ref_table = 'card.ability.extra', ref_value = 'enhancement', colour = G.C.IMPORTANT, scale = 0.35 },
+        { ref_table = 'card.ability.extra', ref_value = 'rank', colour = G.C.IMPORTANT, scale = 0.35 },
         { text = ')' },
       },
 

@@ -255,7 +255,7 @@ return {
         text = {
           "Scored {C:attention}#1#s{} have a",
           "{C:green}#2# in #3#{} chance to",
-          "give {C:mult}+#4#{} Mult"
+          "retrigger {C:attention}#4#{} times"
         }
       },
       j_paperback_festive_joker = {
