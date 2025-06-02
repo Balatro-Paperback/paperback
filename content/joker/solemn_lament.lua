@@ -4,14 +4,14 @@ SMODS.Joker {
     extra = {
       x_mult_mod = 0.15,
       x_mult = 1,
-      BGcolour = G.C.PAPERBACK_SOLEMN_WHITE
+      is_white = true
     }
   },
   rarity = 3,
   pos = { x = 3, y = 1 },
   atlas = "jokers_atlas",
   cost = 8,
-  unlocked = false,
+  unlocked = true,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -39,66 +39,56 @@ SMODS.Joker {
   calculate = function(self, card, context)
     if context.before and not context.blueprint then
       local suits = {
-        dark  = 0,
-        light = 0
+        dark  = false,
+        light = false
       }
       print("checking normal cards")
       for _, v in ipairs(context.scoring_hand) do
         if not SMODS.has_any_suit(v) then
-          if suits.dark == 0 and PB_UTIL.is_suit(v, 'dark') then
-            suits.dark = 1
-            print("found dark")
+          if not suits.dark and PB_UTIL.is_suit(v, 'dark') then
+            suits.dark = true
           else
-            if suits.light == 0 and PB_UTIL.is_suit(v, 'light') then
-              suits.light = 1
-              print("found dark")
+            if not suits.light and PB_UTIL.is_suit(v, 'light') then
+              suits.light = true
             end
           end
         end
       end
 
-      print("checking wild cards")
       for _, v in ipairs(context.scoring_hand) do
         if SMODS.has_any_suit(v) then
-          if suits.dark == 0 and PB_UTIL.is_suit(v, 'dark') then
-            suits.dark = 1
-            print("found dark")
+          if not suits.dark and PB_UTIL.is_suit(v, 'dark') then
+            suits.dark = true
           else
-            if suits.light == 0 and PB_UTIL.is_suit(v, 'light') then
-              suits.light = 1
-              print("found dark")
+            if not suits.light and PB_UTIL.is_suit(v, 'light') then
+              suits.light = true
             end
           end
         end
       end
 
-
-
-
-
-      if suits.dark == 1 and suits.light == 1 then
+      if suits.dark and suits.light then
+        local BGcolour
         card.ability.extra.x_mult = card.ability.extra.x_mult + card.ability.extra.x_mult_mod
-        if card.ability.extra.BGcolour == G.C.PAPERBACK_SOLEMN_WHITE then
-          card.ability.extra.BGcolour = G.C.BLACK
-          print("message is black")
+        if card.ability.extra.is_white then
+          BGcolour = G.C.BLACK
+          card.ability.extra.is_white = false
         else
-          card.ability.extra.BGcolour = G.C.PAPERBACK_SOLEMN_WHITE
-          print("message is white")
+          BGcolour = G.C.PAPERBACK_SOLEMN_WHITE
+          card.ability.extra.is_white = true
         end
         return {
-          message = "X" .. card.ability.extra.x_mult,
-          colour = card.ability.extra.BGcolour
+          message = localize {
+            type = 'variable',
+            key = 'a_xmult',
+            vars = { card.ability.extra.x_mult }
+          },
+          colour = BGcolour
         }
       end
     end
 
-
-
     if context.joker_main then
-      local suits = {
-        dark  = 0,
-        light = 0
-      }
       return {
         x_mult = card.ability.extra.x_mult,
       }
