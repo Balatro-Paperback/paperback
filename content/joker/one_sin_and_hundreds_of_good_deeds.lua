@@ -16,6 +16,9 @@ SMODS.Joker {
   blueprint_compat = true,
   eternal_compat = true,
   perishable_compat = true,
+  paperback = {
+    requires_ranks = true
+  },
 
   loc_vars = function(self, info_queue, card)
     if not card.ability.extra.fed then
@@ -50,7 +53,7 @@ SMODS.Joker {
       key = card.ability.extra.fed and "j_paperback_one_sin_and_hundreds_of_good_deeds_fed" or "j_paperback_one_sin_and_hundreds_of_good_deeds"
       , nodes = {}
     }
-    SMODS.Center.generate_ui(self, info_queue, card, desc_nodes, specific_vars, full_UI_table)
+    return SMODS.Center.generate_ui(self, info_queue, card, desc_nodes, specific_vars, full_UI_table)
   end,
 
   calculate = function(self, card, context)
