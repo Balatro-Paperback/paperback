@@ -14,15 +14,17 @@ SMODS.Joker {
   },
 
   in_pool = function(self, args)
-    for _, v in ipairs(G.playing_cards or {}) do
-      if v:get_id() == SMODS.Ranks['paperback_Apostle'].id then
-        return true
+    if SMODS.Ranks['paperback_Apostle'] then
+      for _, v in ipairs(G.playing_cards or {}) do
+        if v:get_id() == SMODS.Ranks['paperback_Apostle'].id then
+          return true
+        end
       end
     end
   end,
 
   check_for_unlock = function(self, args)
-    if args.type == 'hand' then
+    if args.type == 'hand' and SMODS.Ranks['paperback_Apostle'] then
       if args.handname == 'Straight Flush' then
         -- if hand contains Straight Flush and an Apostle, it is a rapture
         for _, card in pairs(args.scoring_hand) do
