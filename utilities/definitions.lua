@@ -192,7 +192,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "triple_moon_goddess",
   "plague_doctor",
   "white_night",
-  -- "one_sin_and_hundreds_of_good_deeds",
+  "one_sin_and_hundreds_of_good_deeds",
   "angel_investor",
   "shopping_center",
   -- "tutor",

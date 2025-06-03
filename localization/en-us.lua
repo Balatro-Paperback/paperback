@@ -87,6 +87,23 @@ return {
       },
     },
     Joker = {
+      j_paperback_one_sin_and_hundreds_of_good_deeds = {
+        name = "One Sin and Hundreds of Good Deeds",
+        text = {
+          "Scored {C:attention}3s{} and {C:attention}Rankless Cards{}",
+          "give {C:mult}+#1#{} Mult when scored",
+          "{C:inactive}''It feeds on evil''",
+        },
+      },
+      j_paperback_one_sin_and_hundreds_of_good_deeds_fed = {
+        name = "{C:red}One Sin and Hundreds of Good Deeds{}",
+        text = {
+          "Scored {C:attention}3s{} and {C:attention}Rankless Cards{}",
+          "give {C:mult}+Mult{} for each",
+          "remaining card in deck when scored",
+          "{C:inactive}(Currently {C:mult}+#2#{}{C:inactive})",
+        },
+      },
       j_paperback_white_night = {
         name = "WhiteNight",
         text = {
@@ -1689,6 +1706,7 @@ return {
       -- Text shown at the bottom while opening booster
       paperback_minor_arcana_pack = "Minor Arcana Pack",
 
+      paperback_confessed_ex = "Confessed!",
       paperback_polychrome_ex = "Polychrome!",
       paperback_destroyed_ex = "Destroyed!",
       paperback_doubled_ex = "Doubled!",
