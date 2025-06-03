@@ -40,7 +40,7 @@ SMODS.Joker {
   end,
 
   check_for_unlock = function(self, args)
-    if args.type == 'modify_deck' then
+    if args.type == 'modify_deck' and SMODS.Ranks['paperback_Apostle'] then
       local count = 0
       for _, v in ipairs(G.playing_cards) do
         if v:get_id() == SMODS.Ranks['paperback_Apostle'].id then count = count + 1 end
