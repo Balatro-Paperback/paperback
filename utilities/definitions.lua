@@ -281,7 +281,7 @@ PB_UTIL.ENABLED_JOKERS = {
   -- "claw",
   -- "marksman",
   -- "built_to_last",
-  -- "as_above_so_below",
+  "as_above_so_below",
   -- "everything_must_go",
   -- "mimicry",
   -- "prismatic_shard",

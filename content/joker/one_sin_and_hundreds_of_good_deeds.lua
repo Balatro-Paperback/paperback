@@ -1,7 +1,7 @@
 SMODS.Joker {
   key = "one_sin_and_hundreds_of_good_deeds",
   rarity = 1,
-  pos = { x = 7, y = 4 }, -- TODO: CHANGE WHEN SPRITE IS ADDED TO ATLAS
+  pos = { x = 7, y = 4 },
   atlas = "jokers_atlas",
   cost = 6,
   config = {

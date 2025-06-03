@@ -1,7 +1,7 @@
 SMODS.Joker {
   key = "as_above_so_below",
   rarity = 2,
-  pos = { x = 0, y = 0 }, -- TODO: CHANGE WHEN SPRITE IS ADDED TO ATLAS
+  pos = { x = 16, y = 5 },
   atlas = "jokers_atlas",
   cost = 6,
   unlocked = false,
