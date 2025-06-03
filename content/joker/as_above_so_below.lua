@@ -1,7 +1,7 @@
 SMODS.Joker {
   key = "as_above_so_below",
   rarity = 2,
-  pos = { x = 15, y = 5 },
+  pos = { x = 16, y = 4 },
   atlas = "jokers_atlas",
   cost = 6,
   unlocked = false,

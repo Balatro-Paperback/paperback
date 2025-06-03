@@ -387,6 +387,18 @@ function PB_UTIL.plague_quote(args)
     func = function()
       args.start_time = G.TIMERS.TOTAL
       args.text:pop_out(3)
+
+      G.E_MANAGER:add_event(Event({
+        trigger = 'after',
+        delay = 1,
+        blockable = false,
+        blocking = false,
+        timer = "REAL",
+        func = function()
+          if args.AT then args.AT:remove() end
+          return true
+        end
+      }))
       return true
     end
   }))
