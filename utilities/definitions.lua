@@ -165,6 +165,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "furioso",
   "mismatched_sock",
   "basic_energy",
+  "wild_plus_four",
   "reference_card",
   "oracle",
   "skydiver",
