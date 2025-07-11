@@ -1000,7 +1000,7 @@ return {
           "{C:inactive}(Currently {X:mult,C:white}X#3#{C:inactive} Mult)",
         },
       },
-	  j_paperback_wild_draw_four = {
+      j_paperback_wild_draw_four = {
         name = "Wild +4",
         text = {
           "{C:attention}+#1#{} hand size"
