@@ -20,4 +20,9 @@ if PB_UTIL.config.suits_enabled and next(SMODS.find_card('j_smeared')) and self.
     return false
   end
 end
+
+  -- For It's TV Time Calculations
+if PB_UTIL.tenna_check(self, suit) then
+  return true
+end
 '''

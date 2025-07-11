@@ -836,6 +836,13 @@ return {
           "{S:1.1,C:attention,E:2}Food Joker"
         }
       },
+      j_paperback_its_tv_time = {
+        name = "It's TV Time!",
+        text = {
+          "{C:paperback_stars}Stars{} are considered {C:attention}Bonus Cards",
+          "{C:attention}Bonus Cards{} are considered {C:paperback_stars}Stars{}",
+        },
+      },
       j_paperback_da_capo = {
         name = "Da Capo",
         text = {

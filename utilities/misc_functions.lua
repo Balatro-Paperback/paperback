@@ -1038,3 +1038,14 @@ function PB_UTIL.get_sorted_by_position(area)
 
   return cards
 end
+
+--- For It's TV Time. Returns True if the Joker is in the card area, the drawn card has the Bonus Enhancement, and the Suit being asked is Stars
+function PB_UTIL.tenna_check(card, suit)
+  if not next(SMODS.find_card('j_paperback_its_tv_time')) then
+    return false
+  end
+  if (card.config.center_key == 'm_bonus') and (suit == "paperback_Stars") then
+    return true
+  end
+  return false
+end
