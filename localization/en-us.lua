@@ -121,6 +121,13 @@ return {
       },
     },
     Joker = {
+      j_paperback_chaplin = {
+        name = "Chaplin",
+        text = {
+          "When buying a {C:attention}Voucher{}, also",
+          "gain the {C:attention}upgraded{} version"
+        }
+      },
       j_paperback_milk_tea = {
         name = "Milk Tea",
         text = {
@@ -1000,21 +1007,10 @@ return {
           "{C:inactive}(Currently {X:mult,C:white}X#3#{C:inactive} Mult)",
         },
       },
-      j_paperback_wild_draw_four = {
+      j_paperback_wild_plus_four = {
         name = "Wild +4",
         text = {
           "{C:attention}+#1#{} hand size"
-        }
-      },
-      j_paperback_freezer = {
-        name = "Freezer",
-        text = {
-          "Create a {C:dark_edition}Negative{} {C:attention}Food Joker{}",
-          "after defeating a {C:attention}Boss Blind{}",
-        },
-        unlock = {
-          "Acquire a {C:dark_edition}Negative{}",
-          "{S:1.1,C:attention,E:2}Food Joker"
         }
       },
       j_paperback_quick_fix = {
@@ -1369,8 +1365,7 @@ return {
         text = {
           "When buying a {C:attention}Consumable{}, has a",
           "{C:green}#1# in #2#{} chance to create a",
-          "{C:dark_edition}Negative{} copy and a",
-          "{C:green}#1# in #2#{} chance to {S:1.1,C:red,E:2}self destruct",
+          "{C:dark_edition}Negative{} copy and {S:1.1,C:red,E:2}self destruct",
         }
       },
       j_paperback_heretical_joker = {
@@ -2244,7 +2239,6 @@ return {
       paperback_reduced_ex = "Reduced!",
       paperback_determination_ex = "NGAAAHH!",
       paperback_forlorn_destruction = "Sorry...",
-      paperback_freezer_ex = "Dinner Time!",
 
       paperback_ui_requires_restart = "Requires Restart",
       paperback_ui_enable_blinds = "Enable Blinds",

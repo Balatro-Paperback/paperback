@@ -8,10 +8,10 @@ SMODS.Joker {
   rarity = 1,
   pos = { x = 6, y = 6 },
   atlas = 'jokers_atlas',
-  cost = 4,
+  cost = 1,
   unlocked = true,
   discovered = false,
-  blueprint_compat = false,
+  blueprint_compat = true,
   eternal_compat = false,
   perishable_compat = true,
   soul_pos = { x = 7, y = 6 },
@@ -31,38 +31,37 @@ SMODS.Joker {
   end,
 
   calculate = function(self, card, context)
-    if context.buying_card then
+    -- Only trigger on bought consumables
+    if context.buying_card and context.card.ability.consumeable then
+      local bought_card = context.card
+
       if pseudorandom("Apple_creation") < G.GAME.probabilities.normal / card.ability.extra.odds then
+        -- Copy the consumable
         G.E_MANAGER:add_event(Event({
           trigger = 'after',
           func = function()
             -- Give the negative consumable
-            local copy = copy_card(context.card)
+            local copy = copy_card(bought_card)
             copy:add_to_deck()
-
-            copy = copy_card(context.card)
             copy:set_edition('e_negative', true)
             G.consumeables:emplace(copy)
 
             return true
           end
         }))
-      end
-      if pseudorandom("Apple_destruction") < G.GAME.probabilities.normal / card.ability.extra.odds then
-        G.E_MANAGER:add_event(Event({
-          trigger = 'after',
-          func = function()
-            PB_UTIL.destroy_joker(card)
 
-            if not context.blueprint then
-              SMODS.calculate_effect({
-                message = localize('paperback_destroyed_ex'),
-              }, card)
-            end
+        -- Don't destroy the joker if it was triggered due to blueprint
+        if not context.blueprint then
+          PB_UTIL.destroy_joker(card)
 
-            return true
-          end
-        }))
+          return {
+            message = localize('paperback_destroyed_ex'),
+            colour = G.C.MULT
+          }
+        end
+
+        -- To allow this joker to be retriggered
+        return nil, true
       end
     end
   end,

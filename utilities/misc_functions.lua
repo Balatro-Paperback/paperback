@@ -292,6 +292,23 @@ function PB_UTIL.open_booster_pack(key)
   pack:start_materialize()
 end
 
+--- Creates and redeems the specified voucher
+---@param key string
+function PB_UTIL.redeem_voucher(key)
+  local voucher = Card(
+    G.shop_vouchers.T.x + G.shop_vouchers.T.w / 2,
+    G.shop_vouchers.T.y,
+    G.CARD_W, G.CARD_H, G.P_CARDS.empty,
+    G.P_CENTERS[key],
+    { bypass_discovery_center = true, bypass_discovery_ui = true }
+  )
+
+  voucher.cost = 0
+
+  G.FUNCS.use_card { config = { ref_table = voucher } }
+  voucher:start_materialize()
+end
+
 ---Gets a pseudorandom tag from the Tag pool
 ---@param seed string
 ---@param options table? a list of tags to choose from, defaults to normal pool
