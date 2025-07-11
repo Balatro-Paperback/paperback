@@ -1,5 +1,5 @@
 SMODS.Joker {
-  key = 'wild_draw_four',
+  key = 'wild_plus_four',
   rarity = 3,
   pos = { x = 19, y = 3 },
   atlas = 'jokers_atlas',
