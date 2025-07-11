@@ -11,7 +11,6 @@ SMODS.Joker {
   soul_pos = nil,
   config = { extra = {} },
 
-
   calculate = function(self, card, context)
     if context.end_of_round and context.game_over == false and
         context.main_eval and not context.blueprint and G.GAME.blind:get_type() == 'Boss' then
