@@ -7,9 +7,11 @@ SMODS.Joker {
   unlocked = false,
   blueprint_compat = false,
   eternal_compat = true,
+
   loc_vars = function(self, info_queue, center)
     info_queue[#info_queue + 1] = G.P_CENTERS.e_negative
   end,
+
   calculate = function(self, card, context)
     if context.end_of_round and context.game_over == false and
         context.main_eval and G.GAME.blind.boss then
