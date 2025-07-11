@@ -1006,6 +1006,17 @@ return {
           "{C:attention}+#1#{} hand size"
         }
       },
+      j_paperback_freezer = {
+        name = "Freezer",
+        text = {
+          "Create a {C:dark_edition}Negative{} {C:attention}Food Joker{}",
+          "after defeating a {C:attention}Boss Blind{}",
+        },
+        unlock = {
+          "Acquire a {C:dark_edition}Negative{}",
+          "{S:1.1,C:attention,E:2}Food Joker"
+        }
+      },
       j_paperback_quick_fix = {
         name = "Quick Fix",
         text = {
@@ -2233,6 +2244,7 @@ return {
       paperback_reduced_ex = "Reduced!",
       paperback_determination_ex = "NGAAAHH!",
       paperback_forlorn_destruction = "Sorry...",
+      paperback_freezer_ex = "Dinner Time!",
 
       paperback_ui_requires_restart = "Requires Restart",
       paperback_ui_enable_blinds = "Enable Blinds",
