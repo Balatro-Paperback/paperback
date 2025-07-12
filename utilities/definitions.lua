@@ -210,6 +210,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "one_sin_and_hundreds_of_good_deeds",
   "angel_investor",
   "shopping_center",
+  "everything_must_go",
   "tutor",
   "high_speed_rail",
   "grand_strategy",
