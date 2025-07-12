@@ -836,6 +836,13 @@ return {
           "{S:1.1,C:attention,E:2}Food Joker"
         }
       },
+      j_paperback_card_sleeve = {
+        name = "Card Sleeve",
+        text = {
+          "Sell this card to make the {C:attention}Joker",
+          "to the right {C:attention}Eternal{}",
+        },
+      },
       j_paperback_da_capo = {
         name = "Da Capo",
         text = {

@@ -209,6 +209,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "white_night",
   "one_sin_and_hundreds_of_good_deeds",
   "angel_investor",
+  "card_sleeve",
   "shopping_center",
   "tutor",
   "high_speed_rail",
