@@ -841,6 +841,13 @@ return {
         text = {
           "Sell this card to make the {C:attention}Joker",
           "to the right {C:attention}Eternal{}",
+        }
+      },
+      j_paperback_its_tv_time = {
+        name = "It's TV Time!",
+        text = {
+          "{C:paperback_stars}Stars{} are considered {C:attention}Bonus Cards",
+          "{C:attention}Bonus Cards{} are considered {C:paperback_stars}Stars{}",
         },
       },
       j_paperback_da_capo = {

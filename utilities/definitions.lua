@@ -5,6 +5,7 @@ PB_UTIL.config = SMODS.current_mod.config
 SMODS.current_mod.optional_features = {
   retrigger_joker = true,
   post_trigger = true,
+  quantum_enhancements = true,
 }
 
 -- Update values that get reset at the start of each round
@@ -212,6 +213,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "card_sleeve",
   "shopping_center",
   "tutor",
+  "its_tv_time",
   "high_speed_rail",
   "grand_strategy",
   "ready_to_fly",
