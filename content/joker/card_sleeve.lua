@@ -13,13 +13,13 @@ SMODS.Joker {
   end,
 
   calculate = function(self, card, context)
-    if context.selling_self then
+    if context.selling_self and not context.blueprint then
       local other_joker = nil
       for i = 1, #G.jokers.cards do
         if G.jokers.cards[i] == card then other_joker = G.jokers.cards[i + 1] end
       end
       if other_joker ~= nil then
-        other_joker.ability.eternal = true
+        other_joker:set_eternal(true)
       end
     end
   end
