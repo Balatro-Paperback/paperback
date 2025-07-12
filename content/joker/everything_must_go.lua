@@ -2,7 +2,7 @@ SMODS.Joker {
   key = "everything_must_go",
   config = {
     extra = {
-      numSlots = 1
+      num_slots = 1
     }
   },
   rarity = 2,
@@ -16,17 +16,16 @@ SMODS.Joker {
   loc_vars = function(self, info_queue, card)
     return {
       vars = {
-        card.ability.extra.numSlots
+        card.ability.extra.num_slots
       }
     }
   end,
 
   add_to_deck = function(self, card, from_debuff)
-    SMODS.change_voucher_limit(card.ability.extra.numSlots)
+    SMODS.change_voucher_limit(card.ability.extra.num_slots)
   end,
 
-
   remove_from_deck = function(self, card, from_debuff)
-    SMODS.change_voucher_limit(-card.ability.extra.numSlots)
+    SMODS.change_voucher_limit(-card.ability.extra.num_slots)
   end,
 }
