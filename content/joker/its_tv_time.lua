@@ -20,8 +20,7 @@ SMODS.Joker {
     if G.playing_cards then
       for _, v in pairs(G.playing_cards) do
         if SMODS.has_enhancement(v, 'm_bonus') or
-            (not SMODS.has_no_suit(v) and v:is_suit('paperback_Stars')) or
-            PB_UTIL.spectrum_played() then
+            (not SMODS.has_no_suit(v) and v.base.suit == 'paperback_Stars') then
           return true
         end
       end
@@ -38,6 +37,7 @@ SMODS.Joker {
       play_sound("paperback_ITS-TV-TIME")
     end
   end,
+
   calculate = function(self, card, context)
     if context.check_enhancement and (context.other_card.base.suit == "paperback_Stars"
           or context.other_card.config.center_key == 'm_wild' or context.other_card.config.center.any_suit) then
