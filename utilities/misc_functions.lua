@@ -1044,7 +1044,7 @@ function PB_UTIL.tenna_check(card, suit)
   if not next(SMODS.find_card('j_paperback_its_tv_time')) then
     return false
   end
-  if (card.config.center_key == 'm_bonus') and (suit == "paperback_Stars") then
+  if SMODS.has_enhancement(card, 'm_bonus') and (suit == "paperback_Stars") then
     return true
   end
   return false

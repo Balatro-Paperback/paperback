@@ -1,3 +1,8 @@
+SMODS.Sound {
+  key = 'ITS-TV-TIME',
+  path = 'ITS-TV-TIME.ogg',
+}
+
 SMODS.Joker {
   key = "its_tv_time",
   rarity = 2,
@@ -14,8 +19,9 @@ SMODS.Joker {
   in_pool = function()
     if G.playing_cards then
       for _, v in pairs(G.playing_cards) do
-        if v.config.center == G.P_CENTERS.m_bonus or
-            v:is_suit('paperback_Stars') then
+        if SMODS.has_enhancement(v, 'm_bonus') or
+            (not SMODS.has_no_suit(v) and v:is_suit('paperback_Stars')) or
+            PB_UTIL.spectrum_played() then
           return true
         end
       end
@@ -27,6 +33,11 @@ SMODS.Joker {
     info_queue[#info_queue + 1] = G.P_CENTERS.m_bonus
   end,
 
+  add_to_deck = function(self, card, from_debuff)
+    if not from_debuff then
+      play_sound("paperback_ITS-TV-TIME")
+    end
+  end,
   calculate = function(self, card, context)
     if context.check_enhancement and (context.other_card.base.suit == "paperback_Stars"
           or context.other_card.config.center_key == 'm_wild' or context.other_card.config.center.any_suit) then
