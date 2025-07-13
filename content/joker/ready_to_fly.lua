@@ -4,7 +4,12 @@ SMODS.Joker {
   pos = { x = 16, y = 0 },
   atlas = 'jokers_atlas',
   cost = 6,
-  config = { extra = { xchips = 1, scaling = 0.05 } },
+  config = {
+    extra = {
+      xchips = 1,
+      scaling = 0.02
+    }
+  },
   unlocked = true,
   discovered = false,
   blueprint_compat = true,

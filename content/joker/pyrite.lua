@@ -19,11 +19,13 @@ SMODS.Joker {
   },
 
   loc_vars = function(self, info_queue, card)
+    local numerator, denominator = PB_UTIL.chance_vars(card)
+
     return {
       vars = {
         localize(card.ability.extra.suit, 'suits_plural'),
-        G.GAME.probabilities.normal,
-        card.ability.extra.odds,
+        numerator,
+        denominator,
         colours = {
           G.C.SUITS[card.ability.extra.suit] or G.C.PAPERBACK_CROWNS_LC
         }
@@ -34,7 +36,7 @@ SMODS.Joker {
   calculate = function(self, card, context)
     if context.individual and context.cardarea == G.play then
       if context.other_card:is_suit(card.ability.extra.suit) then
-        if pseudorandom("pyrite") < G.GAME.probabilities.normal / card.ability.extra.odds then
+        if PB_UTIL.chance(card, "pyrite") then
           local eff_card = context.blueprint_card or card
 
           return nil, PB_UTIL.try_spawn_card {

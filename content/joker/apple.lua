@@ -21,11 +21,12 @@ SMODS.Joker {
 
   loc_vars = function(self, info_queue, card)
     info_queue[#info_queue + 1] = G.P_CENTERS.e_negative
+    local numerator, denominator = PB_UTIL.chance_vars(card)
 
     return {
       vars = {
-        G.GAME.probabilities.normal,
-        card.ability.extra.odds,
+        numerator,
+        denominator
       }
     }
   end,
@@ -35,7 +36,7 @@ SMODS.Joker {
     if context.buying_card and context.card.ability.consumeable then
       local bought_card = context.card
 
-      if pseudorandom("Apple_creation") < G.GAME.probabilities.normal / card.ability.extra.odds then
+      if PB_UTIL.chance(card, 'apple_creation') then
         -- Copy the consumable
         G.E_MANAGER:add_event(Event({
           trigger = 'after',

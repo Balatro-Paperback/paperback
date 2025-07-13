@@ -21,12 +21,14 @@ SMODS.Joker {
   },
 
   loc_vars = function(self, info_queue, card)
+    local numerator, denominator = PB_UTIL.chance_vars(card)
+
     return {
       vars = {
         card.ability.extra.dollar_bonus,
         card.ability.extra.dollar_gain,
-        G.GAME.probabilities.normal,
-        card.ability.extra.odds
+        numerator,
+        denominator
       }
     }
   end,
@@ -35,7 +37,7 @@ SMODS.Joker {
     if not context.blueprint then
       if context.end_of_round and context.main_eval then
         -- Destroy the Joker if the odds are hit
-        if pseudorandom("Joker Cookie") < G.GAME.probabilities.normal / card.ability.extra.odds then
+        if PB_UTIL.chance(card, 'joker_cookie') then
           PB_UTIL.destroy_joker(card)
 
           -- Return the "Eaten!" message

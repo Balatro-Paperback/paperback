@@ -11,7 +11,7 @@ PB_UTIL.MinorArcana {
   can_use = function(self, card)
     -- Prevent changing eternal jokers
     if #G.jokers.highlighted == card.ability.extra.max_jokers then
-      return not G.jokers.highlighted[1].ability.eternal
+      return not SMODS.is_eternal(G.jokers.highlighted[1], card)
     end
   end,
 

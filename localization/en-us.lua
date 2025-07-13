@@ -190,8 +190,8 @@ return {
         text = {
           "If played hand has a {C:attention}scoring{} {V:1}#1#",
           "{C:green}#2# in #3#{} chance to gain {X:mult,C:white}X#4#{} Mult",
-          "{C:green}#2# in #5#{} chance to spawn a {C:tarot}#6#{} Tarot",
-          "{C:inactive}(Must have room) (Currently {X:mult,C:white}X#7#{C:inactive} Mult)",
+          "{C:green}#5# in #6#{} chance to spawn a {C:tarot}#7#{} Tarot",
+          "{C:inactive}(Must have room) (Currently {X:mult,C:white}X#8#{C:inactive} Mult)",
         }
       },
       j_paperback_blood_rain = {
@@ -377,6 +377,15 @@ return {
           "This Joker {C:red}loses{} Mult equal to",
           "the {C:money}sell value{} of {C:red}sold{} {C:attention}Jokers{}",
           "{C:inactive}(Currently {C:mult}+#1#{C:inactive} Mult)"
+        }
+      },
+      j_paperback_aurora_borealis = {
+        name = "Aurora Borealis",
+        text = {
+          "This Joker gains {X:mult,C:white}X#1#{} Mult",
+          "for each {C:attention}editioned Joker{} card",
+          "{s:0.9,C:dark_edition}Negatives{s:0.9,C:inactive} are excluded{}",
+          "{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult)"
         }
       },
       j_paperback_joke_master = {
@@ -738,6 +747,14 @@ return {
           "increase the payout by {C:money}$#3#"
         }
       },
+      j_paperback_chocolate_joker = {
+        name = "Chocolate Joker",
+        text = {
+          "This Joker gains {X:chips,C:white}X#1#{} Chips",
+          "for each {C:attention}Joker{} card",
+          "{C:inactive}(Currently {X:chips,C:white}X#2#{C:inactive} Chips)"
+        }
+      },
       j_paperback_jester_of_nihil = {
         name = "Jester of Nihil",
         text = {
@@ -835,6 +852,27 @@ return {
           "Acquire a {C:dark_edition}Negative{}",
           "{S:1.1,C:attention,E:2}Food Joker"
         }
+      },
+      j_paperback_everything_must_go = {
+        name = "Everything Must Go!",
+        text = {
+          "Shops have {C:attention}#1#{} additional",
+          "{C:attention}Voucher{} for sale"
+        }
+      },
+      j_paperback_card_sleeve = {
+        name = "Card Sleeve",
+        text = {
+          "Sell this card to make the {C:attention}Joker",
+          "to the right {C:attention}Eternal{}",
+        }
+      },
+      j_paperback_its_tv_time = {
+        name = "It's TV Time!",
+        text = {
+          "{C:paperback_stars}Stars{} are considered {C:attention}Bonus Cards",
+          "{C:attention}Bonus Cards{} are considered {C:paperback_stars}Stars{}",
+        },
       },
       j_paperback_da_capo = {
         name = "Da Capo",
@@ -1124,8 +1162,8 @@ return {
         name = "[[WILD PRIZE!1!]]",
         text = {
           "{C:attention}Wild Cards{} have a {C:green}#1# in #2#{} chance",
-          "to {C:attention}retrigger{} and a {C:green}#1# in #3#{} chance",
-          "to earn between {C:money}#4#{} and {C:money}$#5#{} when scored",
+          "to {C:attention}retrigger{} and a {C:green}#3# in #4#{} chance",
+          "to earn between {C:money}#5#{} and {C:money}$#6#{} when scored",
         },
       },
       j_paperback_wish_you_were_here = {
@@ -1159,7 +1197,7 @@ return {
         text = {
           "If played hand contains a {C:attention}Three of a Kind{},",
           "{C:green}#1# in #2#{} chance to create a random {C:planet}Planet{} card and",
-          "{C:green}#1# in #3#{} chance to create a random {C:purple}Tarot{} card",
+          "{C:green}#3# in #4#{} chance to create a random {C:purple}Tarot{} card",
           "{C:inactive}(Must have room)"
         },
       },
@@ -1168,7 +1206,7 @@ return {
         text = {
           "If played hand contains a {C:attention}Three of a Kind{},",
           "{C:green}#1# in #2#{} chance to create a random {C:tarot}Tarot{} card and",
-          "{C:green}#1# in #3#{} chance to create a random {C:paperback_minor_arcana}Minor Arcana{} card",
+          "{C:green}#3# in #4#{} chance to create a random {C:paperback_minor_arcana}Minor Arcana{} card",
           "{C:inactive}(Must have room)"
         },
       },
@@ -1334,6 +1372,14 @@ return {
           "If hand has not been played this",
           "{C:attention}Ante{}, {C:purple}balance{} {C:mult}Mult{} and {C:chips}Chips",
           "{C:inactive}(Hands played:{C:attention}#1#{C:inactive})",
+        },
+      },
+      j_paperback_in_case_i_make_it = {
+        name = "In Case I Make It",
+        text = {
+          "Every played {C:attention}rankless card{}",
+          "permanently gains",
+          "{C:chips}+#1#{} Chips when scored",
         },
       },
       j_paperback_evergreens = {
@@ -2133,8 +2179,8 @@ return {
           "If {C:attention}scored{} while a {C:attention}Clip",
           "is {C:attention}held in hand{} it has",
           "a {C:green}#1# in #2#{} chance for {C:red}+#3#{} Mult,",
-          "a {C:green}#1# in #4#{} chance for {X:mult,C:white}X#5#{} Mult",
-          "and a {C:green}#1# in #6#{} chance for {C:money}$#7#{}",
+          "a {C:green}#4# in #5#{} chance for {X:mult,C:white}X#6#{} Mult",
+          "and a {C:green}#7# in #8#{} chance for {C:money}$#9#{}",
         }
       },
       paperback_gold_clip = {

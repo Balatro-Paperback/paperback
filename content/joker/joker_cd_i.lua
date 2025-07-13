@@ -17,10 +17,12 @@ SMODS.Joker {
   perishable_compat = true,
 
   loc_vars = function(self, info_queue, card)
+    local numerator, denominator = PB_UTIL.chance_vars(card)
+
     return {
       vars = {
-        G.GAME.probabilities.normal,
-        card.ability.extra.odds,
+        numerator,
+        denominator,
         card.ability.extra.cards
       }
     }
@@ -28,7 +30,7 @@ SMODS.Joker {
 
   calculate = function(self, card, context)
     if context.before and context.main_eval and #context.full_hand == card.ability.extra.cards then
-      if pseudorandom('joker_cd_i') < G.GAME.probabilities.normal / card.ability.extra.odds then
+      if PB_UTIL.chance(card, 'joker_cd_i') then
         if PB_UTIL.try_spawn_card { set = 'Planet' } then
           return {
             message = localize('k_plus_planet'),

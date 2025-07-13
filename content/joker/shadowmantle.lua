@@ -24,12 +24,13 @@ SMODS.Joker {
 
   loc_vars = function(self, info_queue, card)
     info_queue[#info_queue + 1] = G.P_TAGS.tag_negative
+    local numerator, denominator = PB_UTIL.chance_vars(card)
 
     return {
       vars = {
         localize(card.ability.extra.suit, 'suits_plural'),
-        G.GAME.probabilities.normal,
-        card.ability.extra.odds,
+        numerator,
+        denominator,
         colours = {
           G.C.SUITS[card.ability.extra.suit] or G.C.PAPERBACK_STARS_LC
         }
@@ -39,7 +40,7 @@ SMODS.Joker {
 
   calculate = function(self, card, context)
     if context.individual and context.cardarea == G.play and context.other_card:is_suit(card.ability.extra.suit) then
-      if pseudorandom('shadowmantle') < G.GAME.probabilities.normal / card.ability.extra.odds then
+      if PB_UTIL.chance(card, 'shadowmantle') then
         PB_UTIL.add_tag("tag_negative", true)
         return {
           message = localize('paperback_plus_tag'),

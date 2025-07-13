@@ -9,10 +9,12 @@ SMODS.Enhancement {
   },
 
   loc_vars = function(self, info_queue, card)
+    local numerator, denominator = PB_UTIL.chance_vars(card)
+
     return {
       vars = {
-        G.GAME.probabilities.normal,
-        card.ability.extra.odds
+        numerator,
+        denominator
       }
     }
   end,
@@ -57,7 +59,7 @@ SMODS.Enhancement {
     end
 
     if context.destroy_card and context.cardarea == G.play and context.destroy_card == card then
-      if pseudorandom('bandaged_break') < G.GAME.probabilities.normal / card.ability.extra.odds then
+      if PB_UTIL.chance(card, 'bandaged_break') then
         return {
           remove = true
         }

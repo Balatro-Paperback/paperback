@@ -18,11 +18,13 @@ if PB_UTIL.config.minor_arcana_enabled then
     perishable_compat = true,
 
     loc_vars = function(self, info_queue, card)
+      local n1, d1 = PB_UTIL.chance_vars(card, nil, nil, card.ability.extra.tarot_odds)
+      local n2, d2 = PB_UTIL.chance_vars(card, nil, nil, card.ability.extra.minor_arcana_odds)
+
       return {
         vars = {
-          G.GAME.probabilities.normal,
-          card.ability.extra.tarot_odds,
-          card.ability.extra.minor_arcana_odds
+          n1, d1,
+          n2, d2
         }
       }
     end,
@@ -33,8 +35,7 @@ if PB_UTIL.config.minor_arcana_enabled then
         local triggered
 
         -- Tarot spawn
-        local roll = pseudorandom('triple_moon_goddess_tarot')
-        if roll < G.GAME.probabilities.normal / card.ability.extra.tarot_odds then
+        if PB_UTIL.chance(card, 'triple_moon_goddess_tarot', nil, card.ability.extra.tarot_odds) then
           PB_UTIL.try_spawn_card { set = 'Tarot', func = function()
             SMODS.calculate_effect {
               message = localize('k_plus_tarot'),
@@ -47,8 +48,7 @@ if PB_UTIL.config.minor_arcana_enabled then
         end
 
         -- Minor Arcana spawn
-        roll = pseudorandom('triple_moon_goddess_minor_arcana')
-        if roll < G.GAME.probabilities.normal / card.ability.extra.minor_arcana_odds then
+        if PB_UTIL.chance(card, 'triple_moon_goddess_minor_arcana', nil, card.ability.extra.minor_arcana_odds) then
           PB_UTIL.try_spawn_card { set = 'paperback_minor_arcana', func = function()
             SMODS.calculate_effect {
               message = localize('paperback_plus_minor_arcana'),
@@ -85,11 +85,13 @@ else
     soul_pos = nil,
 
     loc_vars = function(self, info_queue, card)
+      local n1, d1 = PB_UTIL.chance_vars(card, nil, nil, card.ability.extra.planet_odds)
+      local n2, d2 = PB_UTIL.chance_vars(card, nil, nil, card.ability.extra.tarot_odds)
+
       return {
         vars = {
-          G.GAME.probabilities.normal,
-          card.ability.extra.planet_odds,
-          card.ability.extra.tarot_odds
+          n1, d1,
+          n2, d2
         }
       }
     end,
@@ -100,8 +102,7 @@ else
         local triggered
 
         -- Check if planet card is generated and there is enough space in the consumeables area
-        local roll = pseudorandom("Triple Moon Goddess (Planet)")
-        if roll < G.GAME.probabilities.normal / card.ability.extra.planet_odds then
+        if PB_UTIL.chance(card, "Triple Moon Goddess (Planet)", nil, card.ability.extra.planet_odds) then
           PB_UTIL.try_spawn_card { set = 'Planet', func = function()
             SMODS.calculate_effect {
               message = localize('k_plus_planet'),
@@ -114,8 +115,7 @@ else
         end
 
         -- Check if a tarot card is generated and there is enough space in the consumeables area
-        roll = pseudorandom("Triple Moon Goddess (Tarot)")
-        if roll < G.GAME.probabilities.normal / card.ability.extra.tarot_odds then
+        if PB_UTIL.chance(card, "Triple Moon Goddess (Tarot)", nil, card.ability.extra.tarot_odds) then
           PB_UTIL.try_spawn_card { set = 'Tarot', func = function()
             SMODS.calculate_effect {
               message = localize('k_plus_tarot'),

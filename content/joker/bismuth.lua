@@ -30,12 +30,14 @@ SMODS.Joker {
     info_queue[#info_queue + 1] = G.P_CENTERS.e_holo
     info_queue[#info_queue + 1] = G.P_CENTERS.e_polychrome
 
+    local numerator, denominator = PB_UTIL.chance_vars(card)
+
     return {
       vars = {
         localize(card.ability.extra.suit1, 'suits_plural'),
         localize(card.ability.extra.suit2, 'suits_plural'),
-        G.GAME.probabilities.normal,
-        card.ability.extra.odds,
+        numerator,
+        denominator,
         colours = {
           G.C.SUITS[card.ability.extra.suit1] or G.C.PAPERBACK_CROWNS_LC,
           G.C.SUITS[card.ability.extra.suit2] or G.C.PAPERBACK_STARS_LC,
@@ -51,7 +53,7 @@ SMODS.Joker {
       local triggered
 
       for k, v in pairs(ctx.full_hand) do
-        local roll = pseudorandom('bismuth') < G.GAME.probabilities.normal / card.ability.extra.odds
+        local roll = PB_UTIL.chance(card, 'bismuth')
         if not v.edition and not v.debuff and roll and
             (v:is_suit(card.ability.extra.suit1) or v:is_suit(card.ability.extra.suit2)) then
           triggered = true
@@ -100,7 +102,7 @@ SMODS.Joker {
       calc_function = function(card)
         card.joker_display_values.localized_suit1 = localize(card.ability.extra.suit1, 'suits_plural')
         card.joker_display_values.localized_suit2 = localize(card.ability.extra.suit2, 'suits_plural')
-        card.joker_display_values.odds = localize { type = 'variable', key = 'jdis_odds', vars = { (G.GAME and G.GAME.probabilities.normal or 1), card.ability.extra.odds } }
+        card.joker_display_values.odds = localize { type = 'variable', key = 'jdis_odds', vars = { PB_UTIL.chance_vars(card) } }
       end,
 
       style_function = function(card, text, reminder_text, extra)

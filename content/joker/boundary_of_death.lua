@@ -17,6 +17,7 @@ SMODS.Joker {
 
   loc_vars = function(self, info_queue, card)
     info_queue[#info_queue + 1] = G.P_CENTERS.m_mult
+    local numerator, denominator = PB_UTIL.chance_vars(card)
 
     return {
       vars = {
@@ -25,8 +26,8 @@ SMODS.Joker {
           set = 'Enhanced',
           key = 'm_mult'
         },
-        G.GAME.probabilities.normal,
-        card.ability.extra.odds,
+        numerator,
+        denominator,
         card.ability.extra.mult
       }
     }
@@ -61,7 +62,7 @@ SMODS.Joker {
         card.joker_display_values.odds = localize {
           type = 'variable',
           key = 'jdis_odds',
-          vars = { (G.GAME and G.GAME.probabilities.normal or 1), card.ability.extra.odds }
+          vars = { PB_UTIL.chance_vars(card) }
         }
 
         card.joker_display_values.enhancement = localize {
@@ -81,7 +82,7 @@ function Card.get_chip_mult(self)
   if SMODS.has_enhancement(self, 'm_mult') then
     local _, joker = next(SMODS.find_card('j_paperback_boundary_of_death', false))
 
-    if joker and pseudorandom("boundary_of_death") < G.GAME.probabilities.normal / joker.ability.extra.odds then
+    if joker and PB_UTIL.chance(joker, 'boundary_of_death') then
       amt = amt + joker.ability.extra.mult
     end
   end

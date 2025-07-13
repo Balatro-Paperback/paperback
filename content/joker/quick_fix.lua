@@ -23,18 +23,20 @@ SMODS.Joker {
   end,
 
   loc_vars = function(self, info_queue, card)
+    local numerator, denominator = PB_UTIL.chance_vars(card)
+
     return {
       vars = {
         card.ability.h_size,
-        G.GAME.probabilities.normal,
-        card.ability.extra.odds
+        numerator,
+        denominator
       }
     }
   end,
 
   calculate = function(self, card, context)
     if context.end_of_round and not context.blueprint and context.main_eval then
-      if pseudorandom("Quick Fix") < G.GAME.probabilities.normal / card.ability.extra.odds then
+      if PB_UTIL.chance(card, 'quick_fix') then
         -- Destroy Quick Fix
         PB_UTIL.destroy_joker(card, function()
           -- Remove Quick Fix from the Joker pool

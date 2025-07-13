@@ -16,11 +16,13 @@ SMODS.Joker {
   eternal_compat = true,
 
   loc_vars = function(self, info_queue, card)
+    local numerator, denominator = PB_UTIL.chance_vars(card)
+
     return {
       vars = {
         localize(card.ability.extra.rank, 'ranks'),
-        G.GAME.probabilities.normal,
-        card.ability.extra.odds
+        numerator,
+        denominator
       }
     }
   end,
@@ -28,7 +30,7 @@ SMODS.Joker {
   -- Calculate function for the Joker
   calculate = function(self, card, context)
     if context.individual and context.cardarea == G.hand and PB_UTIL.is_rank(context.other_card, card.ability.extra.rank) then
-      if not context.other_card.debuff and pseudorandom("sake_cup") < G.GAME.probabilities.normal / card.ability.extra.odds then
+      if not context.other_card.debuff and PB_UTIL.chance(card, 'sake_cup') then
         local planet = PB_UTIL.get_planet_for_hand(context.scoring_name)
         local eff_card = context.blueprint_card or card
 

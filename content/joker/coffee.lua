@@ -21,12 +21,14 @@ SMODS.Joker {
   },
 
   loc_vars = function(self, info_queue, card)
+    local numerator, denominator = PB_UTIL.chance_vars(card)
+
     return {
       vars = {
         card.ability.extra.hand_size,
         card.ability.extra.increase,
-        G.GAME.probabilities.normal,
-        card.ability.extra.odds
+        numerator,
+        denominator
       }
     }
   end,
@@ -45,7 +47,7 @@ SMODS.Joker {
     end
 
     if context.setting_blind and not context.blind.boss then
-      if pseudorandom("coffee") < G.GAME.probabilities.normal / card.ability.extra.odds then
+      if PB_UTIL.chance(card, 'coffee') then
         PB_UTIL.destroy_joker(card)
 
         -- Revert all the hand size increase when eaten
@@ -82,7 +84,7 @@ SMODS.Joker {
       },
 
       calc_function = function(card)
-        card.joker_display_values.odds = localize { type = 'variable', key = 'jdis_odds', vars = { (G.GAME and G.GAME.probabilities.normal or 1), card.ability.extra.odds } }
+        card.joker_display_values.odds = localize { type = 'variable', key = 'jdis_odds', vars = { PB_UTIL.chance_vars(card) } }
       end
     }
   end

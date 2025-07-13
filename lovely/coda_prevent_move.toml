@@ -12,7 +12,5 @@ match_indent = true
 payload = '''
 if G and G.GAME and G.GAME.blind and G.GAME.blind.boss and not G.GAME.blind.disabled and G.GAME.blind.name == "bl_paperback_coda" then
   self.states.drag.can = false
-else
-  self.states.drag.can = true
 end
 '''

@@ -19,10 +19,12 @@ SMODS.Joker {
   pixel_size = { w = 35, h = 45 },
 
   loc_vars = function(self, info_queue, card)
+    local numerator, denominator = PB_UTIL.chance_vars(card)
+
     return {
       vars = {
-        G.GAME.probabilities.normal,
-        card.ability.extra.odds,
+        numerator,
+        denominator,
         card.ability.extra.chip_mod,
         card.ability.extra.chips
       }
@@ -35,7 +37,7 @@ SMODS.Joker {
       if context.cardarea == G.play then
         if context.other_card:get_seal() then
           -- Gives chips if roll succeeds
-          if pseudorandom("Stamp") < G.GAME.probabilities.normal / card.ability.extra.odds then
+          if PB_UTIL.chance(card, 'stamp') then
             card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chip_mod
 
             card_eval_status_text(card, 'extra', nil, nil, nil,

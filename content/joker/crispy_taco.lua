@@ -22,11 +22,13 @@ SMODS.Joker {
   },
 
   loc_vars = function(self, info_queue, card)
+    local numerator, denominator = PB_UTIL.chance_vars(card)
+
     return {
       vars = {
         card.ability.extra.x_chips,
-        G.GAME.probabilities.normal,
-        card.ability.extra.odds
+        numerator,
+        denominator
       }
     }
   end,
@@ -41,7 +43,7 @@ SMODS.Joker {
 
     -- Checks if Joker should be destroyed at the end of the round
     if context.end_of_round and not context.blueprint and context.main_eval then
-      if pseudorandom("Crispy Taco") < G.GAME.probabilities.normal / card.ability.extra.odds then
+      if PB_UTIL.chance(card, 'Crispy Taco') then
         PB_UTIL.destroy_joker(card, function()
           -- Allows Soft Taco to spawn, prevents Crispy Taco from spawning
           G.GAME.pool_flags.soft_taco_can_spawn = true
@@ -87,7 +89,7 @@ SMODS.Joker {
       },
 
       calc_function = function(card)
-        card.joker_display_values.odds = localize { type = 'variable', key = 'jdis_odds', vars = { (G.GAME and G.GAME.probabilities.normal or 1), card.ability.extra.odds } }
+        card.joker_display_values.odds = localize { type = 'variable', key = 'jdis_odds', vars = { PB_UTIL.chance_vars(card) } }
       end,
     }
   end

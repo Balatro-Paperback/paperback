@@ -16,10 +16,12 @@ SMODS.Joker {
   soul_pos = nil,
 
   loc_vars = function(self, info_queue, card)
+    local numerator, denominator = PB_UTIL.chance_vars(card)
+
     return {
       vars = {
-        G.GAME.probabilities.normal,
-        card.ability.extra.odds
+        numerator,
+        denominator
       }
     }
   end,
@@ -27,7 +29,7 @@ SMODS.Joker {
   calculate = function(self, card, context)
     -- Check that the card being consumed is not a copy made by this joker
     if context.using_consumeable and not context.consumeable.ability.paperback_energized then
-      if pseudorandom("basic_energy") < G.GAME.probabilities.normal / card.ability.extra.odds then
+      if PB_UTIL.chance(card, 'basic_energy') then
         local eff_card = context.blueprint_card or card
         local consumable = context.consumeable
 
@@ -71,7 +73,7 @@ SMODS.Joker {
       },
 
       calc_function = function(card)
-        card.joker_display_values.odds = localize { type = 'variable', key = 'jdis_odds', vars = { (G.GAME and G.GAME.probabilities.normal or 1), card.ability.extra.odds } }
+        card.joker_display_values.odds = localize { type = 'variable', key = 'jdis_odds', vars = { PB_UTIL.chance_vars(card) } }
       end,
     }
   end

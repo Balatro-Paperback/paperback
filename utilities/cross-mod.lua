@@ -198,7 +198,7 @@ function PB_UTIL.stick_food_joker_display_def(JokerDisplay)
       end
 
       card.joker_display_values.mult = mult
-      card.joker_display_values.odds = localize { type = 'variable', key = 'jdis_odds', vars = { (G.GAME and G.GAME.probabilities.normal or 1), card.ability.extra.odds } }
+      card.joker_display_values.odds = localize { type = 'variable', key = 'jdis_odds', vars = { PB_UTIL.chance_vars(card) } }
       card.joker_display_values.localized_suit = localize(card.ability.extra.suit, 'suits_plural')
     end,
 

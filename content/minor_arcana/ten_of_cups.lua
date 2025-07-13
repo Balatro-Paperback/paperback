@@ -10,11 +10,12 @@ PB_UTIL.MinorArcana {
 
   loc_vars = function(self, info_queue, card)
     info_queue[#info_queue + 1] = G.P_CENTERS.e_polychrome
+    local numerator, denominator = PB_UTIL.chance_vars(card)
 
     return {
       vars = {
-        G.GAME.probabilities.normal,
-        card.ability.extra.odds
+        numerator,
+        denominator
       }
     }
   end,
@@ -24,7 +25,7 @@ PB_UTIL.MinorArcana {
   end,
 
   use = function(self, card, area)
-    if pseudorandom("ten_of_cups") < G.GAME.probabilities.normal / card.ability.extra.odds then
+    if PB_UTIL.chance(card, 'ten_of_cups') then
       PB_UTIL.use_consumable_animation(card, nil, function()
         G.hand.highlighted[1]:set_edition('e_polychrome', true)
       end)

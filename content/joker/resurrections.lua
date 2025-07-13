@@ -18,23 +18,21 @@ SMODS.Joker {
 
   loc_vars = function(self, info_queue, card)
     info_queue[#info_queue + 1] = G.P_CENTERS.e_negative
+    local numerator, denominator = PB_UTIL.chance_vars(card, nil, card.ability.extra.chance_mult)
 
     return {
       vars = {
-        G.GAME.probabilities.normal * card.ability.extra.chance_mult,
-        card.ability.extra.odds,
+        numerator,
+        denominator,
         card.ability.extra.sell_cost,
-        G.GAME.probabilities.normal
+        numerator / card.ability.extra.chance_mult
       }
     }
   end,
 
   calculate = function(self, card, context)
     if not context.blueprint and context.selling_card and context.card ~= card and context.card.ability.set == 'Joker' then
-      local chance = G.GAME.probabilities.normal * card.ability.extra.chance_mult
-      local roll = pseudorandom("resurrections") < chance / card.ability.extra.odds
-
-      if roll then
+      if PB_UTIL.chance(card, 'resurrections', card.ability.extra.chance_mult) then
         G.E_MANAGER:add_event(Event {
           func = function()
             -- Create a copy of the sold Joker

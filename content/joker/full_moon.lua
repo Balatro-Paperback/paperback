@@ -15,10 +15,12 @@ SMODS.Joker {
   eternal_compat = true,
 
   loc_vars = function(self, info_queue, card)
+    local numerator, denominator = PB_UTIL.chance_vars(card)
+
     return {
       vars = {
-        G.GAME.probabilities.normal,
-        card.ability.extra.odds
+        numerator,
+        denominator
       }
     }
   end,
@@ -28,7 +30,7 @@ SMODS.Joker {
       local hand = context.consumeable.ability.hand_type
       local eff_card = context.blueprint_card or card
 
-      if hand and pseudorandom('full_moon') < G.GAME.probabilities.normal / card.ability.extra.odds then
+      if hand and PB_UTIL.chance(card, 'full_moon') then
         -- This is a copy of how a planet card sets the text when upgrading a hand (just formatted better)
         update_hand_text(
           { sound = 'button', volume = 0.7, pitch = 0.8, delay = 0.3 },

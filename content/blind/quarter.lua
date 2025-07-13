@@ -6,30 +6,33 @@ SMODS.Blind {
   boss_colour = HEX("E27A7A"),
   atlas = 'music_blinds_atlas',
   pos = { y = 5 },
-
   odds = 4,
 
   loc_vars = function(self)
+    local numerator, denominator = PB_UTIL.chance_vars(self, nil, nil, self.odds)
+
     return {
       vars = {
-        G.GAME.probabilities.normal,
-        self.odds
+        numerator,
+        denominator
       }
     }
   end,
 
   collection_loc_vars = function(self)
+    local numerator, denominator = PB_UTIL.chance_vars(self, nil, nil, self.odds)
+
     return {
       vars = {
-        1,
-        4
+        numerator,
+        denominator
       }
     }
   end,
 
   set_blind = function(self)
     for k, v in pairs(G.playing_cards) do
-      if pseudorandom('the_quarter') < G.GAME.probabilities.normal / G.GAME.blind.config.blind.odds then
+      if PB_UTIL.chance(self, 'the_quarter', nil, G.GAME.blind.config.blind.odds) then
         SMODS.debuff_card(v, true, 'The Quarter')
       end
     end

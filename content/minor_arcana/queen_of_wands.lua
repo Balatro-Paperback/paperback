@@ -3,7 +3,9 @@ PB_UTIL.MinorArcana {
   atlas = 'minor_arcana_atlas',
   pos = { x = 5, y = 3 },
   config = {
-    odds = 3
+    extra = {
+      odds = 3
+    }
   },
   paperback = {
     requires_editions = true
@@ -11,11 +13,12 @@ PB_UTIL.MinorArcana {
 
   loc_vars = function(self, info_queue, card)
     info_queue[#info_queue + 1] = G.P_CENTERS.e_paperback_dichrome
+    local numerator, denominator = PB_UTIL.chance_vars(card)
 
     return {
       vars = {
-        G.GAME.probabilities.normal,
-        card.ability.odds
+        numerator,
+        denominator
       }
     }
   end,
@@ -37,7 +40,7 @@ PB_UTIL.MinorArcana {
       if not v.edition then jokers[#jokers + 1] = v end
     end
 
-    if pseudorandom('queen_of_wands') < G.GAME.probabilities.normal / card.ability.odds then
+    if PB_UTIL.chance(card, 'queen_of_wands') then
       local joker = pseudorandom_element(jokers, pseudoseed('queen_of_wands_joker'))
 
       PB_UTIL.use_consumable_animation(card, nil, function()

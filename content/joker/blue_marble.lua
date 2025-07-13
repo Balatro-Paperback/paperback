@@ -17,10 +17,12 @@ SMODS.Joker {
   perishable_compat = true,
 
   loc_vars = function(self, info_queue, card)
+    local numerator, denominator = PB_UTIL.chance_vars(card)
+
     return {
       vars = {
-        G.GAME.probabilities.normal,
-        card.ability.extra.odds,
+        numerator,
+        denominator,
         localize(card.ability.extra.suit, 'suits_singular'),
         colours = {
           G.C.SUITS[card.ability.extra.suit]
@@ -32,12 +34,10 @@ SMODS.Joker {
   calculate = function(self, card, context)
     if context.before then
       -- Check scoring hand for any club
-      local roll
       for _, v in ipairs(context.scoring_hand) do
         if v:is_suit(card.ability.extra.suit) then
           -- Planet spawn
-          roll = pseudorandom('blue_marble_planet')
-          if roll < G.GAME.probabilities.normal / card.ability.extra.odds then
+          if PB_UTIL.chance(card, 'blue_marble_planet') then
             if PB_UTIL.try_spawn_card { set = 'Planet' } then
               return {
                 message = localize('k_plus_planet'),

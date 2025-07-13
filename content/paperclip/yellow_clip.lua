@@ -15,14 +15,18 @@ PB_UTIL.Paperclip {
 
   loc_vars = function(self, info_queue, card)
     local clip = card.ability[self.key]
+
+    local n1, d1 = PB_UTIL.chance_vars(card, nil, nil, clip.mult_odds)
+    local n2, d2 = PB_UTIL.chance_vars(card, nil, nil, clip.xmult_odds)
+    local n3, d3 = PB_UTIL.chance_vars(card, nil, nil, clip.dollar_odds)
+
     return {
       vars = {
-        G.GAME.probabilities.normal,
-        clip.mult_odds,
+        n1, d1,
         clip.mult,
-        clip.xmult_odds,
+        n2, d2,
         clip.xmult,
-        clip.dollar_odds,
+        n3, d3,
         clip.dollars,
       }
     }
@@ -33,13 +37,13 @@ PB_UTIL.Paperclip {
       if PB_UTIL.count_paperclips { area = G.hand, exclude_highlighted = true } > 0 then
         local ret = {}
         local clip = card.ability[self.key]
-        if pseudorandom("yellow_clip_money") < G.GAME.probabilities.normal / clip.dollar_odds then
+        if PB_UTIL.chance(card, 'yellow_clip_money', nil, clip.dollar_odds) then
           ret.dollars = clip.dollars
         end
-        if pseudorandom("yellow_clip_mult") < G.GAME.probabilities.normal / clip.mult_odds then
+        if PB_UTIL.chance(card, 'yellow_clip_mult', nil, clip.mult_odds) then
           ret.mult = clip.mult
         end
-        if pseudorandom("yellow_clip_xmult") < G.GAME.probabilities.normal / clip.xmult_odds then
+        if PB_UTIL.chance(card, 'yellow_clip_xmult', nil, clip.xmult_odds) then
           ret.xmult = clip.xmult
         end
         return ret

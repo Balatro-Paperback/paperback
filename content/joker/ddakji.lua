@@ -15,10 +15,12 @@ SMODS.Joker {
   eternal_compat = true,
 
   loc_vars = function(self, info_queue, card)
+    local numerator, denominator = PB_UTIL.chance_vars(card)
+
     return {
       vars = {
-        G.GAME.probabilities.normal,
-        card.ability.extra.odds
+        numerator,
+        denominator
       }
     }
   end,
@@ -76,7 +78,7 @@ SMODS.Joker {
       },
 
       calc_function = function(card)
-        card.joker_display_values.odds = localize { type = 'variable', key = 'jdis_odds', vars = { (G.GAME and G.GAME.probabilities.normal or 1), card.ability.extra.odds } }
+        card.joker_display_values.odds = localize { type = 'variable', key = 'jdis_odds', vars = { PB_UTIL.chance_vars(card) } }
       end,
     }
   end
@@ -86,7 +88,7 @@ local stay_flipped_ref = Blind.stay_flipped
 function Blind.stay_flipped(self, area, card)
   if area == G.hand then
     local _, ddakji = next(SMODS.find_card('j_paperback_ddakji'))
-    if ddakji and pseudorandom('ddakji') < G.GAME.probabilities.normal / ddakji.ability.extra.odds then
+    if ddakji and PB_UTIL.chance(ddakji, 'ddakji') then
       return true
     end
   end

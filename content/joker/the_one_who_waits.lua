@@ -27,13 +27,17 @@ SMODS.Joker {
   loc_vars = function(self, info_queue, card)
     info_queue[#info_queue + 1] = G.P_CENTERS.c_death
 
+    local n1, d1 = PB_UTIL.chance_vars(card, nil, nil, card.ability.extra.upgrade_odds)
+    local n2, d2 = PB_UTIL.chance_vars(card, nil, nil, card.ability.extra.tarot_odds)
+
     return {
       vars = {
         localize(card.ability.extra.suit, 'suits_singular'),
-        G.GAME.probabilities.normal,
-        card.ability.extra.upgrade_odds,
+        n1,
+        d1,
         card.ability.extra.x_mult_mod,
-        card.ability.extra.tarot_odds,
+        n2,
+        d2,
         localize {
           type = 'name_text',
           set = 'Tarot',
@@ -59,11 +63,9 @@ SMODS.Joker {
       end
 
       if has_suit then
-        local upgrade_roll = pseudorandom("the_one_who_waits_upgrade")
-        local tarot_roll = pseudorandom("the_one_who_waits_tarot")
         local effects
 
-        if upgrade_roll < G.GAME.probabilities.normal / card.ability.extra.upgrade_odds then
+        if PB_UTIL.chance(card, "the_one_who_waits_upgrade", nil, card.ability.extra.upgrade_odds) then
           card.ability.extra.x_mult = card.ability.extra.x_mult + card.ability.extra.x_mult_mod
 
           effects = {
@@ -76,7 +78,7 @@ SMODS.Joker {
           }
         end
 
-        if tarot_roll < G.GAME.probabilities.normal / card.ability.extra.tarot_odds then
+        if PB_UTIL.chance(card, "the_one_who_waits_tarot", nil, card.ability.extra.tarot_odds) then
           if PB_UTIL.try_spawn_card { key = 'c_death' } then
             effects = effects or {}
             effects.extra = {

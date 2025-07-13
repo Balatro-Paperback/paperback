@@ -17,10 +17,12 @@ SMODS.Joker {
   perishable_compat = true,
 
   loc_vars = function(self, info_queue, card)
+    local numerator, denominator = PB_UTIL.chance_vars(card)
+
     return {
       vars = {
-        G.GAME.probabilities.normal,
-        card.ability.extra.odds,
+        numerator,
+        denominator,
         card.ability.extra.discards_given,
       }
     }
@@ -29,7 +31,7 @@ SMODS.Joker {
   calculate = function(self, card, context)
     if context.before and context.main_eval then
       for _, v in ipairs(context.scoring_hand) do
-        if v:is_face() and pseudorandom('Meeple') < G.GAME.probabilities.normal / card.ability.extra.odds then
+        if v:is_face() and PB_UTIL.chance(card, 'meeple') then
           ease_discard(card.ability.extra.discards_given)
 
           return {

@@ -113,4 +113,23 @@
       "},$0",
     ]
   },
+  "Numerator and denominators for chance": {
+    "prefix": "cvarsret",
+    "body": [
+      "local numerator, denominator = PB_UTIL.chance_vars(card)",
+      "",
+      "return {",
+      "\tvars = {",
+      "\t\tnumerator,",
+      "\t\tdenominator",
+      "\t}",
+      "}"
+    ]
+  },
+  "Numerator and denominators for chance without return": {
+    "prefix": "cvars",
+    "body": [
+      "local numerator, denominator = PB_UTIL.chance_vars(card)"
+    ]
+  }
 }

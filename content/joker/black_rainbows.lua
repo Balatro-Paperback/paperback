@@ -19,11 +19,12 @@ SMODS.Joker {
 
   loc_vars = function(self, info_queue, card)
     info_queue[#info_queue + 1] = G.P_CENTERS.e_polychrome
+    local numerator, denominator = PB_UTIL.chance_vars(card)
 
     return {
       vars = {
-        G.GAME.probabilities.normal,
-        card.ability.extra.odds
+        numerator,
+        denominator
       }
     }
   end,
@@ -38,7 +39,7 @@ SMODS.Joker {
       for k, v in pairs(ctx.scoring_hand) do
         if (v:is_suit(card.ability.extra.suit1) or v:is_suit(card.ability.extra.suit2)) and not v.debuff and not v.edition then
           -- If the odds succeed, set the card's edition to polychrome
-          if pseudorandom('black_rainbows') < G.GAME.probabilities.normal / card.ability.extra.odds then
+          if PB_UTIL.chance(card, "black_rainbows") then
             polychrome_triggered = true
             v:set_edition('e_polychrome')
           end
@@ -79,7 +80,7 @@ SMODS.Joker {
       },
 
       calc_function = function(card)
-        card.joker_display_values.odds = localize { type = 'variable', key = 'jdis_odds', vars = { (G.GAME and G.GAME.probabilities.normal or 1), card.ability.extra.odds } }
+        card.joker_display_values.odds = localize { type = 'variable', key = 'jdis_odds', vars = { PB_UTIL.chance_vars(card) } }
         card.joker_display_values.localized_suit1 = localize(card.ability.extra.suit1, 'suits_plural')
         card.joker_display_values.localized_suit2 = localize(card.ability.extra.suit2, 'suits_plural')
       end,

@@ -16,7 +16,7 @@ SMODS.Consumable {
   can_use = function(self, card)
     -- Prevent destroying eternal jokers
     if #G.jokers.highlighted == 1 then
-      return not G.jokers.highlighted[1].ability.eternal
+      return not SMODS.is_eternal(G.jokers.highlighted[1], card)
     end
   end,
 

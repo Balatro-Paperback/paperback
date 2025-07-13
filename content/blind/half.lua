@@ -7,17 +7,11 @@ SMODS.Blind {
   atlas = 'music_blinds_atlas',
   pos = { y = 6 },
 
-  set_blind = function(self)
-    G.GAME.probabilities.normal = G.GAME.probabilities.normal / 2
-  end,
-
-  disable = function(self)
-    G.GAME.probabilities.normal = G.GAME.probabilities.normal * 2
-  end,
-
-  defeat = function(self)
-    if not G.GAME.blind.disabled then
-      G.GAME.probabilities.normal = G.GAME.probabilities.normal * 2
+  calculate = function(self, blind, context)
+    if context.mod_probability then
+      return {
+        numerator = context.numerator / 2
+      }
     end
   end
 }

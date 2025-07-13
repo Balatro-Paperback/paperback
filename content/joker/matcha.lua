@@ -21,11 +21,13 @@ SMODS.Joker {
   },
 
   loc_vars = function(self, info_queue, card)
+    local numerator, denominator = PB_UTIL.chance_vars(card)
+
     return {
       vars = {
         card.ability.extra.a_chips,
-        G.GAME.probabilities.normal,
-        card.ability.extra.odds,
+        numerator,
+        denominator,
         card.ability.extra.chips
       }
     }
@@ -43,7 +45,7 @@ SMODS.Joker {
     end
 
     if not context.blueprint and context.discard then
-      if pseudorandom('matcha') < G.GAME.probabilities.normal / card.ability.extra.odds then
+      if PB_UTIL.chance(card, 'matcha') then
         PB_UTIL.destroy_joker(card)
 
         return {

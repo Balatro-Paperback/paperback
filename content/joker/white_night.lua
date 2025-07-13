@@ -90,7 +90,7 @@ SMODS.Joker {
       if not played_apostles then
         local possible_jokers = {}
         for _, j in ipairs(G.jokers.cards) do
-          if j ~= card and not j.ability.eternal and not j.getting_sliced then
+          if j ~= card and not SMODS.is_eternal(j, card) and not j.getting_sliced then
             possible_jokers[#possible_jokers + 1] = j
           end
         end

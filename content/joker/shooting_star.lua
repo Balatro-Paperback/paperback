@@ -18,11 +18,13 @@ SMODS.Joker {
   },
 
   loc_vars = function(self, info_queue, card)
+    local numerator, denominator = PB_UTIL.chance_vars(card)
+
     return {
       vars = {
         localize(card.ability.extra.suit, 'suits_plural'),
-        G.GAME.probabilities.normal,
-        card.ability.extra.odds,
+        numerator,
+        denominator,
         colours = {
           G.C.SUITS[card.ability.extra.suit] or G.C.PAPERBACK_STARS_LC
         }
@@ -32,7 +34,7 @@ SMODS.Joker {
 
   calculate = function(self, card, context)
     if context.individual and context.cardarea == G.play and context.other_card:is_suit(card.ability.extra.suit) then
-      if pseudorandom('shooting_star') < G.GAME.probabilities.normal / card.ability.extra.odds then
+      if PB_UTIL.chance(card, 'shooting_star') then
         local planet = PB_UTIL.get_planet_for_hand(context.scoring_name)
 
         if planet and PB_UTIL.can_spawn_card(G.consumeables, true) then

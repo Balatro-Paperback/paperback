@@ -21,11 +21,12 @@ SMODS.Joker {
   loc_vars = function(self, info_queue, card)
     info_queue[#info_queue + 1] = G.P_CENTERS.m_wild
 
+    local n1, d1 = PB_UTIL.chance_vars(card, nil, nil, card.ability.extra.retrigger_odds)
+    local n2, d2 = PB_UTIL.chance_vars(card, nil, nil, card.ability.extra.money_odds)
+
     return {
       vars = {
-        G.GAME.probabilities.normal,
-        card.ability.extra.retrigger_odds,
-        card.ability.extra.money_odds,
+        n1, d1, n2, d2,
         SMODS.signed_dollars(card.ability.extra.a_money_low),
         card.ability.extra.a_money_high,
       }
@@ -35,8 +36,8 @@ SMODS.Joker {
   calculate = function(self, card, context)
     -- Check if the card is wild and it needs to give money
     if context.individual and context.cardarea == G.play then
-      if context.other_card.ability.name == "Wild Card" then
-        if pseudorandom("Wild Prize Money") < G.GAME.probabilities.normal / card.ability.extra.money_odds then
+      if SMODS.has_enhancement(context.other_card, 'm_wild') then
+        if PB_UTIL.chance(card, "wild_prize_money", nil, card.ability.extra.money_odds) then
           local dollars = pseudorandom("Wild Prize Money Amount", card.ability.extra.a_money_low,
             card.ability.extra.a_money_high)
           G.GAME.dollar_buffer = (G.GAME.dollar_buffer or 0) + dollars
@@ -55,8 +56,8 @@ SMODS.Joker {
 
     -- Check if card is wild and it needs to be retriggered
     if context.repetition and context.cardarea == G.play then
-      if context.other_card.ability.name == "Wild Card" then
-        if pseudorandom("Wild Prize Retrigger") < G.GAME.probabilities.normal / card.ability.extra.retrigger_odds then
+      if SMODS.has_enhancement(context.other_card, 'm_wild') then
+        if PB_UTIL.chance(card, "wild_prize_retrigger", nil, card.ability.extra.retrigger_odds) then
           return {
             message = localize('k_again_ex'),
             repetitions = 1,
