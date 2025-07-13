@@ -235,6 +235,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "autumn_leaves",
   "river",
   "evergreens",
+  "the_wonder_of_you",
   "backpack",
   "mexican_train",
   "resurrections",
