@@ -9,11 +9,11 @@ SMODS.Joker{
   blueprint_compat = true,
   eternal_compat = true,
   perishable_compat = true,
-  soul_pos = nil,
+  soul_pos = nil
 
-  function(self,card,context)
-    return{
-      message = localize('paperback_destroyed_ex')
-    }
-  end
+  --[[ 
+  local card = create_card('Joker', G.jokers, nil, nil, nil, nil, 'j_paperback_the_wonder_of_you', 'deck') 
+  card:add_to_deck()
+  G.jokers:emplace(card)
+--]]
 }
