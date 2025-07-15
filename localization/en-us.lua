@@ -1390,17 +1390,10 @@ return {
           "{C:inactive}(Resets after each hand played)",
         },
       },
-      j_paperback_the_wonder_of_you = {
-        name = "The Wonder of You",
-        text = {
-          "Any time a {C:green}chance{} fails to occur,",
-          "destroy the {C:attention}rightmost{} card in hand"
-        },
-      },
       j_paperback_der_fluschutze = {
         name = "Der Fluschütze",
         text = { 
-          "if {C:attention}first{} played hand of round",
+          "If {C:attention}first{} played hand of round",
           "was a single {C:attention}face{} card, destroy it",
           "and give this joker {X:mult,C:white}X#1#{} Mult",
           "{C:inactive}(Currently {X:mult,C:white}X#2#{} {C:inactive}Mult)"
