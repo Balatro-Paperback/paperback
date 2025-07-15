@@ -1,24 +1,11 @@
 [manifest]
 version = "1.0.0"
 dump_lua = true
-priority = 0
+priority = 10
 
 [[patches]]
-[patches.pattern]
+[patches.regex]
 target = "functions/state_events.lua"
-pattern = "if G.GAME.dollars >= 5 and not G.GAME.modifiers.no_interest then"
+pattern = 'and not G\.GAME\.modifiers\.no_interest'
 position = "after"
-match_indent = true
-payload = '''
-  if not next(SMODS.find_card('j_paperback_better_call_jimbo', false)) then
-'''
-
-[[patches]]
-[patches.pattern]
-target = "functions/state_events.lua"
-pattern = "dollars = dollars + G.GAME.interest_amount*math.min(math.floor(G.GAME.dollars/5), G.GAME.interest_cap/5)"
-position = "after"
-match_indent = true
-payload = '''
-end
-'''
+payload = " and not next(SMODS.find_card('j_paperback_better_call_jimbo', false)) "

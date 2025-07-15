@@ -1345,9 +1345,8 @@ return {
         text = {
           "If scoring hand contains a {C:hearts}Heart{} and",
           "{C:attention}#1#{} other unique suits, this Joker gives",
-          "{X:mult,C:white}X#2#{} Mult for the next {C:chips}#3#{} hands",
-          "{C:inactive}(counting this hand){}",
-          "{C:inactive}(Currently next {C:chips}#4#{C:inactive} hands)",
+          "{X:mult,C:white}X#2#{} Mult for {C:attention}this hand{} and {C:attention}the next #3#",
+          "{C:inactive}(Currently the next {C:attention}#4#{C:inactive} hands)"
         },
       },
       j_paperback_giga_size = {
@@ -1547,7 +1546,17 @@ return {
           "{C:paperback_minor_arcana}Minor Arcana{} card used",
           "{C:inactive}(Currently {X:chips,C:white}X#2#{C:inactive} Chips)",
         },
-      }
+      },
+      -- Cross-Mod jokers start here
+      j_paperback_moon_waltz = {
+        name = "Moon Waltz",
+        text = {
+          "This Joker has a {C:green}#3#{} in {C:green}#4#{} chance of gaining",
+          "half of a used {C:planet}Moon{} or",
+          "{C:planet}Asteroid{} card's {C:mult}+Mult{} or {C:chips}+Chips{}",
+          "{C:inactive}(Currently {C:mult}+#1#{C:inactive} Mult and {C:chips}+#2#{C:inactive} Chips)",
+        },
+      },
     },
     Spectral = {
       c_paperback_apostle_of_cups = {
@@ -1640,9 +1649,9 @@ return {
       c_paperback_nine_of_cups = {
         name = "Nine of Cups",
         text = {
-          "Destroy selected {C:attention}Joker{} and create",
-          "a new {C:attention}Joker{} of higher {C:attention}rarity{}",
-          "{C:inactive}(equal rarity if impossible)",
+          "Destroy selected {C:attention}Joker{} and",
+          "create a new {C:attention}Joker{} of equal",
+          "{C:attention}rarity{}, or higher if possible",
           "{C:inactive}(Cannot create a {C:legendary}Legendary{C:inactive})"
         }
       },
@@ -2277,6 +2286,107 @@ return {
         }
       },
     },
+    Sleeve = {
+      sleeve_paperback_paper = {
+        name = "Paper Sleeve",
+        text = {
+          "{C:legendary}Paperback{C:attention} Jokers{} are {C:attention}3X",
+          "more likely to appear,",
+          "start run with the",
+          "{C:attention,T:j_paperback_shopping_center}#1#{} Joker"
+        }
+      },
+      sleeve_paperback_paper_buff = {
+        name = "Paper Sleeve",
+        text = {
+          "Start with a {C:dark_edition}Negative{}",
+          "{C:attention,T:j_paperback_shopping_center}#1#{} Joker"
+        }
+      },
+
+      sleeve_paperback_proud = {
+        name = "Proud Sleeve",
+        text = {
+          "Start with a full set of",
+          "{C:hearts}Hearts{}, {C:diamonds}Diamonds{}, {C:spades}Spades",
+          "{C:clubs}Clubs{}, {C:paperback_crowns}Crowns{} and {C:paperback_stars}Stars"
+        }
+      },
+      sleeve_paperback_proud_buff = {
+        name = "Proud Sleeve",
+        text = {
+          "All starting {C:attention}Aces",
+          "are {C:dark_edition}Polychrome"
+        }
+      },
+
+      sleeve_paperback_silver = {
+        name = "Silver Sleeve",
+        text = {
+          "Start run with the",
+          "{C:paperback_minor_arcana,T:v_paperback_celtic_cross}#1#{} voucher",
+          "and a {C:paperback_minor_arcana,T:c_paperback_nine_of_cups}#2#"
+        }
+      },
+      sleeve_paperback_silver_buff = {
+        name = "Silver Sleeve",
+        text = {
+          "Start run with the",
+          "{C:paperback_minor_arcana,T:v_paperback_soothsay}#1#{} voucher"
+        }
+      },
+
+      sleeve_paperback_dreamer = {
+        name = "Dreamer's Sleeve",
+        text = {
+          "Start run with a {C:paperback_temporary}temporary",
+          "{C:paperback_minor_arcana,T:c_paperback_apostle_of_wands}#1#",
+          "{C:attention}#2#{} Joker slot"
+        }
+      },
+      sleeve_paperback_dreamer_buff = {
+        name = "Dreamer's Sleeve",
+        text = {
+          "Start with an {C:attention}#1#",
+          "of each suit"
+        }
+      },
+
+      sleeve_paperback_antique = {
+        name = "Antique Sleeve",
+        text = {
+          "{C:tarot}Arcana Packs{} no longer",
+          "appear in the shop",
+          "{C:paperback_minor_arcana}Minor Arcana Packs",
+          "are {C:attention}3X{} more common"
+        }
+      },
+      sleeve_paperback_antique_buff = {
+        name = "Antique Sleeve",
+        text = {
+          "{C:paperback_minor_arcana}Minor Arcana Packs{} are {C:money}free",
+        }
+      },
+
+      sleeve_paperback_passionate = {
+        name = "Passionate Sleeve",
+        text = {
+          "After defeating each",
+          "{C:attention}Boss Blind{}, gain a",
+          "{C:attention,T:tag_paperback_high_risk}#1#",
+          "Earn no {C:money}Interest"
+        }
+      },
+      sleeve_paperback_passionate_buff = {
+        name = "Passionate Sleeve",
+        text = {
+          "Every other {C:attention}Boss Blind{} is",
+          "replaced with a {C:attention}Showdown Blind",
+          "Defeating a {C:attention}Showdown Blind",
+          "gives a {C:dark_edition,T:tag_negative}Negative{} Tag"
+        }
+      }
+    }
   },
   misc = {
     dictionary = {

@@ -9,7 +9,7 @@ SMODS.Blind {
   odds = 4,
 
   loc_vars = function(self)
-    local numerator, denominator = PB_UTIL.chance_vars(self, nil, nil, self.odds)
+    local numerator, denominator = PB_UTIL.chance_vars(self, self.key, nil, self.odds)
 
     return {
       vars = {
@@ -20,7 +20,7 @@ SMODS.Blind {
   end,
 
   collection_loc_vars = function(self)
-    local numerator, denominator = PB_UTIL.chance_vars(self, nil, nil, self.odds)
+    local numerator, denominator = PB_UTIL.chance_vars(self, self.key, nil, self.odds)
 
     return {
       vars = {

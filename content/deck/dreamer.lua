@@ -1,4 +1,4 @@
-if PB_UTIL.config.minor_arcana_enabled then
+if PB_UTIL.config.spectrals_enabled then
   SMODS.Back {
     key = 'dreamer',
     atlas = 'decks_atlas',

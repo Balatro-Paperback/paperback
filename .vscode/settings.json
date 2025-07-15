@@ -9,7 +9,8 @@
     "../lovely/dump",
     "../smods",
     "../Steamodded",
-    "../JokerDisplay"
+    "../JokerDisplay",
+    "../CardSleeves"
   ],
   "Lua.runtime.version": "Lua 5.1",
   "Lua.codeLens.enable": true,

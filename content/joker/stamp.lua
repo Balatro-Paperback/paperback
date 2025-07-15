@@ -7,7 +7,7 @@ SMODS.Joker {
       odds = 2
     }
   },
-  rarity = 2,
+  rarity = 3,
   pos = { x = 8, y = 0 },
   atlas = "jokers_atlas",
   cost = 8,

@@ -10,7 +10,7 @@ SMODS.Blind {
   calculate = function(self, blind, context)
     if context.mod_probability then
       return {
-        numerator = context.numerator / 2
+        denominator = context.denominator * 2
       }
     end
   end

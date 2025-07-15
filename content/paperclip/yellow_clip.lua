@@ -16,9 +16,9 @@ PB_UTIL.Paperclip {
   loc_vars = function(self, info_queue, card)
     local clip = card.ability[self.key]
 
-    local n1, d1 = PB_UTIL.chance_vars(card, nil, nil, clip.mult_odds)
-    local n2, d2 = PB_UTIL.chance_vars(card, nil, nil, clip.xmult_odds)
-    local n3, d3 = PB_UTIL.chance_vars(card, nil, nil, clip.dollar_odds)
+    local n1, d1 = PB_UTIL.chance_vars(card, self.key, nil, clip.mult_odds)
+    local n2, d2 = PB_UTIL.chance_vars(card, self.key, nil, clip.xmult_odds)
+    local n3, d3 = PB_UTIL.chance_vars(card, self.key, nil, clip.dollar_odds)
 
     return {
       vars = {

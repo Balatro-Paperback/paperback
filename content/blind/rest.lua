@@ -12,7 +12,7 @@ SMODS.Blind {
 
   loc_vars = function(self)
     local numerator, denominator = PB_UTIL.chance_vars(
-      self, nil,
+      self, self.key,
       self.chance_numerator,
       self.chance_denominator
     )
@@ -27,7 +27,7 @@ SMODS.Blind {
 
   collection_loc_vars = function(self)
     local numerator, denominator = PB_UTIL.chance_vars(
-      self, nil,
+      self, self.key,
       self.chance_numerator,
       self.chance_denominator
     )

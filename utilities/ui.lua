@@ -532,8 +532,7 @@ function PB_UTIL.apostle_of_wands_collection_UIBox(_pool, rows, args)
             options = options,
             w = 4.5,
             cycle_shoulders = true,
-            opt_callback =
-            'paperback_card_collection_page',
+            opt_callback = 'paperback_card_collection_page',
             current_option = 1,
             colour = G.C.RED,
             no_pips = true,
@@ -577,7 +576,6 @@ function PB_UTIL.create_select_card_ui(card, area)
     config = {
       ref_table = card,
       minw = 0.6,
-      maxw = 1,
       padding = 0.1,
       align = 'bm',
       colour = G.C.GREEN,
@@ -595,7 +593,7 @@ function PB_UTIL.create_select_card_ui(card, area)
         config = {
           text = localize('paperback_ui_select'),
           colour = G.C.WHITE,
-          scale = 0.5
+          scale = 0.42
         }
       }
     }

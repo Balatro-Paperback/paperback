@@ -1,0 +1,22 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 0
+
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = "local _, boss = pseudorandom_element(eligible_bosses, pseudoseed('boss'))"
+position = "after"
+match_indent = true
+payload = '''
+if G.GAME.modifiers.paperback_more_showdowns and G.GAME.round_resets.ante % 2 == 0 then
+  local bosses = {}
+  for k, v in pairs(G.P_BLINDS) do
+    if v.boss and v.boss.showdown then
+      bosses[k] = v
+    end
+  end
+  _, boss = pseudorandom_element(bosses, pseudoseed('paperback_forced_showdown'))
+end
+'''

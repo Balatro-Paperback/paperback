@@ -33,6 +33,7 @@ PB_UTIL.credits = {
     color = G.C.GREEN,
     entries = {
       'OppositeWolf770, srockw, Nether, B, ejwu2, metanite64, TheSnaz',
+      'InfinityPlus05'
     }
   },
   localization = {

@@ -20,8 +20,12 @@ if PB_UTIL.config.tags_enabled then
     end,
 
     calculate = function(self, back, context)
-      if context.context == 'eval' and G.GAME.last_blind and G.GAME.last_blind.boss then
-        PB_UTIL.add_tag('tag_paperback_high_risk', nil, false)
+      -- Give a High Risk tag after defeating a boss
+      if context.end_of_round and context.beat_boss then
+        -- Equivalent to context.main_eval, which doesn't exist for decks
+        if not context.repetition and not context.individual then
+          PB_UTIL.add_tag('tag_paperback_high_risk', nil, false)
+        end
       end
     end
   }

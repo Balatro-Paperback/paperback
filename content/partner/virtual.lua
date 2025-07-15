@@ -34,7 +34,7 @@ Partner_API.Partner {
       card.ability.extra.active = true
     end
 
-    if context.repetitions and context.cardarea == G.play then
+    if context.repetition and context.cardarea == G.play then
       for k, v in ipairs(context.full_hand) do
         if PB_UTIL.is_suit(v, 'dark') then
           card.ability.extra.active = false

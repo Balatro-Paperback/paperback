@@ -22,9 +22,13 @@ SMODS.Suit {
     if args and args.initial_deck then
       -- When creating a deck
       local back = G.GAME.selected_back
-      local config = back and back.effect.center.paperback
+      local back_config = back and back.effect.center.paperback
 
-      return config and config.create_stars
+      local sleeve = G.GAME.selected_sleeve
+      local sleeve_config = (G.P_CENTERS[sleeve] or {}).paperback
+
+      return (back_config and back_config.create_stars)
+          or (sleeve_config and sleeve_config.create_stars)
     else
       -- If not creating a deck
       return PB_UTIL.has_suit_in_deck('paperback_Stars', true) or PB_UTIL.spectrum_played()

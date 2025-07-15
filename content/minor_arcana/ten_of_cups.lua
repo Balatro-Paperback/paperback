@@ -10,7 +10,7 @@ PB_UTIL.MinorArcana {
 
   loc_vars = function(self, info_queue, card)
     info_queue[#info_queue + 1] = G.P_CENTERS.e_polychrome
-    local numerator, denominator = PB_UTIL.chance_vars(card)
+    local numerator, denominator = PB_UTIL.chance_vars(card, self.key)
 
     return {
       vars = {
