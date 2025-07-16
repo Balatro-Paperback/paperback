@@ -1392,11 +1392,20 @@ return {
       },
       j_paperback_der_fluschutze = {
         name = "Der Fluschütze",
-        text = { 
+        text = {
           "If {C:attention}first{} played hand of round",
           "was a single {C:attention}face{} card, destroy it",
           "and give this joker {X:mult,C:white}X#1#{} Mult",
           "{C:inactive}(Currently {X:mult,C:white}X#2#{} {C:inactive}Mult)"
+        }
+      },
+      j_paperback_the_wonder_of_you = {
+        name = "The Wonder of You",
+        text = {
+          "When the joker to the {C:attention}right{}",
+          "fails a {C:green}probability{} check,",
+          "the {C:attention}rightmost{} card held",
+          "in hand is {C:attention}destroyed{}"
         }
       },
       j_paperback_cakepop = {
