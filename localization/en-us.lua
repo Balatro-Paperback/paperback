@@ -1408,6 +1408,14 @@ return {
           "in hand is {C:attention}destroyed{}"
         }
       },
+      j_paperback_inner_peace = {
+        name = "Inner Peace",
+        text = {
+          "{C:attention}+3{} hand size before",
+          "the {C:attention}first{} hand",
+          "of round is played"
+        }
+      },
       j_paperback_cakepop = {
         name = "Cakepop",
         text = {
