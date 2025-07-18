@@ -24,12 +24,12 @@ SMODS.Joker {
   end,
 
   calculate = function(self, card, context)
-    if context.before and card.ability.h_size > 0 then
+    if context.before and card.ability.h_size > 0 and not context.blueprint then
       G.hand:change_size(-card.ability.h_size)
       card.ability.h_size = 0
     end
 
-    if context.end_of_round and not context.repetition and card.ability.h_size == 0 then
+    if context.end_of_round and context.main_eval and not context.blueprint and card.ability.h_size == 0 then
       card.ability.h_size = card.ability.extra.h_size
       G.hand:change_size(card.ability.h_size)
     end
