@@ -54,8 +54,10 @@ SMODS.Joker {
             G.jokers:emplace(copy)
           end
         end)
-        PB_UTIL.destroy_joker(left_joker, function()
-        end)
+        if not SMODS.is_eternal(left_joker, card) then
+          PB_UTIL.destroy_joker(left_joker, function()
+          end)
+        end
 
         return {
           message = localize('k_duplicated_ex')
