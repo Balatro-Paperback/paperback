@@ -56,6 +56,35 @@ if PB_UTIL.config.minor_arcana_enabled then
   }
 end
 
+-- Load E.G.O Gifts if they are enabled
+if PB_UTIL.config.ego_gifts_enabled then
+  -- Register the consumable type to be used by E.G.O Gifts
+  SMODS.ConsumableType {
+    key = 'ego_gift',
+    prefix_config = { key = true },                -- Add the prefix of the mod to the key
+    primary_colour = G.C.PAPERBACK_EGO_GIFT_YELLOW,
+    secondary_colour = G.C.PAPERBACK_EGO_GIFT_RED, -- Color of the collection button and badge
+    badge_text_colour = G.C.TEXT_DANGEROUS,
+    shop_rate = 0,                                 -- These will not appear in the shop
+    default = 'c_paperback_dark_vestige',          -- Card to spawn if pool is empty
+    collection_rows = { 7, 7 }
+  }
+
+  -- Register the sprite for undiscovered E.G.O Gifts
+  SMODS.UndiscoveredSprite {
+    key           = 'ego_gift',
+    prefix_config = { key = true },
+    atlas         = "ego_gift_atlas",
+    pos           = { x = 7, y = 1 }
+  }
+
+  -- Register E.G.O Gift cards
+  PB_UTIL.register_items(PB_UTIL.ENABLED_EGO_GIFTS, "content/ego_gift")
+
+  -- Register E.G.O Gift boosters
+  PB_UTIL.register_items(PB_UTIL.ENABLED_EGO_GIFT_BOOSTERS, "content/booster")
+end
+
 -- Load Spectral cards if they are enabled
 if PB_UTIL.config.spectrals_enabled then
   PB_UTIL.register_items(PB_UTIL.ENABLED_SPECTRALS, "content/spectrals")
