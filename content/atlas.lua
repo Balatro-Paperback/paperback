@@ -14,6 +14,14 @@ SMODS.Atlas {
   path = 'MinorArcana.png'
 }
 
+-- Registers the atlas for Minor Arcana
+SMODS.Atlas {
+  key = 'ego_gift_atlas',
+  px = 71,
+  py = 95,
+  path = 'EGOGifts.png'
+}
+
 -- Registers the atlas for Spectrals
 SMODS.Atlas {
   key = 'spectral_atlas',

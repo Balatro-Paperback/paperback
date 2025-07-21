@@ -49,6 +49,11 @@ SMODS.current_mod.config_tab = function()
                 label = localize('paperback_ui_enable_ranks'),
                 ref_table = PB_UTIL.config,
                 ref_value = 'ranks_enabled',
+              },
+              create_toggle {
+                label = localize('paperback_ui_enable_ego_gifts'),
+                ref_table = PB_UTIL.config,
+                ref_value = 'ego_gifts_enabled',
               }
             }
           },
@@ -365,6 +370,19 @@ function PB_UTIL.paperclip_tooltip(type)
     paperclip:apply(dummy_card, true)
     vars = paperclip:loc_vars({}, dummy_card).vars
   end
+
+  return {
+    set = 'Other',
+    key = key,
+    vars = vars
+  }
+end
+
+--- @param type
+--- @return table | nil
+function PB_UTIL.sin_tooltip(type)
+  local key = 'paperback_sin_' .. type
+  local vars = PB_UTIL.EGO_GIFT_SINS[type]
 
   return {
     set = 'Other',
