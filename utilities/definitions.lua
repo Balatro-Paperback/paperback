@@ -228,6 +228,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "prince_of_darkness",
   "giga_size",
   "jester_of_nihil",
+  "shopkeep",
   "wild_prize",
   "deadringer",
   "ncj",
