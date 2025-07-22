@@ -58,7 +58,7 @@ SMODS.Joker {
       for i = 1, #G.jokers.cards do
         if G.jokers.cards[i] == card then other_joker = G.jokers.cards[i + 1] end
       end
-      if other_joker ~= nil then
+      if other_joker ~= nil and not other_joker.ability.paperback_temporary then
         other_joker:set_eternal(true)
       end
     end
