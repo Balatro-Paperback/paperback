@@ -21,7 +21,7 @@ SMODS.Joker {
     if other_joker then
       -- Conditions from `Card:set_eternal`
       local compat = other_joker.config.center.eternal_compat and not other_joker.ability.perishable and
-      not other_joker.ability.paperback_temporary
+          not other_joker.ability.paperback_temporary
       local color = compat and G.C.GREEN or G.C.RED
       local text = compat and 'k_compatible' or 'k_incompatible'
 
@@ -58,7 +58,7 @@ SMODS.Joker {
       for i = 1, #G.jokers.cards do
         if G.jokers.cards[i] == card then other_joker = G.jokers.cards[i + 1] end
       end
-      if other_joker ~= nil and not other_joker.ability.paperback_temporary then
+      if other_joker ~= nil then
         other_joker:set_eternal(true)
       end
     end

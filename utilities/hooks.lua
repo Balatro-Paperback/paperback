@@ -232,3 +232,12 @@ function G.FUNCS.get_poker_hand_info(_cards)
 
   return text, loc_disp_text, poker_hands, scoring_hand, disp_text
 end
+
+-- Used for checking for eternal compatibility against temporary
+local set_eternal_ref = Card.set_eternal
+function Card.set_eternal(self, eternal)
+  if not (self.ability.paperback_temporary) then
+    local ret = set_eternal_ref(self, eternal)
+  end
+  return ret
+end
