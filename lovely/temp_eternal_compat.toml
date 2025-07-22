@@ -1,0 +1,18 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 0
+
+[[patches]]
+[patches.pattern]
+target = 'functions/common_events.lua'
+pattern = 'card:set_eternal(true)'
+position = 'at'
+match_indent = true
+payload = '''
+
+if not (card.ability.paperback_temporary) then
+    card:set_eternal(true)
+end
+
+'''
