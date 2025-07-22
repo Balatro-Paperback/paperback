@@ -45,7 +45,7 @@ SMODS.Joker {
         end
       end
 
-      if (right_joker and right_joker ~= card) and (left_joker and left_joker ~= card) then
+      if (right_joker and right_joker ~= card) and (left_joker and left_joker ~= card) and not SMODS.is_eternal(left_joker, card) then
         PB_UTIL.destroy_joker(card, function()
           if #G.jokers.cards <= G.jokers.config.card_limit then
             local strip_edition = right_joker.edition and right_joker.edition.negative
@@ -54,10 +54,9 @@ SMODS.Joker {
             G.jokers:emplace(copy)
           end
         end)
-        if not SMODS.is_eternal(left_joker, card) then
-          PB_UTIL.destroy_joker(left_joker, function()
-          end)
-        end
+        PB_UTIL.destroy_joker(left_joker, function()
+        end)
+
 
         return {
           message = localize('k_duplicated_ex')
