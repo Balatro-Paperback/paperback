@@ -15,6 +15,13 @@ SMODS.Joker {
   discovered = false,
   blueprint_compat = false,
 
+  in_pool = function(self, args)
+    if next(SMODS.find_card('j_paperback_jestrogen')) then
+      return false
+    end
+    return true
+  end,
+
   calculate = function(self, card, context)
     if context.individual and context.cardarea == G.play then
       card.ability.extra.cracked_eggs = {}
