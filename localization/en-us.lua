@@ -233,6 +233,18 @@ return {
           "triggers, give {C:mult}#3#{} additional Mult"
         }
       },
+      j_paperback_jestosterone = {
+        name = "Jestosterone",
+        text = {
+          "Scored {C:attention}Queens{} become {C:attention}Kings{}"
+        }
+      },
+      j_paperback_jestrogen = {
+        name = "Jestrogen",
+        text = {
+          "Scored {C:attention}Kings{} and {C:attention}Jacks{} become {C:attention}Queens{}"
+        }
+      },
       j_paperback_langely = {
         name = "L'angely",
         text = {
@@ -2458,6 +2470,8 @@ return {
       paperback_determination_ex = "NGAAAHH!",
       paperback_forlorn_destruction = "Sorry...",
       paperback_freezer_ex = "Dinner Time!",
+      paperback_jestosterone_ex = "Masc!",
+      paperback_jestrogen_ex = "Fem!",
 
       paperback_ui_requires_restart = "Requires Restart",
       paperback_ui_no_requires_restart = "Doesn't Require Restart",
