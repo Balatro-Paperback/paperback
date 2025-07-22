@@ -16,10 +16,12 @@ SMODS.Joker {
   perishable_compat = true,
 
   calculate = function(self, card, context)
-    if context.retrigger_joker_check and context.other_card.config.center.rarity == card.ability.extra.rarity then
-      return {
-        repetitions = 1
-      }
+    if context.retrigger_joker_check and PB_UTIL.is_card(context.other_card) then
+      if context.other_card.config.center.rarity == card.ability.extra.rarity then
+        return {
+          repetitions = 1
+        }
+      end
     end
   end
 }

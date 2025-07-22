@@ -1,0 +1,27 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 0
+
+[[patches]]
+[patches.pattern]
+target = "functions/state_events.lua"
+pattern = "local flags = SMODS.calculate_context({drawing_cards = true, amount = hand_space})"
+position = "before"
+match_indent = true
+payload = '''
+local paperback_ret = {}
+SMODS.calculate_context({
+  paperback = {
+    drawing_cards = true,
+    amount = hand_space
+  }
+}, paperback_ret)
+for _, v in ipairs(paperback_ret) do
+  if v and type(v) == 'table' then
+    for _, vv in pairs(v) do
+      hand_space = math.min(#G.deck.cards, hand_space + (vv.draw_extra or 0))
+    end
+  end
+end
+'''
