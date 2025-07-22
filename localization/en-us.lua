@@ -236,13 +236,13 @@ return {
       j_paperback_jestosterone = {
         name = "Jestosterone",
         text = {
-          "Scored {C:attention}Queens{} become {C:attention}Kings{}"
+          "Scored {C:attention}#1#s{} become {C:attention}#2#s{}"
         }
       },
       j_paperback_jestrogen = {
         name = "Jestrogen",
         text = {
-          "Scored {C:attention}Kings{} and {C:attention}Jacks{} become {C:attention}Queens{}"
+          "Scored {C:attention}#1#s{} and {C:attention}#2#s{} become {C:attention}#3#s{}"
         }
       },
       j_paperback_langely = {
