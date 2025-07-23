@@ -524,7 +524,7 @@ return {
         text = {
           "Prevents death, on death",
           "{C:attention}#1#{} , {C:attention}#1#{} hand size",
-          "and {AnteC:red}self destructs"
+          "and {C:red}self destructs"
         }
       },
       j_paperback_blue_marble = {
