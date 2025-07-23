@@ -32,15 +32,13 @@ SMODS.Joker {
           cracked_eggs[#cracked_eggs + 1] = v
         end
       end
-      PB_UTIL.use_consumable_animation(nil, cracked_eggs, function()
-        for _, v in ipairs(context.scoring_hand) do
-          if (v:get_id() == card.ability.extra.checked_rank1 or v:get_id() == card.ability.extra.checked_rank2) then
+      if #cracked_eggs > 0 then
+        PB_UTIL.use_consumable_animation(nil, cracked_eggs, function()
+          for _, v in ipairs(cracked_eggs) do
             assert(SMODS.change_base(v, nil, card.ability.extra.rank_to_turn_into))
           end
-        end
-        return true
-      end)
-      if #cracked_eggs > 0 then
+          return true
+        end)
         return {
           message = localize('paperback_jestrogen_ex'),
           colour = G.C.RED
