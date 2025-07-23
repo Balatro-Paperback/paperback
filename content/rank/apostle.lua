@@ -20,7 +20,8 @@ SMODS.Rank {
     paperback_Stars = 4,
     paperback_Crowns = 5,
     bunc_Fleurons = 6,
-    bunc_Halberds = 7
+    bunc_Halberds = 7,
+    minty_3s = 8,
   },
 
   in_pool = function(self, args)
