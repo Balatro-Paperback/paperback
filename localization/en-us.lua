@@ -523,8 +523,8 @@ return {
         name = 'Determination',
         text = {
           "Prevents death, on death",
-          "{C:attention}#1#{} Ante, {C:attention}#1#{} hand size",
-          "and {C:red}self destructs"
+          "{C:attention}#1#{} , {C:attention}#1#{} hand size",
+          "and {AnteC:red}self destructs"
         }
       },
       j_paperback_blue_marble = {
@@ -1606,6 +1606,15 @@ return {
           "{C:inactive}(Currently {X:chips,C:white}X#2#{C:inactive} Chips)",
         },
       },
+      j_paperback_punch_card = {
+        name = "Punch Card",
+        text = {
+          "After {C:attention}#1#{} rounds,",
+          "sell this card to",
+          "gain {C:attention}#3#{} Ante",
+          "{C:inactive}(Currently {C:attention}#2#{C:inactive}/#1#)",
+        },
+      },
       -- Cross-Mod jokers start here
       j_paperback_moon_waltz = {
         name = "Moon Waltz",
@@ -2485,6 +2494,8 @@ return {
       paperback_freezer_ex = "Dinner Time!",
       paperback_jestosterone_ex = "Masc!",
       paperback_jestrogen_ex = "Fem!",
+      paperback_punch_card_active = "Tell your friends!",
+      paperback_punch_card_ex = "Wrong Warp!",
 
       paperback_ui_requires_restart = "Requires Restart",
       paperback_ui_no_requires_restart = "Doesn't Require Restart",

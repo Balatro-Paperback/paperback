@@ -168,7 +168,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "mismatched_sock",
   "wild_plus_four",
   "basic_energy",
-  -- "punch_card",
+  "punch_card",
   "jestrogen",
   "jestosterone",
   "reference_card",
