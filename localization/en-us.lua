@@ -523,7 +523,7 @@ return {
         name = 'Determination',
         text = {
           "Prevents death, on death",
-          "{C:attention}#1#{} , {C:attention}#1#{} hand size",
+          "{C:attention}#1#{} Ante, {C:attention}#1#{} hand size",
           "and {C:red}self destructs"
         }
       },
