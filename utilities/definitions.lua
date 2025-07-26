@@ -221,7 +221,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "shopping_center",
   "everything_must_go",
   "tutor",
-  -- "percussion_ensemble",
+  "percussion_ensemble",
   "its_tv_time",
   -- "eyelander,
   -- "torii",

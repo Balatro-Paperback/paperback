@@ -915,6 +915,15 @@ return {
           "to the right {C:attention}Eternal{}",
         }
       },
+      j_paperback_percussion_ensemble = {
+        name = "Percussion Ensemble",
+        text = {
+          "{X:mult,C:white}X#1#{} Mult for each",
+          "unique {C:attention}Enhancement{}",
+          "in your full deck",
+          "{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult){}",
+        }
+      },
       j_paperback_its_tv_time = {
         name = "It's TV Time!",
         text = {

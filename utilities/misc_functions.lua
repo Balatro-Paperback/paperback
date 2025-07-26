@@ -1098,3 +1098,47 @@ end
 function PB_UTIL.is_card(c)
   return c and type(c) == "table" and c.is and type(c.is) == "function" and c:is(Card)
 end
+
+-- Returns a table of all the unique special effects in the deck
+---@param check_for_enhancements boolean
+---@param check_for_seals boolean
+---@return integer
+PB_UTIL.special_cards_in_deck = function(check_for_enhancements, check_for_seals)
+  local enhancements, seals = {}, {}
+  check_for_enhancements = check_for_enhancements or false
+  check_for_seals = check_for_seals or false
+
+  if G.playing_cards then
+    for _, v in pairs(G.playing_cards) do
+      -- Check for an enhancement
+      if check_for_enhancements then
+        for k, _ in pairs(SMODS.get_enhancements(v)) do
+          PB_UTIL.add_unique_value(enhancements, k)
+        end
+      end
+
+      -- Check for a seal
+      if check_for_seals then
+        if v.Mid.seal then
+          PB_UTIL.add_unique_value(seals, v.Mid.seal)
+        end
+      end
+    end
+  end
+
+  local total =
+      (enhancements and #enhancements or 0)
+      + (seals and #seals or 0)
+
+  return total
+end
+
+PB_UTIL.add_unique_value = function(tbl, value)
+  for _, v in pairs(tbl) do
+    if v == value then
+      return
+    end
+  end
+
+  table.insert(tbl, value)
+end
