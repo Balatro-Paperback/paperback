@@ -2,7 +2,8 @@ SMODS.Joker {
   key = "shopkeep",
   config = {
     extra = {
-      count = 0
+      count = 0,
+      blueprint_count = 0
     }
   },
   rarity = 3,
@@ -25,17 +26,19 @@ SMODS.Joker {
   end,
 
   calculate = function(self, card, context)
-    if context.end_of_round and context.main_eval then
+    if context.first_hand_drawn and not context.blueprint then
       card.ability.extra.count = card.ability.extra.count + 1
-      if card.ability.extra.count == 2 then
-        PB_UTIL.add_tag('tag_coupon', nil, nil)
+    end
+
+    if context.end_of_round and context.main_eval then
+      if card.ability.extra.count > 0 and card.ability.extra.count % 2 == 0 then
+        PB_UTIL.add_tag('tag_coupon')
         card:juice_up()
-        card.ability.extra.count = 0
       end
     end
 
     if context.end_of_round and G.GAME.blind.boss and context.main_eval then
-      PB_UTIL.add_tag('tag_voucher', nil, nil)
+      PB_UTIL.add_tag('tag_voucher')
       card:juice_up()
     end
   end
