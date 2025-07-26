@@ -3,6 +3,13 @@
 local init_game_object_ref = Game.init_game_object
 function Game.init_game_object(self)
   local ret = init_game_object_ref(self)
+
+  -- referenced code from Ortalab to get the list of secret hands
+  local secrets = {}
+  for k, v in pairs(ret.hands) do
+    if v.visible == false then table.insert(secrets, k) end
+  end
+
   ret.paperback = {
     round = {
       scored_clips = 0
@@ -17,6 +24,7 @@ function Game.init_game_object(self)
     domino_ranks = {},
     jjjj_count = 0,
     banned_run_keys = {},
+    secret_hands = secrets,
 
     weather_radio_hand = 'High Card',
     joke_master_hand = 'High Card',
@@ -231,4 +239,15 @@ function G.FUNCS.get_poker_hand_info(_cards)
   end
 
   return text, loc_disp_text, poker_hands, scoring_hand, disp_text
+end
+
+-- Used for checking for eternal compatibility against temporary
+local set_eternal_ref = Card.set_eternal
+function Card.set_eternal(self, eternal)
+  if self.ability.paperback_temporary then
+    return false
+  else
+    local ret = set_eternal_ref(self, eternal)
+    return ret
+  end
 end

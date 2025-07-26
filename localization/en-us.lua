@@ -121,6 +121,19 @@ return {
       },
     },
     Joker = {
+      j_paperback_golden_egg = {
+        name = "Golden Egg",
+        text = {
+          "When a {C:attention}secret hand{} is played,",
+          "earn the sell value of",
+          "the {C:attention}Joker{} to the right"
+        },
+        unlock = {
+          "Win a run with a",
+          "{C:attention}secret hand{} as your",
+          "most played hand"
+        }
+      },
       j_paperback_burning_pact = {
         name = "Burning Pact",
         text = {
@@ -370,7 +383,6 @@ return {
           "If played hand contains a",
           "{C:attention}Spectrum{}, create {C:attention}#1#{} random {C:attention}Tags",
           "Consumed in {C:attention}#2#{} rounds",
-          "{C:inactive}(Resets when a {C:attention}Tag{C:inactive} is acquired)"
         }
       },
       j_paperback_blue_star = {
@@ -649,7 +661,7 @@ return {
         text = {
           "This Joker gives {C:chips}+#1#{} Chips for",
           "every {C:money}dollar{} of {C:attention}sell value",
-          "from all owned Jokers",
+          "from all other owned Jokers",
           "{C:inactive}(Currently {C:chips}+#2#{C:inactive} Chips)"
         }
       },
@@ -1604,6 +1616,15 @@ return {
           "{C:inactive}(Currently {X:chips,C:white}X#2#{C:inactive} Chips)",
         },
       },
+      j_paperback_punch_card = {
+        name = "Punch Card",
+        text = {
+          "After {C:attention}#1#{} rounds,",
+          "sell this card to",
+          "gain {C:attention}#3#{} Ante",
+          "{C:inactive}(Currently {C:attention}#2#{C:inactive}/#1#)",
+        },
+      },
       -- Cross-Mod jokers start here
       j_paperback_moon_waltz = {
         name = "Moon Waltz",
@@ -2483,6 +2504,8 @@ return {
       paperback_freezer_ex = "Dinner Time!",
       paperback_jestosterone_ex = "Masc!",
       paperback_jestrogen_ex = "Fem!",
+      paperback_punch_card_active = "Tell your friends!",
+      paperback_punch_card_ex = "Wrong Warp!",
 
       paperback_ui_requires_restart = "Requires Restart",
       paperback_ui_no_requires_restart = "Doesn't Require Restart",
@@ -2566,6 +2589,7 @@ return {
       paperback_a_completion = "#1#/#2#",
       paperback_a_round_minus = "-#1# Round",
       paperback_a_plus_cards = "+#1# #2#s",
+      paperback_a_plus_tags = "+#1# Tags",
     },
     ranks = {
       paperback_Apostle = 'Apostle',

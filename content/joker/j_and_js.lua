@@ -29,18 +29,7 @@ SMODS.Joker {
   end,
 
   calculate = function(self, card, context)
-    if not context.blueprint and context.paperback and context.paperback.tag_acquired then
-      if card.ability.extra.rounds > 0 and card.ability.extra.rounds < card.ability.extra.rounds_reset then
-        card.ability.extra.rounds = card.ability.extra.rounds_reset
-
-        return {
-          message = localize('k_reset')
-        }
-      end
-    end
-
     if context.before and context.main_eval then
-      -- We can't check for a hand exactly, because we don't know which mod is adding it
       if PB_UTIL.contains_spectrum(context.poker_hands) then
         for i = 1, card.ability.extra.tags do
           -- Only play sound on the last tag
@@ -48,7 +37,11 @@ SMODS.Joker {
         end
 
         return {
-          message = localize('paperback_plus_tag')
+          message = localize {
+            type = 'variable',
+            key = 'paperback_a_plus_tags',
+            vars = { card.ability.extra.tags }
+          }
         }
       end
     end
