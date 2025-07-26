@@ -223,12 +223,15 @@ end
 
 -- Create collection entry for Paperclips
 if PB_UTIL.config.paperclips_enabled then
+  local amount = #PB_UTIL.ENABLED_PAPERCLIPS
+
   SMODS.current_mod.custom_collection_tabs = function()
     return {
       UIBox_button({
         button = 'your_collection_paperback_paperclips',
         id = 'your_collection_paperback_paperclips',
         label = { localize('paperback_ui_paperclips') },
+        count = { tally = amount, of = amount },
         minw = 5,
         minh = 1
       })

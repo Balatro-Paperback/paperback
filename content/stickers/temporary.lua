@@ -4,6 +4,7 @@ SMODS.Sticker {
   pos = { x = 1, y = 0 },
   badge_colour = G.C.PAPERBACK_TEMPORARY,
   should_apply = false,
+  discovered = true,
   rate = 0,
 
   draw = function(self, card)

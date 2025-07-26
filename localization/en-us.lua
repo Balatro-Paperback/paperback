@@ -121,6 +121,13 @@ return {
       },
     },
     Joker = {
+      j_paperback_burning_pact = {
+        name = "Burning Pact",
+        text = {
+          "If a {C:attention}discard{} has only {C:attention}#1#{} card",
+          "draw {C:attention}#2#{} additional cards"
+        }
+      },
       j_paperback_blade_dance = {
         name = "Blade Dance",
         text = {
@@ -224,6 +231,18 @@ return {
         text = {
           "The next {C:attention}#1#{} times a {C:attention}#2#",
           "triggers, give {C:mult}#3#{} additional Mult"
+        }
+      },
+      j_paperback_jestosterone = {
+        name = "Jestosterone",
+        text = {
+          "Scored {C:attention}#1#s{} become {C:attention}#2#s{}"
+        }
+      },
+      j_paperback_jestrogen = {
+        name = "Jestrogen",
+        text = {
+          "Scored {C:attention}#1#s{} and {C:attention}#2#s{} become {C:attention}#3#s{}"
         }
       },
       j_paperback_langely = {
@@ -2462,6 +2481,8 @@ return {
       paperback_determination_ex = "NGAAAHH!",
       paperback_forlorn_destruction = "Sorry...",
       paperback_freezer_ex = "Dinner Time!",
+      paperback_jestosterone_ex = "Masc!",
+      paperback_jestrogen_ex = "Fem!",
 
       paperback_ui_requires_restart = "Requires Restart",
       paperback_ui_no_requires_restart = "Doesn't Require Restart",

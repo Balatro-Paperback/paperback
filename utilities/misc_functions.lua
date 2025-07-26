@@ -988,11 +988,10 @@ end
 ---@return string hand the name of the hand, for example "Five of a Kind"
 function PB_UTIL.get_random_visible_hand(seed)
   local hands = {}
-  for _, k in ipairs(G.handlist) do
-    local v = G.GAME.hands[k]
-    if v.visible then hands[#hands + 1] = k end
+  for k, _ in pairs(SMODS.PokerHands) do
+    if SMODS.is_poker_hand_visible(k) then hands[#hands + 1] = k end
   end
-  return pseudorandom_element(hands, pseudoseed(seed))
+  return pseudorandom_element(hands, pseudoseed(seed)) or 'High Card'
 end
 
 --- Gets the next suit in the Da Capo cycle Spades -> Hearts -> Clubs -> Diamonds -> None -> Spades
@@ -1091,4 +1090,11 @@ function PB_UTIL.chance_vars(obj, key, base_numerator, base_denominator)
     key or (obj.config and obj.config.center_key),
     false
   )
+end
+
+--- Whether a given value is of the Card type
+---@param c any
+---@return boolean
+function PB_UTIL.is_card(c)
+  return c and type(c) == "table" and c.is and type(c.is) == "function" and c:is(Card)
 end

@@ -5,6 +5,9 @@ PB_UTIL.MinorArcana {
   },
   atlas = 'minor_arcana_atlas',
   pos = { x = 0, y = 5 },
+  paperback = {
+    requires_paperclips = true
+  },
 
   loc_vars = function(self, info_queue, card)
     return {
