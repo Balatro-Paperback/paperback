@@ -1464,6 +1464,17 @@ return {
           "of round is played"
         }
       },
+      j_paperback_shopkeep = {
+        name = "Shopkeep",
+        text = {
+          "Earn a {C:attention}Coupon Tag{} every other",
+          "blind, after defeating a {C:attention}Boss{}",
+          "{C:attention}Blind{}, earn a {C:attention}Voucher Tag{}"
+        },
+        unlock = {
+          "Spend {C:money}$50{} in one shop"
+        }
+      },
       j_paperback_cakepop = {
         name = "Cakepop",
         text = {
