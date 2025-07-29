@@ -2,6 +2,9 @@ SMODS.Joker {
   key = 'subterfuge',
   rarity = 3,
   pos = { x = 3, y = 5 },
+  pools = {
+    Music = true
+  },
   atlas = 'jokers_atlas',
   cost = 8,
   unlocked = true,
