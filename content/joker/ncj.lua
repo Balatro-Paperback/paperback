@@ -8,6 +8,9 @@ SMODS.Joker {
       scaling = 4
     }
   },
+  pools = {
+    Music = true
+  },
   cost = 5,
   blueprint_compat = true,
   eternal_compat = true,

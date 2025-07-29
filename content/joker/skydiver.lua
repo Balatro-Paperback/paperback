@@ -6,6 +6,9 @@ SMODS.Joker {
       lowest_rank = 'Ace',
     }
   },
+  pools = {
+    Music = true
+  },
   rarity = 2,
   pos = { x = 4, y = 1 },
   atlas = 'jokers_atlas',
