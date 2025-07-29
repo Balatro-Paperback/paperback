@@ -5,6 +5,9 @@ SMODS.Joker {
       a_pchips = 10,
     }
   },
+  pools = {
+    Music = true
+  },
   rarity = 2,
   pos = { x = 18, y = 2 },
   atlas = "jokers_atlas",
