@@ -7,6 +7,9 @@ SMODS.Joker {
       suit2 = 'Clubs'
     }
   },
+  pools = {
+    Music = true
+  },
   rarity = 2,
   pos = { x = 7, y = 3 },
   atlas = 'jokers_atlas',
