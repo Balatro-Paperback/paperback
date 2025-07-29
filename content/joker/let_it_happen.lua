@@ -5,6 +5,9 @@ SMODS.Joker {
       hands_played_this_ante = {},
     }
   },
+  pools = {
+    Music = true
+  },
   rarity = 3,
   pos = { x = 7, y = 2 },
   atlas = "jokers_atlas",

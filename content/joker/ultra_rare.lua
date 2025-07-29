@@ -10,6 +10,9 @@ SMODS.Joker {
       sell_value = 0
     }
   },
+  pools = {
+    Music = true
+  },
   rarity = 3,
   pos = { x = 10, y = 7 },
   atlas = "jokers_atlas",

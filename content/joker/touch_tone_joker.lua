@@ -10,6 +10,9 @@ SMODS.Joker {
       }
     }
   },
+  pools = {
+    Music = true
+  },
   rarity = 2,
   pos = { x = 11, y = 9 },
   atlas = "jokers_atlas",
