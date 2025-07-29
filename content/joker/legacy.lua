@@ -5,6 +5,9 @@ SMODS.Joker {
       mult = 0
     }
   },
+  pools = {
+    Music = true
+  },
   rarity = 3,
   pos = { x = 5, y = 7 },
   atlas = 'jokers_atlas',
