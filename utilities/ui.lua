@@ -303,6 +303,7 @@ end
 --- @return table
 function PB_UTIL.suit_tooltip(type)
   local suits = type == 'light' and PB_UTIL.light_suits or PB_UTIL.dark_suits
+
   local key = 'paperback_' .. type .. '_suits'
   local colours = {}
 
@@ -316,16 +317,25 @@ function PB_UTIL.suit_tooltip(type)
     for i = 1, #suits do
       local suit = suits[i]
 
-      colours[#colours + 1] = G.C.SUITS[suit] or G.C.IMPORTANT
-      line = line .. "{V:" .. i .. "}" .. localize(suit, 'suits_plural') .. "{}"
-
-      if i < #suits then
-        line = line .. ", "
+      -- Remove Bunco exotic suits if they are not revealed yet
+      if next(SMODS.find_mod("Bunco")) and not (G.GAME and G.GAME.Exotic) then
+        if suit == "bunc_Fleurons" or suit == "bunc_Halberds" then
+          suit = nil
+        end
       end
 
-      if #line > 30 then
-        text[#text + 1] = line
-        line = ""
+      if suit ~= nil then
+        colours[#colours + 1] = G.C.SUITS[suit] or G.C.IMPORTANT
+        line = line .. "{V:" .. i .. "}" .. localize(suit, 'suits_plural') .. "{}"
+
+        if i < #suits then
+          line = line .. ", "
+        end
+
+        if #line > 30 then
+          text[#text + 1] = line
+          line = ""
+        end
       end
     end
 

@@ -8,8 +8,8 @@ to_number = to_number or function(n)
 end
 
 -- Load modded suits
-if (SMODS.Mods["Bunco"] or {}).can_load then
-  local prefix = SMODS.Mods["Bunco"].prefix
+if next(SMODS.find_mod('Bunco')) then
+  local prefix = SMODS.find_mod('Bunco')[1].prefix or "bunc"
 
   table.insert(PB_UTIL.light_suits, prefix .. '_Fleurons')
   table.insert(PB_UTIL.dark_suits, prefix .. '_Halberds')
