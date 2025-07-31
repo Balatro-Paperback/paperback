@@ -39,7 +39,7 @@ PB_UTIL.credits = {
   localization = {
     color = G.C.FILTER,
     entries = {
-      'pinkmaggit-hub (pt-BR)',
+      'pinkmaggit-hub & Riosodu (pt-BR)',
       'mathieulievre (FR)',
       'BurAndBY & Tauookie (RU)',
       'Ethylene (zh_CN)'
