@@ -182,7 +182,7 @@ return { -- Español
       j_paperback_nichola = {
         name = "Nichola",
         text = {
-          "Las Cartas{C:attention}Figura{} {C:attention}en mano",
+          "Las Cartas {C:attention}Figura{} {C:attention}en mano",
           "cuentan como {C:attention}anotadas"
         }
       },
@@ -270,9 +270,9 @@ return { -- Español
       j_paperback_langely = {
         name = "L'angely",
         text = {
-          "Gana la mitad del {C:money}valor de venta{}",
-          "de tus comodines al derrotar una {C:attention}Ciega Grande",
-          "Y todo el {C:money}valor de venta{}",
+          "Gana la mitad del {C:money}valor de venta{} de",
+          "tus comodines al derrotar una {C:attention}Ciega{}",
+          "{C:attention}Grande{} Y todo el {C:money}valor de venta{}",
           "al derrotar {C:attention}Ciega Jefe{}"
         }
       },
@@ -375,7 +375,7 @@ return { -- Español
       j_paperback_prism = {
         name = "Prisma",
         text = {
-          "Si la mano jugada contiene {C:attention}#1#,",
+          "Si la mano jugada contiene {C:attention}#1#{},",
           "las {C:attention}cartas anotadas{} cambian",
           "a un {C:attention}palo{} al azar",
         }
@@ -481,7 +481,7 @@ return { -- Español
       j_paperback_clippy = {
         name = "Clippy",
         text = {
-          "Añade un {C:attention}Clip{} a",
+          "Añade un {C:attention}Clip{} a una",
           "carta en la baraja al",
           "seleccionar una {C:attention}Ciega{}",
         }
@@ -570,9 +570,9 @@ return { -- Español
       j_paperback_spotty_joker = {
         name = "Comodín de puntitos",
         text = {
-          "Gana {X:mult,C:white}X#1#{} Multi",
-          "al {C:attention}anotar{} una mano que",
-          "contiene una {C:attention}#2#{}",
+          "Gana {X:mult,C:white}X#1#{} Multi al",
+          "{C:attention}anotar{} una mano que",
+          "contiene una {C:attention}#2#{}.",
           "Pierde {X:mult,C:white}X#3#{} Multi si no",
           "anotas una {C:attention}#2#{}",
           "{C:inactive}(Actualmente {X:mult,C:white}X#4#{}{C:inactive} Multi)"
@@ -936,6 +936,15 @@ return { -- Español
         text = {
           "Vende esto para hacer que el",
           "{C:attention}Comodín{} de la derecha sea {C:attention}Eterno{}",
+        }
+      },
+      j_paperback_percussion_ensemble = {
+        name = "Sesión de percusión",
+        text = {
+          "Gana {X:mult,C:white}X#1#{} Multi por",
+          "cada {C:attention}Mejora{} única en tu",
+          "Baraja",
+          "{C:inactive}(Actualmente {X:mult,C:white}X#2#{C:inactive} Multi){}",
         }
       },
       j_paperback_its_tv_time = {
@@ -1488,6 +1497,14 @@ return { -- Español
           "{C:attention}primera{} mano"
         }
       },
+      j_paperback_shopkeep = {
+        name = "Tendero",
+        text = {
+          "Gana una {C:attention}Etiqueta de cupón{} al",
+          "derrotar una ciega, al derrotar la {C:attention}Ciega{}",
+          "{C:attention}Jefe{}, gana una {C:attention}Etiqueta de Vale{}"
+        },
+      },
       j_paperback_cakepop = {
         name = "Chupeta de fresa",
         text = {
@@ -1647,7 +1664,7 @@ return { -- Español
           "{C:inactive}(Currently {C:mult}+#1#{C:inactive} Mult and {C:chips}+#2#{C:inactive} Chips)",
         },
       },
-    },
+      },
     Spectral = {
       c_paperback_apostle_of_cups = {
         name = "Apóstol de Copas",
