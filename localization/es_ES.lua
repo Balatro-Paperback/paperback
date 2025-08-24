@@ -167,8 +167,8 @@ return { -- Español
       j_paperback_chaplin = {
         name = "Chaplin",
         text = {
-          "Al comprar un {C:attention}Vale{}",
-          "tambien consigues su {C:attention}Mejora{}"
+          "Al comprar un {C:attention}Vale{} tambien",
+          "consigues su {C:attention}Mejora{}"
         }
       },
       j_paperback_milk_tea = {
@@ -465,7 +465,7 @@ return { -- Español
           "Al seleccionar una {C:attention}Ciega{}, crea",
           "al azar un {C:attention}Comodín{} {C:blue}Común{},",
           "{C:green}Inusual{} y {C:red}Raro{} que son",
-          "{C:paperback_temporary}Temporales{} y {C:dark_edition}Neagativos",
+          "{C:paperback_temporary}Temporales{} y {C:dark_edition}Negativos",
           "sin {C:money}valor de venta{}"
         }
       },
@@ -726,7 +726,7 @@ return { -- Español
           "gana {C:blue}+#1#{} mano, se",
           "consume si la {C:attention}Ciega{}",
           "es derrotada con",
-          "{C:blue}0{} manos",
+          "{C:blue}0{} manos restantes",
         }
       },
       j_paperback_angel_investor = {
@@ -847,7 +847,7 @@ return { -- Español
       j_paperback_the_world = {
         name = "El Mundo",
         text = {
-          "Tadas las {C:blue}manos{} y {C:red}descartes{} se",
+          "Todas las {C:blue}manos{} y {C:red}descartes{} se",
           "consideran como el {C:attention}primer{} y",
           "{C:attention}último{} de la ronda"
         }
@@ -857,7 +857,7 @@ return { -- Español
         text = {
           "{X:mult,C:white}X#1#{} Multi.",
           "destruye un {C:attention}Comodín{}",
-          "al azar si ya juegaste",
+          "al azar si ya jugaste",
           "la {C:attention}primera mano{}",
           "de la ronda",
         }
@@ -1030,8 +1030,8 @@ return { -- Español
         name = "Comodín Galleta",
         text = {
           "Gana {C:money}$#1#{} al final de la ronda",
-          "el pago aumenta un {C:money}$#2#{} al entrar a",
-          "la tienda {C:green}#3# en #4#{} de ser",
+          "el pago aumenta un {C:money}$#2#{} al entrar",
+          "a la tienda {C:green}#3# en #4#{} de ser",
           "comido al final de la ronda",
         },
       },
@@ -1260,7 +1260,7 @@ return { -- Español
         },
       },
       j_paperback_calling_card = {
-        name = "Carta de Jefe",
+        name = "Tarjeta de Jefe",
         text = {
           "Gana {X:red,C:white}X#1#{} Multi cada vez",
           "que derrotas una {C:attention}Ciega Jefe{}",
@@ -1331,7 +1331,7 @@ return { -- Español
       j_paperback_solar_system = {
         name = "Sistema Solar",
         text = {
-          "Otorga {X:mult,C:white}X#1#{} Multi por cada {C:attention}nivel{}",
+          "Otorga {X:mult,C:white}X#1#{} Multi por cada {C:planet}nivel{}",
           "encima de 1 que {C:attention}compartan{}",
           "{C:attention}todos{} los 9 {C:planet}Planetas{} base",
           "{C:inactive}(Actualmente {X:mult,C:white}X#2#{} {C:inactive}Multi)",
@@ -1694,7 +1694,7 @@ return { -- Español
       c_paperback_ace_of_cups = {
         name = "As de Copas",
         text = {
-          "Agrega un {C:chips}Clip Azul{} a",
+          "Añade un {C:chips}Clip Azul{} a",
           "{C:attention}#1#{} cartas seleccionadas"
         }
       },
@@ -1709,7 +1709,7 @@ return { -- Español
       c_paperback_three_of_cups = {
         name = "Tres de Copas",
         text = {
-          "Agrega un {C:paperback_black}Clip Negro{} a",
+          "Añade un {C:paperback_black}Clip Negro{} a",
           "{C:attention}#1#{} carta seleccionada"
         }
       },
@@ -1730,7 +1730,7 @@ return { -- Español
         }
       },
       c_paperback_six_of_cups = {
-        name = "Séis de Copas",
+        name = "Seis de Copas",
         text = {
           "Gana la {C:attention}mitad{} de las {C:chips}Fichas",
           "de {C:attention}#1#{} carta sleccionada",
@@ -1804,115 +1804,116 @@ return { -- Español
         }
       },
       c_paperback_ace_of_wands = {
-        name = "Ace of Wands",
+        name = "As de Varas",
         text = {
-          "Add a {C:mult}Red Clip{} to up",
-          "to {C:attention}#1#{} selected cards"
+          "Añade {C:mult}Clips Rojos{} hasta",
+          "a {C:attention}#1#{} cartas seleccionadas"
         }
       },
       c_paperback_two_of_wands = {
         name = "Two of Wands",
         text = {
-          "Create the {C:planet}Planet{} card",
-          "for your {C:attention}most{} and {C:attention}least",
-          "played {C:attention}poker hands",
-          "{C:inactive}(Must have room)"
+          "Crea las cartas de {C:planet}Planeta{}",
+          "de tus manos {C:attention}más{} y {C:attention}menos{}",
+          "{C:attention}jugadas{}",
+          "{C:inactive}(Debe haber espacio)"
         }
       },
       c_paperback_three_of_wands = {
-        name = "Three of Wands",
+        name = "Tres de Varas",
         text = {
-          "Create a copy of {C:attention}#1#",
-          "selected card in",
-          "your hand"
+          "Crea {C:attention}#1#{} copia",
+          "de una carta seleccionada"
         }
       },
       c_paperback_four_of_wands = {
-        name = "Four of Wands",
+        name = "Cuatro de Varas",
         text = {
-          "Add a {C:paperback_pink}Pink Clip{} to up",
-          "to {C:attention}#1#{} selected cards"
+          "Añade {C:paperback_pink}Clips Rosados{}",
+          "a hasta {C:attention}#1#{} cartas seleccionadas"
         }
       },
       c_paperback_five_of_wands = {
-        name = "Five of Wands",
+        name = "Cinco de Varas",
         text = {
-          "Destroys all cards",
-          "{C:attention}held in hand{}, and",
-          "sets money to {C:money}$0"
+          "Destruye todas las cartas",
+          "{C:attention}en manos{} y",
+          "deja el dinero en {C:money}$0"
         }
       },
       c_paperback_six_of_wands = {
-        name = "Six of Wands",
+        name = "Seis de Varas",
         text = {
-          "Enhances {C:attention}#1#{}",
-          "selected cards to",
+          "Mejora {C:attention}#1#{} Cartas",
+          "seleccionadas a",
           "{C:attention}#2#s{}"
         }
       },
       c_paperback_seven_of_wands = {
-        name = "Seven of Wands",
+        name = "Siete de Varas",
         text = {
-          "Gives a {C:attention}Breaking Tag"
+          "Otorga una",
+          "{C:attention}Etiqueta Quebradora"
         }
       },
       c_paperback_eight_of_wands = {
-        name = "Eight of Wands",
+        name = "Ocho de Varas",
         text = {
-          "Create a {C:dark_edition}Negative {C:attention}Tag{} and",
-          "lose {C:money}$#1#{}, plus {C:money}$#2#{} for every",
-          "Joker over {C:attention}#3#{} owned",
-          "{C:inactive}(Currently {C:money}$#4#{C:inactive})"
+          "Crea una {C:attention}Etiqueta {C:dark_edition}Negativa{}",
+          "y pierde {C:money}$#1#{}, más {C:money}$#2#{} por cada",
+          "Comodín encima de {C:attention}#3#{}",
+          "{C:inactive}(Actualmente {C:money}$#4#{C:inactive})"
         }
       },
       c_paperback_nine_of_wands = {
-        name = "Nine of Wands",
+        name = "Nueve de Varas",
         text = {
-          "Enhances {C:attention}#1#{}",
-          "selected cards to",
+          "Mejora {C:attention}#1#{} cartas",
+          "seleccionadas a",
           "{C:attention}#2#s{}"
         }
       },
       c_paperback_ten_of_wands = {
-        name = "Ten of Wands",
+        name = "Diez de Varas",
         text = {
-          "Select {C:attention}#1#{} cards, destroy the",
-          "{C:attention}rightmost two{} and give their",
-          "{C:chips}Chip value{} to the {C:attention}leftmost",
-          "{C:inactive}(Drag to rearrange)"
+          "Selecciona {C:attention}#1#{} cartas, destruye",
+          "las {C:attention}2 de la derecha{} y la carta",
+          "de la {C:attention}izquierda{} gana sus {C:chips}Fichas{}",
+          "{C:inactive}(Arrastra para reordenar)"
         }
       },
       c_paperback_page_of_wands = {
-        name = "Page of Wands",
+        name = "Sota de Varas",
         text = {
-          "Add an {C:attention}Orange Clip{} to up",
-          "to {C:attention}#1#{} selected cards"
+          "Añade {C:attention}Clips Naranjas{} a",
+          "hasta {C:attention}#1#{} cartas seleccionadas"
         }
       },
       c_paperback_knight_of_wands = {
-        name = "Knight of Wands",
+        name = "Caballero de Varas",
         text = {
-          "Gives a {C:mult}High Risk{C:attention} Tag"
+          "Otorga una {C:attention}Eiqueta",
+          "de {C:mult}Alto Riesgo"
         }
       },
       c_paperback_queen_of_wands = {
-        name = "Queen of Wands",
+        name = "Reina de Varas",
         text = {
-          "{C:green}#1# in #2#{} chance to",
-          "add {C:dark_edition}Dichrome{} edition",
-          "to a random {C:attention}Joker"
+          "{C:green}#1# in #2#{} de otorgar",
+          "edición {C:dark_edition}Dicroma{} a",
+          "un {C:attention}Comodín{} al azar"
         }
       },
       c_paperback_king_of_wands = {
-        name = "King of Wands",
+        name = "Rey de Varas",
         text = {
-          "Creates a random",
-          "non-{C:chips}Common{C:attention} Joker",
-          "{C:inactive}(Except {C:legendary}Legendary{C:inactive})"
+          "Crea al azar un {C:attention}Comodín{}",
+          "{C:green}Inusual{C:attention} o {C:red}Raro{}",
+          "{C:inactive}(Excepto {C:legendary}Legendarios{C:inactive})"
         }
       },
       c_paperback_ace_of_swords = {
-        name = "Ace of Swords",
+        name = "As de Espadas",
         text = {
           "Converts up to",
           "{C:attention}#1#{} selected cards",
@@ -1920,114 +1921,114 @@ return { -- Español
         }
       },
       c_paperback_two_of_swords = {
-        name = "Two of Swords",
+        name = "Dos de Espadas",
         text = {
-          "Converts up to",
-          "{C:attention}#1#{} selected cards",
-          "to last {C:attention}scored{} suit",
-          "{C:inactive}(Currently: {V:1}#2#{C:inactive})",
+          "Convierta {C:attention}#1#{} cartas",
+          "seleccionadas al último",
+          "palo {C:attention}anotado{}",
+          "{C:inactive}(Actualmente: {V:1}#2#{C:inactive})",
         }
       },
       c_paperback_three_of_swords = {
-        name = "Three of Swords",
+        name = "Tres de Espadas",
         text = {
-          "Enhances {C:attention}#1#{}",
-          "selected cards to",
+          "Mejora {C:attention}#1#{} cartas",
+          "seleccionadas a",
           "{C:attention}#2#s{}"
         }
       },
       c_paperback_four_of_swords = {
-        name = "Four of Swords",
+        name = "Cuatro de Espadas",
         text = {
-          "Converts up to {C:attention}#1#",
-          "selected cards to",
-          "random {C:attention}Face{} cards"
+          "Convierte {C:attention}#1#{}",
+          "seleccionadas a cartas",
+          "de {C:attention}Figura{} al azar"
         }
       },
       c_paperback_five_of_swords = {
-        name = "Five of Swords",
+        name = "Cinco de Espadas",
         text = {
-          "Select {C:attention}#1#{} cards, destroy the",
-          "rightmost two and give the",
-          "leftmost a random {C:attention}edition{},",
-          "{C:attention}seal{} or {C:attention}enhancement",
-          "{C:inactive}(Drag to rearrange)"
+          "Selecciona {C:attention}#1#{} cartas, destruye",
+          "las {C:attention}2 de la derecha{} y otorga",
+          "una {C:attention}edición{}, {C:attention}sello{}",
+          "o {C:attention}mejora{} al azar a la carta de la {C:attention}izquierda{}",
+          "{C:inactive}(Arrastra para reordenar)"
         }
       },
       c_paperback_six_of_swords = {
-        name = "Six of Swords",
+        name = "Seis de Espadas",
         text = {
-          "Add a {C:attention}Yellow Clip{} to",
-          "{C:attention}#1#{} selected cards"
+          "Añade {C:attention}Clips Amarillos{} a",
+          "hasta {C:attention}#1#{} cartas seleccionadas"
         }
       },
       c_paperback_seven_of_swords = {
-        name = "Seven of Swords",
+        name = "Siete de Espadas",
         text = {
-          "Add a {C:attention}Gold Clip{} to",
-          "{C:attention}#1#{} selected card"
+          "Añade un {C:attention}Clip Dorado{} a",
+          "{C:attention}#1#{} carta seleccionada"
         }
       },
       c_paperback_eight_of_swords = {
-        name = "Eight of Swords",
+        name = "Ocho de Espadas",
         text = {
-          "Adds random {C:attention}Clips{} to",
-          "up to {C:attention}#1#{} selected cards"
+          "Añade al azar {C:attention}Clips{} a",
+          "{C:attention}#1#{} cartas seleccionadas"
         }
       },
       c_paperback_nine_of_swords = {
-        name = "Nine of Swords",
+        name = "Nueve de Espadas",
         text = {
-          "Destroy selected Joker",
-          "It is {C:red}unable{} to appear again",
-          "for {C:attention}the remainder of the run{}"
+          "Destruye el Comodín seleccionado",
+          "y no {C:red}puede{} aparecer de nuevo",
+          "por el {C:attention}resto de la partida{}"
         }
       },
       c_paperback_ten_of_swords = {
-        name = "Ten of Swords",
+        name = "Diez de Espadas",
         text = {
-          "{C:attention}Destroy{} cards in deck",
-          "with the same {C:attention}rank",
-          "as selected card"
+          "{C:attention}Destruye{} todas las cartas",
+          "de la misma {C:attention}categoría",
+          "de la carta seleccionada"
         }
       },
       c_paperback_page_of_swords = {
-        name = "Page of Swords",
+        name = "Sota de Espadas",
         text = {
-          "Enhances {C:attention}#1#{}",
-          "selected cards to",
-          "{C:attention}#2#s{}"
+          "Mejora {C:attention}#1#{} cartas",
+          "seleccionadas a",
+          "{C:attention}Cartas de Dominó{}"
         }
       },
       c_paperback_knight_of_swords = {
-        name = "Knight of Swords",
+        name = "Caballero de Espadas",
         text = {
-          "Create a random {C:paperback_minor_arcana}Minor Arcana{} card",
-          "and a random {C:tarot}Tarot{} card",
-          "{C:inactive}(Must have room)"
+          "Crea al azar una carta de",
+          "{C:paperback_minor_arcana}Arcana menor{} y del {C:tarot}Tarot{}",
+          "{C:inactive}(Debe haber espacio)"
         }
       },
       c_paperback_king_of_swords = {
-        name = "King of Swords",
+        name = "Rey de Espadas",
         text = {
-          "Remove {C:money}Rental{} and {C:paperback_perishable}Perishable",
-          "from a selected Joker"
+          "Remueve los stickers de {C:money}Alquiler{} y {C:paperback_perishable}Perecedero",
+          "del comodín seleccionado"
         }
       },
       c_paperback_queen_of_swords = {
-        name = "Queen of Swords",
+        name = "Reina de Espadas",
         text = {
-          "Converts {C:attention}#1#{} random cards in",
-          "full deck with {C:attention}different suits",
-          "to the selected card's {C:attention}suit"
+          "Convierte {C:attention}#1#{} cartas al azar",
+          "en tu baraja con{C:attention} palo diferente",
+          "al {C:attention}palo{} de la carta seleccionada"
         }
       },
       c_paperback_ace_of_pentacles = {
-        name = "Ace of Pentacles",
+        name = "As de Pentáculos",
         text = {
-          "Converts up to",
-          "{C:attention}#1#{} selected cards",
-          "to {V:1}#2#{}",
+          "Convierte {C:attention}#1#{} cartas",
+          "seleccionadas a",
+          "{V:1}#2#{}",
         }
       }
     },
