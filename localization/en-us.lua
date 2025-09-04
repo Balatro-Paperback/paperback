@@ -427,6 +427,14 @@ return {
           "{C:inactive}(Currently {C:mult}+#1#{C:inactive} Mult)"
         }
       },
+      j_paperback_small_scale_onshore_wind = {
+        name = "Small Scale Onshore Wind",
+        text = {
+          "This Joker {C:blue}gains {C:mult}+#1#{} Mult",
+          "when discarding exactly {C:attention}#2#{} Cards",
+          "{C:inactive}(Currently {C:mult}+#3# {C:inactive}Mult)"
+        }
+      },
       j_paperback_aurora_borealis = {
         name = "Aurora Borealis",
         text = {
@@ -1613,6 +1621,16 @@ return {
           "gain {C:attention}#3#{} Ante",
           "{C:inactive}(Currently {C:attention}#2#{C:inactive}/#1#)",
         },
+      },
+      j_paperback_eyelander = {
+        name = "Eyelander",
+        text = {
+          "Scored {C:attention}face{} cards are destroyed",
+          "After scoring {C:attention}#1# face{} cards",
+          "{C:attention}selling{} this Joker adds",
+          "{C:dark_edition}Negative{} to a {C:attention}random{} Joker",
+          "{C:inactive}(Currently {C:attention}#2#{C:inactive} Heads)"
+        }
       },
       -- Cross-Mod jokers start here
       j_paperback_moon_waltz = {
