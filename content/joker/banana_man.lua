@@ -24,7 +24,7 @@ SMODS.Joker { -- Banana Man
   end,
 
   calculate = function(self, card, context)
-    if context.other_joker then     -- this is just baseball card's code, dont @ me
+    if context.other_joker and context.other_joker.ability.set == "Joker" then     -- this is just baseball card's code, dont @ me
       if (SMODS.pseudorandom_probability(card, 'Potassium', 1, card.ability.extra.odds, 'j_paperback_banana_man')) then
         return {
           Xmult = card.ability.extra.xmult,
