@@ -1632,6 +1632,26 @@ return {
           "{C:inactive}(Currently {C:attention}#2#{C:inactive} Heads)"
         }
       },
+      j_paperback_banana_man = {
+        name = "Banana Man",
+        text = {
+          "Jokers have a {C:green}#1# in #2#{} chance",
+          "to give {X:mult,C:white} X#3# {} Mult"
+        },
+        unlock = {
+          "Acquire",
+          "{C:attention}Cavendish",
+          "in a run"
+        }
+      },
+      j_paperback_guns_blazin = {
+        name = "Guns Blazin'",
+        text = {
+          "Played {C:attention}Aces{}",
+          "give {X:mult,C:white} X#1# {} Mult",
+          "when scored",
+        },
+      },
       -- Cross-Mod jokers start here
       j_paperback_moon_waltz = {
         name = "Moon Waltz",
