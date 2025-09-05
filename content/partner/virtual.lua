@@ -10,11 +10,11 @@ Partner_API.Partner {
   loc_vars = function(self, info_queue, card)
     if next(SMODS.find_card("j_paperback_paranoia")) then
       return {
-        vars = { card.ability.retriggers * 2 }
+        vars = { card.ability.extra.retriggers * 2 }
       }
     else
       return {
-        vars = { card.ability.retriggers }
+        vars = { card.ability.extra.retriggers }
       }
     end
   end,

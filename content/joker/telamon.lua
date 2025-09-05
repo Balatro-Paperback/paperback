@@ -36,17 +36,17 @@ SMODS.Joker {
       end
     end
 
-
     if context.end_of_round and card.ability.extra.active and context.main_eval then
-      local index = pseudorandom("telamon_minor_arcana", 29, 42)
-      PB_UTIL.try_spawn_card { key = "c_paperback_" .. PB_UTIL.ENABLED_MINOR_ARCANA[index], func = function()
-        SMODS.calculate_effect {
-          message = localize('paperback_plus_minor_arcana'),
-          colour = G.C.PAPERBACK_MINOR_ARCANA,
-          card = context.blueprint_card or card
-        }
-        return nil, true
-      end }
+      return nil, PB_UTIL.try_spawn_card {
+        set = 'paperback_minor_arcana_swords',
+        area = G.consumeables,
+        func = function()
+          SMODS.calculate_effect {
+            message = localize('paperback_plus_minor_arcana'),
+            colour = G.C.PAPERBACK_MINOR_ARCANA,
+            card = context.blueprint_card or card
+          }
+        end }
     end
   end
 }

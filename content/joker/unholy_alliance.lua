@@ -7,7 +7,7 @@ SMODS.Joker {
       revive_treshold = 666
     }
   },
-  rarity = 2,
+  rarity = 1,
   pos = { x = 6, y = 4 },
   atlas = 'jokers_atlas',
   cost = 7,

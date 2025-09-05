@@ -923,6 +923,15 @@ return {
           "to the right {C:attention}Eternal{}",
         }
       },
+      j_paperback_percussion_ensemble = {
+        name = "Percussion Ensemble",
+        text = {
+          "{X:mult,C:white}X#1#{} Mult for each",
+          "unique {C:attention}Enhancement{}",
+          "in your full deck",
+          "{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult){}",
+        }
+      },
       j_paperback_its_tv_time = {
         name = "It's TV Time!",
         text = {
@@ -1470,6 +1479,17 @@ return {
           "{C:attention}+3{} hand size before",
           "the {C:attention}first{} hand",
           "of round is played"
+        }
+      },
+      j_paperback_shopkeep = {
+        name = "Shopkeep",
+        text = {
+          "Earn a {C:attention}Coupon Tag{} every other",
+          "blind, after defeating a {C:attention}Boss{}",
+          "{C:attention}Blind{}, earn a {C:attention}Voucher Tag{}"
+        },
+        unlock = {
+          "Spend {C:money}$50{} in one shop"
         }
       },
       j_paperback_cakepop = {
@@ -2160,6 +2180,14 @@ return {
         name = "Dichrome",
         text = {
           "When {C:attention}Blind{} is selected",
+          "gain {C:attention}+#1#{C:blue} Hand{} or {C:red}Discard",
+          "{C:inactive}(Whichever is lower)"
+        }
+      },
+      e_paperback_dichrome_playing_card = {
+        name = "Dichrome",
+        text = {
+          "When this card {C:attention}is drawn{}",
           "gain {C:attention}+#1#{C:blue} Hand{} or {C:red}Discard",
           "{C:inactive}(Whichever is lower)"
         }

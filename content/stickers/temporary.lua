@@ -20,7 +20,7 @@ function end_round()
   -- Destroy jokers
   for _, v in ipairs(G.jokers and G.jokers.cards or {}) do
     if v.ability.paperback_temporary then
-      PB_UTIL.destroy_joker(v)
+      SMODS.destroy_cards(v)
     end
   end
 

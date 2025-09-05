@@ -22,7 +22,7 @@ if PB_UTIL.config.minor_arcana_enabled then
     primary_colour = G.C.PAPERBACK_MINOR_ARCANA,
     secondary_colour = G.C.PAPERBACK_MINOR_ARCANA, -- Color of the collection button and badge
     shop_rate = 0,                                 -- These will not appear in the shop
-    default = 'c_paperback_two_of_cups',           -- Card to spawn if pool is empty
+    default = 'c_paperback_ace_of_cups',           -- Card to spawn if pool is empty
     collection_rows = { 7, 7 }
   }
 

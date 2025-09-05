@@ -33,16 +33,17 @@ PB_UTIL.credits = {
     color = G.C.GREEN,
     entries = {
       'OppositeWolf770, srockw, Nether, B, ejwu2, metanite64, TheSnaz',
-      'InfinityPlus05'
+      'InfinityPlus05, aliahmed2k03'
     }
   },
   localization = {
     color = G.C.FILTER,
     entries = {
-      'pinkmaggit-hub (pt-BR)',
+      'pinkmaggit-hub & Riosodu (pt-BR)',
       'mathieulievre (FR)',
       'BurAndBY & Tauookie (RU)',
-      'Ethylene (zh_CN)'
+      'Ethylene (zh_CN)',
+      'Marffe (es_ES & es_419)',
     }
   },
   music = {
@@ -221,7 +222,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "shopping_center",
   "everything_must_go",
   "tutor",
-  -- "percussion_ensemble",
+  "percussion_ensemble",
   "its_tv_time",
   "eyelander",
   -- "torii",
@@ -239,7 +240,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "prince_of_darkness",
   "giga_size",
   "jester_of_nihil",
-  -- "shopkeep",
+  "shopkeep",
   "wild_prize",
   "deadringer",
   -- "a_balatro_movie",
