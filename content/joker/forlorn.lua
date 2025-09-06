@@ -37,11 +37,13 @@ SMODS.Joker {
       end
       if destroy then
         local target = pseudorandom_element(G.hand.cards, pseudoseed('forlorn'))
-        SMODS.destroy_cards({ target })
-        return {
-          message = localize('paperback_forlorn_destruction'),
-          colour = G.C.FILTER
-        }
+        if target then
+          SMODS.destroy_cards({ target })
+          return {
+            message = localize('paperback_forlorn_destruction'),
+            colour = G.C.FILTER
+          }
+        end
       end
     end
   end
