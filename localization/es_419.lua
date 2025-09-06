@@ -280,7 +280,8 @@ return { -- Español
         name = "Pedrillo",
         text = {
           "Jugar una mano con una {C:attention}Reina{},",
-          "sube de nivel la {C:attention}mano jugada{}"
+          "crea la carta de {C:planet}Planeta{}",
+          "de la {C:attention}mano jugada{}"
         }
       },
       j_paperback_double_dutchman = {
@@ -288,7 +289,7 @@ return { -- Español
         text = {
           "Cartas en {C:attention}mano{} tienen",
           "{C:green}#1# en #2#{} de obtener una",
-          "{C:attention}mejora{}, {C:attention}sello{} o {C:attention}edición{} al",
+          "{C:attention}mejora{} o {C:attention}sello{} al",
           "azar por las siguientes",
           "{C:attention}#3#{} manos jugadas"
         }
@@ -351,7 +352,8 @@ return { -- Español
         name = "¡Coroname!",
         text = {
           "Anotar {V:1}#1#{} aumenta",
-          "su {C:attention}categoria{}"
+          "su {C:attention}categoria{} hasta",
+          "llegar a {C:attention}Rey{C:inactive}"
         }
       },
       j_paperback_gambit = {
@@ -361,7 +363,7 @@ return { -- Español
           "primera {V:1}#1#{} {C:attention}destruya{}",
           "la primera carta en mano",
           "que no es una {V:1}#1#{}",
-          "y obtiene sus {C:chips}Fichas{}",
+          "y obtiene el {C:attention}doble{} de sus {C:chips}Fichas{}",
         }
       },
       j_paperback_solar_eclipse = {
@@ -439,6 +441,14 @@ return { -- Español
           "{C:red}Pierde{} Multi igual a el {C:money}valor{}",
           "{C:money}de venta{} de {C:attention}Comodines{} {C:red}vendidos{}",
           "{C:inactive}(Actualmente {C:mult}+#1#{C:inactive} Multi)"
+        }
+      },
+      j_paperback_small_scale_onshore_wind = {
+        name = "Energía eólica terrestre",
+        text = {
+          "Gana {C:mult}+#1#{} Multi cada vez que",
+          "descartas exactamente {C:attention}#2#{} cartas",
+          "{C:inactive}(Actualmente {C:mult}+#3# {C:inactive}Multi)"
         }
       },
       j_paperback_aurora_borealis = {
@@ -543,10 +553,9 @@ return { -- Español
       j_paperback_blue_marble = {
         name = "Marmol Azul",
         text = {
-          "{C:green}#1# en #2#{} de crear una",
-          "carta de {C:planet}Planeta{} si la",
-          "{C:attention}mano{} anota {V:3}#3#{}",
-          "{C:inactive}(Debe haber espacio)",
+          "Gana {C:mult}+#1#{} Multi al usar una",
+          "carta de {C:attention}Planeta{}",
+          "{C:inactive}(Actualmente {C:mult}+#2#{C:inactive} Multi)"
         }
       },
       j_paperback_boundary_of_death = {
@@ -571,10 +580,8 @@ return { -- Español
         name = "Comodín de puntitos",
         text = {
           "Gana {X:mult,C:white}X#1#{} Multi al",
-          "{C:attention}anotar{} una mano que",
-          "contiene una {C:attention}#2#{}.",
-          "Pierde {X:mult,C:white}X#3#{} Multi si no",
-          "anotas una {C:attention}#2#{}",
+          "{C:attention}anotar{} por cada",
+          "{C:attention}#2#{}",
           "{C:inactive}(Actualmente {X:mult,C:white}X#4#{}{C:inactive} Multi)"
         }
       },
@@ -686,8 +693,8 @@ return { -- Español
         name = "Luna llena",
         text = {
           "Las cartas de {C:planet}Planeta{}",
-          "tienen {C:green}#1# in #2#{} de subir",
-          "de nivel la mano {C:attention}de nuevo",
+          "tienen una prob. {C:green}#1# en #2#{} de",
+          "subir de nivel la mano {C:attention}de nuevo",
         }
       },
       j_paperback_sake_cup = {
@@ -752,7 +759,7 @@ return { -- Español
         name = "Champaña",
         text = {
           "Durante la {C:attention}Ciega Jefe{}, las cartas",
-          "anotadas ganan {C:money}$#1#{} y el {C:attention}doble{}",
+          "anotadas otorgan {C:money}$#1#{} y el {C:attention}doble{}",
           "para las cartas con {C:attention}sello",
           "{C:attention}Se consume{} en {C:attention}#2#{} rondas"
         }
@@ -890,8 +897,8 @@ return { -- Español
       j_paperback_coffee = {
         name = "Café",
         text = {
-          "{C:attention}+#1#{} tamaño de mano,",
-          "Aumenta {C:attention}#2#{} cada vez que saltas una {C:attention}ciega{}.",
+          "{C:attention}+#1#{} tamaño de mano, aumenta",
+          "{C:attention}#2#{} cada vez que saltas una {C:attention}ciega{}.",
           "{C:green}#3# en #4#{} de ser consumido al seleccionar la",
           "{C:attention}Ciega Pequeña{} o la {C:attention}Ciega Grande{}",
         }
@@ -1030,7 +1037,7 @@ return { -- Español
         name = "Comodín Galleta",
         text = {
           "Gana {C:money}$#1#{} al final de la ronda",
-          "el pago aumenta un {C:money}$#2#{} al entrar",
+          "el pago aumenta en {C:money}$#2#{} al entrar",
           "a la tienda {C:green}#3# en #4#{} de ser",
           "comido al final de la ronda",
         },
@@ -1057,8 +1064,7 @@ return { -- Español
         name = "Comodín en Bicicleta",
         text = {
           "Las {C:attention}Cartas Vesátiles{} otorgan",
-          "{C:mult}Multi{} igual a sus {C:chips}Fichas{} y",
-          "luego {X:mult,C:white}X#1#{} Multi",
+          "{C:mult}Multi{} igual a sus {C:chips}Fichas{}",
         },
       },
       j_paperback_stamp = {
@@ -1135,9 +1141,9 @@ return { -- Español
         name = "Media inpar",
         text = {
           "Gana {X:mult,C:white}X#1#{} Multi",
-          "si la mano jugada",
-          "no contiene un {C:attention}#2#",
-          "{C:inactive}(Actualmente {X:mult,C:white}X#3#{C:inactive} Multi)",
+          "si descartas exactamente",
+          "{C:attention}una{} carta",
+          "{C:inactive}(Actualmente {X:mult,C:white}X#2#{C:inactive} Multi)",
         },
       },
       j_paperback_wild_plus_four = {
@@ -1168,9 +1174,9 @@ return { -- Español
       j_paperback_surfer = {
         name = "Surfista",
         text = {
-          "Gana {C:chips}+#1#{} Fichas",
-          "por cada {C:attention}#3#{} en mano",
-          "al final {C:attention}ronda{} y {C:chips}+#2#",
+          "Gana {C:chips}+#1#{} Fichas por",
+          "cada {C:attention}#3#{} en mano al",
+          "final de la {C:attention}ronda{} y {C:chips}+#2#",
           "por cada {C:attention}#3#{} anotado",
           "{C:inactive}(Actualmente {C:chips}+#4#{C:inactive} Fichas)"
         }
@@ -1315,8 +1321,8 @@ return { -- Español
         name = "Estrategia Maestra",
         text = {
           "{X:mult,C:white}X#1#{} Multi si tienes",
-          "{C:attention}#2#{} {C:attention}mejoras{} o {C:attention}sellos{}",
-          "únicos en tu bajara",
+          "{C:attention}#2#{} o más {C:attention}mejoras{}",
+          "únicas en tu baraja",
           "{C:inactive}(Actualmente {C:attention}#3#{C:inactive})",
         },
       },
@@ -1427,7 +1433,7 @@ return { -- Español
         text = {
           "Si la mano anota un {C:hearts}Corazón{} y",
           "otros {C:attention}#1#{} palos diferentes, este comodín",
-          "otorga {X:mult,C:white}X#2#{} Multi en {C:attention}esta mano{} y la {C:attention}siguiente",
+          "otorga {X:mult,C:white}X#2#{} Multi en {C:attention}esta mano{} y las {C:attention}siguientes 2{}",
           "{C:inactive}(Por las siguientes {C:attention}#4#{C:inactive} manos)"
         },
       },
@@ -1483,10 +1489,8 @@ return { -- Español
       j_paperback_the_wonder_of_you = {
         name = "The Wonder of You",
         text = {
-          "Si el comodín a la {C:attention}derecha{}",
-          "falla una {C:green}probabilidad{}, la",
-          "carta del {C:attention}extremo derecho{}",
-          "de la mano se {C:attention}destruye{}"
+          "Al seleccionar la {C:attention}Ciega Jefe{}",
+          "crea 2 {C:green}etiquetas{} al azar",
         }
       },
       j_paperback_inner_peace = {
@@ -1534,8 +1538,8 @@ return { -- Español
         name = "Manzana",
         text = {
           "Comprar un {C:attention}Consumible{} tiene",
-          "{C:green}#1# en #2#{} crear una copia {C:dark_edition}Negativa{}",
-          "y {S:1.1,C:red,E:2}destruir{} este comodín",
+          "una prob. de {C:green}#1# en #2#{} crear una copia {C:dark_edition}Negativa{}",
+          "y una prob. de {C:green}#3# en #4#{} {S:1.1,C:red,E:2}destruir{} este comodín",
         }
       },
       j_paperback_heretical_joker = {
@@ -1652,6 +1656,36 @@ return { -- Español
           "vende esta tarjeta para",
           "retroceder un {C:attention}Ante{}",
           "{C:inactive}(Actualmente {C:attention}#2#{C:inactive}/#1#)",
+        },
+      },
+      j_paperback_eyelander = {
+        name = "La Intuertal",
+        text = {
+          "Anotar cartas de {C:attention}figura{} las destruye.",
+          "Después de anotar {C:attention}#1#{} cartas de {C:attention}figura{}",
+          "{C:attention}vender{} este comodín otorga edición",
+          "{C:dark_edition}negativa{} a un comodín {C:attention}al azar{}",
+          "{C:inactive}(Actualmente {C:attention}#2#{C:inactive} Decapitaciones)"
+        }
+      },
+      j_paperback_banana_man = {
+        name = "Hombre Plátano",
+        text = {
+          "Los comodines tienen una prob.",
+          " de {C:green}#1# in #2#{} de otorgar {X:mult,C:white}X#3#{} Multi"
+        },
+        unlock = {
+          "Acquire",
+          "{C:attention}Cavendish",
+          "in a run"
+        }
+      },
+      j_paperback_guns_blazin = {
+        name = "Ases Calibrados",
+        text = {
+          "Los {C:attention}Ases{} otorgan",
+          "{X:mult,C:white} X#1# {} Multi al",
+          "anotar",
         },
       },
       -- Cross-Mod jokers start here
