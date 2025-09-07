@@ -33,7 +33,7 @@ PB_UTIL.credits = {
     color = G.C.GREEN,
     entries = {
       'OppositeWolf770, srockw, Nether, B, ejwu2, metanite64, TheSnaz',
-      'InfinityPlus05, aliahmed2k03'
+      'InfinityPlus05, aliahmed2k03, Thermo'
     }
   },
   localization = {
@@ -243,7 +243,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "shopkeep",
   "wild_prize",
   "deadringer",
-  -- "a_balatro_movie",
+  "a_balatro_movie",
   "ncj",
   "bicycle",
   "joke_master",

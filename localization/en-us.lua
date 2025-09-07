@@ -1671,6 +1671,14 @@ return {
           "when scored",
         },
       },
+      j_paperback_a_balatro_movie = {
+        name = "A Balatro Movie",
+        text = {
+          "If played hand is the {C:attention}same",
+          "as the {C:attention}previous{} hand, gain {C:money}$#1#{}",
+          "{C:inactive}(Currently {C:attention}#2#{C:inactive})",
+        }
+      },
       -- Cross-Mod jokers start here
       j_paperback_moon_waltz = {
         name = "Moon Waltz",
