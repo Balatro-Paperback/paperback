@@ -30,6 +30,12 @@ SMODS.Joker {
           message = localize('k_upgrade_ex'),
           colour = G.C.ORANGE
         }
+      else
+        card.ability.extra.mult = 0
+        return {
+          message = localize('k_reset'),
+          colour = G.C.ORANGE
+        }
       end
     end
     if context.joker_main then

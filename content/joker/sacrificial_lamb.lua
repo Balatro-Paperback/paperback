@@ -2,7 +2,7 @@ SMODS.Joker {
   key = 'sacrificial_lamb',
   config = {
     extra = {
-      mult_mod = 4,
+      mult_mod = 3,
       mult = 0
     }
   },
@@ -29,6 +29,7 @@ SMODS.Joker {
   calculate = function(self, card, context)
     -- Gains mult when jokers are destroyed
     if not context.blueprint and context.paperback and context.paperback.destroying_joker then
+      if context.paperback.destroyed_joker.ability and context.paperback.destroyed_joker.ability.paperback_temporary then goto continue end
       -- Make sure that this joker isn't being removed
       if card ~= context.paperback.destroyed_joker then
         card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.mult_mod
@@ -42,6 +43,7 @@ SMODS.Joker {
           colour = G.C.MULT
         }
       end
+      ::continue::
     end
 
     -- Gains mult when playing cards are destroyed. Each card destroyed provides the specified mult_mod

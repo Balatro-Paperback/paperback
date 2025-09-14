@@ -20,7 +20,7 @@ SMODS.Joker {
   calculate = function(self, card, context)
     if context.individual and context.cardarea == G.play then
       -- Check if each card is a queen
-      if PB_UTIL.is_rank(context.other_card, card.ability.extra.rank) then
+      if PB_UTIL.is_rank(context.other_card, card.ability.extra.rank) and (#G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit) then
         -- Add the planet corresponding to the played hand type
         G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
         G.E_MANAGER:add_event(Event({

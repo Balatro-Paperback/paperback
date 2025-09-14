@@ -30,6 +30,7 @@ SMODS.Joker {
   calculate = function(self, card, context)
     -- Gains chips when jokers are destroyed
     if not context.blueprint and context.paperback and context.paperback.destroying_joker then
+      if context.paperback.destroyed_joker.ability and context.paperback.destroyed_joker.ability.paperback_temporary then goto continue end
       -- Make sure that this joker isn't being removed
       if card ~= context.paperback.destroyed_joker then
         card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.a_chips
@@ -43,6 +44,7 @@ SMODS.Joker {
           colour = G.C.CHIPS
         }
       end
+      ::continue::
     end
 
     -- Gains chips when playing cards are destroyed. Each card destroyed provides the specified chip_mod
