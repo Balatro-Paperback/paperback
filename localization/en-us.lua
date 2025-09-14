@@ -1730,9 +1730,51 @@ return {
         name = "Guns Blazin'",
         text = {
           "Played {C:attention}Aces{}",
-          "give {X:mult,C:white}X#1#{} Mult",
+          "give {X:mult,C:white} X#1# {} Mult",
           "when scored",
         },
+      },
+      j_paperback_satellite_array = {
+        name = "Satellite Array",
+        text = {
+          "This Joker gains {C:chips}+#1#{} Chips",
+          "for each {C:planet}Planet{} card used",
+          "and looses {C:chips}-#2#{} Chips",
+          "for every played hand",
+          "{C:inactive}(Currently {C:chips}+#3#{C:inactive} Chips)",
+        }
+      },
+      j_paperback_rosary_beads = {
+        name = "Rosary Beads",
+        text = {
+          "If scored hand contains",
+          "{C:attention}#1#{} or more {C:hearts}Hearts{}",
+          "earn {C:money}$#2#{}"
+        }
+      },
+      j_paperback_tian_tian = {
+        name = "Tian Tian",
+        text = {
+          "This Joker gains {X:mult,C:white} X#1# {} Mult when",
+          "a playing card is {C:attention}destroyed{}",
+          "{C:inactive}(Currently {X:mult,C:white} X#2# {C:inactive} Mult)"
+        }
+      },
+      j_paperback_disco = {
+        name = "Disco Joker",
+        text = {
+          "This Joker gains {C:mult}+#1#{} Mult when",
+          "buying a card with {C:money}$#2#{} or less",
+          "{C:inactive}(Currently {C:mult}+#3#{C:inactive} Mult)"
+        }
+      },
+      j_paperback_a_balatro_movie = {
+        name = "A Balatro Movie",
+        text = {
+          "If {C:attention}played hand{} is the {C:attention}same{}",
+          "as the {C:attention}previous hand{}, earn {C:money}$#2#{}",
+          "{C:inactive}(Last Played Hand is {C:attention}#1#{C:inactive})"
+        }
       },
       -- Cross-Mod jokers start here
       j_paperback_moon_waltz = {

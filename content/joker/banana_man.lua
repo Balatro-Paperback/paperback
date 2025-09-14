@@ -10,6 +10,9 @@ SMODS.Joker { -- Banana Man
     x = 1,
     y = 10
   },
+  pools = {
+    Music = true
+  },
   cost = 8,
   rarity = 3,
   blueprint_compat = true,
