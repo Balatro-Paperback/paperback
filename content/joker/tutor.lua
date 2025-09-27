@@ -10,22 +10,13 @@ SMODS.Joker {
 }
 local get_chip_bonus_ref = Card.get_chip_bonus
 function Card.get_chip_bonus(self)
-  if next(SMODS.find_card('j_paperback_tutor', false)) then
-    local exponent = 0
-    for i, k in ipairs(G.jokers.cards) do
-      if k.config.center.key == 'j_paperback_tutor' then
-        exponent = exponent + 1
-      end
-    end
-    local multiplier = math.pow(2, exponent)
-    if not self:is_face() then
-      if self.ability.extra_enhancement then return self.ability.bonus * multiplier end
-
-      if self.ability.effect == 'Stone Card' or self.config.center.replace_base_card then
-        return self.ability.bonus + (self.ability.perma_bonus or 0)
-      end
-      return (self.base.nominal + self.ability.bonus + (self.ability.perma_bonus or 0)) * multiplier
+  local res = get_chip_bonus_ref(self)
+  local cnt = #SMODS.find_card('j_paperback_tutor', false)
+  if cnt > 0 then
+    local id = self:get_id()
+    if 2 <= id and id <= 10 then
+      res = res * math.pow(2, cnt)
     end
   end
-  return get_chip_bonus_ref(self)
+  return res
 end

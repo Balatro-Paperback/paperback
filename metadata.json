@@ -6,6 +6,6 @@
   "description": "A vanilla centered mod built upon expanding the base game with jokers and other additions",
   "main_file": "paperback.lua",
   "badge_colour": "8b61ad",
-  "version": "0.7.1a",
-  "dependencies": ["Steamodded (>=1.0.0~BETA-0711a)", "Lovely (>=0.7.1)"]
+  "version": "0.7.1a~BETA",
+  "dependencies": ["Steamodded (>=1.0.0~BETA-0827c)", "Lovely (>=0.7.1)"]
 }

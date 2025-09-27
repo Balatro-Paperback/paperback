@@ -3,7 +3,7 @@ SMODS.Joker {
   config = {
     extra = {
       a_xMult = 0.1,
-      threshold = 5
+      threshold = 4
     },
   },
   rarity = 3,

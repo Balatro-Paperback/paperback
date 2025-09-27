@@ -8,12 +8,126 @@ SMODS.current_mod.optional_features = {
   quantum_enhancements = true,
 }
 
+-- Global mod calculate
+SMODS.current_mod.calculate = function(self, context)
+  -- green clip: gain mult for each played and scored clip
+  if context.before then
+    local clips_played = 0
+    for _, v in ipairs(context.scoring_hand) do
+      if not v.debuff and PB_UTIL.has_paperclip(v) then clips_played = clips_played + 1 end
+    end
+    local scale_amount = math.floor(clips_played / 2)
+    if scale_amount > 0 then
+      for _, v in ipairs(G.playing_cards) do
+        local clip = PB_UTIL.has_paperclip(v)
+        if clip == "paperback_green_clip" and not v.debuff then
+          local clip_table = v.ability.paperback_green_clip
+          clip_table.mult = clip_table.mult + (clip_table.mult_plus * scale_amount)
+        end
+      end
+    end
+  end
+
+  -- green clip: lose mult for each discarded clip
+  if context.discard then
+    if PB_UTIL.has_paperclip(context.other_card) and not context.other_card.debuff then
+      for _, v in ipairs(G.playing_cards) do
+        local clip = PB_UTIL.has_paperclip(v)
+        if clip == "paperback_green_clip" and not v.debuff then
+          local clip_table = v.ability.paperback_green_clip
+          clip_table.mult = math.max(0, clip_table.mult - clip_table.mult_minus)
+        end
+      end
+    end
+  end
+
+  -- purple clip: retrigger card if it has a clip and is adjacent to a purple clip
+  if context.repetition then
+    local scoring = true
+    local index = 0
+
+    for k, v in ipairs(context.cardarea.cards) do
+      if v == context.other_card then
+        index = k
+        break
+      end
+    end
+
+    if context.cardarea == G.play then
+      scoring = false
+      for k, v in ipairs(context.scoring_hand) do
+        if v == context.other_card then
+          scoring = true
+          break
+        end
+      end
+    end
+
+    if index and scoring then
+      local left = context.cardarea.cards[index - 1]
+      local right = context.cardarea.cards[index + 1]
+      local reps = 0
+      if left and PB_UTIL.has_paperclip(left) == "paperback_purple_clip" then
+        reps = reps + 1
+      end
+      if right and PB_UTIL.has_paperclip(right) == "paperback_purple_clip" then
+        reps = reps + 1
+      end
+      if PB_UTIL.has_paperclip(context.other_card) and reps > 0 then
+        return {
+          repetitions = reps,
+          message_card = context.other_card,
+          colour = G.C.PURPLE
+        }
+      end
+    end
+  end
+
+  -- track Tarot + Minor Arcana usage for 8 of Pentacles
+  if context.using_consumeable then
+    local center = context.consumeable.config.center
+    local add_new = true
+    if center.set == "Tarot" or center.set == "paperback_minor_arcana" then
+      for _, v in ipairs(G.GAME.paperback.arcana_used) do
+        if center.key == v then
+          add_new = false
+          break
+        end
+      end
+      if add_new then
+        G.GAME.paperback.arcana_used[#G.GAME.paperback.arcana_used + 1] = center.key
+      end
+    end
+  end
+end
+
+-- Sleeved cards can't be debuffed
+SMODS.current_mod.set_debuff = function(card)
+  if card.ability and card.ability.name == "m_paperback_sleeved" then
+    return "prevent_debuff"
+  end
+end
+
 -- Update values that get reset at the start of each round
 SMODS.current_mod.reset_game_globals = function(run_start)
   G.GAME.paperback.round.scored_clips = 0
   G.GAME.paperback.weather_radio_hand = PB_UTIL.get_random_visible_hand('weather_radio')
   G.GAME.paperback.joke_master_hand = PB_UTIL.get_random_visible_hand('joke_master')
-
+  -- Shopkeep
+  local shopkeeps = SMODS.find_card('j_paperback_shopkeep')
+  if #shopkeeps > 0 then
+    for _, joker in ipairs(shopkeeps) do
+      joker.ability.extra.incremented = false
+    end
+  end
+  -- Vacation Juice
+  G.GAME.paperback.vacation_juice_trigger = false
+  if not run_start then
+    G.GAME.paperback.last_blind_type_defeated_this_ante = G.GAME.blind:get_type()
+    if G.GAME.round_resets.blind_states.Boss == 'Defeated' then
+      G.GAME.paperback.last_blind_type_defeated_this_ante = nil
+    end
+  end
   if run_start then
     G.GAME.paperback.banned_run_keys = {}
   end
@@ -33,16 +147,17 @@ PB_UTIL.credits = {
     color = G.C.GREEN,
     entries = {
       'OppositeWolf770, srockw, Nether, B, ejwu2, metanite64, TheSnaz',
-      'InfinityPlus05'
+      'InfinityPlus05, aliahmed2k03'
     }
   },
   localization = {
     color = G.C.FILTER,
     entries = {
-      'pinkmaggit-hub (pt-BR)',
+      'pinkmaggit-hub & Riosodu (pt-BR)',
       'mathieulievre (FR)',
       'BurAndBY & Tauookie (RU)',
-      'Ethylene (zh_CN)'
+      'Ethylene (zh_CN)',
+      'Marffe (es_ES & es_419)',
     }
   },
   music = {
@@ -146,6 +261,10 @@ PB_UTIL.requirement_map = {
     setting = 'ranks_enabled',
     tooltip = 'paperback_requires_ranks'
   },
+  requires_ego_gifts = {
+    setting = 'ego_gifts_enabled',
+    tooltip = 'paperback_requires_ego_gifts'
+  }
 }
 
 -- Disable specific items by commenting them out
@@ -185,8 +304,9 @@ PB_UTIL.ENABLED_JOKERS = {
   "complete_breakfast",
   "ghost_cola",
   "b_soda",
-  -- "marble_soda",
-  -- "vacation_juice",
+  "marble_soda",
+  "vacation_juice",
+  "black_forest_cake",
   "ice_cube",
   "cream_liqueur",
   "deviled_egg",
@@ -221,28 +341,30 @@ PB_UTIL.ENABLED_JOKERS = {
   "shopping_center",
   "everything_must_go",
   "tutor",
-  -- "percussion_ensemble",
+  "percussion_ensemble",
   "its_tv_time",
-  -- "eyelander,
+  "eyelander",
   -- "torii",
   -- "freight",
   "high_speed_rail",
-  -- "small_scale_onshore_wind",
+  "small_scale_onshore_wind",
+  "satellite_array",
   "aurora_borealis",
   "grand_strategy",
   "ready_to_fly",
   "great_wave",
   "let_it_happen",
   "in_case_i_make_it",
+  "rosary_beads",
   "joker_cd_i",
   "determination",
   "prince_of_darkness",
   "giga_size",
   "jester_of_nihil",
-  -- "shopkeep",
+  "shopkeep",
   "wild_prize",
   "deadringer",
-  -- "a_balatro_movie",
+  "a_balatro_movie",
   "ncj",
   "bicycle",
   "joke_master",
@@ -257,8 +379,9 @@ PB_UTIL.ENABLED_JOKERS = {
   "river",
   "evergreens",
   "the_wonder_of_you",
+  "tian_tian",
   "backpack",
-  -- "roulette",
+  "roulette",
   "mexican_train",
   "chocolate_joker",
   "resurrections",
@@ -281,20 +404,25 @@ PB_UTIL.ENABLED_JOKERS = {
   "telamon",
   "weather_radio",
   "power_surge",
+  "time_regression_mix",
   "find_jimbo",
-  -- "jimbos_inferno",
+  "joker_crossing",
+  "jimbos_inferno",
   -- "tome",
   -- "jimbocards",
   "forlorn",
-  -- "guns_blazin",
+  "protocol",
+  "guns_blazin",
   "burning_pact",
   "blade_dance",
   "claw",
   "inner_peace",
   "jimbos_joyous_joker_jamboree",
-  -- "banana_man",
+  "banana_man",
   "the_normal_joker",
-  -- "insurance_policy",
+  "insurance_policy",
+  "disco",
+  "unionized_labor",
   "better_call_jimbo",
   "jimbo_adventure",
   "ddakji",
@@ -304,6 +432,8 @@ PB_UTIL.ENABLED_JOKERS = {
   "the_quiet",
   "big_misser",
   --"squall_line",
+  "fodder",
+  "the_strongest",
   "da_capo",
   "golden_egg",
   "heretical_joker",
@@ -388,26 +518,52 @@ PB_UTIL.ENABLED_MINOR_ARCANA = {
   "queen_of_swords",
   "king_of_swords", -- SWORDS
   "ace_of_pentacles",
-  -- "two_of_pentacles",
-  -- "three_of_pentacles",
-  -- "four_of_pentacles",
-  -- "five_of_pentacles",
-  -- "six_of_pentacles",
-  -- "seven_of_pentacles",
-  -- "eight_of_pentacles",
-  -- "nine_of_pentacles",
-  -- "ten_of_pentacles",
-  -- "page_of_pentacles",
-  -- "knight_of_pentacles",
-  -- "queen_of_pentacles",
-  -- "king_of_pentacles", -- PENTACLES
+  "two_of_pentacles",
+  "three_of_pentacles",
+  "four_of_pentacles",
+  "five_of_pentacles",
+  "six_of_pentacles",
+  "seven_of_pentacles",
+  "eight_of_pentacles",
+  "nine_of_pentacles",
+  "ten_of_pentacles",
+  "page_of_pentacles",
+  "knight_of_pentacles",
+  "queen_of_pentacles",
+  "king_of_pentacles", -- PENTACLES
+}
+
+PB_UTIL.ENABLED_EGO_GIFTS = {
+  'imposed_weight',
+  'phlebotomy_pack',
+  'smokes_and_wires',
+  'coffee_and_cranes',
+  'fiery_down',
+  'decamillennial_stewpot',
+  'downpour',
+  'rusty_coin',
+  'ragged_umbrella',
+  'thrill',
+  'disk_fragment',
+  'death_seeker',
+  'pendant_of_nostalgia',
+  'blue_lighter',
+  'broken_glasses',
+  'nebulizer',
+  'tomorrow_fortune',
+  'fluorescent_lamp',
+  'lightning_rod',
+  'chalice_of_trickle_down',
+  'patrolling_flashlight',
+  'golden_bough',
+  'dark_vestige',
 }
 
 PB_UTIL.ENABLED_SPECTRALS = {
   "apostle_of_cups",
   "apostle_of_wands",
   "apostle_of_swords",
-  --"apostle_of_pentacles",
+  "apostle_of_pentacles",
 
 
 }
@@ -586,6 +742,10 @@ PB_UTIL.ENABLED_MINOR_ARCANA_BOOSTERS = {
   'minor_arcana_mega',
 }
 
+PB_UTIL.ENABLED_EGO_GIFT_BOOSTERS = {
+  'ego_gift_normal_1',
+}
+
 PB_UTIL.ENABLED_VOUCHERS = {
   'celtic_cross',
   'soothsay',
@@ -606,6 +766,8 @@ PB_UTIL.ENABLED_ENHANCEMENTS = {
   "soaked",
   "stained",
   "domino",
+  "sleeved",
+  "antique"
 }
 
 PB_UTIL.ENABLED_EDITIONS = {
@@ -646,7 +808,8 @@ PB_UTIL.ENABLED_DECKS = {
 
 PB_UTIL.ENABLED_STICKERS = {
   'energized',
-  'temporary'
+  'temporary',
+  'corroded'
 }
 
 -- Define a Booster object with certain shared properties for Minor Arcana packs
@@ -657,15 +820,11 @@ if PB_UTIL.config.minor_arcana_enabled then
     draw_hand = true,
 
     loc_vars = function(self, info_queue, card)
-      return {
-        -- Removes the underscore with a digit at the end of a key if it exists,
-        -- allowing us to make only one localization entry per type
-        key = self.key:gsub('_%d$', ''),
-        vars = {
-          card.ability.choose,
-          card.ability.extra
-        }
-      }
+      local orig = SMODS.Booster.loc_vars(self, info_queue, card)
+      -- Removes the underscore with a digit at the end of a key if it exists,
+      -- allowing us to make only one localization entry per type
+      orig['key'] = self.key:gsub('_%d$', '')
+      return orig
     end,
 
     create_card = function(self, card, i)
@@ -688,7 +847,9 @@ end
 if PB_UTIL.config.paperclips_enabled then
   PB_UTIL.Paperclip = SMODS.Sticker:extend {
     prefix_config = { key = true },
-    should_apply = false,
+    should_apply = function(self, card, center, area, bypass_roll)
+      return bypass_roll
+    end,
     config = {},
     rate = 0,
     sets = {
@@ -699,6 +860,10 @@ if PB_UTIL.config.paperclips_enabled then
       local x_offset = (card.T.w / 71) * -4 * card.T.scale
       G.shared_stickers[self.key].role.draw_major = card
       G.shared_stickers[self.key]:draw_shader('dissolve', nil, nil, nil, card.children.center, nil, nil, x_offset)
+      if self.shiny then
+        G.shared_stickers[self.key]:draw_shader('voucher', nil, card.ARGS.send_to_shader, nil, card.children.center, nil,
+          nil, x_offset)
+      end
     end,
 
     apply = function(self, card, val)
@@ -772,6 +937,214 @@ if PB_UTIL.config.minor_arcana_enabled then
   }
 end
 
+-- Define a Booster object with certain shared properties for E.G.O. Gift packs
+if PB_UTIL.config.ego_gifts_enabled then
+  PB_UTIL.EGO_GiftBooster = SMODS.Booster:extend {
+    group_key = 'paperback_ego_gift_pack',
+    kind = 'paperback_ego_gift',
+    draw_hand = false,
+    select_card = 'consumeables',
+
+    loc_vars = function(self, info_queue, card)
+      local orig = SMODS.Booster.loc_vars(self, info_queue, card)
+      -- Removes the underscore with a digit at the end of a key if it exists,
+      -- allowing us to make only one localization entry per type
+      orig['key'] = self.key:gsub('_%d$', '')
+      return orig
+    end,
+
+    create_card = function(self, card, i)
+      return {
+        set = 'paperback_ego_gift',
+        area = G.pack_cards,
+        skip_materialize = true,
+        -- used in args.source inside of in_pool
+        key_append = 'paperback_extr'
+      }
+    end,
+
+    ease_background_colour = function(self)
+      ease_colour(G.C.DYN_UI.MAIN, G.C.PAPERBACK_EGO_GIFT_RED)
+      ease_background_colour { new_colour = G.C.PAPERBACK_EGO_GIFT_YELLOW, special_colour = G.C.BLACK, contrast = 2 }
+    end,
+  }
+end
+
+-- Define custom EGO_Gifts object with shared properties for handling common behavior
+if PB_UTIL.config.ego_gifts_enabled then
+  -- Vars for Calc and Loc
+  PB_UTIL.EGO_GIFT_SINS = {
+    none = { 5 },
+    wrath = {},
+    lust = { 2 },
+    sloth = {},
+    gluttony = {},
+    gloom = { 1.5 },
+    pride = { -15, SMODS.signed_dollars(-15) },
+    envy = { 1 },
+  }
+  -- Tables for the standardized sin calc
+  PB_UTIL.SIN_DEBUFF = {
+    none = {},
+    wrath = {
+      func = function()
+        SMODS.destroy_cards(G.consumeables.cards)
+      end
+    },
+    lust = {
+      func = function()
+        local _hand, _tally = nil, 1
+        for k, v in ipairs(G.handlist) do
+          if G.GAME.hands[v].visible and G.GAME.hands[v].played >= _tally then
+            _hand = v
+            _tally = G.GAME.hands[v].played
+          end
+        end
+        if _hand then
+          SMODS.smart_level_up_hand(nil, _hand, false,
+            -math.min(PB_UTIL.EGO_GIFT_SINS.lust[1], G.GAME.hands[_hand].level - 1))
+          return nil, true
+        end
+      end
+    },
+    gluttony = {
+      func = function()
+        local compatible = {}
+        local perish = nil
+        for _, target in ipairs(G.jokers.cards) do
+          if target.config.center.perishable_compat and not (target.ability.eternal or target.ability.perishable) then
+            compatible[#compatible + 1] = target
+          end
+        end
+
+        if next(G.jokers.cards) and next(compatible) then
+          perish = pseudorandom_element(compatible, pseudoseed('paperback_gluttony'))
+          SMODS.Stickers["perishable"]:apply(perish, true)
+          perish:juice_up()
+        end
+      end
+    },
+    gloom = {
+      func = function()
+        G.GAME.paperback.blind_multiplier = G.GAME.paperback.blind_multiplier * PB_UTIL.EGO_GIFT_SINS.gloom[1]
+      end
+    },
+    envy = {
+      func = function()
+        G.hand:change_size(-PB_UTIL.EGO_GIFT_SINS.envy[1])
+      end
+    },
+    madness = {
+      func = function()
+        local jokers = {}
+        for i, v in ipairs(G.jokers.cards) do
+          if not SMODS.is_eternal(v) and not v.getting_sliced then
+            jokers[#jokers + 1] = v
+          end
+        end
+        local target = pseudorandom_element(jokers, pseudoseed("golden_bough_destruction"))
+        if target then
+          SMODS.destroy_cards({ target })
+        end
+      end
+    },
+  }
+  --- @type SMODS.Consumable
+  PB_UTIL.EGO_Gift = SMODS.Consumable:extend {
+    badge_text_colour = G.C.PAPERBACK_EGO_GIFT_YELLOW,
+    set = 'paperback_ego_gift',
+    unlocked = true,
+    discovered = false,
+    cost = 0,
+    -- This card is always selected, not used. It goes to the 'consumeables' area
+    select_card = "consumeables",
+
+    loc_vars = function(self, info_queue, card)
+      info_queue[#info_queue + 1] = PB_UTIL.sin_tooltip(card.ability.sin)
+      local loc = {}
+      if self.ego_loc_vars then
+        loc.vars = self.ego_loc_vars(self, info_queue, card)
+      end
+
+      if self.ego_main_end then
+        loc.main_end = self.ego_main_end(self, info_queue, card)
+      end
+
+      return loc
+    end,
+
+    calculate = function(self, card, context)
+      if context.selling_self then
+        if card.ability.sin then
+          SMODS.calculate_context({
+            paperback = {
+              sold_ego_gift = card,
+            }
+          })
+          if not card.ability.paperback_corroded then
+            local sin = card.ability.sin
+            return PB_UTIL.SIN_DEBUFF[sin]
+          end
+          return {
+            message = localize('paperback_corroded_ex')
+          }
+        end
+      end
+
+      if self.ego_gift_calc then
+        return self:ego_gift_calc(card, context)
+      end
+    end,
+    set_card_type_badge = function(self, card, badges)
+      badges[#badges + 1] = create_badge(localize('k_paperback_ego_gift'), G.C.PAPERBACK_EGO_GIFT_RED,
+        G.C.PAPERBACK_EGO_GIFT_YELLOW, 1.2)
+    end,
+
+    set_badges = function(self, card, badges)
+      if card.ability.sin then
+        local badge_key = 'k_paperback_ego_sin_' .. card.ability.sin
+        if card.ability.sin == 'none' or card.ability.sin == 'madness' then
+          badges[#badges + 1] = create_badge(localize(badge_key), G.C
+            ['PAPERBACK_SIN_' .. string.upper(card.ability.sin)],
+            G.C.PAPERBACK_BLACK, 1.2)
+        else
+          badges[#badges + 1] = create_badge(localize(badge_key), G.C
+            ['PAPERBACK_SIN_' .. string.upper(card.ability.sin)],
+            G.C.WHITE, 1.2)
+        end
+      end
+    end,
+
+    add_to_deck = function(self, card, from_debuff)
+      PB_UTIL.set_sell_value(card, 0)
+      local dupe = false
+      for i, v in ipairs(G.consumeables.cards) do
+        if v.config.center.key == card.config.center.key and v.ability.sin ~= 'none' and card.ability.sin ~= 'none' and v ~= card then
+          dupe = true
+        end
+      end
+      if dupe then
+        local vestige = SMODS.add_card { key = 'c_paperback_dark_vestige' }
+        SMODS.destroy_cards({ card })
+      end
+
+      if self.ego_add then
+        self:ego_add(card, from_debuff)
+      end
+    end,
+
+    remove_from_deck = function(self, card, from_debuff)
+      if self.ego_remove then
+        self:ego_remove(card, from_debuff)
+      end
+    end,
+
+    can_use = function(self, card)
+      return false
+    end
+  }
+end
+
 if PB_UTIL.config.suits_enabled then
   --- @type SMODS.Consumable
   PB_UTIL.Planet = SMODS.Consumable:extend {
@@ -800,7 +1173,7 @@ if PB_UTIL.config.suits_enabled then
   }
 end
 
---- @alias Paperclip "blue" | "black" | "white" | "red" | "orange" | "pink" | "yellow" | "gold"
+--- @alias Paperclip "blue" | "black" | "white" | "red" | "orange" | "pink" | "yellow" | "gold" | "platinum"
 PB_UTIL.ENABLED_PAPERCLIPS = {
   "white_clip",
   "black_clip",
@@ -808,8 +1181,13 @@ PB_UTIL.ENABLED_PAPERCLIPS = {
   "red_clip",
   "orange_clip",
   "yellow_clip",
-  --"green_clip",
+  "green_clip",
   "blue_clip",
-  --"purple_clip",
+  "purple_clip",
   "pink_clip",
+  "platinum_clip"
+}
+--- @alias Special_Paperclip  "platinum"
+PB_UTIL.SPECIAL_PAPERCLIPS = {
+  "platinum_clip"
 }

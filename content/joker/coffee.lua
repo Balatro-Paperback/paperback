@@ -2,9 +2,9 @@ SMODS.Joker {
   key = "coffee",
   config = {
     extra = {
-      hand_size = 0,
+      hand_size = 1,
       increase = 1,
-      odds = 5
+      odds = 6
     }
   },
   rarity = 2,
@@ -15,6 +15,7 @@ SMODS.Joker {
   discovered = false,
   blueprint_compat = false,
   eternal_compat = false,
+  perishable_compat = false,
   soul_pos = nil,
   pools = {
     Food = true

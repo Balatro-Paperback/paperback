@@ -14,7 +14,7 @@ SMODS.Enhancement {
   loc_vars = function(self, info_queue, card)
     return {
       vars = {
-        card.ability.extra.a_money_low,
+        card.ability.extra.a_money_low  + G.GAME.paperback.ceramic_inc,
         card.ability.extra.a_money_high + G.GAME.paperback.ceramic_inc,
       }
     }
@@ -22,7 +22,8 @@ SMODS.Enhancement {
 
   calculate = function(self, card, context)
     if context.cardarea == G.play and context.main_scoring then
-      local dollars = pseudorandom("Ceramic Money Amount", card.ability.extra.a_money_low,
+      local dollars = pseudorandom("Ceramic Money Amount",
+        card.ability.extra.a_money_low + G.GAME.paperback.ceramic_inc,
         card.ability.extra.a_money_high + G.GAME.paperback.ceramic_inc)
 
       return {

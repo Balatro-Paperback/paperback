@@ -24,7 +24,8 @@ SMODS.Joker {
     return {
       vars = {
         card.ability.extra.money,
-        card.ability.extra.rounds
+        card.ability.extra.rounds,
+        card.ability.extra.rounds == 1 and "" or "s"
       }
     }
   end,

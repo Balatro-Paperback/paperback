@@ -13,7 +13,7 @@ SMODS.Joker {
   cost = 9,
   blueprint_compat = true,
   eternal_compat = true,
-  perishable_compat = true,
+  perishable_compat = false,
 
   loc_vars = function(self, info_queue, card)
     return {

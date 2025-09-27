@@ -11,18 +11,22 @@ SMODS.Joker {
   soul_pos = nil,
 }
 
-local function wrap_the_world(ignores, func)
+local function wrap_the_world(ignores, func, context)
   local joker = next(SMODS.find_card('j_paperback_the_world'))
 
   local previous = {
     hands_played = G.GAME.current_round.hands_played,
     hands_left = G.GAME.current_round.hands_left,
     discards_used = G.GAME.current_round.discards_used,
+    discards_left = G.GAME.current_round.discards_left,
   }
 
   if joker and not ignores then
     for k, _ in pairs(previous) do
       G.GAME.current_round[k] = 0
+    end
+    if context and (context.discard or context.pre_discard) then
+      G.GAME.current_round.discards_left = 1
     end
   end
 
@@ -44,7 +48,7 @@ function Card.calculate_joker(self, context)
 
   return wrap_the_world(ignores, function()
     return calculate_joker_ref(self, context)
-  end)
+  end, context)
 end
 
 -- Just handles "The House" calculations for now
@@ -52,5 +56,5 @@ local stay_flipped_ref = Blind.stay_flipped
 function Blind.stay_flipped(self, area, card)
   return wrap_the_world(nil, function()
     return stay_flipped_ref(self, area, card)
-  end)
+  end, nil)
 end

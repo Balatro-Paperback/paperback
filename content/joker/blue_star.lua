@@ -19,7 +19,7 @@ SMODS.Joker {
   cost = 8,
   blueprint_compat = true,
   eternal_compat = true,
-  perishable_compat = true,
+  perishable_compat = false,
   paperback = {
     requires_stars = true
   },

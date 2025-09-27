@@ -2,7 +2,7 @@ SMODS.Joker {
   key = 'sacrificial_lamb',
   config = {
     extra = {
-      mult_mod = 4,
+      mult_mod = 3,
       mult = 0
     }
   },

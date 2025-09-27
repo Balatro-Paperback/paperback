@@ -1,7 +1,7 @@
 PB_UTIL.Paperclip {
   key = 'pink_clip',
   atlas = 'paperclips_atlas',
-  pos = { x = 3, y = 1 },
+  pos = { x = 4, y = 1 },
   badge_colour = G.C.PAPERBACK_PINK,
   config = {
     x_mult = 1,

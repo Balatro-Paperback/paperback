@@ -5,7 +5,7 @@ PB_UTIL.Paperclip {
   badge_colour = G.C.PAPERBACK_BLACK,
 
   calculate = function(self, card, context)
-    if context.repetition and context.cardarea == G.play then
+    if context.repetition and context.cardarea == G.play and not context.platinum_trigger then
       local reps = 0
 
       for _, v in ipairs(G.hand.cards) do

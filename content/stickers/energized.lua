@@ -3,7 +3,9 @@ SMODS.Sticker {
   atlas = 'stickers_atlas',
   pos = { x = 0, y = 0 },
   badge_colour = G.C.PAPERBACK_ENERGIZED,
-  should_apply = false,
+  should_apply = function(self, card, center, area, bypass_roll)
+    return bypass_roll
+  end,
   discovered = true,
   rate = 0,
 
@@ -14,6 +16,11 @@ SMODS.Sticker {
           type = 'name_text',
           set = 'Joker',
           key = 'j_paperback_basic_energy'
+        },
+        localize {
+          type = 'name_text',
+          set = 'paperback_ego_gift',
+          key = 'c_paperback_patrolling_flashlight'
         }
       }
     }

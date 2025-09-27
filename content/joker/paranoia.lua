@@ -2,7 +2,7 @@ SMODS.Joker {
   key = 'paranoia',
   config = {
     extra = {
-      a_mult = 3
+      a_mult = 2
     }
   },
   rarity = 3,
@@ -42,7 +42,7 @@ local calc_context_ref = SMODS.calculate_context
 function SMODS.calculate_context(context, return_table)
   if context.remove_playing_cards then
     for _, v in ipairs(context.removed or {}) do
-      if PB_UTIL.is_suit(v, 'dark') then
+      if PB_UTIL.is_suit(v, 'dark', false, true) then
         G.GAME.paperback.destroyed_dark_suits = G.GAME.paperback.destroyed_dark_suits + 1
       end
     end

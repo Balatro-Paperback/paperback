@@ -64,9 +64,6 @@ SMODS.Joker {
         { text = '+$',                             colour = G.C.MONEY },
         { ref_table = 'card.joker_display_values', ref_value = 'money', colour = G.C.MONEY },
       },
-      -- text_confg = {
-      --   colour = G.C.MONEY
-      -- },
 
       extra = {
         {
@@ -104,7 +101,7 @@ SMODS.Joker {
       style_function = function(card, text, reminder_text, extra)
         if reminder_text and reminder_text.children[1] then
           reminder_text.children[1].config.colour = card.joker_display_values.active == localize('k_active') and
-          G.C.GREEN or G.C.UI.TEXT_INACTIVE
+              G.C.GREEN or G.C.UI.TEXT_INACTIVE
         end
       end
     }

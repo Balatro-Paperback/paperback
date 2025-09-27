@@ -5,9 +5,10 @@ function Game.init_game_object(self)
   local ret = init_game_object_ref(self)
 
   -- referenced code from Ortalab to get the list of secret hands
+  -- but also kinda not anymore (thanks N')
   local secrets = {}
-  for k, v in pairs(ret.hands) do
-    if v.visible == false then table.insert(secrets, k) end
+  for k, v in pairs(SMODS.PokerHands) do
+    if (type(v.visible) == 'function' and not v:visible()) or v.visible == false then table.insert(secrets, k) end
   end
 
   ret.paperback = {
@@ -25,10 +26,16 @@ function Game.init_game_object(self)
     jjjj_count = 0,
     banned_run_keys = {},
     secret_hands = secrets,
+    arcana_used = {},
 
     weather_radio_hand = 'High Card',
     joke_master_hand = 'High Card',
-    da_capo_suit = 'Clubs'
+    da_capo_suit = 'Clubs',
+
+    skipped_blind = false,
+    blind_multiplier = 1,
+
+    corroded_rounds = 3
   }
   return ret
 end
@@ -169,20 +176,21 @@ SMODS.calculate_repetitions = function(card, context, reps)
   for _, area in ipairs(SMODS.get_card_areas('playing_cards')) do
     for k, v in ipairs(area.cards or {}) do
       if v ~= card then
-        local eval = v:calculate_enhancement {
-          paperback = {
-            other_card = card,
-            cardarea = card.area,
-            scoring_hand = context.scoring_hand,
-            repetition_from_playing_card = true,
+        if v:can_calculate(context.ignore_debuff, context.remove_playing_cards) then
+          local eval = v:calculate_enhancement {
+            paperback = {
+              other_card = card,
+              cardarea = card.area,
+              scoring_hand = context.scoring_hand,
+              repetition_from_playing_card = true,
+            }
           }
-        }
-
-        if eval and eval.repetitions then
-          for _ = 1, eval.repetitions do
-            eval.card = eval.card or card
-            eval.message = eval.message or (not eval.remove_default_message and localize('k_again_ex'))
-            reps[#reps + 1] = { key = eval }
+          if eval and eval.repetitions then
+            for _ = 1, eval.repetitions do
+              eval.card = eval.card or card
+              eval.message = eval.message or (not eval.remove_default_message and localize('k_again_ex'))
+              reps[#reps + 1] = { key = eval }
+            end
           end
         end
       end
@@ -190,6 +198,24 @@ SMODS.calculate_repetitions = function(card, context, reps)
   end
 
   return calculate_repetitions_ref(card, context, reps)
+end
+
+-- For nichola
+local calculate_main_scoring_ref = SMODS.calculate_main_scoring
+function SMODS.calculate_main_scoring(context, scoring_hand)
+  calculate_main_scoring_ref(context, scoring_hand)
+  if context.cardarea == G.play then
+    SMODS.calculate_context {
+      paperback = {
+        nichola = true -- Name can be changed later
+        -- the context is "after played cards score", a better name probably exists
+      },
+      full_hand = G.play.cards,
+      scoring_hand = context.scoring_hand,
+      scoring_name = context.scoring_name,
+      poker_hands = context.poker_hands
+    }
+  end
 end
 
 -- New context for when a tag is added
@@ -209,14 +235,18 @@ end
 -- accounts for Shortcut by checking for Q and 3 as well
 local get_straight_ref = get_straight
 function get_straight(hand, min_length, skip, wrap)
-  local has_king_queen = false
-  local has_2_3 = false
-  for i = 1, #hand do
-    if hand[i]:get_id() == 13 or hand[i]:get_id() == 12 then has_king_queen = true end
-    if hand[i]:get_id() == 2 or hand[i]:get_id() == 3 then has_2_3 = true end
+  local orig_straights = get_straight_ref(hand, min_length, skip, wrap)
+  local result = {}
+  for _, straight in ipairs(orig_straights) do
+    local has_king_queen = false
+    local has_2_3 = false
+    for i = 1, #straight do
+      if straight[i]:get_id() == 13 or straight[i]:get_id() == 12 then has_king_queen = true end
+      if straight[i]:get_id() == 2 or straight[i]:get_id() == 3 then has_2_3 = true end
+    end
+    if not (has_king_queen and has_2_3) then table.insert(result, straight) end
   end
-  if has_king_queen and has_2_3 then return {} end
-  return get_straight_ref(hand, min_length, skip, wrap)
+  return result
 end
 
 -- Apostle-high straight flushes get renamed to "Rapture"
@@ -241,13 +271,65 @@ function G.FUNCS.get_poker_hand_info(_cards)
   return text, loc_disp_text, poker_hands, scoring_hand, disp_text
 end
 
--- Used for checking for eternal compatibility against temporary
+
+-- When calculating the sell cost for an E.G.O. Gift, override it to 0
+-- None and Pride respectively get set to 5 and -15
+-- Unless corroded
+local set_cost_ref = Card.set_cost
+function Card.set_cost(self)
+  local ret = set_cost_ref(self)
+  if self.added_to_deck then
+    if self.config.center.set == "paperback_ego_gift" and self.ability.sin then
+      if self.ability.sin == 'pride' or self.ability.sin == 'none' then
+        self.sell_cost = PB_UTIL.EGO_GIFT_SINS[self.ability.sin][1]
+      else
+        self.sell_cost = 0
+      end
+    end
+    return ret
+  end
+end
+
+local can_sell_ref = Card.can_sell_card
+function Card.can_sell_card(self, context)
+  if self.ability.sin and self.ability.sin == 'sloth' then
+    if self.ability.paperback_corroded then
+      return true
+    else
+      return G.GAME.paperback.skipped_blind
+    end
+  end
+
+  return can_sell_ref(self, context)
+end
+
+-- Used for checking for eternal compatibility against temporary and corroded
 local set_eternal_ref = Card.set_eternal
 function Card.set_eternal(self, eternal)
-  if self.ability.paperback_temporary then
+  if self.ability.paperback_temporary or self.ability.paperback_corroded then
     return false
   else
     local ret = set_eternal_ref(self, eternal)
     return ret
+  end
+end
+
+-- Redoing this a bit more accurately than Bunco
+local inc_career_stat_ref = inc_career_stat
+function inc_career_stat(stat, mod)
+  if stat == 'c_shop_dollars_spent' then
+    if to_big(mod) > to_big(0) then
+      G.GAME.paperback.this_shop_dollars_spent = (G.GAME.paperback.this_shop_dollars_spent or 0) + mod
+      check_for_unlock({type = 'spend_in_one_shop', spent = G.GAME.paperback.this_shop_dollars_spent})
+    end
+  end
+  return inc_career_stat_ref(stat, mod)
+end
+
+local toggle_shop_ref = G.FUNCS.toggle_shop
+G.FUNCS.toggle_shop = function(e)
+  toggle_shop_ref(e)
+  if G.shop then
+    G.GAME.paperback.this_shop_dollars_spent = nil
   end
 end

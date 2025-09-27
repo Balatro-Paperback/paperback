@@ -2,11 +2,11 @@ SMODS.Joker {
   key = "solar_system",
   config = {
     extra = {
-      x_mult_mod = 2,
-      x_mult = 1
+      x_mult_mod = 1.5,
+      x_mult = 1.5,
     }
   },
-  rarity = 3,
+  rarity = 2,
   pos = { x = 7, y = 0 },
   atlas = "jokers_atlas",
   cost = 8,
@@ -62,5 +62,5 @@ function PB_UTIL.update_solar_system(card)
   end
 
   -- set the card's x_mult to a value depending on the minimum level
-  card.ability.extra.x_mult = card.ability.extra.x_mult_mod * math.max(1, to_number(min_level)) - 1
+  card.ability.extra.x_mult = card.ability.extra.x_mult_mod * math.max(1, to_number(min_level))
 end

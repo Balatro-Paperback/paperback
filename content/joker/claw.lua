@@ -2,12 +2,13 @@ SMODS.Joker {
   key = "claw",
   config = {
     extra = {
-      mult = 0,
+      mult = 3,
       mult_inc = 2,
-      rank = "3"
+      rank = "3",
+      starting_mult = 3
     }
   },
-  rarity = 2,
+  rarity = 1,
   pos = { x = 10, y = 1 },
   atlas = "jokers_atlas",
   cost = 6,
@@ -21,6 +22,7 @@ SMODS.Joker {
         localize(card.ability.extra.rank, 'ranks'),
         card.ability.extra.mult_inc,
         card.ability.extra.mult,
+        card.ability.extra.starting_mult
       }
     }
   end,
@@ -34,16 +36,14 @@ SMODS.Joker {
           card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.mult_inc
         end
 
-        if mult ~= 0 then
-          return {
-            mult = mult
-          }
-        end
+        return {
+          mult = mult
+        }
       end
     end
 
     if context.end_of_round and not context.blueprint and context.main_eval then
-      card.ability.extra.mult = 0
+      card.ability.extra.mult = card.ability.extra.starting_mult
 
       return {
         message = localize('k_reset')

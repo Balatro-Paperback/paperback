@@ -15,6 +15,7 @@ SMODS.Joker {
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
+  perishable_compat = false,
   soul_pos = nil,
   loc_vars = function(self, info_queue, card)
     info_queue[#info_queue + 1] = PB_UTIL.suit_tooltip('dark')
@@ -36,35 +37,24 @@ SMODS.Joker {
   calculate = function(self, card, context)
     if context.before and not context.blueprint then
       local suits = {
-        dark  = false,
-        light = false
+        dark = 0, -- max 1
+        light = 0, -- max 1
+        wild = 0, -- can fill in for the others
       }
-      
+
       for _, v in ipairs(context.scoring_hand) do
-        if not SMODS.has_any_suit(v) then
-          if not suits.dark and PB_UTIL.is_suit(v, 'dark') then
-            suits.dark = true
-          else
-            if not suits.light and PB_UTIL.is_suit(v, 'light') then
-              suits.light = true
-            end
-          end
+        local is_dark = PB_UTIL.is_suit(v, 'dark', false, true)
+        local is_light = PB_UTIL.is_suit(v, 'light', false, true)
+        if is_dark and is_light then
+          suits.wild = suits.wild + 1
+        elseif is_dark then
+          suits.dark = 1
+        elseif is_light then
+          suits.light = 1
         end
       end
 
-      for _, v in ipairs(context.scoring_hand) do
-        if SMODS.has_any_suit(v) then
-          if not suits.dark and PB_UTIL.is_suit(v, 'dark') then
-            suits.dark = true
-          else
-            if not suits.light and PB_UTIL.is_suit(v, 'light') then
-              suits.light = true
-            end
-          end
-        end
-      end
-
-      if suits.dark and suits.light then
+      if suits.dark + suits.light + suits.wild >= 2 then
         local BGcolour
         card.ability.extra.x_mult = card.ability.extra.x_mult + card.ability.extra.x_mult_mod
         if card.ability.extra.is_white then

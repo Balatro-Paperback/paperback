@@ -65,6 +65,8 @@ SMODS.Joker {
             draw_card(G.play, G.hand, 90, 'up')
           end
 
+          save_run()
+
           return true
         end
       })

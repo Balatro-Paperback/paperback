@@ -16,7 +16,7 @@ SMODS.Joker {
         if context.other_card == context.scoring_hand[#context.scoring_hand] then
           return {
             message = localize('k_again_ex'),
-            repetitions = #context.scoring_hand,
+            repetitions = #context.scoring_hand - 1,
             card = card
           }
         end

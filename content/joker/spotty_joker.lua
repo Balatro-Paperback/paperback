@@ -15,7 +15,7 @@ SMODS.Joker {
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
-  perishable_compat = true,
+  perishable_compat = false,
   paperback = {
     requires_enhancements = true
   },
@@ -40,18 +40,16 @@ SMODS.Joker {
 
   calculate = function(self, card, context)
     if context.before and not context.blueprint then
+      local upgraded
       for _, v in ipairs(context.scoring_hand) do
         if SMODS.has_enhancement(v, 'm_paperback_domino') then
           card.ability.extra.xmult = card.ability.extra.xmult + card.ability.extra.xmult_mod
-          return {
-            message = localize('k_upgrade_ex'),
-          }
+          upgraded = true
         end
       end
-      if card.ability.extra.xmult - card.ability.extra.xmult_red > 1 then
-        card.ability.extra.xmult = card.ability.extra.xmult - card.ability.extra.xmult_red
+      if upgraded then
         return {
-          message = localize('paperback_downgrade_ex'),
+          message = localize('k_upgrade_ex'),
         }
       end
     end

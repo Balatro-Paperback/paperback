@@ -18,6 +18,16 @@ SMODS.Joker {
   perishable_compat = false,
   pixel_size = { w = 35, h = 45 },
 
+  in_pool = function(self, args)
+    if G.playing_cards then
+      for _, card in ipairs(G.playing_cards) do
+        if card.seal then
+          return true
+        end
+      end
+    end
+  end,
+
   loc_vars = function(self, info_queue, card)
     local numerator, denominator = PB_UTIL.chance_vars(card)
 

@@ -2,7 +2,7 @@ SMODS.Joker {
   key = "oracle",
   config = {
     extra = {
-      Xchip_mod = 0.15,
+      Xchip_mod = 0.1,
       Xchip = 1
     }
   },

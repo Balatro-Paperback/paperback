@@ -31,17 +31,19 @@ SMODS.Joker {
       local destroy = true
       -- Check scoring hand for only Spades
       for _, v in ipairs(context.scoring_hand) do
-        if not v:is_suit(card.ability.extra.suit) then
+        if not v:is_suit(card.ability.extra.suit, false, true) then
           destroy = false
         end
       end
       if destroy then
         local target = pseudorandom_element(G.hand.cards, pseudoseed('forlorn'))
-        SMODS.destroy_cards({ target })
-        return {
-          message = localize('paperback_forlorn_destruction'),
-          colour = G.C.FILTER
-        }
+        if target then
+          SMODS.destroy_cards({ target })
+          return {
+            message = localize('paperback_forlorn_destruction'),
+            colour = G.C.FILTER
+          }
+        end
       end
     end
   end

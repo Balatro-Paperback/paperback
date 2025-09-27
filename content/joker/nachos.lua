@@ -52,7 +52,7 @@ SMODS.Joker {
 
         return {
           message = localize('k_eaten_ex'),
-          colour = G.C.FILTER,
+          colour = G.C.CHIPS,
           card = card
         }
       else

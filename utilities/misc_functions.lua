@@ -5,15 +5,28 @@ if not SMODS.ObjectTypes.Food then
   SMODS.ObjectType {
     key = 'Food',
     default = 'j_egg',
-    cards = {},
-    inject = function(self)
-      SMODS.ObjectType.inject(self)
-      -- Insert base game food jokers
-      for k, _ in pairs(PB_UTIL.vanilla_food) do
-        self:inject_card(G.P_CENTERS[k])
+    cards = copy_table(PB_UTIL.vanilla_food),
+  }
+end
+
+--- Initialize ObjectTypes for Minor Arcana suits
+if PB_UTIL.config.minor_arcana_enabled then
+  for _, suit in ipairs { "cups", "wands", "swords", "pentacles" } do
+    local cards = {}
+
+    for _, v in ipairs(PB_UTIL.ENABLED_MINOR_ARCANA) do
+      -- Checks if the string ends in "_of_pentacles" for example
+      if v:match(".*_of_" .. suit .. "$") then
+        cards['c_paperback_' .. v] = true
       end
     end
-  }
+
+    SMODS.ObjectType {
+      key = "paperback_minor_arcana_" .. suit,
+      default = 'c_paperback_ace_of_' .. suit,
+      cards = cards
+    }
+  end
 end
 
 ---Checks if a string is a valid paperclip key
@@ -85,10 +98,23 @@ end
 
 ---Fetches a random paperclip type using a given seed
 ---@param seed string
-function PB_UTIL.poll_paperclip(seed)
+---@param include_special boolean? if True, special clips such as Platinum Clips are allowed be polled (look at PB_UTIL.SPECIAL_PAPERCLIPS)
+function PB_UTIL.poll_paperclip(seed, include_special)
   local clip = pseudorandom_element(PB_UTIL.ENABLED_PAPERCLIPS, pseudoseed(seed))
+  while not include_special and PB_UTIL.is_special_clip(clip) do
+    clip = pseudorandom_element(PB_UTIL.ENABLED_PAPERCLIPS, pseudoseed(seed))
+  end
   clip = string.sub(clip, 1, #clip - 5)
   return clip
+end
+
+---Checks if a clip is a Special Paperclip
+---@param clip string
+function PB_UTIL.is_special_clip(clip)
+  for k, v in ipairs(PB_UTIL.SPECIAL_PAPERCLIPS) do
+    if v == clip then return true end
+  end
+  return false
 end
 
 ---Checks if a provided card is classified as a "Food Joker"
@@ -213,15 +239,23 @@ end
 ---@param card table
 ---@return number
 function PB_UTIL.calculate_stick_xMult(card)
-  local xMult = card.ability.extra.xMult
+  local xMult = card.ability.extra.xMult or 1
+  local other_sticks = 0
 
   -- Only calculate the xMult if the G.jokers cardarea exists
   if G.jokers and G.jokers.cards then
     for k, current_card in pairs(G.jokers.cards) do
       if current_card ~= card and string.match(string.lower(current_card.ability.name), "%f[%w]stick%f[%W]") then
-        xMult = xMult + card.ability.extra.xMult
+        other_sticks = other_sticks + 1
       end
     end
+  end
+
+  if card.ability.extra.xMult_if_stick and other_sticks >= 1 then
+    xMult = card.ability.extra.xMult_if_stick
+  end
+  if card.ability.extra.xMult then
+    xMult = xMult + card.ability.extra.xMult * other_sticks
   end
 
   return xMult
@@ -230,7 +264,8 @@ end
 ---Gets the number of unique suits in a provided scoring hand
 ---@param scoring_hand table
 ---@param bypass_debuff boolean?
----@param flush_calc boolean?
+---@param flush_calc boolean? Usually use this instead of bypass_debuff for Jokers:
+--- debuffed wild cards are considered their original suit only
 ---@return integer
 function PB_UTIL.get_unique_suits(scoring_hand, bypass_debuff, flush_calc)
   -- Set each suit's count to 0
@@ -239,6 +274,11 @@ function PB_UTIL.get_unique_suits(scoring_hand, bypass_debuff, flush_calc)
   for k, _ in pairs(SMODS.Suits) do
     suits[k] = 0
   end
+
+  -- NOTE greedy algorithm is technically wrong for cards with weird suit combos,
+  -- for example a card with suit A+B might count for A, blocking another card
+  -- that can only be A
+  -- (a bipartite matching algorithm would work)
 
   -- First we cover all the non Wild Cards in the hand
   for _, card in ipairs(scoring_hand) do
@@ -737,10 +777,13 @@ end
 ---Used to check whether a card is a light or dark suit
 ---@param card table
 ---@param type 'light' | 'dark'
+---@param bypass_debuff boolean?
+---@param flush_calc boolean? Usually use this instead of bypass_debuff for Jokers:
+--- debuffed wild cards are considered their original suit only
 ---@return boolean
-function PB_UTIL.is_suit(card, type)
+function PB_UTIL.is_suit(card, type, bypass_debuff, flush_calc)
   for _, v in ipairs(type == 'light' and PB_UTIL.light_suits or PB_UTIL.dark_suits) do
-    if card:is_suit(v) then return true end
+    if card:is_suit(v, bypass_debuff, flush_calc) then return true end
   end
   return false
 end
@@ -1097,4 +1140,57 @@ end
 ---@return boolean
 function PB_UTIL.is_card(c)
   return c and type(c) == "table" and c.is and type(c.is) == "function" and c:is(Card)
+end
+
+-- Returns a table of all the unique special effects in the deck
+---@param check_for_enhancements boolean
+---@param check_for_seals boolean
+---@return integer
+function PB_UTIL.special_cards_in_deck(check_for_enhancements, check_for_seals)
+  local enhancements, seals = {}, {}
+  check_for_enhancements = check_for_enhancements or false
+  check_for_seals = check_for_seals or false
+
+  if G.playing_cards then
+    for _, v in pairs(G.playing_cards) do
+      -- Check for an enhancement
+      if check_for_enhancements then
+        for k, _ in pairs(SMODS.get_enhancements(v)) do
+          PB_UTIL.add_unique_value(enhancements, k)
+        end
+      end
+
+      -- Check for a seal
+      if check_for_seals then
+        if v.Mid.seal then
+          PB_UTIL.add_unique_value(seals, v.Mid.seal)
+        end
+      end
+    end
+  end
+
+  local total =
+      (enhancements and #enhancements or 0)
+      + (seals and #seals or 0)
+
+  return total
+end
+
+---@param tbl table
+---@param value any
+function PB_UTIL.add_unique_value(tbl, value)
+  for _, v in pairs(tbl) do
+    if v == value then
+      return
+    end
+  end
+
+  table.insert(tbl, value)
+end
+
+-- Return true if `card` is an EGO Gift.
+---@param card Card
+---@return boolean
+function PB_UTIL.is_ego_gift(card)
+  return card.ability.set == "paperback_ego_gift" or card.config.center_key == "c_paperback_golden_bough"
 end

@@ -3,7 +3,7 @@ SMODS.Joker {
   config = {
     extra = {
       sv_gain = 1,
-      mult_mod = 3
+      mult_mod = 2
     }
   },
   rarity = 2,
@@ -14,6 +14,7 @@ SMODS.Joker {
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
+  perishable_compat = false,
   soul_pos = nil,
 
   loc_vars = function(self, info_queue, card)

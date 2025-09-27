@@ -4,7 +4,6 @@ SMODS.Joker {
     extra = {
       x_mult = 1,
       a_xmult = 0.1,
-      hand = 'Pair'
     }
   },
   rarity = 2,
@@ -21,21 +20,19 @@ SMODS.Joker {
     return {
       vars = {
         card.ability.extra.a_xmult,
-        localize(card.ability.extra.hand, 'poker_hands'),
         card.ability.extra.x_mult
       }
     }
   end,
 
   calculate = function(self, card, context)
-    -- Upgrade x mult if no pairs were played
-    if not context.blueprint and context.before and context.main_eval then
-      if not next(context.poker_hands[card.ability.extra.hand]) then
+    -- Upgrade x mult if discard contains only one card
+    if not context.blueprint and context.discard then
+      if #context.full_hand == 1 then
         card.ability.extra.x_mult = card.ability.extra.x_mult + card.ability.extra.a_xmult
-
         return {
           message = localize('k_upgrade_ex'),
-          colour = G.C.MULT
+          colour = G.C.ORANGE
         }
       end
     end

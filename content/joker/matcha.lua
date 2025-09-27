@@ -15,7 +15,7 @@ SMODS.Joker {
   discovered = false,
   blueprint_compat = true,
   eternal_compat = false,
-  perishable_compat = true,
+  perishable_compat = false,
   pools = {
     Food = true
   },
@@ -50,7 +50,7 @@ SMODS.Joker {
 
         return {
           message = localize('paperback_consumed_ex'),
-          colour = G.C.MULT,
+          colour = G.C.RED,
           card = card
         }
       end

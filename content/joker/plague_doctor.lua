@@ -26,31 +26,6 @@ SMODS.Joker {
     }
   end,
 
-  add_to_deck = function(self, card, from_debuff)
-    local apostleCount = 0
-    for _, v in ipairs(G.playing_cards) do
-      if PB_UTIL.is_rank(v, 'paperback_Apostle') then
-        apostleCount = apostleCount + 1
-      end
-    end
-    if apostleCount >= 12 then
-      G.GAME.pool_flags.plague_doctor_can_spawn = false
-      G.E_MANAGER:add_event(Event({
-        func = function()
-          card.getting_sliced = true
-          card:start_dissolve()
-          SMODS.add_card({
-            set = 'Joker',
-            key = 'j_paperback_white_night',
-            edition = card.edition,
-            stickers = { "eternal" }
-          })
-          return true
-        end
-      }))
-    end
-  end,
-
   in_pool = function(self, args)
     return G.GAME.pool_flags.plague_doctor_can_spawn
   end,
@@ -63,41 +38,25 @@ SMODS.Joker {
           apostleCount = apostleCount + 1
         end
       end
+      if context.scoring_name == 'High Card' then
+        local to_apostle = {}
+        for _, scored in ipairs(context.scoring_hand) do
+          if not (scored.config.center.key == 'm_stone' or scored.config.center.overrides_base_rank)
+          and not PB_UTIL.is_rank(scored, 'paperback_Apostle') then
+            table.insert(to_apostle, scored)
+          end
+        end
+        if to_apostle[1] then
+          PB_UTIL.use_consumable_animation(card, to_apostle,
+            function()
+              for _, v in ipairs(to_apostle) do
+                assert(SMODS.change_base(v, nil, 'paperback_Apostle'))
+              end
+            end)
+        end
+        apostleCount = apostleCount + #to_apostle
 
-      local to_apostle = context.scoring_hand[1]
-      if context.scoring_name == 'High Card' and not PB_UTIL.is_rank(to_apostle, 'paperback_Apostle') then
-        apostleCount = apostleCount + 1
-        G.E_MANAGER:add_event(Event({
-          trigger = 'after',
-          delay = 0.15,
-          func = function()
-            to_apostle:flip()
-            play_sound('card1', 1)
-            to_apostle:juice_up(0.3, 0.3)
-            return true
-          end
-        }))
-        delay(0.2)
-        G.E_MANAGER:add_event(Event({
-          trigger = 'after',
-          delay = 0.1,
-          func = function()
-            assert(SMODS.change_base(to_apostle, nil, 'paperback_Apostle'))
-            return true
-          end
-        }))
-        G.E_MANAGER:add_event(Event({
-          trigger = 'after',
-          delay = 0.15,
-          func = function()
-            to_apostle:flip()
-            play_sound('tarot2', 1, 0.6)
-            to_apostle:juice_up(0.3, 0.3)
-            return true
-          end
-        }))
-
-        if PB_UTIL.config.plague_doctor_quotes_enabled then
+        if #to_apostle > 0 and PB_UTIL.config.plague_doctor_quotes_enabled then
           local quote = (apostleCount > 12) and 12 or apostleCount
           G.E_MANAGER:add_event(Event({
             trigger = 'after',
@@ -135,7 +94,8 @@ SMODS.Joker {
               set = 'Joker',
               key = 'j_paperback_white_night',
               edition = card.edition,
-              stickers = { "eternal" }
+              stickers = { "eternal" },
+              force_stickers = true
             })
             return true
           end

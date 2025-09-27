@@ -14,7 +14,7 @@ SMODS.Joker {
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
-  perishable_compat = true,
+  perishable_compat = false,
 
   loc_vars = function(self, info_queue, card)
     info_queue[#info_queue + 1] = PB_UTIL.suit_tooltip('light')
@@ -33,7 +33,7 @@ SMODS.Joker {
       local upgrade = true
       -- Check scoring hand for only light suits
       for _, v in ipairs(context.scoring_hand) do
-        if not PB_UTIL.is_suit(v, 'light') then
+        if not PB_UTIL.is_suit(v, 'light', false, true) then
           upgrade = false
         end
       end

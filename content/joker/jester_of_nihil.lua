@@ -135,7 +135,7 @@ function Blind.debuff_card(self, card, from_blind)
 
   if card.area ~= G.jokers then
     for k, v in ipairs(SMODS.find_card('j_paperback_jester_of_nihil')) do
-      if card:is_suit(v.ability.extra.suit) then
+      if card:is_suit(v.ability.extra.suit, true) then
         card:set_debuff(true)
         if card.debuff then card.debuffed_by_blind = true end
       end

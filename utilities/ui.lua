@@ -49,6 +49,11 @@ SMODS.current_mod.config_tab = function()
                 label = localize('paperback_ui_enable_ranks'),
                 ref_table = PB_UTIL.config,
                 ref_value = 'ranks_enabled',
+              },
+              create_toggle {
+                label = localize('paperback_ui_enable_ego_gifts'),
+                ref_table = PB_UTIL.config,
+                ref_value = 'ego_gifts_enabled',
               }
             }
           },
@@ -247,7 +252,7 @@ if PB_UTIL.config.paperclips_enabled then
       end
     end
 
-    return SMODS.card_collection_UIBox(paperclips, { 5, 5 }, {
+    return SMODS.card_collection_UIBox(paperclips, { 6, 5 }, {
       snap_back = true,
       hide_single_page = true,
       collapse_single_page = true,
@@ -378,6 +383,20 @@ function PB_UTIL.paperclip_tooltip(type)
     paperclip:apply(dummy_card, true)
     vars = paperclip:loc_vars({}, dummy_card).vars
   end
+
+  return {
+    set = 'Other',
+    key = key,
+    vars = vars
+  }
+end
+
+--- @alias Sin "none" | "wrath" | "lust" | "sloth" | "gluttony" | "gloom" | "pride" | "envy"
+--- @param type Sin
+--- @return table | nil Tooltip
+function PB_UTIL.sin_tooltip(type)
+  local key = 'paperback_sin_' .. type
+  local vars = PB_UTIL.EGO_GIFT_SINS[type]
 
   return {
     set = 'Other',
