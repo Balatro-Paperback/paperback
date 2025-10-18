@@ -12,7 +12,7 @@ SMODS.Joker {
   pos = { x = 8, y = 0 },
   atlas = "jokers_atlas",
   cost = 8,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -29,6 +29,23 @@ SMODS.Joker {
     end
   end,
 
+  check_for_unlock = function(self, args)
+    if args.type == "hand" then
+      local seals = 0
+
+      for k, v in ipairs(args.scoring_hand or {}) do
+        if v:get_seal() then seals = seals + 1 end
+      end
+
+      return seals >= 5
+    end
+  end,
+
+  locked_loc_vars = function(self, info_queue, card)
+    return {
+      vars = { 5 }
+    }
+  end,
   loc_vars = function(self, info_queue, card)
     local numerator, denominator = PB_UTIL.chance_vars(card, nil, card.ability.extra.numerator,
       card.ability.extra.denominator)
