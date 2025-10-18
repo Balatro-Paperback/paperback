@@ -11,7 +11,7 @@ SMODS.Joker {
   pos = { x = 2, y = 1 },
   atlas = 'jokers_atlas',
   cost = 2,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -29,7 +29,17 @@ SMODS.Joker {
       }
     }
   end,
+  check_for_unlock = function(self, args)
+    if args.type == 'modify_jokers' and G.jokers then
+      local keys = {}
 
+      for _, v in ipairs(G.jokers.cards) do
+        if keys[v.config.center_key] then return true end
+
+        keys[v.config.center_key] = true
+      end
+    end
+  end,
   generate_ui = function(self, info_queue, card, desc_nodes, specific_vars, full_UI_table)
     -- When this joker is in the shop, show the name and description of the basic Joker
     local in_shop = card.area and card.area.config.type == 'shop'
