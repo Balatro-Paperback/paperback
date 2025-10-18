@@ -1072,6 +1072,11 @@ return {
           "{X:mult,C:white}X#1#{} Mult for each empty",
           "consumable slot",
           "{C:inactive}(Currently {X:mult,C:white}X#2#{}{C:inactive} Mult)"
+        },
+        unlock = {
+          "Win a run without",
+          "{C:attention}ever{} having a card",
+          "in your {C:attention}consumables"
         }
       },
       j_paperback_fodder = {
