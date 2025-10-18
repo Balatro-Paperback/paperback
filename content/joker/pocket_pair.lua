@@ -10,7 +10,7 @@ SMODS.Joker {
   pos = { x = 0, y = 8 },
   atlas = 'jokers_atlas',
   cost = 5,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -41,5 +41,17 @@ SMODS.Joker {
         }
       end
     end
+  end,
+
+  check_for_unlock = function(self, args)
+    if args.type == 'win' then
+      return PB_UTIL.get_most_played_hands()[1].key == 'Pair'
+    end
+  end,
+
+  locked_loc_vars = function(self, info_queue, card)
+    return {
+      vars = { localize('Pair', 'poker_hands') }
+    }
   end
 }
