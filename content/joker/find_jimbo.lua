@@ -11,11 +11,29 @@ SMODS.Joker {
   pos = { x = 1, y = 7 },
   atlas = "jokers_atlas",
   cost = 4,
-  unlocked = true,
-  discovered = false,
+  unlocked = false,
   blueprint_compat = true,
   eternal_compat = true,
 
+  check_for_unlock = function(self, args)
+    if args.type == 'hand' then
+      self.paperback_unlock_ready = args.handname == 'High Card' and args.scoring_hand[1]:get_id() == 11
+    end
+
+    if args.type == 'round_win' and self.paperback_unlock_ready then
+      self.paperback_unlock_ready = nil
+      return true
+    end
+  end,
+
+  locked_loc_vars = function(self, info_queue, card)
+    return {
+      vars = {
+        localize('High Card', 'poker_hands'),
+        localize('Jack', 'ranks')
+      }
+    }
+  end,
   loc_vars = function(self, info_queue, card)
     return {
       vars = {
