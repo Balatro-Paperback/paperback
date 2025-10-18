@@ -841,6 +841,10 @@ return {
         text = {
           "{C:blue}+#1#{} Hand when {C:attention}Blind{} is selected",
           "Melts if {C:attention}score catches fire",
+        },
+        unlock = {
+          "Have {C:attention}#1#{} food",
+          "{C:attention}Jokers{} at once"
         }
       },
       j_paperback_champagne = {
