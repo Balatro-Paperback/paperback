@@ -11,12 +11,16 @@ SMODS.Joker {
   pos = { x = 2, y = 0 },
   atlas = "jokers_atlas",
   cost = 6,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
   soul_pos = nil,
 
+  check_for_unlock = function(self, args)
+    return args.type == 'round_win' and G.GAME.current_round.hands_played == 1 and
+        G.GAME.blind.boss and G.GAME.blind.name == 'Cerulean Bell'
+  end,
   loc_vars = function(self, info_queue, card)
     local ranks_played = ""
 
