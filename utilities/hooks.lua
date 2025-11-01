@@ -19,6 +19,7 @@ function Game.init_game_object(self)
     bandaged_inc = 0,
     stained_inc = 0,
     destroyed_dark_suits = 0,
+    destroyed_cards = 0,
     last_tarot_energized = false,
     ranks_scored_this_ante = {},
     last_scored_suit = 'Spades',
@@ -28,6 +29,8 @@ function Game.init_game_object(self)
     secret_hands = secrets,
     arcana_used = {},
     sold_ego_gifts = {},
+    never_held_consumable = true,
+    find_jimbo_unlock = false,
 
     weather_radio_hand = 'High Card',
     joke_master_hand = 'High Card',
@@ -172,6 +175,16 @@ G.FUNCS.cash_out = function(e)
   })
 
   cash_out_ref(e)
+end
+
+-- For big misser's unlock
+local card_add_to_deck_ref = Card.add_to_deck
+function Card:add_to_deck()
+  local ret = card_add_to_deck_ref(self)
+  if self.ability.set == 'Consumable' then
+    G.GAME.paperback.never_held_consumable = false
+  end
+  return ret
 end
 
 -- Adds a new context for leveling up a hand
@@ -373,7 +386,7 @@ function pseudorandom_element(_t, seed, args)
     if v == SMODS.ConsumableTypes['paperback_ego_gift']
     or (
       type(v) == 'table' and
-        (v.set == "paperback_ego_gift" or v.key == "c_paperback_golden_bough"))
+      (v.set == "paperback_ego_gift" or v.key == "c_paperback_golden_bough"))
     then
       table.insert(keys_to_remove, k)
     end

@@ -16,7 +16,7 @@ SMODS.Joker {
   eternal_compat = true,
 
   check_for_unlock = function(self, args)
-    if args.type == 'win' and not G.GAME.round_resets.paperback_used_consumable_slot then
+    if args.type == 'win' and G.GAME.paperback.never_held_consumable then
       return true
     end
   end,
