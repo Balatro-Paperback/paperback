@@ -19,16 +19,13 @@ SMODS.Joker {
     if args.type == 'hand' and args.handname == 'High Card' then
       for _, c in pairs(args.scoring_hand) do
         if PB_UTIL.is_rank(c, 'Jack') then
-          self.paperback_unlock_ready = true
+          G.GAME.paperback.find_jimbo_unlock = true
           break
         end
       end
     end
 
-    if args.type == 'round_win' and self.paperback_unlock_ready then
-      self.paperback_unlock_ready = nil
-      return true
-    end
+    return args.type == 'round_win' and G.GAME.paperback.find_jimbo_unlock
   end,
 
   locked_loc_vars = function(self, info_queue, card)
