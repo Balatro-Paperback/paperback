@@ -23,7 +23,7 @@ SMODS.Joker {
   end,
 
   check_for_unlock = function(self, args)
-    return args.type == 'min_hand_size' and G.hand and G.hand.config.card_limit >= 9
+    return args.type == 'min_hand_size' and G.hand and G.hand.config.card_limit >= 10
   end,
 
   locked_loc_vars = function(self, info_queue, card)
