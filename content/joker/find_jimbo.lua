@@ -16,8 +16,13 @@ SMODS.Joker {
   eternal_compat = true,
 
   check_for_unlock = function(self, args)
-    if args.type == 'hand' then
-      self.paperback_unlock_ready = args.handname == 'High Card' and args.scoring_hand[1]:get_id() == 11
+    if args.type == 'hand' and args.handname == 'High Card' then
+      for _, c in pairs(args.scoring_hand) do
+        if PB_UTIL.is_rank(c, 'Jack') then
+          self.paperback_unlock_ready = true
+          break
+        end
+      end
     end
 
     if args.type == 'round_win' and self.paperback_unlock_ready then

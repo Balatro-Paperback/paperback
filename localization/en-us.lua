@@ -992,9 +992,8 @@ return {
           "{s:0.8}Card changes every round"
         },
         unlock = {
-          "{C:attention}Win{} a round by",
-          "playing a {C:attention}#1#",
-          "with a scoring {C:attention}#2#"
+          "{C:attention}Win{} a round with",
+          "a {C:attention}#1# #2#{}"
         }
       },
       j_paperback_joker_crossing = {
