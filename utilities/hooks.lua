@@ -207,15 +207,44 @@ end
 
 -- Ace still can't wrap around straights even though it's no longer straight_edge
 -- accounts for Shortcut by checking for Q and 3 as well
+-- Also now accounts for Four Fingers
 local get_straight_ref = get_straight
 function get_straight(hand, min_length, skip, wrap)
-  local has_king_queen = false
-  local has_2_3 = false
-  for i = 1, #hand do
-    if hand[i]:get_id() == 13 or hand[i]:get_id() == 12 then has_king_queen = true end
-    if hand[i]:get_id() == 2 or hand[i]:get_id() == 3 then has_2_3 = true end
+  if #hand < min_length then return {} end
+  if not wrap then
+    local has_king_queen = false
+    local has_2_3 = false
+    local check_cards = {}
+    for i = 1, #hand do
+      if hand[i]:get_id() == 13 or (skip and hand[i]:get_id() == 12) then
+        has_king_queen = true
+        check_cards[#check_cards + 1] = i
+      end
+      if hand[i]:get_id() == 2 or (skip and hand[i]:get_id() == 3) then
+        has_2_3 = true
+        check_cards[#check_cards + 1] = i
+      end
+    end
+    if has_king_queen and has_2_3 then
+      -- Check to see if we can reduce the number of cards.
+      -- Possibly gets pretty slow with a lot of selected cards?
+      if #hand > min_length then
+        for i = 1, #check_cards do
+          local temp_hand = {}
+          for j = 1, #hand do
+            if check_cards[i] ~= j then
+              temp_hand[#temp_hand + 1] = hand[j]
+            end
+          end
+          local straight = get_straight(temp_hand, min_length, skip, wrap)
+          if #straight > 0 then
+            return straight
+          end
+        end
+      end
+      return {}
+    end
   end
-  if has_king_queen and has_2_3 then return {} end
   return get_straight_ref(hand, min_length, skip, wrap)
 end
 
