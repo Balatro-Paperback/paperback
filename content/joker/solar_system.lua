@@ -10,7 +10,7 @@ SMODS.Joker {
   pos = { x = 7, y = 0 },
   atlas = "jokers_atlas",
   cost = 8,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -26,6 +26,20 @@ SMODS.Joker {
         card.ability.extra.x_mult_mod,
         card.ability.extra.x_mult
       }
+    }
+  end,
+
+  check_for_unlock = function(self, args)
+    local planets_used = 0
+    for k, v in pairs(G.GAME.consumeable_usage) do
+      if v.set == 'Planet' then planets_used = planets_used + 1 end
+    end
+    return planets_used >= 9
+  end,
+
+  locked_loc_vars = function(self, info_queue, card)
+    return {
+      vars = { 9 }
     }
   end,
 
