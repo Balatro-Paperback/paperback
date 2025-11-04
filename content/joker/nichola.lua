@@ -8,6 +8,7 @@ SMODS.Joker {
   blueprint_compat = true,
   eternal_compat = true,
   perishable_compat = true,
+  unlocked = false,
 
   -- Also see SMODS.calculate_main_scoring hook
   calculate = function(self, card, context)

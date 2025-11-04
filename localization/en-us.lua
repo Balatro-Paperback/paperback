@@ -181,6 +181,9 @@ return {
         text = {
           "When buying a {C:attention}Voucher{}, also",
           "redeem the {C:attention}upgraded{} version"
+        },
+        unlock = {
+          "{E:1,s:1.3}?????",
         }
       },
       j_paperback_milk_tea = {
@@ -196,6 +199,9 @@ return {
         text = {
           "After scoring played cards,",
           "score {C:attention}face{} cards {C:attention}held in hand{}"
+        },
+        unlock = {
+          "{E:1,s:1.3}?????",
         }
       },
       j_paperback_the_dynasty = {
@@ -293,7 +299,11 @@ return {
           "Jokers when defeating a {C:attention}Big Blind{}.",
           "Earn the {C:attention}full{} {C:money}sell value{} of all",
           "Jokers when defeating a {C:attention}Boss Blind{}",
+        },
+        unlock = {
+          "{E:1,s:1.3}?????",
         }
+
       },
       j_paperback_pedrillo = {
         name = "Pedrillo",
@@ -302,6 +312,9 @@ return {
           "create the {C:planet}Planet{} card",
           "for played {C:attention}poker hand",
           "{C:inactive}(Must have room)"
+        },
+        unlock = {
+          "{E:1,s:1.3}?????",
         }
       },
       j_paperback_double_dutchman = {

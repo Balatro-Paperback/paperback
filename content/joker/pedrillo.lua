@@ -11,7 +11,7 @@ SMODS.Joker {
   soul_pos = { x = 13, y = 3 },
   atlas = "jokers_atlas",
   cost = 20,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,

@@ -8,6 +8,7 @@ SMODS.Joker {
   blueprint_compat = true,
   eternal_compat = true,
   perishable_compat = true,
+  unlocked = false,
 
   calculate = function(self, card, context)
     if context.end_of_round and context.main_eval and (G.GAME.blind.boss or G.GAME.blind:get_type() == "Big") then
