@@ -210,42 +210,73 @@ end
 -- Also now accounts for Four Fingers
 local get_straight_ref = get_straight
 function get_straight(hand, min_length, skip, wrap)
+  min_length = min_length or 5
+  if min_length < 2 then min_length = 2 end
   if #hand < min_length then return {} end
-  if not wrap then
-    local has_king_queen = false
-    local has_2_3 = false
-    local check_cards = {}
-    for i = 1, #hand do
-      if hand[i]:get_id() == 13 or (skip and hand[i]:get_id() == 12) then
-        has_king_queen = true
-        check_cards[#check_cards + 1] = i
-      end
-      if hand[i]:get_id() == 2 or (skip and hand[i]:get_id() == 3) then
-        has_2_3 = true
-        check_cards[#check_cards + 1] = i
+  local ranks = {}
+  for k, _ in pairs(SMODS.Ranks) do ranks[k] = {} end
+  for _, card in ipairs(hand) do
+    local id = card:get_id()
+    if id > 0 then
+      for k, v in pairs(SMODS.Ranks) do
+        if v.id == id then
+          table.insert(ranks[k], card); break
+        end
       end
     end
-    if has_king_queen and has_2_3 then
-      -- Check to see if we can reduce the number of cards.
-      -- Possibly gets pretty slow with a lot of selected cards?
-      if #hand > min_length then
-        for i = 1, #check_cards do
-          local temp_hand = {}
-          for j = 1, #hand do
-            if check_cards[i] ~= j then
-              temp_hand[#temp_hand + 1] = hand[j]
-            end
-          end
-          local straight = get_straight(temp_hand, min_length, skip, wrap)
-          if #straight > 0 then
-            return straight
+  end
+  local function next_ranks(key, start)
+    local rank = SMODS.Ranks[key]
+    local ret = {}
+    if not start and not wrap and rank.straight_edge then
+      return ret
+    end
+    for _, v in ipairs(rank.next) do
+      ret[#ret + 1] = v
+      if skip and (wrap or not SMODS.Ranks[v].straight_edge) then
+        for _, w in ipairs(SMODS.Ranks[v].next) do
+          ret[#ret + 1] = w
+        end
+      end
+    end
+    return ret
+  end
+  local tuples = {}
+  local ret = {}
+  for _, k in ipairs(SMODS.Rank.obj_buffer) do
+    if next(ranks[k]) then
+      tuples[#tuples + 1] = { k }
+    end
+  end
+  for i = 2, #hand + 1 do
+    local new_tuples = {}
+    for _, tuple in ipairs(tuples) do
+      local any_tuple
+      if i ~= #hand + 1 then
+        for _, l in ipairs(next_ranks(tuple[i - 1], i == 2)) do
+          if next(ranks[l]) then
+            local new_tuple = {}
+            for _, v in ipairs(tuple) do new_tuple[#new_tuple + 1] = v end
+            new_tuple[#new_tuple + 1] = l
+            new_tuples[#new_tuples + 1] = new_tuple
+            any_tuple = true
           end
         end
       end
-      return {}
+      if i > min_length and not any_tuple then
+        local straight = {}
+        for _, v in ipairs(tuple) do
+          for _, card in ipairs(ranks[v]) do
+            straight[#straight + 1] = card
+          end
+        end
+        ret[#ret + 1] = straight
+      end
     end
+    tuples = new_tuples
   end
-  return get_straight_ref(hand, min_length, skip, wrap)
+  table.sort(ret, function(a, b) return #a > #b end)
+  return ret
 end
 
 -- Apostle-high straight flushes get renamed to "Rapture"
