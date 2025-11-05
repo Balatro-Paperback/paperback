@@ -16,6 +16,9 @@ return {
           "Start with a full set of",
           "{C:hearts}Hearts{}, {C:diamonds}Diamonds{}, {C:spades}Spades",
           "{C:clubs}Clubs{}, {C:paperback_crowns}Crowns{} and {C:paperback_stars}Stars"
+        },
+        unlock = {
+          "Play a {E:1,C:attention}Spectrum{}"
         }
       },
       b_paperback_silver = {
