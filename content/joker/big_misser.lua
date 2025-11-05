@@ -16,10 +16,9 @@ SMODS.Joker {
   eternal_compat = true,
 
   check_for_unlock = function(self, args)
-    if args.type == 'win' and G.GAME.paperback.never_held_consumable then
-      return true
-    end
+    return args.type == 'win' and G.GAME.paperback.max_consumeables <= 0
   end,
+
   loc_vars = function(self, info_queue, card)
     return {
       vars = {
