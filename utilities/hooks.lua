@@ -208,7 +208,6 @@ end
 -- Ace still can't wrap around straights even though it's no longer straight_edge
 -- accounts for Shortcut by checking for Q and 3 as well
 -- Also now accounts for Four Fingers
-local get_straight_ref = get_straight
 function get_straight(hand, min_length, skip, wrap)
   min_length = min_length or 5
   if min_length < 2 then min_length = 2 end
@@ -225,15 +224,23 @@ function get_straight(hand, min_length, skip, wrap)
       end
     end
   end
-  local function next_ranks(key, start)
+  local function next_ranks(key, start, from_apostle)
     local rank = SMODS.Ranks[key]
     local ret = {}
-    if not start and not wrap and rank.straight_edge then
+    if not start and not wrap and not from_apostle and rank.straight_edge then
+      for _, v in ipairs(rank.next) do
+        if v == 'paperback_Apostle' then
+          ret[#ret + 1] = v
+        end
+      end
+      return ret
+    end
+    if not start and not wrap and key == 'paperback_Apostle' then
       return ret
     end
     for _, v in ipairs(rank.next) do
       ret[#ret + 1] = v
-      if skip and (wrap or not SMODS.Ranks[v].straight_edge) then
+      if skip and (wrap or (not from_apostle and not SMODS.Ranks[v].straight_edge) or v ~= 'paperback_Apostle') then
         for _, w in ipairs(SMODS.Ranks[v].next) do
           ret[#ret + 1] = w
         end
@@ -253,7 +260,7 @@ function get_straight(hand, min_length, skip, wrap)
     for _, tuple in ipairs(tuples) do
       local any_tuple
       if i ~= #hand + 1 then
-        for _, l in ipairs(next_ranks(tuple[i - 1], i == 2)) do
+        for _, l in ipairs(next_ranks(tuple[i - 1], i == 2, tuple[1] == 'paperback_Apostle')) do
           if next(ranks[l]) then
             local new_tuple = {}
             for _, v in ipairs(tuple) do new_tuple[#new_tuple + 1] = v end

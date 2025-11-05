@@ -7,7 +7,6 @@ SMODS.Rank {
   hc_atlas = 'ranks_hc',
   pos = { x = 0 },
 
-  straight_edge = true,
   next = { 'Ace' },
   nominal = 12,
   face = true,
@@ -38,6 +37,5 @@ SMODS.Rank {
 SMODS.Rank:take_ownership('Ace',
   {
     next = { '2', 'paperback_Apostle' },
-    straight_edge = false
   }
 )
