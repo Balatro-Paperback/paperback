@@ -20,6 +20,7 @@ SMODS.Joker {
   soul_pos = { x = 6, y = 7 },
   yes_pool_flag = 'paperback_legacy_can_spawn',
   secret_unlock = true,
+  --unlock_condition = { type = '', extra = '', hidden = true },
 
   loc_vars = function(self, info_queue, card)
     return {
@@ -30,7 +31,7 @@ SMODS.Joker {
   end,
 
   locked_loc_vars = function(self, info_queue, card)
-    return { vars = { "Alert" } }
+    return { vars = { G.localization.descriptions.Joker.j_paperback_alert.name } }
   end,
 
   calculate = function(self, card, context)
