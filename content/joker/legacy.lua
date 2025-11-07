@@ -19,8 +19,7 @@ SMODS.Joker {
   perishable_compat = false,
   soul_pos = { x = 6, y = 7 },
   yes_pool_flag = 'paperback_legacy_can_spawn',
-  secret_unlock = true,
-  --unlock_condition = { type = '', extra = '', hidden = true },
+  paperback_secret_unlock = true,
 
   loc_vars = function(self, info_queue, card)
     return {
@@ -32,6 +31,19 @@ SMODS.Joker {
 
   locked_loc_vars = function(self, info_queue, card)
     return { vars = { G.localization.descriptions.Joker.j_paperback_alert.name } }
+  end,
+
+  check_for_unlock = function(self, args)
+    if args.type == 'hand' and args.handname == 'High Card' then
+      for _, c in pairs(args.scoring_hand) do
+        if PB_UTIL.is_rank(c, 'Jack') then
+          G.GAME.paperback.find_jimbo_unlock = true
+          break
+        end
+      end
+    end
+
+    return args.type == 'round_win' and G.GAME.paperback.find_jimbo_unlock
   end,
 
   calculate = function(self, card, context)

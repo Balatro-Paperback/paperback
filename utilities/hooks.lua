@@ -180,16 +180,16 @@ end
 -- Adds a new context for checking the maximum amount of consumables you had during a run
 local card_area_emplace_ref = CardArea.emplace
 function CardArea:emplace(card, location, stay_flipped)
-    local ret = card_area_emplace_ref(self, card, location, stay_flipped)
-    if self == G.consumeables then
-        local consumeable_tally = 0
-        for i = 1, #G.consumeables.cards do
-          consumeable_tally = consumeable_tally + 1
-        end
-        if consumeable_tally > G.GAME.paperback.max_consumeables then G.GAME.paperback.max_consumeables = consumeable_tally end
-        check_for_unlock({type = 'modify_consumeable'}) 
+  local ret = card_area_emplace_ref(self, card, location, stay_flipped)
+  if self == G.consumeables then
+    local consumeable_tally = 0
+    for i = 1, #G.consumeables.cards do
+      consumeable_tally = consumeable_tally + 1
     end
-    return ret
+    if consumeable_tally > G.GAME.paperback.max_consumeables then G.GAME.paperback.max_consumeables = consumeable_tally end
+    check_for_unlock({ type = 'modify_consumeable' })
+  end
+  return ret
 end
 
 -- Adds a new context for leveling up a hand

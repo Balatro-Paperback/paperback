@@ -1686,6 +1686,9 @@ return {
           "{X:mult,C:white}X#2#{} Mult for {C:attention}this hand{} and the {C:attention}next #3#",
           "{C:inactive}(Currently the next {C:attention}#4#{C:inactive} hands)"
         },
+        unlock = {
+          "Play a hand scoring {C:attention}#1#{} suits"
+        }
       },
       j_paperback_giga_size = {
         name = "GIGA SIZE",
