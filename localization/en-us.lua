@@ -908,6 +908,9 @@ return {
           "destroyed, adds its {C:chips}Chip value",
           "as {C:mult}Mult{} to this Joker",
           "{C:inactive}(Currently {C:mult}+#1#{C:inactive} Mult)"
+        },
+        unlock = {
+          "{E:1,s:1.3}?????",
         }
       },
       j_paperback_telamon = {
@@ -2927,6 +2930,12 @@ return {
           "Removed from pool due",
           "to {C:paperback_ego_gift}E.G.O. Gifts{} being",
           "disabled in {C:legendary}Paperback",
+        }
+      },
+      paperback_upgrade_unlock = {
+        name = "Locked",
+        text = {
+          "Activate {C:attention}#1#{}'s ability",
         }
       },
 
