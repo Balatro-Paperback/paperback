@@ -31,6 +31,7 @@ function Game.init_game_object(self)
     sold_ego_gifts = {},
     find_jimbo_unlock = false,
     max_consumeables = 0,
+    let_it_happen_unlock_check = false,
 
     weather_radio_hand = 'High Card',
     joke_master_hand = 'High Card',

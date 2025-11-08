@@ -1713,6 +1713,11 @@ return {
           "{C:attention}Ante{}, {C:purple}balance{} {C:mult}Mult{} and {C:chips}Chips",
           "{C:inactive}(Hands played:{C:attention}#1#{C:inactive})",
         },
+        unlock = {
+          "Win a run with",
+          "{C:attention}#1#{} on at least",
+          "{V:1}#2#{} difficulty",
+        }
       },
       j_paperback_in_case_i_make_it = {
         name = "In Case I Make It",

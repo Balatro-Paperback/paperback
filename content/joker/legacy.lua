@@ -33,19 +33,6 @@ SMODS.Joker {
     return { vars = { G.localization.descriptions.Joker.j_paperback_alert.name } }
   end,
 
-  check_for_unlock = function(self, args)
-    if args.type == 'hand' and args.handname == 'High Card' then
-      for _, c in pairs(args.scoring_hand) do
-        if PB_UTIL.is_rank(c, 'Jack') then
-          G.GAME.paperback.find_jimbo_unlock = true
-          break
-        end
-      end
-    end
-
-    return args.type == 'round_win' and G.GAME.paperback.find_jimbo_unlock
-  end,
-
   calculate = function(self, card, context)
     if not context.blueprint and context.remove_playing_cards and #context.removed > 0 then
       local mult_gained = 0

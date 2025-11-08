@@ -12,11 +12,33 @@ SMODS.Joker {
   pos = { x = 7, y = 2 },
   atlas = "jokers_atlas",
   cost = 8,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
   soul_pos = nil,
+
+  locked_loc_vars = function(self, info_queue, card)
+    local other_name = localize('k_unknown')
+    if G.P_CENTERS['b_plasma'].unlocked then
+      other_name = localize { type = 'name_text', set = 'Back', key = 'b_plasma' }
+    end
+
+    return {
+      vars = {
+        other_name,
+        localize { type = 'name_text', set = 'Stake', key = 'stake_gold' },
+        colours = { get_stake_col(8) }
+      }
+    }
+  end,
+
+  check_for_unlock = function(self, args)
+    if args.type == 'win_deck' and (get_deck_win_stake('b_plasma') > 1) then
+      G.GAME.paperback.let_it_happen_unlock_check = true
+    end
+    return G.GAME.paperback.let_it_happen_unlock_check and args.type == 'win_stake' and get_deck_win_stake() >= 8
+  end,
 
   loc_vars = function(self, info_queue, card)
     local hands_played_string = ""
