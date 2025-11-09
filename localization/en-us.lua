@@ -80,7 +80,11 @@ return {
           "{C:red}#2#{} Joker Slots",
           "{C:paperback_ego_gift}E.G.O. Gift Extraction Packs{}",
           "are {C:attention}5X{} more common"
-        }
+        },
+        unlock = {
+          "Sell {C:attention}#1#{}",
+          "{C:paperback_ego_gift}E.G.O. Gifts{}"
+        },
       },
     },
     Blind = {

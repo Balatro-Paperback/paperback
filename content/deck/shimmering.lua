@@ -9,6 +9,7 @@ if PB_UTIL.config.ego_gifts_enabled then
       }
     },
     pos = { x = 6, y = 0 },
+    unlocked = false,
 
     locked_loc_vars = function(self, info_queue)
       return { vars = { 10 } }
@@ -57,6 +58,7 @@ if PB_UTIL.config.ego_gifts_enabled then
       G.GAME.selected_back_key:paperback_shimmering_update()
     end
   end
+
   local remove_from_deck_ref = Card.remove_from_deck
   function Card.remove_from_deck(...)
     remove_from_deck_ref(...)
