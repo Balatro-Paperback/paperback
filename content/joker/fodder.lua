@@ -10,6 +10,12 @@ SMODS.Joker {
   paperback = {
     requires_ego_gifts = true
   },
+  unlocked = false,
+  check_for_unlock = function(self, args)
+    if args.type == 'paperback_sold_ego_gifts' then
+      return #G.GAME.paperback.sold_ego_gifts >= 1
+    end
+  end,
 
   in_pool = function(self, args)
     for _, v in ipairs(G.consumeables or {}) do

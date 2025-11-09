@@ -1123,6 +1123,9 @@ return {
         text = {
           "Sell this card to {C:paperback_ego_gift}corrode{}",
           "the rightmost {C:paperback_ego_gift}E.G.O. Gift{}",
+        },
+        unlock = {
+          "Sell an {C:paperback_ego_gift,E:1}EGO Gift{}"
         }
       },
       j_paperback_the_strongest = {
@@ -1134,6 +1137,9 @@ return {
           "{C:paperback_ego_gift}Corrode{} an {C:paperback_ego_gift}E.G.O. Gift",
           "when defeating a {C:attention}Boss Blind",
           "{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult)"
+        },
+        unlock = {
+          "Sell an {C:paperback_ego_gift,E:1}EGO Gift{}"
         }
       },
       j_paperback_freezer = {
