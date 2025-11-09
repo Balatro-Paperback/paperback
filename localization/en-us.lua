@@ -44,7 +44,11 @@ return {
           "appear in the shop",
           "{C:paperback_minor_arcana}Minor Arcana Packs",
           "are {C:attention}3X{} more common"
-        }
+        },
+        unlock = {
+          "Discover every",
+          "{C:paperback_minor_arcana,E:1}Minor Arcana{} card"
+        },
       },
       b_paperback_passionate = {
         name = "Passionate Deck",
@@ -151,7 +155,7 @@ return {
         },
         unlock = {
           "Win a run with a",
-          "{C:attention}secret hand{} as your",
+          "{C:attention,E:1}secret hand{} as your",
           "most played hand"
         }
       },
@@ -357,7 +361,7 @@ return {
         },
         unlock = {
           "Have #1# or more",
-          "{C:attention}Apostles{} in",
+          "{C:attention,E:1}Apostles{} in",
           "your deck"
         }
       },
@@ -371,7 +375,7 @@ return {
           "{C:inactive}(Must have room)"
         },
         unlock = {
-          "Play a {C:attention}Rapture{}"
+          "Play a {C:attention,E:1}Rapture{}"
         }
       },
       j_paperback_plague_doctor = {
@@ -534,8 +538,8 @@ return {
           "{C:inactive}(Must have room)",
         },
         unlock = {
-          "Have {C:attention}#1#{} or more",
-          "{C:attention}suits{} in",
+          "Have {C:attention,E:1}#1#{} or more",
+          "{C:attention,E:1}suits{} in",
           "your deck"
         }
       },
@@ -859,8 +863,8 @@ return {
           "Melts if {C:attention}score catches fire",
         },
         unlock = {
-          "Have {C:attention}#1#{} food",
-          "{C:attention}Jokers{} at once"
+          "Have {C:attention,E:1}#1# Food{}",
+          "{C:attention,E:1}Jokers{} at once"
         }
       },
       j_paperback_champagne = {
@@ -879,8 +883,8 @@ return {
           "at start of round"
         },
         unlock = {
-          "{C:attention}Win{} a run with",
-          "{C:attention}#1#{} as your",
+          "{C:attention,E:1}Win{} a run with",
+          "{C:attention,E:1}#1#{} as your",
           "most played hand"
         }
       },
@@ -982,8 +986,8 @@ return {
           "{C:inactive}(Currently {C:attention}#3#{C:inactive} at {X:attention,C:white}X#4#{C:inactive})"
         },
         unlock = {
-          "Have {C:attention}2{} of the",
-          "same {C:attention}Joker"
+          "Have {C:attention,E:1}2{} of the",
+          "same {C:attention,E:1}Joker"
         }
       },
       j_paperback_the_world = {
@@ -1011,8 +1015,8 @@ return {
           "{s:0.8}Card changes every round"
         },
         unlock = {
-          "{C:attention}Win{} a round with",
-          "a {C:attention}#1# #2#{}"
+          "{C:attention,E:1}Win{} a round with",
+          "a {C:attention,E:1}#1# #2#{}"
         }
       },
       j_paperback_joker_crossing = {
@@ -1093,8 +1097,8 @@ return {
         },
         unlock = {
           "Win a run without",
-          "{C:attention}ever{} having a card",
-          "in your {C:attention}consumables"
+          "{C:attention,E:1}ever{} having a card",
+          "in your {C:attention,E:1}consumables"
         }
       },
       j_paperback_fodder = {
@@ -1123,7 +1127,7 @@ return {
         },
         unlock = {
           "Acquire a {C:dark_edition}Negative{}",
-          "{S:1.1,C:attention,E:2}Food Joker"
+          "{S:1.1,C:attention,E:1}Food Joker"
         }
       },
       j_paperback_everything_must_go = {
@@ -1212,7 +1216,7 @@ return {
         },
         unlock = {
           "Defeat the",
-          "{C:attention}Cerulean Bell",
+          "{C:attention,E:1}Cerulean Bell",
           "Boss Blind in",
           "one hand"
         }
@@ -1278,7 +1282,7 @@ return {
         },
         unlock = {
           "Play a hand with",
-          "{C:attention}#1#{} scored seals",
+          "{C:attention,E:1}#1#{} scored seals",
         },
       },
       j_paperback_sticky_stick = {
@@ -1365,7 +1369,7 @@ return {
         },
         unlock = {
           "Have a hand",
-          "size of {C:attention}#1#",
+          "size of {C:attention,E:1}#1#",
           "or more cards"
         }
       },
@@ -1439,7 +1443,7 @@ return {
           "{C:inactive}(Currently {C:chips}+#2#{} {C:inactive}Chips)"
         },
         unlock = {
-          "Play a {E:1,C:attention}Spectrum{}"
+          "Play a {E:1,C:attention,E:1}Spectrum{}"
         }
       },
       j_paperback_pride_flag_no_spectrums = {
@@ -1450,8 +1454,8 @@ return {
           "{C:inactive}(Currently {C:mult}+#2#{} {C:inactive}Mult)",
         },
         unlock = {
-          "Play a hand scoring {C:attention}#1#{} suits",
-          "and a {C:attention}Wild{} Card"
+          "Play a hand scoring {C:attention,E:1}#1#{} suits",
+          "and a {C:attention,E:1}Wild{} Card"
         }
       },
       j_paperback_sacrificial_lamb = {
@@ -1462,7 +1466,7 @@ return {
           "{C:inactive}(Currently {C:mult}+#2# {C:inactive}Mult)",
         },
         unlock = {
-          "Destroy {C:attention}#1#{} cards",
+          "Destroy {C:attention,E:1}#1#{} cards",
           "in a run"
         }
       },
@@ -1596,7 +1600,7 @@ return {
           "{C:inactive}(Currently {X:mult,C:white}X#2#{} {C:inactive}Mult)",
         },
         unlock = {
-          "Use {C:attention}#1#{} different {C:attention}Planet{}",
+          "Use {C:attention,E:1}#1#{} different {C:attention,E:1}Planet{}",
           "cards in a run"
         }
       },
@@ -1694,7 +1698,7 @@ return {
           "{C:inactive}(Currently the next {C:attention}#4#{C:inactive} hands)"
         },
         unlock = {
-          "Play a hand scoring {C:attention}#1#{} suits"
+          "Play a hand scoring {C:attention,E:1}#1#{} suits"
         }
       },
       j_paperback_giga_size = {
@@ -1776,7 +1780,7 @@ return {
           "{C:attention}Boss Blind{} is defeated"
         },
         unlock = {
-          "Spend {C:money}$50{} in one shop"
+          "Spend {C:money,E:1}$50{} in one shop"
         }
       },
       j_paperback_cakepop = {
@@ -1947,7 +1951,7 @@ return {
         },
         unlock = {
           "Acquire",
-          "{C:attention}Cavendish",
+          "{C:attention,E:1}Cavendish",
           "in a run"
         }
       },
@@ -2707,7 +2711,7 @@ return {
           "{C:attention}disables{} the current {C:attention}Boss Blind"
         },
         unlock = {
-          "Sell {C:attention}#1#{} {C:paperback_ego_gift}EGO Gifts{} in one Run"
+          "Sell {C:attention,E:1}#1#{} {C:paperback_ego_gift,E:1}EGO Gifts{} in one Run"
         }
       },
     },
@@ -2950,7 +2954,7 @@ return {
       paperback_upgrade_unlock = {
         name = "Locked",
         text = {
-          "Activate {C:attention}#1#{}'s ability",
+          "Activate {C:attention,E:1}#1#{}'s ability",
         }
       },
 
