@@ -61,6 +61,11 @@ return {
           "{C:attention}Boss Blind{}, gain a",
           "{C:attention,T:tag_paperback_high_risk}#1#",
           "Earn no {C:money}Interest"
+        },
+        unlock = {
+          "Win a run with any",
+          "deck on at least",
+          "{V:1}#1#{} difficulty",
         }
       },
       b_paperback_shimmering = {
