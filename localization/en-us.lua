@@ -18,7 +18,7 @@ return {
           "{C:clubs}Clubs{}, {C:paperback_crowns}Crowns{} and {C:paperback_stars}Stars"
         },
         unlock = {
-          "Play a {E:1,C:attention}Spectrum{}"
+          "Play a {C:attention}Spectrum{}"
         }
       },
       b_paperback_silver = {
@@ -27,7 +27,11 @@ return {
           "Start run with the",
           "{C:paperback_minor_arcana,T:v_paperback_celtic_cross}#1#{} voucher",
           "and a {C:paperback_minor_arcana,T:c_paperback_nine_of_cups}#2#"
-        }
+        },
+        unlock = {
+          "Discover {C:attention}#1#{}",
+          "{C:paperback_minor_arcana,E:1}Minor Arcana{} cards"
+        },
       },
       b_paperback_dreamer = {
         name = "Dreamer Deck",
