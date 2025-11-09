@@ -1438,6 +1438,9 @@ return {
           "contains a {C:attention}Straight",
           "{C:inactive}(Currently {C:chips}+#2#{} {C:inactive}Chips)"
         },
+        unlock = {
+          "Play a {E:1,C:attention}Spectrum{}"
+        }
       },
       j_paperback_pride_flag_no_spectrums = {
         name = "Pride Flag",
@@ -1446,6 +1449,10 @@ return {
           "contains {C:attention}three{} unique suits",
           "{C:inactive}(Currently {C:mult}+#2#{} {C:inactive}Mult)",
         },
+        unlock = {
+          "Play a hand scoring {C:attention}#1#{} suits",
+          "and a {C:attention}Wild{} Card"
+        }
       },
       j_paperback_sacrificial_lamb = {
         name = "Sacrificial Lamb",
