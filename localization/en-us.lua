@@ -2712,6 +2712,9 @@ return {
         text = {
           "{C:paperback_minor_arcana}Minor Arcana{} cards may",
           "appear in the {C:money}Shop"
+        },
+        unlock = {
+          "Use {C:attention,E:1}#1#{} {C:paperback_minor_arcana,E:1}Minor Arcana{} in one Run"
         }
       },
       v_paperback_second_trumpet = {
