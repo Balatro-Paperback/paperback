@@ -5,6 +5,7 @@ if PB_UTIL.config.minor_arcana_enabled then
     pos = { x = 4, y = 0 },
     unlocked = false,
     check_for_unlock = function(self, args)
+      --Referenced Cryptid for unlock condition
       if G.P_CENTER_POOLS["paperback_minor_arcana"] then
         local count = 0
         local count2 = 0

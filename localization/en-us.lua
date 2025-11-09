@@ -39,7 +39,11 @@ return {
           "Start run with a {C:paperback_temporary}temporary",
           "{C:paperback_minor_arcana,T:c_paperback_apostle_of_wands}#1#",
           "{C:attention}#2#{} Joker slot"
-        }
+        },
+        unlock = {
+          "Have {C:attention}#1#{} Jokers with",
+          "{V:1}#2#{} Stickers"
+        },
       },
       b_paperback_antique = {
         name = "Antique Deck",
