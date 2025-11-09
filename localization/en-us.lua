@@ -1162,7 +1162,11 @@ return {
         text = {
           "Shops have {C:attention}+#1#{} additional",
           "{C:attention}Voucher{} slot"
-        }
+        },
+        unlock = {
+          "Discover {C:attention,E:1}#1#{}",
+          "{C:attention,E:1}Vouchers{}"
+        },
       },
       j_paperback_card_sleeve = {
         name = "Card Sleeve",

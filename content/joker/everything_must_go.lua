@@ -12,6 +12,21 @@ SMODS.Joker {
   blueprint_compat = false,
   eternal_compat = true,
   perishable_compat = true,
+  unlocked = false,
+  locked_loc_vars = function(self, info_queue)
+    return { vars = { 20 } }
+  end,
+  check_for_unlock = function(self, args)
+    if G.P_CENTER_POOLS["Voucher"] then
+      local count = 0
+      for k, v in pairs(G.P_CENTER_POOLS["Voucher"]) do
+        if v.discovered == true then
+          count = count + 1
+        end
+      end
+      if count >= 20 then unlock_card(self) end
+    end
+  end,
 
   loc_vars = function(self, info_queue, card)
     return {
