@@ -402,7 +402,11 @@ return {
           "convert the scoring card into",
           "an {C:attention}Apostle{}. Each {C:attention}Apostle{}",
           "held in hand gives {X:mult,C:white}X#1#{} Mult"
-        }
+        },
+        unlock = {
+          "Discover {C:attention}#1#{}",
+          "{C:paperback_ego_gift,E:1}E.G.O. Gifts{}"
+        },
       },
       j_paperback_king_me = {
         name = "King Me",
@@ -1125,7 +1129,7 @@ return {
           "the rightmost {C:paperback_ego_gift}E.G.O. Gift{}",
         },
         unlock = {
-          "Sell an {C:paperback_ego_gift,E:1}EGO Gift{}"
+          "Sell an {C:paperback_ego_gift,E:1}E.G.O. Gift{}"
         }
       },
       j_paperback_the_strongest = {
@@ -1139,7 +1143,7 @@ return {
           "{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult)"
         },
         unlock = {
-          "Sell an {C:paperback_ego_gift,E:1}EGO Gift{}"
+          "Sell an {C:paperback_ego_gift,E:1}E.G.O. Gift{}"
         }
       },
       j_paperback_freezer = {

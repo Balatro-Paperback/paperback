@@ -9,7 +9,7 @@ SMODS.Joker {
   pos = { x = 8, y = 4 },
   atlas = "jokers_atlas",
   cost = 7,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = false,
@@ -17,6 +17,22 @@ SMODS.Joker {
   paperback = {
     requires_ranks = true
   },
+  locked_loc_vars = function(self, info_queue)
+    return { vars = { 5 } }
+  end,
+  check_for_unlock = function(self, args)
+    if G.P_CENTER_POOLS["paperback_ego_gift"] then
+      local count = 0
+      for k, v in pairs(G.P_CENTER_POOLS["paperback_ego_gift"]) do
+        if v.discovered == true then
+          count = count + 1
+        end
+      end
+      if count >= 5 then
+        unlock_card(self)
+      end
+    end
+  end,
 
   loc_vars = function(self, info_queue, card)
     return {
