@@ -1157,8 +1157,8 @@ return {
           "after defeating a {C:attention}Boss Blind{}",
         },
         unlock = {
-          "Acquire a {C:dark_edition}Negative{}",
-          "{S:1.1,C:attention,E:1}Food Joker"
+          "Own a {C:dark_edition}Negative{}",
+          "{C:attention,E:1}Food Joker"
         }
       },
       j_paperback_everything_must_go = {
@@ -1214,6 +1214,11 @@ return {
           "Chance increases by {C:green}#5#{} after",
           "every played hand",
         },
+        unlock = {
+          "Own {C:attention,E:1}#1#{}",
+          "{C:attention,E:1}Food Jokers{} at",
+          "the same time"
+        }
       },
       j_paperback_emergency_broadcast = {
         name = "Emergency Broadcast",
