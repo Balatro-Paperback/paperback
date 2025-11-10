@@ -35,7 +35,8 @@ SMODS.Enhancement {
       card.ability.extra.mult_gt_chip = mult > hand_chips
     end
 
-    if context.destroy_card and context.destroy_card == card then
+    if context.destroy_card and context.destroy_card == card and
+    (context.cardarea == G.play or context.cardarea == G.hand or context.cardarea == 'unscored') then
       return {
         remove = card.ability.extra.mult_gt_chip
       }

@@ -179,7 +179,7 @@ return {
       j_paperback_burning_pact = {
         name = "Burning Pact",
         text = {
-          "If a {C:attention}discard{} has only {C:attention}#1#{} card",
+          "If a {C:attention}discard{} has only {C:attention}#1#{} card,",
           "draw {C:attention}#2#{} additional cards"
         }
       },
@@ -1418,10 +1418,9 @@ return {
         name = "Surfer",
         text = {
           "This Joker gains {C:chips}+#1#{} Chips",
-          "for every {C:attention}#3#{} held in hand",
-          "at {C:attention}end of round{}, and {C:chips}+#2#",
-          "Chips for every {C:attention}#3#{} scored",
-          "{C:inactive}(Currently {C:chips}+#4#{C:inactive} chips)"
+          "for every {C:attention}#2#{} held in hand",
+          "at {C:attention}end of round{}",
+          "{C:inactive}(Currently {C:chips}+#3#{C:inactive} chips)"
         }
       },
       j_paperback_blue_bonnets = {
@@ -1740,6 +1739,20 @@ return {
           "{C:inactive}(Will give {X:mult,C:white}X#1#{C:inactive} Mult)"
         },
       },
+      j_paperback_photocopy = {
+        name = "Photocopy",
+        text = {
+          "Copies the ability",
+          "of rightmost {C:attention}Joker{}"
+        },
+      },
+      j_paperback_master_plan = {
+        name = "Master Plan",
+        text = {
+          "Copies ability of",
+          "{C:attention}Joker{} to the left"
+        },
+      },
       j_paperback_popsicle_stick = {
         name = "Popsicle Stick",
         text = {
@@ -1968,7 +1981,7 @@ return {
         name = "Eyelander",
         text = {
           "Scored {C:attention}face{} cards are destroyed.",
-          "After scoring {C:attention}#1# face{} cards",
+          "After scoring {C:attention}#1# face{} cards,",
           "{C:attention}selling{} this Joker adds {C:dark_edition}Negative{}",
           "to a {C:attention}random{} Joker",
           "{C:inactive}(Currently {C:attention}#2#{C:inactive} Heads)"
@@ -2382,8 +2395,9 @@ return {
       c_paperback_nine_of_swords = {
         name = "Nine of Swords",
         text = {
-          "Destroy selected Joker",
-          "It {C:red}cannot{} appear again this run"
+          "Destroy selected Joker and earn {C:money}$#2#{}",
+          "It {C:red}cannot{} appear again this run",
+          "{C:inactive}(Can destroy {C:paperback_eternal}Eternals{C:inactive})"
         }
       },
       c_paperback_ten_of_swords = {
@@ -2519,9 +2533,9 @@ return {
       c_paperback_queen_of_pentacles = {
         name = "Queen of Pentacles",
         text = {
-          "Select up to {C:attention}#1#{} cards.",
-          "Copy the {C:attention}leftmost{} card's",
-          "{C:attention}rank{} onto the others",
+          "Select {C:attention}#1#{} cards.",
+          "Copy the {C:attention}left{} card's",
+          "{C:attention}rank{} onto the {C:attention}right{} card",
           "{C:inactive}(Drag to rearrange)"
         }
       },
@@ -2639,11 +2653,19 @@ return {
           "equal to their {C:attention}rank{} when scored",
         }
       },
-      c_paperback_pendant_of_nostalgia = {
+      c_paperback_pendant_of_nostalgia_minor_arcana = {
         name = "Pendant of Nostalgia",
         text = {
           "Whenever a {C:attention}playing card{} is destroyed,",
           "create a random {C:tarot}Tarot{} or {C:paperback_minor_arcana}Minor Arcana{} card",
+          "{C:inactive}(Must have room)"
+        }
+      },
+      c_paperback_pendant_of_nostalgia = {
+        name = "Pendant of Nostalgia",
+        text = {
+          "Whenever a {C:attention}playing card{} is destroyed,",
+          "create a random {C:tarot}Tarot{} card",
           "{C:inactive}(Must have room)"
         }
       },

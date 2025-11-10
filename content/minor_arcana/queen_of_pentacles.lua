@@ -4,7 +4,7 @@ PB_UTIL.MinorArcana {
   pos = { x = 5, y = 7 },
   config = {
     min_highlighted = 2,
-    max_highlighted = 3,
+    max_highlighted = 2,
   },
 
   loc_vars = function(self, info_queue, card)

@@ -32,8 +32,12 @@ SMODS.Consumable {
 
         for _, v in ipairs(G.P_CENTER_POOLS.Joker) do
           -- Only shows discovered common, uncommon or rare and non-owned jokers
-          if v.discovered and not next(SMODS.find_card(v.key))
-              and (v.rarity == 1 or v.rarity == 2 or v.rarity == 3) then
+          local add = not PB_UTIL.is_banned(v)
+              and v.discovered
+              and not next(SMODS.find_card(v.key))
+              and (v.rarity == 1 or v.rarity == 2 or v.rarity == 3)
+
+          if add then
             selectable_jokers[#selectable_jokers + 1] = v
           end
         end

@@ -47,7 +47,7 @@ SMODS.Joker {
   end,
 
   calculate = function(self, card, context)
-    if context.final_scoring_step and context.cardarea == G.jokers and not context.blueprint then
+    if context.after and context.cardarea == G.jokers and not context.blueprint then
       local apostleCount = 0
       for _, v in ipairs(G.playing_cards) do
         if PB_UTIL.is_rank(v, 'paperback_Apostle') then

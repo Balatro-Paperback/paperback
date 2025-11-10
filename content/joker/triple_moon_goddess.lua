@@ -1,6 +1,6 @@
 if PB_UTIL.config.minor_arcana_enabled then
   SMODS.Joker {
-    key = 'triple_moon_goddess_minor_arcana',
+    key = 'triple_moon_goddess',
     config = {
       extra = {
         tarot_odds = 3,
@@ -25,7 +25,8 @@ if PB_UTIL.config.minor_arcana_enabled then
         vars = {
           n1, d1,
           n2, d2
-        }
+        },
+        key = "j_paperback_triple_moon_goddess_minor_arcana"
       }
     end,
 
@@ -71,7 +72,8 @@ else
       extra = {
         planet_odds = 3,
         tarot_odds = 3,
-      }
+      },
+      key = "j_paperback_triple_moon_goddess"
     },
     rarity = 2,
     pos = { x = 5, y = 4 },

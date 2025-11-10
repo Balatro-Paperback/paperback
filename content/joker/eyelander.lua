@@ -22,26 +22,24 @@ SMODS.Joker {
   end,
 
   calculate = function(self, card, context)
-    if context.destroy_card then
-      for _, c in ipairs(G.play.cards) do
-        if c:is_face() and context.destroy_card == c then
-          card.ability.extra.heads = card.ability.extra.heads + 1
-          if card.ability.extra.heads < card.ability.extra.heads_req then
-            return {
-              remove = true,
-              --[[ If a message is decided upon
-              message = localize(),
-              colour = G.C.RED
-              ]]
-            }
-          else
-            juice_card_until(card, function() return true end, true)
-            return {
-              remove = true,
-              message = localize('k_active_ex'),
-              colour = G.C.ORANGE
-            }
-          end
+    if context.destroy_card and context.cardarea == G.play then
+      if context.destroy_card:is_face() then
+        card.ability.extra.heads = card.ability.extra.heads + 1
+        if card.ability.extra.heads < card.ability.extra.heads_req then
+          return {
+            remove = true,
+            --[[ If a message is decided upon
+            message = localize(),
+            colour = G.C.RED
+            ]]
+          }
+        else
+          juice_card_until(card, function() return true end, true)
+          return {
+            remove = true,
+            message = localize('k_active_ex'),
+            colour = G.C.ORANGE
+          }
         end
       end
     end

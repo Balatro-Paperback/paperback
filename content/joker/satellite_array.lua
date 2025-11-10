@@ -6,7 +6,7 @@ SMODS.Joker {
   pos = { x = 20, y = 1 },
   atlas = "jokers_atlas",
   perishable_compat = false,
-  config = { extra = { chips_mod = 20, chips_rem = 5, chips = 0 } },
+  config = { extra = { chips_mod = 15, chips_rem = 5, chips = 0 } },
   loc_vars = function(self, info_queue, card)
     return { vars = { card.ability.extra.chips_mod, card.ability.extra.chips_rem, card.ability.extra.chips } }
   end,
@@ -16,7 +16,7 @@ SMODS.Joker {
         chips = card.ability.extra.chips
       }
     end
-    if context.final_scoring_step and card.ability.extra.chips > 0 then
+    if context.after and card.ability.extra.chips > 0 and not context.blueprint then
       card.ability.extra.chips = card.ability.extra.chips - card.ability.extra.chips_rem
       return {
         message = localize('paperback_downgrade_ex'),

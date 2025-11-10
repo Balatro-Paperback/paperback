@@ -16,27 +16,35 @@ SMODS.Joker {
   eternal_compat = true,
   soul_pos = nil,
 
-  set_ability = function(self, card, initial, delay_sprites)
-    PB_UTIL.calculate_highest_shared_played(card)
-  end,
-
   loc_vars = function(self, info_queue, card)
+    local x_mult = card.ability.extra.x_mult_mod * G.GAME.paperback.reference_card_ct + card.ability.extra.x_mult
     return {
       vars = {
         card.ability.extra.x_mult_mod,
-        card.ability.extra.x_mult
+        x_mult
       }
     }
   end,
 
   calculate = function(self, card, context)
+    if context.before then
+      PB_UTIL.calculate_highest_shared_played(card)
+      if card.ability.extra.message_flag then
+        card.ability.extra.message_flag = nil
+        SMODS.calculate_effect({
+          message = localize('k_upgrade_ex'),
+          colour = G.C.MULT,
+        }, card)
+      end
+    end
+
     -- Gives the xMult during play
     if context.joker_main then
-      PB_UTIL.calculate_highest_shared_played(card)
+      local x_mult = card.ability.extra.x_mult_mod * G.GAME.paperback.reference_card_ct + card.ability.extra.x_mult
 
-      if card.ability.extra.x_mult ~= 1 then
+      if x_mult ~= 1 then
         return {
-          x_mult = card.ability.extra.x_mult,
+          x_mult = x_mult,
           card = card
         }
       end
@@ -49,18 +57,25 @@ SMODS.Joker {
         {
           border_nodes = {
             { text = "X" },
-            { ref_table = "card.ability.extra", ref_value = "x_mult", retrigger_type = "exp" }
+            { ref_table = "card.joker_display_values", ref_value = "x_mult", retrigger_type = "exp" }
           }
         }
       },
+      calc_function = function(card)
+        card.joker_display_values.x_mult = card.ability.extra.x_mult_mod * G.GAME.paperback.reference_card_ct +
+            card.ability.extra.x_mult
+      end,
     }
   end,
 }
 
-
--- Helper function to find the mininum played hand in G.GAME.hands in all base poker hands
+-- Update global information for Reference Card.
+-- See solar_system.lua
 function PB_UTIL.calculate_highest_shared_played(card)
+  local old = G.GAME.paperback.reference_card_ct
   local hands = G.GAME.hands
+
+  -- Finds the mininum played hand in G.GAME.hands in all base poker hands
 
   local min_played = hands[PB_UTIL.base_poker_hands[1]].played
 
@@ -72,6 +87,11 @@ function PB_UTIL.calculate_highest_shared_played(card)
     end
   end
 
-  -- set the card's x_mult to a value depending on the minimum played
-  card.ability.extra.x_mult = card.ability.extra.x_mult_mod * min_played + 1
+  -- set global to minimum played
+  G.GAME.paperback.reference_card_ct = min_played
+  if old < G.GAME.paperback.reference_card_ct then
+    for _, v in ipairs(SMODS.find_card('j_paperback_reference_card')) do
+      v.ability.extra.message_flag = true
+    end
+  end
 end

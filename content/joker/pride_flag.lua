@@ -1,6 +1,6 @@
 if PB_UTIL.config.suits_enabled then
   SMODS.Joker {
-    key = 'pride_flag_spectrums',
+    key = 'pride_flag',
     config = {
       extra = {
         a_chips = 12,
@@ -25,7 +25,8 @@ if PB_UTIL.config.suits_enabled then
         vars = {
           card.ability.extra.a_chips,
           card.ability.extra.chips
-        }
+        },
+        key = "j_paperback_pride_flag_spectrums"
       }
     end,
 
@@ -84,7 +85,7 @@ if PB_UTIL.config.suits_enabled then
   }
 else
   SMODS.Joker {
-    key = 'pride_flag_no_spectrums',
+    key = 'pride_flag',
     config = {
       extra = {
         a_mult = 2,
@@ -107,7 +108,8 @@ else
         vars = {
           card.ability.extra.a_mult,
           card.ability.extra.mult
-        }
+        },
+        key = "j_paperback_pride_flag_no_spectrums"
       }
     end,
 

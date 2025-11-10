@@ -31,7 +31,7 @@ SMODS.Joker {
         return { dollars = card.ability.extra.dollars }
       end
     end
-    if context.final_scoring_step then
+    if context.after then
       card.ability.extra.last_hand_played = G.GAME.last_hand_played
     end
   end,

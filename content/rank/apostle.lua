@@ -25,8 +25,13 @@ SMODS.Rank {
   },
 
   in_pool = function(self, args)
-    -- Allows Apostles to be spawned, used only for Dreamer's Sleeve
+    -- Allows Apostles to be created at the start of a run, used only for Dreamer's Sleeve
     if args and args.initial_deck and G.GAME.starting_params.paperback_spawn_apostles then
+      return true
+    end
+
+    -- Allows forcing Apostles to be included
+    if args and args.paperback and args.paperback.allow_apostles then
       return true
     end
 

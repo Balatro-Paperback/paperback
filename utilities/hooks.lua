@@ -12,6 +12,9 @@ function Game.init_game_object(self)
   end
 
   ret.paperback = {
+    solar_system_ct = 1,
+    reference_card_ct = 0,
+
     round = {
       scored_clips = 0
     },
@@ -267,25 +270,6 @@ function add_tag(tag)
   return add_tag_ref(tag)
 end
 
--- Ace still can't wrap around straights even though it's no longer straight_edge
--- accounts for Shortcut by checking for Q and 3 as well
-local get_straight_ref = get_straight
-function get_straight(hand, min_length, skip, wrap)
-  local orig_straights = get_straight_ref(hand, min_length, skip, wrap)
-  if wrap then return orig_straights end
-  local result = {}
-  for _, straight in ipairs(orig_straights) do
-    local has_king_queen = false
-    local has_2_3 = false
-    for i = 1, #straight do
-      if straight[i]:get_id() == 13 or straight[i]:get_id() == 12 then has_king_queen = true end
-      if straight[i]:get_id() == 2 or straight[i]:get_id() == 3 then has_2_3 = true end
-    end
-    if not (has_king_queen and has_2_3) then table.insert(result, straight) end
-  end
-  return result
-end
-
 -- Apostle-high straight flushes get renamed to "Rapture"
 local poker_hand_info_ref = G.FUNCS.get_poker_hand_info
 function G.FUNCS.get_poker_hand_info(_cards)
@@ -294,11 +278,10 @@ function G.FUNCS.get_poker_hand_info(_cards)
     local has_apostle = false
     local all_top = true
     for i = 1, #scoring_hand do
-      local rank = not SMODS.has_no_rank(scoring_hand[i]) and SMODS.Ranks[scoring_hand[i].base.value]
-      if rank.key == 'paperback_Apostle' then has_apostle = true end
-      if rank.key ~= 'Ace' and rank.key ~= 'paperback_Apostle' and not rank.face then all_top = false end
+      local rank = SMODS.Ranks[scoring_hand[i].base.value]
+      has_apostle = has_apostle or rank.key == 'paperback_Apostle'
+      all_top = all_top and (rank.key == 'paperback_Apostle' or rank.key == 'Ace' or rank.face)
     end
-
     if has_apostle and all_top then
       disp_text = "paperback_Straight Flush (Rapture)"
       loc_disp_text = localize(disp_text, "poker_hands")
@@ -350,6 +333,7 @@ function Card.set_eternal(self, eternal)
   end
 end
 
+-- Keep track of G.GAME.paperback.this_shop_dollars_spent
 -- Redoing this a bit more accurately than Bunco
 local inc_career_stat_ref = inc_career_stat
 function inc_career_stat(stat, mod)
@@ -401,4 +385,13 @@ function pseudorandom_element(_t, seed, args)
     _t[remove_key] = nil
   end
   return pseudorandom_element_ref(_t, seed, args)
+end
+
+-- WhiteNight is indestructible
+-- Currently doesn't do much because WhiteNight always
+-- gets the Eternal sticker
+local is_eternal_ref = SMODS.is_eternal
+function SMODS.is_eternal(card, ...)
+  return is_eternal_ref(card, ...)
+      or card.config.center.paperback and card.config.center.paperback.indestructible
 end

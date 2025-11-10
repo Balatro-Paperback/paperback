@@ -46,7 +46,7 @@ SMODS.Joker {
   end,
 
   calculate = function(self, card, context)
-    if context.cardarea == G.hand and context.individual then
+    if context.cardarea == G.hand and context.individual and not context.end_of_round then
       if PB_UTIL.chance(card, "paperback_showdown_money") and context.other_card:is_suit(card.ability.extra.suit1) or context.other_card:is_suit(card.ability.extra.suit2) then
         return {
           dollars = card.ability.extra.dollars

@@ -22,8 +22,10 @@ PB_UTIL.EGO_Gift {
   end,
 
   ego_loc_vars = function(self, info_queue, card)
-    return { vars = {
-      card.ability.a_rep
-    } }
+    return {
+      vars = {
+        card.ability.a_rep
+      }
+    }
   end,
 }

@@ -10,18 +10,20 @@ PB_UTIL.EGO_Gift {
 
   ego_loc_vars = function(self, info_queue, card)
     local n, d = PB_UTIL.chance_vars(card, nil, 1, card.ability.odds)
-    return { vars = {
-      n, d
-    } }
+
+    return {
+      vars = {
+        n, d
+      }
+    }
   end,
 
   ego_gift_calc = function(self, card, context)
     if context.repetition and context.cardarea == G.hand and next(context.card_effects[1]) then
-      if PB_UTIL.chance(card, pseudoseed('lightning_rod'), nil, card.ability.odds) then
-        return { vars = {
-          message = localize("k_again_ex"),
+      if PB_UTIL.chance(card, 'lightning_rod', 1, card.ability.odds) then
+        return {
           repetitions = 1,
-        } }
+        }
       end
     end
   end

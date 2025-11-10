@@ -112,11 +112,20 @@ SMODS.current_mod.calculate = function(self, context)
       end
     end
   end
+
+  -- Keep Solar System global variable updated
+  if context.paperback and context.paperback.level_up then
+    PB_UTIL.update_solar_system(card)
+  end
+  -- Keep Reference Card global variable updated
+  if context.before then
+    PB_UTIL.calculate_highest_shared_played(card)
+  end
 end
 
 -- Sleeved cards can't be debuffed
 SMODS.current_mod.set_debuff = function(card)
-  if card.ability and card.ability.name == "m_paperback_sleeved" then
+  if SMODS.has_enhancement(card, "m_paperback_sleeved") then
     return "prevent_debuff"
   end
 end
@@ -142,6 +151,23 @@ SMODS.current_mod.reset_game_globals = function(run_start)
     end
   end
   if run_start then
+    -- Set last_scored_suit to a sensible value.
+    -- Mostly matters if Jester of Nihil is obtained before the first blind
+    -- on a deck with different suit distribution, like Checkered + Dreamer Deck/Sleeve
+    -- Might still fail if Joker is created before the run even begins?
+    G.E_MANAGER:add_event(Event({
+      func = function()
+        local cards = {}
+        for k, v in ipairs(G.playing_cards) do
+          if not SMODS.has_no_suit(v) then
+            cards[#cards + 1] = v
+          end
+        end
+        local selected = pseudorandom_element(cards, pseudoseed('paperback_last_scored_suit'))
+        if selected then G.GAME.paperback.last_scored_suit = selected.base.suit end
+        return true
+      end
+    }))
     G.GAME.paperback.banned_run_keys = {}
   end
 end
@@ -314,6 +340,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "nachos",
   "crispy_taco",
   "soft_taco",
+  -- "watermelon",
   "complete_breakfast",
   "ghost_cola",
   "b_soda",
@@ -349,9 +376,10 @@ PB_UTIL.ENABLED_JOKERS = {
   "one_sin_and_hundreds_of_good_deeds",
   "plague_doctor",
   "white_night",
-  -- "der_freischutz",
   "angel_investor",
+  -- "der_freischutz",
   "card_sleeve",
+  -- "plastic_wrap",
   "shopping_center",
   "everything_must_go",
   "tutor",
@@ -363,18 +391,21 @@ PB_UTIL.ENABLED_JOKERS = {
   "high_speed_rail",
   "small_scale_onshore_wind",
   "satellite_array",
+  -- "first_contact",
   "aurora_borealis",
   "grand_strategy",
   "moving_out",
   "ready_to_fly",
   "great_wave",
   "let_it_happen",
+  -- "paralyzed"
   "in_case_i_make_it",
   "rosary_beads",
   "joker_cd_i",
   "determination",
   "prince_of_darkness",
   "giga_size",
+  "photocopy",
   "mandela_effect",
   "jester_of_nihil",
   "shopkeep",
@@ -384,8 +415,15 @@ PB_UTIL.ENABLED_JOKERS = {
   "a_balatro_movie",
   "ncj",
   "bicycle",
+  -- "mezzetino",
+  -- "gauze",
   "joke_master",
+  -- "jokers_11",
   -- "book_of_life",
+  -- "hamsa",
+  -- "hamsa_r",
+  -- "nazar",
+  -- "prescript",
   "trans_flag",
   "pride_flag",
   "bismuth",
@@ -396,6 +434,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "autumn_leaves",
   "river",
   "evergreens",
+  "master_plan",
   "the_wonder_of_you",
   "tian_tian",
   "backpack",
@@ -413,22 +452,31 @@ PB_UTIL.ENABLED_JOKERS = {
   -- "red_sun",
   "the_sun_rises",
   "blood_rain",
+  -- "war_without_reason",
   "paranoia",
   "der_fluschutze",
   "touch_tone_joker",
+  -- "the_batter",
+  -- "off_switch",
+  -- "alpha",
+  -- "omega",
+  -- "epsilon",
   "jestrica",
   "you_are_a_fool",
   "alert",
   "legacy",
+  -- "redscreen",
   "telamon",
   "weather_radio",
   "power_surge",
   "time_regression_mix",
   "find_jimbo",
   "joker_crossing",
+  -- "tower_of_balatro",
   "jimbos_inferno",
   "tome",
   "greeting_card",
+  -- "an_invitation",
   "jimbocards",
   "forlorn",
   "protocol",
@@ -447,6 +495,8 @@ PB_UTIL.ENABLED_JOKERS = {
   "better_call_jimbo",
   "jimbo_adventure",
   "ddakji",
+  -- "yacht_dice",
+  -- "deck_of_cards",
   "pocket_pair",
   "ultra_rare",
   -- "lore_digger",
@@ -481,9 +531,11 @@ PB_UTIL.ENABLED_JOKERS = {
   "gambit",
   "king_me",
   "manilla_folder",
+  -- "joker_duty",
   "clippy",
   "clothespin",
   "kintsugi_joker",
+  -- "happy_accident",
   "watercolor_joker",
   "medic",
   "festive_joker",
@@ -494,6 +546,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "pedrillo",
   "nichola",
   "chaplin",
+  -- "shinzaemon",
 }
 
 PB_UTIL.ENABLED_MINOR_ARCANA = {
@@ -759,9 +812,11 @@ PB_UTIL.ENABLED_MINOR_ARCANA_BOOSTERS = {
   'minor_arcana_normal_1',
   'minor_arcana_normal_2',
   'minor_arcana_normal_3',
+  'minor_arcana_normal_4',
   'minor_arcana_jumbo_1',
   'minor_arcana_jumbo_2',
   'minor_arcana_mega',
+  'minor_arcana_mega_2',
 }
 
 PB_UTIL.ENABLED_EGO_GIFT_BOOSTERS = {
@@ -985,6 +1040,7 @@ if PB_UTIL.config.ego_gifts_enabled then
         set = 'paperback_ego_gift',
         area = G.pack_cards,
         skip_materialize = true,
+        soulable = true,
         key_append = 'paperback_extr'
       }
     end,

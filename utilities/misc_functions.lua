@@ -1201,6 +1201,26 @@ function PB_UTIL.is_card(c)
   return c and type(c) == "table" and c.is and type(c.is) == "function" and c:is(Card)
 end
 
+--- Whether this center is considered banned, either through:
+--- - banned_keys from the base game
+--- - banned_run_keys from paperback
+--- - due to missing paperback setting requirements
+---@param center table any table under G.P_CENTERS or SMODS.Centers
+---@return boolean
+function PB_UTIL.is_banned(center)
+  if G.GAME.banned_keys[center.key] or G.GAME.paperback.banned_run_keys[center.key] then
+    return true
+  end
+
+  for _, v in pairs(center.paperback and center.paperback.requirements or {}) do
+    if not PB_UTIL.config[v.setting] then
+      return true
+    end
+  end
+
+  return false
+end
+
 -- Returns a table of all the unique special effects in the deck
 ---@param check_for_enhancements boolean
 ---@param check_for_seals boolean
