@@ -437,6 +437,10 @@ return {
           "If played hand contains a {C:attention}#1#,",
           "convert all {C:attention}scored cards{} into",
           "random {C:attention}different suits"
+        },
+        unlock = {
+          "Play {C:attention,E:1}#1# Wild cards{}",
+          "in a hand",
         }
       },
       j_paperback_master_spark = {

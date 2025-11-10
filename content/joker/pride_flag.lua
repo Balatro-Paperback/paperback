@@ -39,6 +39,9 @@ if PB_UTIL.config.suits_enabled then
       end
       return false
     end,
+    locked_loc_vars = function(self, info_queue, card)
+      return { key = "j_paperback_pride_flag_spectrums" }
+    end,
 
     -- Calculate function for the Joker
     calculate = function(self, card, context)
@@ -114,7 +117,12 @@ else
     end,
 
     locked_loc_vars = function(self, info_queue, card)
-      return { vars = { 4 } }
+      return {
+        vars = {
+          4
+        },
+        key = "j_paperback_pride_flag_no_spectrums"
+      }
     end,
 
     check_for_unlock = function(self, args)

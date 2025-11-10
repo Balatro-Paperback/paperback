@@ -16,6 +16,26 @@ SMODS.Joker {
     requires_custom_suits = true,
     requires_spectrum_or_suit = true
   },
+  unlocked = false,
+  locked_loc_vars = function(self, info_queue, card)
+    return { vars = { 5 } }
+  end,
+  -- Just took the vanilla unlock condition for the Flushed achievement
+  check_for_unlock = function(self, args)
+    if args.type == 'hand' then
+      if args.handname == 'Flush' and args.scoring_hand then
+        local _w = 0
+        for k, v in ipairs(args.scoring_hand) do
+          if v.ability.name == 'Wild Card' then
+            _w = _w + 1
+          end
+        end
+        if _w == #args.scoring_hand then
+          return true
+        end
+      end
+    end
+  end,
 
   loc_vars = function(self, info_queue, card)
     return {
