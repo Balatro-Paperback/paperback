@@ -4,11 +4,17 @@ SMODS.Joker {
   pos = { x = 0, y = 6 },
   atlas = 'jokers_atlas',
   cost = 9,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = false,
   eternal_compat = true,
   soul_pos = nil,
+  locked_loc_vars = function(self, info_queue, card)
+    return { vars = { 12 } }
+  end,
+  check_for_unlock = function(self, args)
+    return args.type == 'ante_up' and args.ante >= 12
+  end
 }
 
 local function wrap_the_world(ignores, func, context)

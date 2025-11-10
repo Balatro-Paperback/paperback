@@ -18,6 +18,13 @@ SMODS.Joker {
   paperback = {
     permanently_eternal = true,
   },
+  unlocked = false,
+  locked_loc_vars = function(self, info_queue, card)
+    return { vars = { 13 }, key = 'j_paperback_jimbocards_collection' }
+  end,
+  check_for_unlock = function(self, args)
+    return args.type == 'ante_up' and args.ante >= 13
+  end,
 
   in_pool = function(self, args)
     return args and args.source and (args.source == 'sho' or args.source == 'buf')
@@ -25,7 +32,7 @@ SMODS.Joker {
 
   loc_vars = function(self, info_queue, card)
     if card.area and card.area.config.collection then
-      info_queue[#info_queue+1] = { key = 'eternal', set = 'Other' }
+      info_queue[#info_queue + 1] = { key = 'eternal', set = 'Other' }
     end
     return {
       key = card.area and card.area.config.collection and 'j_paperback_jimbocards_collection' or nil,

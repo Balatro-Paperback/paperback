@@ -1021,6 +1021,10 @@ return {
           "All {C:blue}hands{} and {C:red}discards{} are",
           "considered the {C:attention}first{} and",
           "{C:attention}last{} of round"
+        },
+        unlock = {
+          "Reach Ante",
+          "level {E:1,C:attention}#1#",
         }
       },
       j_paperback_epic_sauce = {
@@ -1060,6 +1064,10 @@ return {
           "All purchases cost {C:money}$#2#{} less.",
           "Clear each {C:attention}Ante{} in {C:attention}#3#{} hands, or you {S:1.1,C:red,E:2}lose{}",
           "{C:inactive}({C:attention}#4#{C:inactive} hands left)"
+        },
+        unlock = {
+          "Reach Ante",
+          "level {E:1,C:attention}#1#",
         }
       },
       j_paperback_jimbocards_collection = {
@@ -1071,6 +1079,10 @@ return {
           "Clear each {C:attention}Ante{} in {C:attention}#3#{} hands, or you {S:1.1,C:red,E:2}lose{}",
           "{C:inactive}({C:attention}#4#{C:inactive} hands left)",
           "Always {C:paperback_eternal}Eternal",
+        },
+        unlock = {
+          "Reach Ante",
+          "level {E:1,C:attention}#1#",
         }
       },
       j_paperback_forlorn = {
