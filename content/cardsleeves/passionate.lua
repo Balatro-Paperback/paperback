@@ -7,6 +7,8 @@ if PB_UTIL.config.tags_enabled then
     config = {
       no_interest = true
     },
+    unlocked = false,
+    unlock_condition = { deck = "b_paperback_passionate", stake = "stake_black" },
 
     loc_vars = function(self)
       return {

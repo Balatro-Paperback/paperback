@@ -8,6 +8,8 @@ if PB_UTIL.config.suits_enabled then
       create_crowns = true,
       create_stars = true
     },
+    unlocked = false,
+    unlock_condition = { deck = "b_paperback_proud", stake = "stake_green" },
 
     apply = function(self, sleeve)
       if self:is_buffed() then

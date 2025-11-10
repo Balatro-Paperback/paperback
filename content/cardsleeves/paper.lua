@@ -16,6 +16,8 @@ PB_UTIL.Sleeve {
       }
     }
   end,
+  unlocked = false,
+  unlock_condition = { deck = "b_paperback_paper", stake = "stake_red" },
 
   apply     = function(self, sleeve)
     if self:is_buffed() then

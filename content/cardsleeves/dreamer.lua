@@ -10,6 +10,8 @@ if PB_UTIL.config.spectrals_enabled and PB_UTIL.config.ranks_enabled then
         'c_paperback_apostle_of_wands'
       }
     },
+    unlocked = false,
+    unlock_condition = { deck = "b_paperback_dreamer", stake = "stake_orange" },
 
     loc_vars = function(self)
       return {

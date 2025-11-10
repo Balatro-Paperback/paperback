@@ -12,6 +12,8 @@ if PB_UTIL.config.minor_arcana_enabled and PB_UTIL.config.vouchers_enabled then
         'c_paperback_nine_of_cups'
       }
     },
+    unlocked = false,
+    unlock_condition = { deck = "b_paperback_silver", stake = "stake_green" },
 
     loc_vars = function(self)
       return {
