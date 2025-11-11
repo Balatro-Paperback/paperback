@@ -814,6 +814,10 @@ return {
           "chance to create the {C:planet}Planet",
           "card for played {C:attention}poker hand",
           "{C:inactive}(Must have room)"
+        },
+        unlock = {
+          "Get any {C:attention,E:1}poker hand{}",
+          "to level {C:attention,E:1}#1#{}"
         }
       },
       j_paperback_resurrections = {
@@ -1570,6 +1574,11 @@ return {
           "Destroys the {C:attention}first played",
           "{C:attention}hand{} every round"
         },
+        unlock = {
+          "Reduce your deck",
+          "by at least {E:1,C:attention}#1#{} cards",
+          "in one round"
+        }
       },
       j_paperback_triple_moon_goddess = {
         name = "Triple Moon Goddess",

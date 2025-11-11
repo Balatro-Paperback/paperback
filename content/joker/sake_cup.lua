@@ -10,7 +10,7 @@ SMODS.Joker {
   pos = { x = 6, y = 9 },
   atlas = 'jokers_atlas',
   cost = 8,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -25,6 +25,16 @@ SMODS.Joker {
         denominator
       }
     }
+  end,
+  locked_loc_vars = function(self, info_queue, center)
+    return {
+      vars = { 9 }
+    }
+  end,
+  check_for_unlock = function(self, args)
+    if args.type == 'upgrade_hand' then
+      return args.level >= 9
+    end
   end,
 
   -- Calculate function for the Joker
