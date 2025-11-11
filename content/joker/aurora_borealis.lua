@@ -9,11 +9,16 @@ SMODS.Joker {
   pos = { x = 15, y = 10 },
   atlas = 'jokers_atlas',
   cost = 6,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
   soul_pos = nil,
+
+  locked_loc_vars = function(self, info_queue, card)
+    return { vars = { 3 } }
+  end,
+  unlock_condition = { type = 'modify_jokers', extra = { polychrome = true, count = 3 } },
 
   loc_vars = function(self, info_queue, card)
     local xmult

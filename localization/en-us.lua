@@ -517,8 +517,12 @@ return {
           "This Joker gains {X:mult,C:white}X#1#{} Mult",
           "for each {C:attention}editioned Joker{} card",
           "{s:0.9,C:dark_edition}Negatives{s:0.9,C:inactive} are excluded{}",
-          "{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult)"
-        }
+          "{C:inactive}(Currently {X:,mult,C:white}X#2#{C:inactive} Mult)"
+        },
+        unlock = {
+          "Have at least {E:1,C:attention}#1#",
+          "{C:dark_edition}Polychrome{} Jokers",
+        },
       },
       j_paperback_joke_master = {
         name = "Joke Master",
