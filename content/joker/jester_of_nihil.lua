@@ -11,11 +11,29 @@ SMODS.Joker {
   pos = { x = 2, y = 6 },
   atlas = 'jokers_atlas',
   cost = 7,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
-  soul_pos = nil,
+  locked_loc_vars = function(self, info_queue, card)
+    return {
+      vars = { 4 }
+    }
+  end,
+  -- Unlock taken from Bunco
+  check_for_unlock = function(self, args)
+    if args.type == 'hand_contents' then
+      local tally = 0
+        for j = 1, #args.cards do
+          if args.cards[j].debuff then
+            tally = tally + 1
+          end
+        end
+      if tally >= 4 then
+        return true
+      end
+    end
+  end,
 
   set_ability = function(self, card, initial, delay_sprites)
     card.ability.extra.suit = G.GAME.paperback.last_scored_suit

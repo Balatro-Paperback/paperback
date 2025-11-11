@@ -1006,6 +1006,11 @@ return {
           "{C:mult}+#1#{} Mult for every {C:attention}debuffed{}",
           "card in your full deck",
           "{C:inactive}(Currently {V:1}#2#{C:inactive} and {C:mult}+#3#{C:inactive} Mult)",
+        },
+        unlock = {
+          "Play a hand that",
+          "contains {C:attention,E:1}#1#{}",
+          "{C:attention,E:1}Debuffed{} cards"
         }
       },
       j_paperback_forgery = {
@@ -1777,6 +1782,11 @@ return {
           "Copies the ability",
           "of rightmost {C:attention}Joker{}"
         },
+        unlock = {
+          "Have a deck containing only",
+          "cards of the same",
+          "{E:1,C:attention}Rank{} and {E:1,C:attention}Suit{}"
+        }
       },
       j_paperback_master_plan = {
         name = "Master Plan",
