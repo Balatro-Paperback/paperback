@@ -927,6 +927,11 @@ return {
           "card below {C:attention}#2#{}",
           "in your full deck",
           "{C:inactive}(Currently {X:mult,C:white}X#3#{C:inactive} Mult)"
+        },
+        unlock = {
+          "Win a run without",
+          "{C:attention,E:1}ever{} having a card",
+          "in your {C:attention,E:1}consumables"
         }
       },
       j_paperback_alert = {
