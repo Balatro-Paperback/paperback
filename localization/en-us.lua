@@ -973,6 +973,9 @@ return {
           "{C:money}$#1#{} if they match suit,",
           "{C:money}$#2#{} if they match rank,",
           "or {C:money}$#3#{} if they match exactly",
+        },
+        unlock = {
+          "Play a {C:attention,E:1}Spectrum Five{}"
         }
       },
       j_paperback_mexican_train = {
