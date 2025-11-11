@@ -1784,6 +1784,10 @@ return {
           "Copies ability of",
           "{C:attention}Joker{} to the left"
         },
+        unlock = {
+          "Complete the {E:1,C:attention}15 Minute City",
+          "challenge"
+        }
       },
       j_paperback_popsicle_stick = {
         name = "Popsicle Stick",

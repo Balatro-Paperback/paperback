@@ -7,6 +7,13 @@ SMODS.Joker {
   blueprint_compat = true,
   eternal_compat = true,
   perishable_compat = true,
+  unlocked = false,
+  check_for_unlock = function(self, args)
+    if args.type == 'win_challenge' and G.GAME.challenge == 'c_city_1' then
+      self.challenge_bypass = true
+      return true
+    end
+  end,
   loc_vars = function(self, info_queue, card)
     if card.area and card.area == G.jokers then
       local other_joker
