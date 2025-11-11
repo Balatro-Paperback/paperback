@@ -11,13 +11,18 @@ SMODS.Joker {
   pos = { x = 3, y = 9 },
   atlas = "jokers_atlas",
   cost = 7,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = false,
   eternal_compat = true,
   paperback = {
     requires_custom_suits = true
   },
+  check_for_unlock = function(self, args)
+    if args.type == 'modify_deck' then
+      return PB_UTIL.has_suit_in_deck("paperback_Crowns") or PB_UTIL.has_suit_in_deck("paperback_Stars")
+    end
+  end,
 
   in_pool = function(self, args)
     -- Only in pool if you have either a Star or Crown
@@ -55,7 +60,7 @@ SMODS.Joker {
       for k, v in pairs(ctx.full_hand) do
         local roll = PB_UTIL.chance(card, 'bismuth')
         if not v.edition and roll and
-            (v:is_suit(card.ability.extra.suit1) or v:is_suit(card.ability.extra.suit2)) then
+        (v:is_suit(card.ability.extra.suit1) or v:is_suit(card.ability.extra.suit2)) then
           triggered = true
 
           local edition = poll_edition('bismuth', nil, nil, true, {

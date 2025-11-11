@@ -772,6 +772,9 @@ return {
           "Played {V:1}#1#{} and {V:2}#2#{} have",
           "a {C:green}#3# in #4#{} chance to gain {C:dark_edition}Foil{},",
           "{C:dark_edition}Holographic{} or {C:dark_edition}Polychrome",
+        },
+        unlock = {
+          "Find a {C:paperback_crowns,E:1}Shiny {C:paperback_stars,E:1}Suit{}",
         }
       },
       j_paperback_deadringer = {
@@ -1231,9 +1234,8 @@ return {
           "every played hand",
         },
         unlock = {
-          "Own {C:attention,E:1}#1#{}",
-          "{C:attention,E:1}Food Jokers{} at",
-          "the same time"
+          "Have {C:attention,E:1}#1# Food{}",
+          "{C:attention,E:1}Jokers{} at once"
         }
       },
       j_paperback_emergency_broadcast = {

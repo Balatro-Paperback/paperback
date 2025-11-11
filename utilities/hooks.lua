@@ -23,6 +23,7 @@ function Game.init_game_object(self)
     stained_inc = 0,
     destroyed_dark_suits = 0,
     destroyed_cards = 0,
+    destroyed_cards_this_round = 0,
     last_tarot_energized = false,
     ranks_scored_this_ante = {},
     last_scored_suit = 'Spades',
