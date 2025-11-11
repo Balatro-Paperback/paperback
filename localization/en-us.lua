@@ -691,7 +691,12 @@ return {
           "contains a {C:attention}#1#{},",
           "the first discarded {C:attention}#1#{}",
           "gets a random {C:attention}seal",
-        }
+        },
+        unlock = {
+          "Play a {C:attention,E:1}Stained",
+          "playing card with",
+          "a {C:attention,E:1}Red Seal",
+        },
       },
       j_paperback_medic = {
         name = "Medic",
