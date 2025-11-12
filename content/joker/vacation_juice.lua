@@ -9,7 +9,7 @@ SMODS.Joker {
   pos = { x = 14, y = 9 },
   atlas = "jokers_atlas",
   cost = 10,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = false,
   eternal_compat = false,
@@ -25,6 +25,23 @@ SMODS.Joker {
       }
     }
   end,
+
+  locked_loc_vars = function(self, info_queue, card)
+    local other_name = localize('k_unknown')
+    if G.P_CENTERS['b_paperback_passionate'].unlocked then
+      other_name = localize { type = 'name_text', set = 'Back', key = 'b_paperback_passionate' }
+    end
+
+    return {
+      vars = { other_name }
+    }
+  end,
+  check_for_unlock = function(self, args)
+    if args.type == 'win_deck' and (get_deck_win_stake('b_paperback_passionate') >= 1) then
+      return true
+    end
+  end,
+
 
   calculate = function(self, card, context)
     if not context.blueprint and context.end_of_round and context.main_eval

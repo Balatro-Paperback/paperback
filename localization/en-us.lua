@@ -885,6 +885,10 @@ return {
           "for the first time,",
           "do not advance to next {C:attention}Blind{}",
           "Drank after {C:attention}#1#{} trigger#2#",
+        },
+        unlock = {
+          "Win a run with",
+          "{C:attention}#1#{}"
         }
       },
       j_paperback_black_forest_cake = {
