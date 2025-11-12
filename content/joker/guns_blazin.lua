@@ -13,11 +13,29 @@ SMODS.Joker { -- Guns Blazin'
   rarity = 2,
   blueprint_compat = true,
   eternal_compat = true,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   atlas = 'jokers_atlas',
   loc_vars = function(self, info_queue, card)
     return { vars = { card.ability.extra.xmult } }
+  end,
+  locked_loc_vars = function(self, info_queue, card)
+    return { vars = { 5 } }
+  end,
+
+  check_for_unlock = function(self, args)
+    if args.type == 'hand_contents' then
+    local tally = 0
+      for j = 1, #args.cards do
+        if SMODS.has_enhancement(args.cards[j], 'm_steel') then
+          tally = tally + 1
+          if tally >= 5 then
+            return true
+          end
+        end
+      end
+    end
+    return false
   end,
 
   calculate = function(self, card, context)

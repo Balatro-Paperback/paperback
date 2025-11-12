@@ -22,7 +22,6 @@ SMODS.Joker {
 
   check_for_unlock = function(self, args)
     if args.type == 'hand_contents' then
-    local tally = 0
       for j = 1, #args.cards do
         if SMODS.has_enhancement(args.cards[j], 'm_paperback_soaked') and args.cards[j]:get_seal() == "Blue" then
           return true

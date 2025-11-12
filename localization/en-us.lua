@@ -1792,6 +1792,10 @@ return {
           "every hand played in current {C:attention}Blind{}",
           "{C:inactive}(Will give {X:mult,C:white}X#1#{C:inactive} Mult)"
         },
+        unlock = {
+          "Play a card with",
+          "{C:attention,E:1}50{} additional {C:attention,E:1}Chips{}",
+        },
       },
       j_paperback_photocopy = {
         name = "Photocopy",
@@ -2074,6 +2078,10 @@ return {
           "give {X:mult,C:white}X#1#{} Mult",
           "when scored",
         },
+        unlock = {
+          "Play a hand of",
+          "{C:attention,E:1}#1# Steel{} cards",
+        }
       },
       j_paperback_satellite_array = {
         name = "Satellite Array",
