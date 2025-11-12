@@ -2011,7 +2011,12 @@ return {
         text = {
           "{C:attention}#1#s{} give",
           "{X:chips,C:white}X#2#{} Chips when scored",
-        }
+        },
+        unlock = {
+          "Play a {C:attention,E:1}Soaked",
+          "playing card with",
+          "a {C:attention,E:1}Blue Seal",
+        },
       },
       j_paperback_birches = {
         name = "Birches",
