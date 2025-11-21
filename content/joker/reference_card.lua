@@ -17,11 +17,22 @@ SMODS.Joker {
   soul_pos = nil,
 
   loc_vars = function(self, info_queue, card)
+    local hands_to_play = ""
+
+    for _, hand in ipairs(PB_UTIL.base_poker_hands) do
+      local current_hand = G.GAME.hands[hand]
+
+      if current_hand.played <= G.GAME.paperback.reference_card_ct then
+        hands_to_play = hands_to_play .. (hands_to_play == '' and ' ' or ', ') .. localize(hand, 'poker_hands')
+      end
+    end
+
     local x_mult = card.ability.extra.x_mult_mod * G.GAME.paperback.reference_card_ct + card.ability.extra.x_mult
     return {
       vars = {
         card.ability.extra.x_mult_mod,
-        x_mult
+        x_mult,
+        hands_to_play,
       }
     }
   end,

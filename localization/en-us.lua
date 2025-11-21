@@ -1534,6 +1534,7 @@ return {
           "Gives {X:mult,C:white}X#1#{} Mult for every time {C:attention}all{} 9",
           "base {C:attention}poker hands{} have been played",
           "{C:inactive}(Currently {X:mult,C:white}X#2#{} {C:inactive}Mult)",
+          "{C:inactive}(Hands to play:{C:attention}#3#{C:inactive})",
         },
       },
       j_paperback_dreamsicle = {
