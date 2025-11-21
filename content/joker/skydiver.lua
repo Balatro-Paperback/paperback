@@ -95,7 +95,38 @@ SMODS.Joker {
         }
       end
     end
-  end
+  end,
+
+  joker_display_def = function(JokerDisplay)
+    return {
+      text = {
+        {
+          border_nodes = {
+            { text = "X" },
+            { ref_table = "card.joker_display_values", ref_value = "x_mult", retrigger_type = "exp" }
+          }
+        }
+      },
+      reminder_text = {
+        { text = "(<=" },
+        { ref_table = "card.ability.extra", ref_value = "lowest_rank", colour = G.C.ORANGE },
+        { text = ")" },
+      },
+      calc_function = function(card)
+        local _, _, scoring_hand = JokerDisplay.evaluate_hand()
+        local active = true
+        -- If there is a scored card with a rank that has a higher rank than the lowest
+        -- recorded by this joker, do not trigger the effect
+        for _, v in ipairs(scoring_hand) do
+          if not SMODS.has_no_rank(v) and PB_UTIL.compare_ranks(v:get_id(), card.ability.extra.lowest_rank) then
+            active = false
+            break
+          end
+        end
+        card.joker_display_values.x_mult = active and card.ability.extra.x_mult or 1
+      end
+    }
+  end,
 }
 
 function PB_UTIL.reset_skydiver(card)

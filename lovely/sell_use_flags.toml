@@ -1,0 +1,83 @@
+[manifest]
+version = "1.0.0"
+priority = 0
+
+# Set flag if start_dissolve() called due to selling card
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = "self:start_dissolve({G.C.GOLD})"
+position = "before"
+match_indent = true
+payload = '''
+self.paperback_dissolve_sell_flag = true
+'''
+times = 1
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = "self:start_dissolve({G.C.GOLD})"
+position = "after"
+match_indent = true
+payload = '''
+self.paperback_dissolve_sell_flag = false
+'''
+times = 1
+
+# Set flag if start_dissolve() called due to using card
+[[patches]]
+[patches.pattern]
+target = "functions/button_callbacks.lua"
+pattern = "if not dont_dissolve then card:start_dissolve() end"
+position = "before"
+match_indent = true
+payload = '''
+card.paperback_dissolve_use_flag = true
+'''
+[[patches]]
+[patches.pattern]
+target = "functions/button_callbacks.lua"
+pattern = "if not dont_dissolve then card:start_dissolve() end"
+position = "after"
+match_indent = true
+payload = '''
+card.paperback_dissolve_use_flag = false
+'''
+
+# Card:start_dissolve()
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = "function Card:start_dissolve(*"
+position = "after"
+match_indent = true
+payload = '''
+    local paperback_dissolve_sell_flag = self.paperback_dissolve_sell_flag
+    local paperback_dissolve_use_flag = self.paperback_dissolve_use_flag
+'''
+
+# Repeated twice
+[[patches]]
+[patches.regex]
+target = "card.lua"
+pattern = '''1\.05\*dissolve_time.*
+(.*\n){0,10}?.*(?<root>self:remove\(\))'''
+position = "before"
+payload = '''
+
+            if paperback_dissolve_sell_flag then self.paperback_sell_flag = true end
+            if paperback_dissolve_use_flag then self.paperback_use_flag = true end
+            '''
+root_capture = '$root'
+times = 1
+[[patches]]
+[patches.regex]
+target = "card.lua"
+pattern = '''Card:start_dissolve\(.*
+(.*\n){0,35}?.*(?<root>self:remove\(\))'''
+position = "before"
+payload = '''if paperback_dissolve_sell_flag then self.paperback_sell_flag = true end
+                            if paperback_dissolve_use_flag then self.paperback_use_flag = true end
+                            '''
+root_capture = '$root'
+times = 1

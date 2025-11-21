@@ -26,5 +26,13 @@ SMODS.Joker {
         }
       end
     end
-  end
+  end,
+
+  joker_display_def = function(JokerDisplay)
+    return {
+      retrigger_joker_function = function(card, retrigger_joker)
+        return card.config.center.rarity == retrigger_joker.ability.extra.rarity and 1 or 0
+      end
+    }
+  end,
 }

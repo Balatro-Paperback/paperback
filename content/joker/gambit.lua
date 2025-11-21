@@ -3,7 +3,8 @@ SMODS.Joker {
   config = {
     extra = {
       suit = 'paperback_Crowns',
-      triggered = false
+      triggered = false,
+      chip_mult = 2
     }
   },
   rarity = 2,
@@ -30,14 +31,16 @@ SMODS.Joker {
 
   calculate = function(self, card, context)
     if context.destroy_card and context.cardarea == G.hand and not card.ability.extra.triggered then
-      if not context.destroy_card:is_suit(card.ability.extra.suit) then
+      if not context.destroy_card:is_suit(card.ability.extra.suit, false, true) then
         for _, v in ipairs(context.scoring_hand) do
           if v:is_suit(card.ability.extra.suit) then
+            -- TODO if first crown debuffed, should say "Debuffed"
             if not context.blueprint then
               card.ability.extra.triggered = true
             end
 
-            v.ability.perma_bonus = (v.ability.perma_bonus or 0) + context.destroy_card:get_chip_bonus()
+            v.ability.perma_bonus = (v.ability.perma_bonus or 0) +
+                (context.destroy_card:get_chip_bonus() * card.ability.extra.chip_mult)
 
             return {
               remove = true,

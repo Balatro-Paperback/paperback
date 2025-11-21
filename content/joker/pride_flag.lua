@@ -1,6 +1,6 @@
 if PB_UTIL.config.suits_enabled then
   SMODS.Joker {
-    key = 'pride_flag_spectrums',
+    key = 'pride_flag',
     config = {
       extra = {
         a_chips = 12,
@@ -25,7 +25,8 @@ if PB_UTIL.config.suits_enabled then
         vars = {
           card.ability.extra.a_chips,
           card.ability.extra.chips
-        }
+        },
+        key = "j_paperback_pride_flag_spectrums"
       }
     end,
 
@@ -39,13 +40,11 @@ if PB_UTIL.config.suits_enabled then
 
           SMODS.calculate_effect {
             message = localize('k_reset'),
-            colour = G.C.MULT,
+            colour = G.C.RED,
             card = card,
           }
-        end
-
-        -- Give chips if hand contains a Spectrum
-        if PB_UTIL.get_unique_suits(context.scoring_hand, nil, true) >= 5 then
+          -- Give chips if hand contains a Spectrum
+        elseif PB_UTIL.get_unique_suits(context.full_hand, nil, true) >= 5 then
           card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.a_chips
 
           SMODS.calculate_effect {
@@ -62,11 +61,21 @@ if PB_UTIL.config.suits_enabled then
           chips = card.ability.extra.chips
         }
       end
-    end
+    end,
+
+    joker_display_def = function(JokerDisplay)
+      return {
+        text = {
+          { text = "+" },
+          { ref_table = "card.ability.extra", ref_value = "chips", retrigger_type = "mult" }
+        },
+        text_config = { colour = G.C.CHIPS },
+      }
+    end,
   }
 else
   SMODS.Joker {
-    key = 'pride_flag_no_spectrums',
+    key = 'pride_flag',
     config = {
       extra = {
         a_mult = 2,
@@ -89,7 +98,8 @@ else
         vars = {
           card.ability.extra.a_mult,
           card.ability.extra.mult
-        }
+        },
+        key = "j_paperback_pride_flag_no_spectrums"
       }
     end,
 
@@ -118,6 +128,16 @@ else
           mult = card.ability.extra.mult
         }
       end
-    end
+    end,
+
+    joker_display_def = function(JokerDisplay)
+      return {
+        text = {
+          { text = "+" },
+          { ref_table = "card.ability.extra", ref_value = "mult", retrigger_type = "mult" }
+        },
+        text_config = { colour = G.C.MULT },
+      }
+    end,
   }
 end

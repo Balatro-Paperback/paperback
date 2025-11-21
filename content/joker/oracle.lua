@@ -2,7 +2,7 @@ SMODS.Joker {
   key = "oracle",
   config = {
     extra = {
-      Xchip_mod = 0.15,
+      Xchip_mod = 0.1,
       Xchip = 1
     }
   },
@@ -39,9 +39,13 @@ SMODS.Joker {
       }
     end
 
-    if context.using_consumeable and context.consumeable.ability.set == 'paperback_minor_arcana' and G.GAME.consumeable_usage[context.consumeable.config.center_key].count == 1 then
+    if not context.blueprint and context.using_consumeable and context.consumeable.ability.set == 'paperback_minor_arcana' and G.GAME.consumeable_usage[context.consumeable.config.center_key].count == 1 then
       return {
-        message = localize('k_upgrade_ex')
+        message = localize {
+          type = 'variable',
+          key = 'a_xchips',
+          vars = { card.ability.extra.Xchip }
+        },
       }
     end
   end,
@@ -53,7 +57,8 @@ SMODS.Joker {
           border_nodes = {
             { text = 'X' },
             { ref_table = 'card.ability.extra', ref_value = 'Xchip' }
-          }
+          },
+          border_colour = G.C.CHIPS
         }
       },
     }

@@ -58,7 +58,7 @@ SMODS.Joker {
 
   calculate = function(self, card, context)
     if context.individual and context.cardarea == G.play then
-      if G.GAME.paperback.jjjj_count % card.ability.extra.required == 0 and G.GAME.paperback.jjjj_count > 0 then
+      if G.GAME.paperback.jjjj_count % card.ability.extra.required == 0 then
         if PB_UTIL.try_spawn_card { set = 'paperback_minor_arcana', } then
           return {
             message = localize('paperback_plus_minor_arcana'),

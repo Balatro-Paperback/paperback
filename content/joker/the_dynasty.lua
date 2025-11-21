@@ -24,6 +24,34 @@ if PB_UTIL.should_load_spectrum_items() then
           localize(card.ability.type, 'poker_hands')
         }
       }
-    end
+    end,
+
+    -- Copied from JokerDisplay
+    joker_display_def = function(JokerDisplay)
+      return {
+        text = {
+          {
+            border_nodes = {
+              { text = "X" },
+              { ref_table = "card.joker_display_values", ref_value = "x_mult", retrigger_type = "exp" }
+            }
+          }
+        },
+        reminder_text = {
+          { text = "(" },
+          { ref_table = "card.joker_display_values", ref_value = "localized_text", colour = G.C.ORANGE },
+          { text = ")" },
+        },
+        calc_function = function(card)
+          local x_mult = 1
+          local _, poker_hands, _ = JokerDisplay.evaluate_hand()
+          if poker_hands[card.ability.type] and next(poker_hands[card.ability.type]) then
+            x_mult = card.ability.Xmult
+          end
+          card.joker_display_values.x_mult = x_mult
+          card.joker_display_values.localized_text = localize(card.ability.type, 'poker_hands')
+        end
+      }
+    end,
   }
 end

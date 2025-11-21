@@ -4,7 +4,6 @@ SMODS.Joker {
     extra = {
       chips = 0,
       a_chips_held = 10,
-      a_chips_scored = 5,
       rank = "10",
     }
   },
@@ -22,7 +21,6 @@ SMODS.Joker {
     return {
       vars = {
         card.ability.extra.a_chips_held,
-        card.ability.extra.a_chips_scored,
         localize(card.ability.extra.rank, 'ranks'),
         card.ability.extra.chips,
       }
@@ -48,29 +46,21 @@ SMODS.Joker {
       end
     end
 
-    -- Gains +5 chips for each 10 scored
-    if context.individual and context.cardarea == G.play and not context.blueprint then
-      if PB_UTIL.is_rank(context.other_card, card.ability.extra.rank) then
-        card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.a_chips_scored
-
-        return {
-          message = localize {
-            type = 'variable',
-            key = 'a_chips',
-            vars = { card.ability.extra.a_chips_scored }
-          },
-          colour = G.C.CHIPS,
-          juice_card = context.other_card,
-          message_card = card,
-        }
-      end
-    end
-
     -- Give chips during scoring
     if context.joker_main then
       return {
         chips = card.ability.extra.chips
       }
     end
-  end
+  end,
+
+  joker_display_def = function(JokerDisplay)
+    return {
+      text = {
+        { text = "+" },
+        { ref_table = "card.ability.extra", ref_value = "chips", retrigger_type = "mult" }
+      },
+      text_config = { colour = G.C.CHIPS },
+    }
+  end,
 }

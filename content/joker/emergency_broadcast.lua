@@ -37,5 +37,32 @@ SMODS.Joker {
         end
       end
     end
-  end
+  end,
+
+  joker_display_def = function(JokerDisplay)
+    return {
+      text = {
+        { text = "+", colour = G.C.CHIPS },
+        { ref_table = "card.joker_display_values", ref_value = "chips", colour = G.C.CHIPS, retrigger_type = "mult" },
+        { text = " +", colour = G.C.MULT },
+        { ref_table = "card.joker_display_values", ref_value = "mult", colour = G.C.MULT, retrigger_type = "mult" }
+      },
+      reminder_text = {
+        { text = "(5,8)" }
+      },
+      calc_function = function(card)
+        local chips, mult = 0, 0
+        local _, _, scoring_hand = JokerDisplay.evaluate_hand()
+        for _, scoring_card in pairs(scoring_hand) do
+          if scoring_card:get_id() == 5 or scoring_card:get_id() == 8 then
+            local retriggers = JokerDisplay.calculate_card_triggers(scoring_card, scoring_hand)
+            chips = chips + card.ability.extra.a_chips * retriggers
+            mult = mult + card.ability.extra.a_mult * retriggers
+          end
+        end
+        card.joker_display_values.chips = chips
+        card.joker_display_values.mult = mult
+      end
+    }
+  end,
 }

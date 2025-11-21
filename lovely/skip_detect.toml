@@ -1,0 +1,24 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 0
+
+[[patches]]
+[patches.pattern]
+target = 'functions/button_callbacks.lua'
+pattern = "G.FUNCS.skip_blind = function(e)"
+position = 'after'
+match_indent = true
+payload = '''
+G.GAME.paperback.skipped_blind = true
+'''
+
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+pattern = "G.GAME.blind:set_blind(G.GAME.round_resets.blind)"
+position = 'after'
+match_indent = true
+payload = '''
+G.GAME.paperback.skipped_blind = false
+'''

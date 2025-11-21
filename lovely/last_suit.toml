@@ -10,9 +10,10 @@ pattern = "if splashed and not unsplashed then table.insert(final_scoring_hand, 
 position = "after"
 match_indent = true
 payload = '''
-  if final_scoring_hand[#final_scoring_hand] then
-    if not SMODS.has_no_suit(final_scoring_hand[#final_scoring_hand]) then
-      G.GAME.paperback.last_scored_suit = final_scoring_hand[#final_scoring_hand].base.suit
+  for i = #final_scoring_hand, 1, -1 do
+    if not SMODS.has_no_suit(final_scoring_hand[i]) then
+      G.GAME.paperback.last_scored_suit = final_scoring_hand[i].base.suit
+      break
     end
   end
 '''

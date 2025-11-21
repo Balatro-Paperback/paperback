@@ -5,19 +5,21 @@ PB_UTIL.Paperclip {
   badge_colour = G.C.PAPERBACK_BLACK,
 
   calculate = function(self, card, context)
-    if context.repetition and context.cardarea == G.play then
-      local reps = 0
+    if context.repetition and context.cardarea == G.play and not context.platinum_trigger then
+      local clip_held = false
 
       for _, v in ipairs(G.hand.cards) do
         if not v.debuff and PB_UTIL.has_paperclip(v) then
-          reps = reps + 1
+          clip_held = true
           break
         end
       end
 
-      return {
-        repetitions = reps
-      }
+      if clip_held then
+        return {
+          repetitions = 1
+        }
+      end
     end
   end
 }

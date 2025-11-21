@@ -48,6 +48,7 @@ if next(SMODS.find_mod('CardSleeves')) then
     'dreamer',
     'antique',
     'passionate',
+    -- 'shimmering',
   }
 
   PB_UTIL.Sleeve = CardSleeves.Sleeve:extend {

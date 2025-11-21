@@ -1,0 +1,74 @@
+[manifest]
+version = "1.0.0"
+priority = 0
+
+# Apostles ignore `wrap` in get_straight
+[[patches]]
+[patches.regex]
+target = '=[SMODS _ "src/overrides.lua"]'
+pattern = '(?<wrap>wrap).*rank\.straight_edge.*then'
+position = "at"
+root_capture = "$wrap"
+payload = '''(wrap and key ~= 'paperback_Apostle')'''
+[[patches]]
+[patches.regex]
+target = '=[SMODS _ "src/overrides.lua"]'
+pattern = '(?<wrap>wrap).*SMODS\.Ranks\[v\]\.straight_edge.*then'
+position = "at"
+root_capture = "$wrap"
+payload = '''(wrap and v ~= 'paperback_Apostle')'''
+
+# next_ranks() doesn't allow K-A-2 or Apostle-A-Apostle
+# Paperback makes Ace have straight_edge = false, this fixes the side effects.
+## Define helper to check
+[[patches]]
+[patches.pattern]
+target = '=[SMODS _ "src/overrides.lua"]'
+pattern = "function get_straight(*"
+position = "after"
+match_indent = true
+payload = """
+local pb_prev_key
+local function pb_is_illegal_seq(p_key, key, n_key, wrap)
+    return not wrap and key == 'Ace' and (
+        (p_key == 'King' or p_key == 'Queen') and (n_key == '2' or n_key == '3')
+        or (p_key == 'paperback_Apostle') and (n_key == 'paperback_Apostle')
+    )
+end"""
+## In next_ranks(), illegal next ranks are skipped
+[[patches]]
+[patches.pattern]
+target = '=[SMODS _ "src/overrides.lua"]'
+pattern = "ret[#ret+1] = v"
+position = "before"
+match_indent = true
+payload = """
+if pb_is_illegal_seq(pb_prev_key, key, v, wrap) then
+    goto pb_continue_rank_next
+end"""
+[[patches]]
+[patches.pattern]
+target = '=[SMODS _ "src/overrides.lua"]'
+pattern = """
+        ret[#ret+1] = w
+    end
+end"""
+position = "at"
+match_indent = false
+payload = """
+                    if pb_is_illegal_seq(key, v, w, wrap) then
+                        goto pb_continue_rank_next
+                    end
+                    ret[#ret+1] = w
+                end
+            end
+            ::pb_continue_rank_next::"""
+
+# Actually set pb_prev_key variable
+[[patches]]
+[patches.pattern]
+target = '=[SMODS _ "src/overrides.lua"]'
+pattern = "for _,l in ipairs(next_ranks(tuple[i-1], i == 2)) do"
+position = "before"
+match_indent = true
+payload = "pb_prev_key = tuple[i-2]"

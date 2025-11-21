@@ -7,10 +7,10 @@ SMODS.Joker {
       revive_treshold = 666
     }
   },
-  rarity = 2,
+  rarity = 1,
   pos = { x = 6, y = 4 },
   atlas = 'jokers_atlas',
-  cost = 7,
+  cost = 6,
   unlocked = true,
   discovered = false,
   blueprint_compat = true,
@@ -28,33 +28,26 @@ SMODS.Joker {
   end,
 
   calculate = function(self, card, context)
-    -- Gains chips when jokers are destroyed
-    if not context.blueprint and context.paperback and context.paperback.destroying_joker then
-      -- Make sure that this joker isn't being removed
-      if card ~= context.paperback.destroyed_joker then
-        card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.a_chips
+    local count = PB_UTIL.count_destroyed_things(context)
+    -- Gains chips when any cards are destroyed. Each card destroyed provides the specified chip_mod
+    if not context.blueprint and count > 0
+    -- Make sure that this joker isn't being removed
+    and not (context.paperback and context.paperback.destroyed_joker and card == context.paperback.destroyed_joker)
+    then
+      card.ability.extra.chips = card.ability.extra.chips + count * card.ability.extra.a_chips
 
-        return {
-          message = localize {
-            type = 'variable',
-            key = 'a_chips',
-            vars = { card.ability.extra.a_chips }
-          },
-          colour = G.C.CHIPS
-        }
-      end
-    end
-
-    -- Gains chips when playing cards are destroyed. Each card destroyed provides the specified chip_mod
-    if not context.blueprint and context.remove_playing_cards and context.removed and #context.removed > 0 then
-      card.ability.extra.chips = card.ability.extra.chips + (#context.removed * card.ability.extra.a_chips)
-
-      card_eval_status_text(card, 'extra', nil, nil, nil,
-        { message = localize { type = 'variable', key = 'a_chips', vars = { card.ability.extra.chips } } })
+      return {
+        message = localize {
+          type = 'variable',
+          key = 'a_chips',
+          vars = { count * card.ability.extra.a_chips }
+        },
+        colour = G.C.CHIPS
+      }
     end
 
     -- Gives the chips when scoring
-    if context.joker_main then
+    if context.joker_main and card.ability.extra.chips > 0 then
       return {
         chips = card.ability.extra.chips
       }
@@ -72,5 +65,15 @@ SMODS.Joker {
         }
       end
     end
-  end
+  end,
+
+  joker_display_def = function(JokerDisplay)
+    return {
+      text = {
+        { text = "+" },
+        { ref_table = "card.ability.extra", ref_value = "chips", retrigger_type = "mult" }
+      },
+      text_config = { colour = G.C.CHIPS },
+    }
+  end,
 }

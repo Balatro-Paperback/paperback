@@ -18,30 +18,7 @@ SMODS.Joker {
   soul_pos = nil,
 
   set_ability = function(self, card, initial, delay_sprites)
-    if G.STAGE == G.STAGES.RUN then
-      -- When first created, check if the player already owns this joker
-      local others = SMODS.find_card('j_paperback_jester_of_nihil')
-
-      if #others > 0 then
-        -- If they do, copy the suit of the other joker to this new one
-        card.ability.extra.suit = others[1].ability.extra.suit
-      else
-        -- If they do not, select a random suit to debuff
-        local cards = {}
-
-        for k, v in ipairs(G.playing_cards) do
-          if not SMODS.has_no_suit(v) then
-            cards[#cards + 1] = v
-          end
-        end
-
-        local selected = pseudorandom_element(cards, pseudoseed('jester_of_nihil'))
-
-        if selected then
-          card.ability.extra.suit = selected.base.suit
-        end
-      end
-    end
+    card.ability.extra.suit = G.GAME.paperback.last_scored_suit
   end,
 
   add_to_deck = function(self, card, from_debuff)
@@ -85,23 +62,10 @@ SMODS.Joker {
   end,
 
   calculate = function(self, card, context)
-    -- If possible, swap suits after a hand is played
     if not context.blueprint and context.after and context.cardarea == G.jokers then
-      local last_scored = nil
-
-      -- Only consider the last card with a suit
-      for i = #context.scoring_hand, 1, -1 do
-        local c = context.scoring_hand[i]
-        if not SMODS.has_no_suit(c) then
-          last_scored = c
-          break
-        end
-      end
-
       -- Only update the suit if it's a different suit
-      if last_scored and last_scored.base.suit ~= card.ability.extra.suit then
-        card.ability.extra.suit = last_scored.base.suit
-
+      if G.GAME.paperback.last_scored_suit ~= card.ability.extra.suit then
+        card.ability.extra.suit = G.GAME.paperback.last_scored_suit
         G.E_MANAGER:add_event(Event {
           func = function()
             -- Update the debuff of all playing cards when swapping suits
@@ -125,7 +89,17 @@ SMODS.Joker {
         mult = card.ability.extra.mult
       }
     end
-  end
+  end,
+
+  joker_display_def = function(JokerDisplay)
+    return {
+      text = {
+        { text = "+" },
+        { ref_table = "card.ability.extra", ref_value = "mult", retrigger_type = "mult" }
+      },
+      text_config = { colour = G.C.MULT },
+    }
+  end,
 }
 
 -- We hook into the vanilla function used to update the debuffed status of cards
@@ -135,7 +109,7 @@ function Blind.debuff_card(self, card, from_blind)
 
   if card.area ~= G.jokers then
     for k, v in ipairs(SMODS.find_card('j_paperback_jester_of_nihil')) do
-      if card:is_suit(v.ability.extra.suit) then
+      if card:is_suit(v.ability.extra.suit, true) then
         card:set_debuff(true)
         if card.debuff then card.debuffed_by_blind = true end
       end

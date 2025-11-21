@@ -59,7 +59,38 @@ SMODS.Joker {
         }
       end
     end
-  end
+  end,
+
+  joker_display_def = function(JokerDisplay)
+    return {
+      text = {
+        {
+          border_nodes = {
+            { text = "X" },
+            { ref_table = "card.joker_display_values", ref_value = "x_mult", retrigger_type = "exp" }
+          }
+        }
+      },
+      reminder_text = {
+        { text = "(" },
+        {
+          text = localize('paperback_light'),
+          colour = lighten(G.C.PAPERBACK_LIGHT_SUIT, 0.35)
+        },
+        { text = ")" },
+      },
+      calc_function = function(card)
+        local count = 0
+        local _, _, scoring_hand = JokerDisplay.evaluate_hand()
+        for _, scoring_card in pairs(scoring_hand) do
+          if PB_UTIL.is_suit(scoring_card, 'light') then
+            count = count + 1
+          end
+        end
+        card.joker_display_values.x_mult = math.max(count, 1)
+      end,
+    }
+  end,
 }
 
 -- If user has Union Card, set the newly acquired card's sell cost to $0

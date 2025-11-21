@@ -59,5 +59,32 @@ SMODS.Joker {
     if amount > 0 then
       return amount * card.ability.extra.money
     end
-  end
+  end,
+
+  joker_display_def = function(JokerDisplay)
+    return {
+      text = {
+        { text = "+$" },
+        { ref_table = "card.joker_display_values", ref_value = "dollars" },
+      },
+      text_config = { colour = G.C.GOLD },
+      reminder_text = {
+        { ref_table = "card.joker_display_values", ref_value = "localized_text" },
+      },
+      calc_function = function(card)
+        local unique_clips = {}
+        local amount = 0
+
+        for _, v in ipairs(G.playing_cards or {}) do
+          local key = PB_UTIL.has_paperclip(v)
+          if key and not unique_clips[key] then
+            unique_clips[key] = true
+            amount = amount + 1
+          end
+        end
+        card.joker_display_values.dollars = card.ability.extra.money * amount
+        card.joker_display_values.localized_text = "(" .. localize("k_round") .. ")"
+      end
+    }
+  end,
 }

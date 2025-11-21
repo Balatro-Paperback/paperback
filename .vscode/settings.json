@@ -3,7 +3,10 @@
   "editor.detectIndentation": false,
   "editor.formatOnSave": true,
   "Lua.format.defaultConfig": {
-    "align_continuous_assign_statement": "false"
+    "align_continuous_assign_statement": "false",
+    "align_continuous_rect_table_field": "false",
+    "align_array_table": "false",
+    "never_indent_before_if_condition": "true",
   },
   "Lua.workspace.library": [
     "../lovely/dump",

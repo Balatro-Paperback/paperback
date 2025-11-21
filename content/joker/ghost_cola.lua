@@ -1,7 +1,7 @@
 SMODS.Joker {
   key = 'ghost_cola',
   config = {},
-  rarity = 3,
+  rarity = 2,
   pos = { x = 5, y = 1 },
   atlas = 'jokers_atlas',
   cost = 6,

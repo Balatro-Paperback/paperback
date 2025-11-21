@@ -35,7 +35,7 @@ SMODS.Joker {
   end,
 
   calculate = function(self, card, context)
-    if context.before and #context.scoring_hand == 5 then
+    if context.before and #context.scoring_hand >= 5 then
       local apostle = false
       -- Check for apostle
       for _, v in ipairs(context.scoring_hand) do
@@ -62,5 +62,46 @@ SMODS.Joker {
         end
       end
     end
-  end
+  end,
+  joker_display_def = function (JokerDisplay)
+    return {
+      text = {
+        { text = "+" },
+        { ref_table = "card.joker_display_values", ref_value = "count", retrigger_type = "mult" },
+      },
+      text_config = { colour = G.C.SECONDARY_SET.Tarot },
+      calc_function = function(card)
+        local _, poker_hands, scoring_hand = JokerDisplay.evaluate_hand()
+        local card_type_given = nil
+        if #scoring_hand >= 5 then
+          local apostle = false
+          -- Check for apostle
+          for _, v in ipairs(scoring_hand) do
+            if PB_UTIL.is_rank(v, 'paperback_Apostle') then
+              apostle = true
+              break
+            end
+          end
+          if apostle then
+            if not next(poker_hands["Straight"]) then
+              card_type_given = "Tarot"
+            else
+              card_type_given = "Spectral"
+            end
+          end
+        end
+        card.joker_display_values.card_type_given = card_type_given
+        card.joker_display_values.count = card_type_given and 1 or 0
+      end,
+      style_function = function(card, text, reminder_text, extra)
+        if text then
+          for _, child in ipairs(text.children) do
+            child.config.colour = card.joker_display_values.card_type_given == 'Spectral' and G.C.SECONDARY_SET.Spectral or
+              G.C.SECONDARY_SET.Tarot
+          end
+        end
+        return false
+      end
+    }
+  end,
 }

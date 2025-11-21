@@ -28,20 +28,22 @@ SMODS.Joker {
 
   calculate = function(self, card, context)
     if context.after then
-      local destroy = true
-      -- Check scoring hand for only Spades
+      local bad_suit = false
+      local spade = false
+      -- Check scoring hand for only Spades/suitless, at least 1 Spade/Wild
       for _, v in ipairs(context.scoring_hand) do
-        if not v:is_suit(card.ability.extra.suit) then
-          destroy = false
-        end
+        bad_suit = bad_suit or PB_UTIL.is_non_suit(v, 'Spades')
+        spade = spade or v:is_suit('Spades')
       end
-      if destroy then
+      if not bad_suit and spade then
         local target = pseudorandom_element(G.hand.cards, pseudoseed('forlorn'))
-        SMODS.destroy_cards({ target })
-        return {
-          message = localize('paperback_forlorn_destruction'),
-          colour = G.C.FILTER
-        }
+        if target then
+          SMODS.destroy_cards({ target })
+          return {
+            message = localize('paperback_forlorn_destruction'),
+            colour = G.C.FILTER
+          }
+        end
       end
     end
   end

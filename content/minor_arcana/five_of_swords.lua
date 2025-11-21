@@ -3,8 +3,7 @@ PB_UTIL.MinorArcana {
   atlas = 'minor_arcana_atlas',
   pos = { x = 4, y = 4 },
   config = {
-    min_highlighted = 3,
-    max_highlighted = 3,
+    max_highlighted = 1,
   },
 
   loc_vars = function(self, info_queue, card)
@@ -16,8 +15,7 @@ PB_UTIL.MinorArcana {
   end,
 
   use = function(self, card)
-    local cards = PB_UTIL.get_sorted_by_position(G.hand)
-    local target = table.remove(cards, 1)
+    local target = PB_UTIL.get_sorted_by_position(G.hand)[1]
 
     -- Collect which modifiers the target doesn't have
     local modifiers = {}
@@ -61,8 +59,6 @@ PB_UTIL.MinorArcana {
 
         target:set_edition(edition, true)
       end
-
-      SMODS.destroy_cards(cards)
     end)
   end
 }

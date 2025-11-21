@@ -34,7 +34,7 @@ SMODS.Joker {
       local cards = {}
 
       for _, v in ipairs(context.scoring_hand) do
-        if v:is_suit(card.ability.extra.suit) then
+        if v:is_suit(card.ability.extra.suit) and v:get_id() ~= 13 then
           cards[#cards + 1] = v
         end
       end

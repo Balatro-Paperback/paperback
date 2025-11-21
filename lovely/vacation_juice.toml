@@ -1,0 +1,38 @@
+[manifest]
+version = ""
+
+# end_round()
+# Prevent logic for advancing to next Blind
+# if G.GAME.paperback.vacation_juice_trigger is true.
+
+## This patch allows someone else to insert some text after
+## G.FUNCS.draw_from_hand_to_discard and the patch will still be ok
+[[patches]]
+[patches.regex]
+target = "functions/state_events.lua"
+pattern = '''
+[\t ]*G\.FUNCS\.draw_from_hand_to_discard\(\)(.*\n){0,50}
+.*G\.GAME\.blind:get_type\(\) == 'Boss'()'''
+position = "after"
+payload = ''' and not G.GAME.paperback.vacation_juice_trigger'''
+
+[[patches]]
+[patches.pattern]
+target = "functions/state_events.lua"
+pattern = '''if G.GAME.round_resets.blind == G.P_BLINDS.bl_small then
+G.GAME.round_resets.blind_states.Small = 'Defeated'
+'''
+position = "before"
+match_indent = true
+payload = '''if not G.GAME.paperback.vacation_juice_trigger then'''
+
+[[patches]]
+[patches.pattern]
+target = "functions/state_events.lua"
+pattern = '''
+		v.ability.played_this_ante = nil
+	end
+end'''
+position = "after"
+match_indent = true
+payload = '''end'''

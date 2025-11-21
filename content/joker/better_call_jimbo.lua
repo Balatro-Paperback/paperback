@@ -3,7 +3,7 @@ SMODS.Joker {
   config = {
     extra = {
       a_xMult = 0.1,
-      threshold = 5
+      threshold = 4
     },
   },
   rarity = 3,
@@ -33,5 +33,22 @@ SMODS.Joker {
           card.ability.extra.a_xMult * math.floor(G.GAME.dollars / card.ability.extra.threshold))
       }
     end
-  end
+  end,
+
+  joker_display_def = function(JokerDisplay)
+    return {
+      text = {
+        {
+          border_nodes = {
+            { text = "X" },
+            { ref_table = "card.joker_display_values", ref_value = "x_mult", retrigger_type = "exp" }
+          }
+        }
+      },
+      calc_function = function(card)
+        card.joker_display_values.x_mult = 1 + math.max(0,
+          card.ability.extra.a_xMult * math.floor(G.GAME.dollars / card.ability.extra.threshold))
+      end,
+    }
+  end,
 }

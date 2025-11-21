@@ -2,11 +2,11 @@ SMODS.Joker {
   key = "solar_system",
   config = {
     extra = {
-      x_mult_mod = 2,
-      x_mult = 1
+      x_mult_mod = 1.5,
+      x_mult = 1.5,
     }
   },
-  rarity = 3,
+  rarity = 2,
   pos = { x = 7, y = 0 },
   atlas = "jokers_atlas",
   cost = 8,
@@ -16,15 +16,12 @@ SMODS.Joker {
   eternal_compat = true,
   soul_pos = nil,
 
-  set_ability = function(self, card, initial, delay_sprites)
-    PB_UTIL.update_solar_system(card)
-  end,
-
   loc_vars = function(self, info_queue, card)
+    local x_mult = card.ability.extra.x_mult_mod * G.GAME.paperback.solar_system_ct
     return {
       vars = {
         card.ability.extra.x_mult_mod,
-        card.ability.extra.x_mult
+        x_mult
       }
     }
   end,
@@ -33,19 +30,51 @@ SMODS.Joker {
     -- If a hand is being leveled up, recalculate the xMult bonus
     if context.paperback and context.paperback.level_up_hand then
       PB_UTIL.update_solar_system(card)
+      if card.ability.extra.message_flag then
+        card.ability.extra.message_flag = nil
+        SMODS.calculate_effect({
+          message = localize('k_upgrade_ex'),
+          colour = G.C.MULT,
+        }, card)
+      end
     end
 
     -- Gives the xMult during play
     if context.joker_main then
+      local x_mult = card.ability.extra.x_mult_mod * G.GAME.paperback.solar_system_ct
       return {
-        x_mult = card.ability.extra.x_mult,
+        x_mult = x_mult,
         card = card
       }
     end
-  end
+  end,
+
+  joker_display_def = function(JokerDisplay)
+    return {
+      text = {
+        {
+          border_nodes = {
+            { text = "X" },
+            { ref_table = "card.joker_display_values", ref_value = "x_mult", retrigger_type = "exp" }
+          }
+        }
+      },
+      calc_function = function(card)
+        card.joker_display_values.x_mult = card.ability.extra.x_mult_mod * G.GAME.paperback.solar_system_ct
+      end,
+    }
+  end,
 }
 
+-- Update global information for Solar System.
+--
+-- Implementation notes: If a Solar System is owned, this function is called by its
+-- calculate() function, in time for message_flag to work.
+-- If no Solar System is owned, we also call this function in
+-- mod-global calculate to keep it updated.
+-- That means this function is redundantly called in both places, which is awkward
 function PB_UTIL.update_solar_system(card)
+  local old = G.GAME.paperback.solar_system_ct
   local hands = G.GAME.hands
 
   -- set the minimum level to the first planet in the subset
@@ -61,6 +90,11 @@ function PB_UTIL.update_solar_system(card)
     end
   end
 
-  -- set the card's x_mult to a value depending on the minimum level
-  card.ability.extra.x_mult = card.ability.extra.x_mult_mod * math.max(1, to_number(min_level)) - 1
+  -- set global to minimum level
+  G.GAME.paperback.solar_system_ct = math.max(1, to_number(min_level))
+  if old < G.GAME.paperback.solar_system_ct then
+    for _, v in ipairs(SMODS.find_card('j_paperback_solar_system')) do
+      v.ability.extra.message_flag = true
+    end
+  end
 end

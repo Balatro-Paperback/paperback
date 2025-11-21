@@ -28,45 +28,42 @@ SMODS.Joker {
 
   calculate = function(self, card, context)
     if context.joker_main then
-      local f_chips = math.floor(hand_chips * card.ability.extra.percent / 100)
-      local f_mult = math.floor(mult * card.ability.extra.percent / 100)
-
-      hand_chips = mod_chips(hand_chips - f_chips)
-      mult = mod_mult(mult - f_mult)
-
-      local total = f_chips + f_mult
-      hand_chips = mod_chips(math.floor(total / 2) + hand_chips)
-      mult = mod_mult(math.floor(total / 2) + mult)
-
-      PB_UTIL.apply_plasma_effect(context.blueprint_card or card, true)
-
-      -- Apply reduction if mult ended up greater than chips
-      if mult > hand_chips and not context.blueprint then
-        card.ability.extra.percent = card.ability.extra.percent - card.ability.extra.reduction
-
-        if card.ability.extra.percent <= 0 then
-          PB_UTIL.destroy_joker(card)
-
-          return {
-            message = localize('paperback_consumed_ex'),
-            colour = G.C.MULT
-          }
-        end
-
-        G.E_MANAGER:add_event(Event {
-          delay = 0.4,
-          func = function()
-            SMODS.calculate_effect({
-              message = localize('paperback_reduced_ex'),
-              colour = G.C.MULT
-            }, card)
-
-            return true
-          end
-        })
-      end
-
+      PB_UTIL.apply_plasma_effect(context.blueprint_card or card, false, card.ability.extra.percent / 100)
       return nil, true
     end
-  end
+
+    if context.final_scoring_step then
+      card.ability.extra.mult_gt_chip = mult > hand_chips
+    end
+
+    -- Apply reduction if final mult is greater than chips
+    if context.after and not context.blueprint and card.ability.extra.mult_gt_chip then
+      card.ability.extra.percent = card.ability.extra.percent - card.ability.extra.reduction
+      card.ability.extra.mult_gt_chip = false
+
+      if card.ability.extra.percent <= 0 then
+        PB_UTIL.destroy_joker(card)
+
+        return {
+          message = localize('paperback_consumed_ex'),
+          colour = G.C.MULT
+        }
+      else
+        return {
+          message = localize('paperback_reduced_ex'),
+          colour = G.C.MULT
+        }
+      end
+    end
+  end,
+
+  joker_display_def = function(JokerDisplay)
+    return {
+      text = {
+        { ref_table = "card.ability.extra", ref_value = "percent" },
+        { text = "%" },
+      },
+      text_config = { colour = G.C.PURPLE },
+    }
+  end,
 }

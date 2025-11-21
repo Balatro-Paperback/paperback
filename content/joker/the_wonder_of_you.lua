@@ -1,6 +1,11 @@
 SMODS.Joker {
   key = "the_wonder_of_you",
-  rarity = 3,
+  config = {
+    extra = {
+      tag_count = 2
+    }
+  },
+  rarity = 2,
   pos = { x = 18, y = 4 },
   atlas = 'jokers_atlas',
   cost = 9,
@@ -9,33 +14,23 @@ SMODS.Joker {
   perishable_compat = true,
 
   calculate = function(self, card, context)
-    --Check if the joker to the right has a probability roll
-    if context.pseudorandom_result and not context.result and context.trigger_obj then
-      if context.trigger_obj.config and context.trigger_obj.config.center and context.trigger_obj.config.center.set == 'Joker' then
-        local wonder_Pos = nil
-        local adjacent_Pos = nil
-        for i = 1, #G.jokers.cards do
-          if G.jokers.cards[i] == card then
-            wonder_Pos = i
-          end
-          if G.jokers.cards[i] == context.trigger_obj then
-            adjacent_Pos = i
-          end
-        end
-
-        -- Only activate if the failed joker is to the right of WOU
-        if wonder_Pos and adjacent_Pos and adjacent_Pos == wonder_Pos + 1 then
-          if G.hand.cards and #G.hand.cards > 0 then
-            for i = #G.hand.cards, 1, -1 do
-              if not G.hand.cards[i].destroyed then
-                SMODS.destroy_cards(G.hand.cards[i])
-                return {
-                  message = localize('paperback_destroyed_ex')
-                }
-              end
+    if context.setting_blind and G.GAME.blind:get_type() == 'Boss' then
+      for _ = 1, card.ability.extra.tag_count, 1 do
+        G.E_MANAGER:add_event(Event({
+          func = (function()
+            local tag_pool = get_current_pool('Tag')
+            local selected_tag = pseudorandom_element(tag_pool, 'modprefix_seed')
+            local it = 1
+            while selected_tag == 'UNAVAILABLE' do
+              it = it + 1
+              selected_tag = pseudorandom_element(tag_pool, 'modprefix_seed_resample' .. it)
             end
-          end
-        end
+            add_tag(Tag(selected_tag, false, 'Small'))
+            play_sound('generic1', 0.9 + math.random() * 0.1, 0.8)
+            play_sound('holo1', 1.2 + math.random() * 0.1, 0.4)
+            return true
+          end)
+        }))
       end
     end
   end

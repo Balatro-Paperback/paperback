@@ -21,8 +21,12 @@ SMODS.Joker {
       scaling = 0.02
     }
   },
+  pools = {
+    Music = true
+  },
   blueprint_compat = true,
   eternal_compat = true,
+  perishable_compat = false,
   loc_vars = function(self, info_queue, card)
     return {
       vars = {
@@ -84,5 +88,19 @@ SMODS.Joker {
         xchips = card.ability.extra.xchips
       }
     end
+  end,
+
+  joker_display_def = function(JokerDisplay)
+    return {
+      text = {
+        {
+          border_nodes = {
+            { text = 'X' },
+            { ref_table = 'card.ability.extra', ref_value = 'xchips' }
+          },
+          border_colour = G.C.CHIPS
+        }
+      },
+    }
   end
 }

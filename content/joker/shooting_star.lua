@@ -54,5 +54,46 @@ SMODS.Joker {
         end
       end
     end
-  end
+  end,
+
+  joker_display_def = function(JokerDisplay)
+    return {
+      text = {
+        { text = "+" },
+        { ref_table = "card.joker_display_values", ref_value = "count", retrigger_type = "mult" },
+      },
+      text_config = { colour = G.C.SECONDARY_SET.Planet },
+      reminder_text = {
+        { text = "(" },
+        {
+          ref_table = "card.joker_display_values",
+          ref_value = "localized_text",
+          colour = lighten(loc_colour(G.P_CENTERS["j_paperback_shooting_star"].config.extra.suit:lower()), 0.35)
+        },
+        { text = ")" },
+      },
+      extra = {
+        {
+          { text = "(" },
+          { ref_table = "card.joker_display_values", ref_value = "odds" },
+          { text = ")" },
+        }
+      },
+      extra_config = { colour = G.C.GREEN, scale = 0.3 },
+      calc_function = function(card)
+        local count = 0
+        local _, _, scoring_hand = JokerDisplay.evaluate_hand()
+        for _, scoring_card in pairs(scoring_hand) do
+          if scoring_card:is_suit(card.ability.extra.suit) then
+            count = count +
+                JokerDisplay.calculate_card_triggers(scoring_card, scoring_hand)
+          end
+        end
+        card.joker_display_values.count = count
+        card.joker_display_values.odds = localize { type = 'variable', key = "jdis_odds", vars = { PB_UTIL.chance_vars(card) } }
+        card.joker_display_values.localized_text =
+            localize(G.P_CENTERS["j_paperback_shooting_star"].config.extra.suit, 'suits_plural')
+      end
+    }
+  end,
 }

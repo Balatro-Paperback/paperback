@@ -1,7 +1,7 @@
 PB_UTIL.MinorArcana {
   key = 'seven_of_cups',
   config = {
-    max_highlighted = 3
+    max_highlighted = 2
   },
   atlas = 'minor_arcana_atlas',
   pos = { x = 6, y = 0 },

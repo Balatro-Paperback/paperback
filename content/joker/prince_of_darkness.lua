@@ -4,7 +4,7 @@ SMODS.Joker {
     extra = {
       unique_suits = 2,
       x_mult = 2,
-      hands = 2,
+      hands = 3,
       hands_remaining = 0
     }
   },
@@ -35,11 +35,11 @@ SMODS.Joker {
     if not card.debuff then
       -- Check if the card is being calculated before the scoring hand is scored and not blueprinted
       if context.before and not context.blueprint then
-        local unique_suits = PB_UTIL.get_unique_suits(context.scoring_hand)
+        local unique_suits = PB_UTIL.get_unique_suits(context.scoring_hand, true)
 
         local heart_found = false
         for i = 1, #context.scoring_hand do
-          if context.scoring_hand[i]:is_suit("Hearts") then
+          if context.scoring_hand[i]:is_suit("Hearts", false, true) then
             heart_found = true
             break
           end

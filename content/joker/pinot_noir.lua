@@ -50,7 +50,8 @@ SMODS.Joker {
   end,
 
   calculate = function(self, card, context)
-    if context.individual and context.cardarea == G.hand and not context.blueprint then
+    if context.individual and context.cardarea == G.hand and not context.blueprint
+    and not context.end_of_round then
       if SMODS.has_enhancement(context.other_card, 'm_paperback_stained') and card.ability.extra.remaining > 0 then
         card.ability.extra.remaining = card.ability.extra.remaining - 1
 

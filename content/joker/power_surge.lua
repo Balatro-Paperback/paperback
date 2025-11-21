@@ -3,7 +3,7 @@ SMODS.Joker {
   config = {
     extra = {
       rank = 7,
-      xMult = 2,
+      xMult = 1.5,
       odds = 4,
     }
   },

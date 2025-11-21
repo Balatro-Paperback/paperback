@@ -10,11 +10,11 @@ Partner_API.Partner {
   loc_vars = function(self, info_queue, card)
     if next(SMODS.find_card("j_paperback_paranoia")) then
       return {
-        vars = { card.ability.retriggers * 2 }
+        vars = { card.ability.extra.retriggers * 2 }
       }
     else
       return {
-        vars = { card.ability.retriggers }
+        vars = { card.ability.extra.retriggers }
       }
     end
   end,
@@ -36,12 +36,13 @@ Partner_API.Partner {
 
     if context.repetition and context.cardarea == G.play then
       for k, v in ipairs(context.full_hand) do
-        if PB_UTIL.is_suit(v, 'dark') then
+        if PB_UTIL.is_suit(v, 'dark', false, true) then
           card.ability.extra.active = false
           break
         end
       end
       if PB_UTIL.is_suit(context.other_card, 'light') and card.ability.extra.active then
+        -- TODO if first light suit is debuffed, show "Debuffed" instead
         card.ability.extra.active = false
         if next(SMODS.find_card("j_paperback_paranoia")) then
           return {

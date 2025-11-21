@@ -38,7 +38,7 @@ SMODS.Joker {
           key = 'a_hands',
           vars = { card.ability.extra.hands }
         },
-        colour = G.C.CHIPS
+        colour = G.C.BLUE
       }
     end
 

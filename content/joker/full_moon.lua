@@ -2,7 +2,7 @@ SMODS.Joker {
   key = 'full_moon',
   config = {
     extra = {
-      odds = 3
+      odds = 2
     }
   },
   rarity = 2,
@@ -59,5 +59,24 @@ SMODS.Joker {
         return nil, true
       end
     end
-  end
+  end,
+
+  joker_display_def = function(JokerDisplay)
+    return {
+      extra = {
+        {
+          { text = '(' },
+          { ref_table = 'card.joker_display_values', ref_value = 'odds' },
+          { text = ')' },
+        },
+      },
+      extra_config = {
+        colour = G.C.GREEN,
+        scale = 0.3,
+      },
+      calc_function = function(card)
+        card.joker_display_values.odds = localize { type = 'variable', key = "jdis_odds", vars = { PB_UTIL.chance_vars(card) } }
+      end
+    }
+  end,
 }

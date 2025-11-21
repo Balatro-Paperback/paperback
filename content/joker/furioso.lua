@@ -4,7 +4,7 @@ SMODS.Joker {
     extra = {
       x_mult_mod = 0.2,
       x_mult = 1,
-      ranks = {}
+      ranks = {},
     }
   },
   rarity = 2,
@@ -20,7 +20,20 @@ SMODS.Joker {
   loc_vars = function(self, info_queue, card)
     local ranks_played = ""
 
-    for k, v in pairs(card.ability.extra.ranks) do
+    if not card.ability.extra.ranks_sorted then
+      card.ability.extra.ranks_sorted = {}
+      for _, v in pairs(card.ability.extra.ranks) do
+        table.insert(card.ability.extra.ranks_sorted, v)
+      end
+
+      table.sort(
+        card.ability.extra.ranks_sorted,
+        function(a, b)
+          return SMODS.Ranks[a].sort_nominal < SMODS.Ranks[b].sort_nominal
+        end
+      )
+    end
+    for k, v in ipairs(card.ability.extra.ranks_sorted) do
       ranks_played = ranks_played .. " " .. localize(v, 'ranks')
     end
 
@@ -46,6 +59,8 @@ SMODS.Joker {
         if rank and not card.ability.extra.ranks[rank] then
           card.ability.extra.x_mult = card.ability.extra.x_mult + card.ability.extra.x_mult_mod
           card.ability.extra.ranks[rank] = context.other_card.base.value
+          -- recalc ranks_sorted
+          card.ability.extra.ranks_sorted = nil
 
           return {
             extra = { focus = card, message = localize('k_upgrade_ex'), colour = G.C.MULT },
@@ -66,6 +81,7 @@ SMODS.Joker {
     -- If boss blind defeated, reset all rank flags and reset x_mult
     if context.end_of_round and context.main_eval and G.GAME.blind.boss and not context.blueprint then
       card.ability.extra.ranks = {}
+      card.ability.extra.ranks_sorted = {}
       card.ability.extra.x_mult = 1
 
       return {
@@ -73,5 +89,33 @@ SMODS.Joker {
         colour = G.C.RED
       }
     end
-  end
+  end,
+
+  joker_display_def = function(JokerDisplay)
+    return {
+      text = {
+        {
+          border_nodes = {
+            { text = "X" },
+            { ref_table = "card.joker_display_values", ref_value = "x_mult", retrigger_type = "exp" }
+          }
+        }
+      },
+      calc_function = function(card)
+        local new_ranks = {}
+        local new_ranks_count = 0
+        local _, _, scoring_hand = JokerDisplay.evaluate_hand()
+        for _, scoring_card in ipairs(scoring_hand) do
+          if not scoring_card.debuff then
+            local rank = not SMODS.has_no_rank(scoring_card) and scoring_card:get_id()
+            if rank and not card.ability.extra.ranks[rank] and not new_ranks[rank] then
+              new_ranks[rank] = true
+              new_ranks_count = new_ranks_count + 1
+            end
+          end
+        end
+        card.joker_display_values.x_mult = card.ability.extra.x_mult + card.ability.extra.x_mult_mod * new_ranks_count
+      end,
+    }
+  end,
 }

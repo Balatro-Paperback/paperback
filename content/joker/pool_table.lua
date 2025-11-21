@@ -30,7 +30,7 @@ SMODS.Joker {
             func = function()
               local _planet = 0
               for k, v in pairs(G.P_CENTER_POOLS.Planet) do
-                if v.config.hand_type == context.scoring_name then
+                if v.config.hand_type == context.scoring_name and not v.config.moon then
                   _planet = v.key
                 end
               end

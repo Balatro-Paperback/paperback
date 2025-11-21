@@ -5,7 +5,7 @@ PB_UTIL.Paperclip {
   badge_colour = G.C.WHITE,
   badge_text_colour = G.C.PAPERBACK_BLACK,
   config = {
-    chip_mod = 1,
+    chip_mod = 2,
     chips = 0
   },
 

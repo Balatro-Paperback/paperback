@@ -52,7 +52,7 @@ SMODS.Joker {
 
         return {
           message = localize('k_eaten_ex'),
-          colour = G.C.FILTER,
+          colour = G.C.CHIPS,
           card = card
         }
       else
@@ -68,5 +68,19 @@ SMODS.Joker {
         }
       end
     end
+  end,
+
+  joker_display_def = function(JokerDisplay)
+    return {
+      text = {
+        {
+          border_nodes = {
+            { text = 'X' },
+            { ref_table = 'card.ability.extra', ref_value = 'X_chips' }
+          },
+          border_colour = G.C.CHIPS
+        }
+      },
+    }
   end
 }

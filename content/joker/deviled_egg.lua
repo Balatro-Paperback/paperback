@@ -54,5 +54,17 @@ SMODS.Joker {
         }
       end
     end
-  end
+  end,
+
+  joker_display_def = function(JokerDisplay)
+    return {
+      reminder_text = {
+        { text = "(" },
+        { ref_table = "card.ability.extra", ref_value = "rounds_left" },
+        { text = "/" },
+        { ref_table = "card.config.center.config.extra", ref_value = "rounds_left" },
+        { text = ")" },
+      },
+    }
+  end,
 }

@@ -9,13 +9,13 @@ SMODS.Joker {
   blueprint_compat = true,
   eternal_compat = true,
   perishable_compat = true,
-  config = { extra = { xmult = 0, xmult_mod = 1 } },
+  config = { extra = { xmult = 1, xmult_mod = 1 } },
   soul_pos = nil,
 
   loc_vars = function(self, info_queue, card)
     return {
       vars = {
-        card.ability.extra.xmult,
+        card.ability.extra.xmult + card.ability.extra.xmult_mod,
         card.ability.extra.xmult_mod
       }
     }
@@ -33,10 +33,26 @@ SMODS.Joker {
     end
 
     if not context.blueprint and context.end_of_round and context.cardarea == G.jokers then
-      card.ability.extra.xmult = 0
+      card.ability.extra.xmult = 1
       return {
         message = localize('k_reset')
       }
     end
-  end
+  end,
+
+  joker_display_def = function(JokerDisplay)
+    return {
+      text = {
+        {
+          border_nodes = {
+            { text = "X" },
+            { ref_table = "card.joker_display_values", ref_value = "xmult", retrigger_type = "exp" }
+          }
+        }
+      },
+      calc_function = function(card)
+        card.joker_display_values.xmult = card.ability.extra.xmult + card.ability.extra.xmult_mod
+      end
+    }
+  end,
 }

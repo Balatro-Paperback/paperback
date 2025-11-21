@@ -1,0 +1,32 @@
+[manifest]
+version = "1.0.0"
+priority = 0
+
+# end_round()
+## This check might be inaccurate if there are other effects that mess with blinds
+## also NOTE if someone makes a 'check if game over' context, can use that
+[[patches]]
+[patches.pattern]
+target = "functions/state_events.lua"
+pattern = '-- context.end_of_round calculations'
+position = "before"
+match_indent = true
+payload = '''
+if not (G.GAME.blind:get_type() == 'Boss' and not G.GAME.paperback.vacation_juice_trigger)
+and PB_UTIL.check_jimbocards_at_0() then
+    game_over = true
+end'''
+
+# Game:update_hand_played()
+[[patches]]
+[patches.pattern]
+target = "game.lua"
+pattern = "if G.GAME.chips - G.GAME.blind.chips >= 0 or G.GAME.current_round.hands_left < 1*"
+position = "before"
+match_indent = true
+payload = '''
+if PB_UTIL.check_jimbocards_at_0() then
+    G.STATE = G.STATES.NEW_ROUND
+    G.STATE_COMPLETE = false
+    return true
+end'''

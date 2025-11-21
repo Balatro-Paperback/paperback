@@ -54,7 +54,7 @@ SMODS.Joker {
 
       for k, v in pairs(ctx.full_hand) do
         local roll = PB_UTIL.chance(card, 'bismuth')
-        if not v.edition and not v.debuff and roll and
+        if not v.edition and roll and
             (v:is_suit(card.ability.extra.suit1) or v:is_suit(card.ability.extra.suit2)) then
           triggered = true
 

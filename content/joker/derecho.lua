@@ -30,19 +30,19 @@ SMODS.Joker {
   calculate = function(self, card, context)
     -- Upgrade the Joker when hand is played
     if context.before and context.main_eval and not context.blueprint then
+      local bad_suit = false
       for _, v in ipairs(context.scoring_hand) do
-        if not SMODS.has_any_suit(v) and PB_UTIL.is_suit(v, 'light') then
-          return
-        end
+        bad_suit = bad_suit or PB_UTIL.is_non_suit(v, 'dark')
       end
+      if not bad_suit then
+        card.ability.extra.x_mult = card.ability.extra.x_mult + card.ability.extra.x_mult_mod
 
-      card.ability.extra.x_mult = card.ability.extra.x_mult + card.ability.extra.x_mult_mod
-
-      return {
-        message = localize('k_upgrade_ex'),
-        colour = G.C.MULT,
-        card = card
-      }
+        return {
+          message = localize('k_upgrade_ex'),
+          colour = G.C.MULT,
+          card = card
+        }
+      end
     end
 
     -- Give the xMult during play
@@ -52,6 +52,18 @@ SMODS.Joker {
         card = card,
       }
     end
-  end
+  end,
 
+  joker_display_def = function(JokerDisplay)
+    return {
+      text = {
+        {
+          border_nodes = {
+            { text = "X" },
+            { ref_table = "card.ability.extra", ref_value = "x_mult", retrigger_type = "exp" }
+          }
+        }
+      },
+    }
+  end,
 }

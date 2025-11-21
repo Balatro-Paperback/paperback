@@ -6,7 +6,7 @@ SMODS.Joker {
       upgrade_odds = 3,
       x_mult = 1,
       x_mult_mod = 0.1,
-      tarot_odds = 5
+      tarot_odds = 6
     }
   },
   rarity = 3,
@@ -15,7 +15,7 @@ SMODS.Joker {
   cost = 8,
   blueprint_compat = true,
   eternal_compat = true,
-  perishable_compat = true,
+  perishable_compat = false,
   paperback = {
     requires_custom_suits = true
   },
@@ -52,20 +52,11 @@ SMODS.Joker {
   end,
 
   calculate = function(self, card, context)
-    if context.before and not context.blueprint then
-      local has_suit
-
-      for _, v in ipairs(context.scoring_hand) do
-        if v:is_suit(card.ability.extra.suit) then
-          has_suit = true
-          break
-        end
-      end
-
-      if has_suit then
+    if context.individual and context.cardarea == G.play then
+      if context.other_card:is_suit(card.ability.extra.suit) then
         local effects
 
-        if PB_UTIL.chance(card, "the_one_who_waits_upgrade", nil, card.ability.extra.upgrade_odds) then
+        if not context.blueprint and PB_UTIL.chance(card, "the_one_who_waits_upgrade", nil, card.ability.extra.upgrade_odds) then
           card.ability.extra.x_mult = card.ability.extra.x_mult + card.ability.extra.x_mult_mod
 
           effects = {
@@ -97,5 +88,54 @@ SMODS.Joker {
         x_mult = card.ability.extra.x_mult
       }
     end
-  end
+  end,
+
+  joker_display_def = function(JokerDisplay)
+    return {
+      text = {
+        {
+          border_nodes = {
+            { text = "X" },
+            { ref_table = "card.ability.extra", ref_value = "x_mult", retrigger_type = "exp" }
+          },
+        },
+        { text = " +", colour = G.C.SECONDARY_SET.Tarot },
+        { ref_table = "card.joker_display_values", ref_value = "count", retrigger_type = "mult", colour = G.C.SECONDARY_SET.Tarot },
+      },
+      extra = {
+        {
+          {
+            border_nodes = {
+              { text = "(" },
+              { ref_table = "card.joker_display_values", ref_value = "upgrade_odds" },
+              { text = ")" },
+            },
+          },
+          { text = " (", colour = G.C.SECONDARY_SET.Tarot },
+          { ref_table = "card.joker_display_values", ref_value = "tarot_odds", colour = G.C.SECONDARY_SET.Tarot },
+          { text = ")", colour = G.C.SECONDARY_SET.Tarot },
+        }
+      },
+      extra_config = { scale = 0.25 },
+      calc_function = function(card)
+        local count = 0
+        local _, _, scoring_hand = JokerDisplay.evaluate_hand()
+        for _, scoring_card in pairs(scoring_hand) do
+          if scoring_card:is_suit(card.ability.extra.suit) then
+            count = count +
+                JokerDisplay.calculate_card_triggers(scoring_card, scoring_hand)
+          end
+        end
+        card.joker_display_values.count = count
+        card.joker_display_values.upgrade_odds = localize {
+          type = 'variable', key = "jdis_odds",
+          vars = { PB_UTIL.chance_vars(card, nil, nil, card.ability.extra.upgrade_odds) }
+        }
+        card.joker_display_values.tarot_odds = localize {
+          type = 'variable', key = "jdis_odds",
+          vars = { PB_UTIL.chance_vars(card, nil, nil, card.ability.extra.tarot_odds) }
+        }
+      end
+    }
+  end,
 }

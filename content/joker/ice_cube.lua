@@ -2,8 +2,7 @@ SMODS.Joker {
   key = "ice_cube",
   config = {
     extra = {
-      x_mult_mod = 1,
-      rounds_left = 4,
+      hands = 1,
     }
   },
   rarity = 1,
@@ -21,37 +20,29 @@ SMODS.Joker {
   loc_vars = function(self, info_queue, card)
     return {
       vars = {
-        card.ability.extra.x_mult_mod,
-        card.ability.extra.rounds_left,
-        (#PB_UTIL.get_owned_food() + (card.area ~= G.jokers and 1 or 0)) * card.ability.extra.x_mult_mod
+        card.ability.extra.hands,
       }
     }
   end,
 
   calculate = function(self, card, context)
-    if context.joker_main then
-      local x_mult = #PB_UTIL.get_owned_food() * card.ability.extra.x_mult_mod
-
-      if x_mult > 1 then
-        return {
-          x_mult = x_mult
-        }
-      end
+    if context.setting_blind then
+      ease_hands_played(card.ability.extra.hands)
+      return {
+        message = localize {
+          type = 'variable',
+          key = 'a_hands',
+          vars = { card.ability.extra.hands }
+        },
+        colour = G.C.BLUE
+      }
     end
 
-    -- At end of round decrease the amount of rounds left, destroying
-    -- itself if it ever goes below 1
-    if context.final_scoring_step and (hand_chips * mult > G.GAME.blind.chips) and not context.blueprint then
-      G.E_MANAGER:add_event(Event {
-        trigger = 'after',
-        delay = 0.5,
-        func = function()
-          PB_UTIL.destroy_joker(card)
-          return true
-        end
-      })
+    if context.after and SMODS.last_hand_oneshot and not context.blueprint then
+      PB_UTIL.destroy_joker(card)
       return {
-        message = localize('paperback_melted_ex')
+        message = localize('paperback_melted_ex'),
+        colour = G.C.BLUE
       }
     end
   end

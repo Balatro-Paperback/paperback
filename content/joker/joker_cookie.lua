@@ -3,7 +3,8 @@ SMODS.Joker {
   config = {
     extra = {
       dollar_bonus = 1,
-      dollar_gain = 1,
+      dollar_gain = 2,
+      dollar_max = 11,
       odds = 5
     }
   },
@@ -27,6 +28,7 @@ SMODS.Joker {
       vars = {
         card.ability.extra.dollar_bonus,
         card.ability.extra.dollar_gain,
+        card.ability.extra.dollar_max,
         numerator,
         denominator
       }
@@ -54,12 +56,14 @@ SMODS.Joker {
 
       -- Upgrade the Joker when the user cashes out
       if context.paperback and context.paperback.cashing_out then
-        card.ability.extra.dollar_bonus = card.ability.extra.dollar_bonus + card.ability.extra.dollar_gain
+        if card.ability.extra.dollar_bonus < card.ability.extra.dollar_max then
+          card.ability.extra.dollar_bonus = card.ability.extra.dollar_bonus + card.ability.extra.dollar_gain
 
-        return {
-          message = localize('k_upgrade_ex'),
-          colour = G.C.MONEY
-        }
+          return {
+            message = localize('k_upgrade_ex'),
+            colour = G.C.MONEY
+          }
+        end
       end
     end
   end,

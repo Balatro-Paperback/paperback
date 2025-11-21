@@ -2,7 +2,7 @@ SMODS.Joker {
   key = 'popsicle_stick',
   config = {
     extra = {
-      xMult = 1
+      xMult_if_stick = 2
     }
   },
   rarity = 1,
@@ -21,7 +21,7 @@ SMODS.Joker {
 
     return {
       vars = {
-        card.ability.extra.xMult,
+        card.ability.extra.xMult_if_stick,
         xMult
       }
     }

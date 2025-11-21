@@ -9,17 +9,21 @@ SMODS.Joker {
   blueprint_compat = false,
   eternal_compat = true,
   perishable_compat = true,
-  config = { extra = { h_size = 4 } },
+  config = { extra = { h_size = 4, hands = -1 } },
 
   loc_vars = function(self, info_queue, card)
-    return { vars = { card.ability.extra.h_size } }
+    return { vars = { card.ability.extra.h_size, card.ability.extra.hands } }
   end,
 
   add_to_deck = function(self, card, from_debuff)
     G.hand:change_size(card.ability.extra.h_size)
+    G.GAME.round_resets.hands = G.GAME.round_resets.hands + card.ability.extra.hands
+    ease_hands_played(card.ability.extra.hands)
   end,
 
   remove_from_deck = function(self, card, from_debuff)
     G.hand:change_size(-card.ability.extra.h_size)
+    G.GAME.round_resets.hands = G.GAME.round_resets.hands - card.ability.extra.hands
+    ease_hands_played(-card.ability.extra.hands)
   end
 }

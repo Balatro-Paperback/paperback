@@ -81,7 +81,20 @@ SMODS.Joker {
         colour = G.C.SUITS[G.GAME.paperback.da_capo_suit] or G.C.PAPERBACK_SOLEMN_WHITE
       }
     end
-  end
+  end,
+
+  joker_display_def = function(JokerDisplay)
+    return {
+      text = {
+        {
+          border_nodes = {
+            { text = "X" },
+            { ref_table = "card.ability.extra", ref_value = "xmult", retrigger_type = "exp" }
+          }
+        }
+      }
+    }
+  end,
 }
 
 -- We hook into the vanilla function used to update the debuffed status of cards
@@ -93,7 +106,7 @@ function Blind.debuff_card(self, card, from_blind)
       return ret
     end
     for k, v in ipairs(SMODS.find_card('j_paperback_da_capo')) do
-      if not card:is_suit(G.GAME.paperback.da_capo_suit) then
+      if card.playing_card and not card:is_suit(G.GAME.paperback.da_capo_suit, true) then
         card:set_debuff(true)
         if card.debuff then card.debuffed_by_blind = true end
       end

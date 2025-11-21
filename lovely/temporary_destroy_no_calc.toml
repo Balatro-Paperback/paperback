@@ -1,0 +1,19 @@
+[manifest]
+version = "1.0.0"
+priority = 0
+
+# No calculation when destroying temporary cards at end of round
+[[patches]]
+[patches.pattern]
+target = '=[SMODS _ "src/utils.lua"]'
+pattern = "if next(playing_cards) then SMODS.calculate_context({scoring_hand = cards, remove_playing_cards = true, removed = playing_cards}) end"
+position = "before"
+match_indent = true
+payload = '''if not G.GAME.paperback.destroy_no_calc then'''
+[[patches]]
+[patches.pattern]
+target = '=[SMODS _ "src/utils.lua"]'
+pattern = "if next(playing_cards) then SMODS.calculate_context({scoring_hand = cards, remove_playing_cards = true, removed = playing_cards}) end"
+position = "after"
+match_indent = true
+payload = '''end'''
