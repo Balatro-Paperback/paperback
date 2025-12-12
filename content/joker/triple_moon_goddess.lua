@@ -3,8 +3,8 @@ if PB_UTIL.config.minor_arcana_enabled then
     key = 'triple_moon_goddess',
     config = {
       extra = {
-        tarot_odds = 3,
-        minor_arcana_odds = 6
+        tarot_odds = 2,
+        minor_arcana_odds = 4
       }
     },
     rarity = 2,

@@ -14,8 +14,10 @@ SMODS.Joker {
   atlas = "jokers_atlas",
   cost = 9,
   unlocked = true,
+  perishable_compat = false,
   discovered = false,
   blueprint_compat = true,
+  eternal_compat = false,
   soul_pos = nil,
   pools = {
     Food = true
@@ -26,7 +28,7 @@ SMODS.Joker {
   paperback_suit_drink_effect = function(card, other_card)
     return {
       mult = card.ability.extra.current,
-      card = other_card
+      message_card = other_card
     }
   end
 }

@@ -561,9 +561,9 @@ return {
       j_paperback_book_of_life = {
         name = "Book of Life",
         text = {
-          "After winning {C:attention}#1#{} {C:inactive}(#2#){} Blinds,",
-          "this Joker {C:red}self-destructs{}",
-          "and gives {C:attention}#3#{} Antes",
+          "After skipping or clearing",
+          "a {C:attention}Blind{}, {C:green}#1# in #2#{} chance to",
+          "create a {C:attention}copy{} of its {C:attention}Tag{}",
         }
       },
       j_paperback_hamsa = {
@@ -615,9 +615,9 @@ return {
       j_paperback_prescript = {
         name = "Prescript",
         text = {
-          "If {C:attention}first{} hand of round",
-          "contains a {C:attention}#1#{},",
-          "retrigger all played cards",
+          "Retrigger all played cards this {C:attention}round{}",
+          "if {C:attention}first{} hand of round contains a {C:attention}#1#{}",
+          "{C:inactive}(Currently {V:1}#2#{C:inactive})",
         },
       },
       j_paperback_ultra_rare = {
@@ -1858,7 +1858,7 @@ return {
       j_paperback_aperol = {
         name = "Aperol",
         text = {
-          "Scored {C:diamonds}#1#{} cards give {C:money}$#2#{} Mult when scored",
+          "Scored {C:diamonds}#1#{} cards give {C:money}$#2#{} when scored",
           "Increases by {C:money}$#3#{} if scoring hand contains",
           "atleast {C:attention}4{} {C:diamonds}#4#{}, otherwise decreases by {C:money}$#3#{}",
         },
@@ -3682,8 +3682,6 @@ return {
       paperback_punch_card_ex = "Wrong Warp!",
       paperback_hamsa_reverse = "Reversed!",
       paperback_der_freischutz_fire = "Fire...",
-      paperback_inline_active = "active",
-      paperback_inline_inactive = "inactive",
 
       paperback_ui_requires_restart = "Requires Restart",
       paperback_ui_no_requires_restart = "Doesn't Require Restart",

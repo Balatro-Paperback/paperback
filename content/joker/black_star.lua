@@ -5,7 +5,7 @@ SMODS.Joker {
       suit_conv = 'paperback_Stars'
     }
   },
-  rarity = 2,
+  rarity = 3,
   pos = { x = 14, y = 3 },
   atlas = "jokers_atlas",
   cost = 6,
@@ -13,7 +13,7 @@ SMODS.Joker {
   eternal_compat = true,
   perishable_compat = true,
   paperback = {
-    requires_stars = true
+    requires_custom_suits = true
   },
 
   loc_vars = function(self, info_queue, card)

@@ -2,9 +2,7 @@ SMODS.Joker {
   key = "book_of_life",
   config = {
     extra = {
-      max = 4,
-      current = 0,
-      antes = -2,
+      odds = 2,
     },
   },
   rarity = 3,
@@ -13,38 +11,35 @@ SMODS.Joker {
   cost = 8,
   unlocked = true,
   discovered = false,
-  blueprint_compat = false,
+  blueprint_compat = true,
   eternal_compat = false,
   perishable_compat = true,
   soul_pos = nil,
 
   loc_vars = function(self, info_queue, card)
-    return { vars = { card.ability.extra.max, card.ability.extra.max - card.ability.extra.current, card.ability.extra.antes } }
+    return { vars = { PB_UTIL.chance_vars(card) } }
   end,
 
   calculate = function(self, card, context)
-    if not context.blueprint and context.end_of_round and context.main_eval and not context.game_over then
-      card.ability.extra.current = card.ability.extra.current + 1
-      if card.ability.extra.current >= card.ability.extra.max then
-        PB_UTIL.destroy_joker(card)
-        ease_ante(card.ability.extra.antes)
-        G.GAME.round_resets.blind_ante = (G.GAME.round_resets.blind_ante or G.GAME.round_resets.ante) + card.ability.extra.antes
-        return {
-          message = localize('paperback_destroyed_ex'),
-          colour = G.C.MULT
-        }
-      else
-        return {
-          message = localize {
-            type = 'variable',
-            key = 'paperback_a_completion',
-            vars = {
-              card.ability.extra.current,
-              card.ability.extra.max,
-            },
-          }
-        }
-      end
+    local tag_key
+    if context.end_of_round and context.main_eval then
+      tag_key = G.GAME.round_resets.blind_tags[G.GAME.blind_on_deck]
+    elseif context.skip_blind then
+      local prev_blind = (G.GAME.blind_on_deck == 'Boss' and 'Big') or (G.GAME.blind_on_deck == 'Big' and 'Small')
+      tag_key = G.GAME.round_resets.blind_tags[prev_blind]
+    end
+    if tag_key ~= nil and PB_UTIL.chance(card, 'book_of_life') then
+      return {
+        message = localize('paperback_plus_tag'),
+        func = function()
+          G.E_MANAGER:add_event(Event({
+            func = function()
+              PB_UTIL.add_tag(tag_key)
+              return true
+            end
+          }))
+        end
+      }
     end
   end
 }

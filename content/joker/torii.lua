@@ -21,10 +21,10 @@ SMODS.Joker {
   loc_vars = function(self, info_queue, card)
     local active, colours
     if G.GAME.paperback.finished_antes[G.GAME.round_resets.ante] then
-      active = localize('paperback_inline_inactive')
+      active = localize('paperback_inactive')
       colours = { G.C.UI.TEXT_INACTIVE }
     else
-      active = localize('paperback_inline_active')
+      active = localize('k_active')
       colours = { G.C.FILTER }
     end
     return {

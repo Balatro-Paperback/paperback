@@ -231,7 +231,7 @@ end
 function PB_UTIL.set_sell_value(card, amount)
   if not card.set_cost then return end
   card.ability.paperback_forced_base_sell_cost = amount
-  card.ability.extra_value = nil
+  card.ability.extra_value = 0
   card:set_cost()
 end
 

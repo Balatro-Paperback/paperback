@@ -50,6 +50,7 @@ SMODS.Edition {
     end
 
     if should_trigger then
+      local amount = card.edition.amount or self.config.amount
       G.E_MANAGER:add_event(Event {
         trigger = 'after',
         delay = 1,
@@ -59,13 +60,13 @@ SMODS.Edition {
           local func = res.hands and ease_hands_played or ease_discard
           local message = res.hands and 'a_hands' or 'paperback_a_discards'
 
-          func(card.edition.amount, true)
+          func(amount, true)
 
           SMODS.calculate_effect({
             message = localize {
               type = 'variable',
               key = message .. (res.amt < 0 and '_minus' or ''),
-              vars = { card.edition.amount }
+              vars = { amount }
             },
             colour = res.hands and G.C.CHIPS or G.C.MULT,
             instant = true

@@ -17,9 +17,14 @@ SMODS.Joker {
   unlocked = true,
   discovered = false,
   blueprint_compat = true,
+  eternal_compat = false,
+  perishable_compat = false,
   soul_pos = nil,
   pools = {
     Food = true
+  },
+  paperback = {
+    requires_stars = true
   },
 
   loc_vars = PB_UTIL.suit_drink_loc_vars,
@@ -27,7 +32,7 @@ SMODS.Joker {
   paperback_suit_drink_effect = function(card, other_card)
     return {
       xchips = card.ability.extra.current,
-      card = other_card
+      message_card = card
     }
   end
 }

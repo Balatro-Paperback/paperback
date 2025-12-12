@@ -66,7 +66,7 @@ SMODS.Joker {
       if context.cardarea == G.play then
         if context.other_card:get_seal() then
           -- Gives chips if roll succeeds
-          if PB_UTIL.chance(card, 'stamp', self.ability.extra.numerator, self.ability.extra.denominator) then
+          if PB_UTIL.chance(card, 'stamp', card.ability.extra.numerator, card.ability.extra.denominator) then
             card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chip_mod
 
             card_eval_status_text(card, 'extra', nil, nil, nil,

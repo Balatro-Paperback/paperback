@@ -245,7 +245,7 @@ end
 local calculate_main_scoring_ref = SMODS.calculate_main_scoring
 function SMODS.calculate_main_scoring(context, scoring_hand)
   calculate_main_scoring_ref(context, scoring_hand)
-  if context.cardarea == G.play then
+  if context.cardarea == G.play or context.cardarea == 'unscored' then
     SMODS.calculate_context {
       paperback = {
         nichola = true -- Name can be changed later
