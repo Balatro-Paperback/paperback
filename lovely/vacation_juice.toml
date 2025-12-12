@@ -28,6 +28,16 @@ payload = '''if not G.GAME.paperback.vacation_juice_trigger then'''
 [[patches]]
 [patches.pattern]
 target = "functions/state_events.lua"
+pattern = '''if G.GAME.blind_on_deck == 'Small' then
+G.GAME.round_resets.blind_states.Small = 'Defeated'
+'''
+position = "before"
+match_indent = true
+payload = '''if not G.GAME.paperback.vacation_juice_trigger then'''
+
+[[patches]]
+[patches.pattern]
+target = "functions/state_events.lua"
 pattern = '''
 		v.ability.played_this_ante = nil
 	end
