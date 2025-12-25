@@ -286,7 +286,6 @@ function PB_UTIL.get_unique_suits(scoring_hand, bypass_debuff, flush_calc)
       for suit, count in pairs(suits) do
         if card:is_suit(suit, bypass_debuff, flush_calc) and count == 0 then
           suits[suit] = count + 1
-          break
         end
       end
     end
