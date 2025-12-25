@@ -22,7 +22,7 @@ SMODS.Joker {
       vars = {
         card.ability.extra.mult_mod,
         card.ability.extra.sv_gain,
-        card.ability.extra.mult_mod * card.sell_cost
+        card.ability.extra.mult_mod * (card.sell_cost or 0)
       }
     }
   end,

@@ -6,7 +6,7 @@ SMODS.Joker {
       a_mult = 1,
     }
   },
-  rarity = 2,
+  rarity = 3,
   pos = { x = 22, y = 2 },
   atlas = 'jokers_atlas',
   cost = 9,
@@ -18,11 +18,6 @@ SMODS.Joker {
   pools = {
     Music = true
   },
-  in_pool = function(self, args)
-    for _, v in ipairs(G.playing_cards or {}) do
-      if SMODS.has_no_rank(v) then return true end
-    end
-  end,
 
   loc_vars = function(self, info_queue, card)
     return {
@@ -40,23 +35,23 @@ SMODS.Joker {
       }
     end
 
+    if context.modify_scoring_hand and context.other_card:is_face() then
+      return { add_to_hand = true }
+    end
+
     -- Upgrade this Joker for every scored rankless card
     if not context.blueprint and context.individual and context.cardarea == G.play then
       if SMODS.has_no_rank(context.other_card) then
-        card.ability.extra.scored = true
         card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.a_mult
 
         return {
-          extra = {
-            focus = card,
-            message = localize {
-              type = 'variable',
-              key = 'a_mult',
-              vars = { card.ability.extra.mult },
-              colour = G.C.MULT,
-            },
-            card = card
-          }
+          message = localize {
+            type = 'variable',
+            key = 'a_mult',
+            vars = { card.ability.extra.mult },
+            colour = G.C.MULT,
+          },
+          message_card = card
         }
       end
     end
@@ -72,3 +67,22 @@ SMODS.Joker {
     }
   end,
 }
+
+local has_no_rank_ref = SMODS.has_no_rank
+function SMODS.has_no_rank(card)
+  if card.paperback_penumbra_checking_face then
+    return has_no_rank_ref(card)
+  end
+  if next(SMODS.find_card('j_paperback_penumbra_phantasm')) and card:is_face() then
+    return true
+  end
+  return has_no_rank_ref(card)
+end
+
+local is_face_ref = Card.is_face
+function Card:is_face(from_boss)
+  self.paperback_penumbra_checking_face = true
+  local ret = is_face_ref(self, from_boss)
+  self.paperback_penumbra_checking_face = nil
+  return ret
+end

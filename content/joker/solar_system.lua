@@ -58,7 +58,8 @@ SMODS.Joker {
 
   calculate = function(self, card, context)
     -- If a hand is being leveled up, recalculate the xMult bonus
-    if context.paperback and context.paperback.level_up_hand then
+    -- The last two contexts are failsafes in case a hand is leveled up in an unorthodox way which paperback.level_up_hand doesn't catch
+    if not context.blueprint and ((context.paperback and context.paperback.level_up_hand) or context.before or context.ending_shop) then
       PB_UTIL.update_solar_system(card)
       if card.ability.extra.message_flag then
         card.ability.extra.message_flag = nil

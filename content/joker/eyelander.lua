@@ -22,17 +22,14 @@ SMODS.Joker {
     }
   end,
 
+  -- Dear Jimbo in heaven, when will this joker stop being problematic
   calculate = function(self, card, context)
     if context.destroy_card and context.cardarea == G.play and not context.blueprint then
       if context.destroy_card:is_face() then
-        card.ability.extra.heads = card.ability.extra.heads + 1
-        if card.ability.extra.heads < card.ability.extra.heads_req then
+        if card.ability.extra.heads <= card.ability.extra.heads_req then
+          card.ability.extra.heads = card.ability.extra.heads + 1
           return {
             remove = true,
-            --[[ If a message is decided upon
-            message = localize(),
-            colour = G.C.RED
-            ]]
           }
         else
           if not card.ability.extra.trigerred then

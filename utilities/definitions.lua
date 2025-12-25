@@ -179,13 +179,14 @@ PB_UTIL.credits = {
       'PaperMoon',
       '「S_C_R_U_B_Y」',
       'Firch',
-      'Fennex'
+      'Fennex',
+      "MaveBoy"
     }
   },
   developers = {
     color = G.C.GREEN,
     entries = {
-      'OppositeWolf770, srockw, Nether, B, ejwu2, metanite64, TheSnaz',
+      'OppositeWolf770, srockw, Nether, B, ejwu2, metanite64, Dowfrin',
       'InfinityPlus05, aliahmed2k03'
     }
   },
@@ -384,15 +385,16 @@ PB_UTIL.ENABLED_JOKERS = {
   "angel_investor",
   "der_freischutz",
   "card_sleeve",
-  -- "plastic_wrap",
+  "plastic_wrap",
   "shopping_center",
   "everything_must_go",
   "tutor",
   "percussion_ensemble",
   "its_tv_time",
+  "trust_us",
   "eyelander",
   "torii",
-  -- "freight",
+  "freight",
   "high_speed_rail",
   "small_scale_onshore_wind",
   "satellite_array",
@@ -402,6 +404,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "moving_out",
   "ready_to_fly",
   "great_wave",
+  'one_shift_more',
   "let_it_happen",
   -- "paralyzed"
   "in_case_i_make_it",
@@ -421,13 +424,15 @@ PB_UTIL.ENABLED_JOKERS = {
   "ncj",
   "bicycle",
   -- "mezzetino",
-  -- "gauze",
+  "gauze",
   "joke_master",
   "jokers_11",
   "book_of_life",
   "hamsa",
   "hamsa_r",
   "nazar",
+  "oujia_board",
+  "planchette",
   "prescript",
   "trans_flag",
   "pride_flag",
@@ -439,11 +444,13 @@ PB_UTIL.ENABLED_JOKERS = {
   "autumn_leaves",
   "river",
   "evergreens",
+  "56_leaf_clover",
   "master_plan",
   "the_wonder_of_you",
   "tian_tian",
   "backpack",
   "roulette",
+  "57_leaf_clover",
   "mexican_train",
   "chocolate_joker",
   "resurrections",
@@ -461,11 +468,11 @@ PB_UTIL.ENABLED_JOKERS = {
   "paranoia",
   "der_fluschutze",
   "touch_tone_joker",
-  -- "the_batter",
-  -- "off_switch",
-  -- "alpha",
-  -- "omega",
-  -- "epsilon",
+  "the_batter",
+  "off_switch",
+  "off_alpha",
+  "off_omega",
+  "off_epsilon",
   "jestrica",
   "you_are_a_fool",
   "alert",
@@ -501,7 +508,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "jimbo_adventure",
   "ddakji",
   -- "yacht_dice",
-  -- "deck_of_cards",
+  "deck_of_cards",
   "pocket_pair",
   "ultra_rare",
   -- "lore_digger",
@@ -542,7 +549,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "clippy",
   "clothespin",
   "kintsugi_joker",
-  -- "happy_accident",
+  "happy_accident",
   "watercolor_joker",
   "medic",
   "festive_joker",
@@ -809,6 +816,48 @@ PB_UTIL.DECK_SKINS = {
   {
     id = 'gardevoir',
     name = "Pokemon (Gardevoir)",
+    suits = {
+      'Spades'
+    }
+  },
+  {
+    id = 'guides',
+    name = "Limbus Company",
+    suits = {
+      'paperback_Stars'
+    }
+  },
+  {
+    id = 'enforcers',
+    name = "Limbus Company",
+    suits = {
+      'paperback_Crowns'
+    }
+  },
+  {
+    id = 'wrath',
+    name = "Limbus Company",
+    suits = {
+      'Hearts'
+    }
+  },
+  {
+    id = 'gloom',
+    name = "Limbus Company",
+    suits = {
+      'Clubs'
+    }
+  },
+  {
+    id = 'sloth',
+    name = "Limbus Company",
+    suits = {
+      'Diamonds'
+    }
+  },
+  {
+    id = 'envy',
+    name = "Limbus Company",
     suits = {
       'Spades'
     }
