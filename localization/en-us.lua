@@ -2603,6 +2603,15 @@ return {
           "{C:inactive}(Currently {C:attention}#1#{C:inactive})"
         }
       },
+      j_paperback_yacht = {
+        name = "Yacht",
+        text = {
+          "This Joker gains {C:chips}+#1#{} Chips if",
+          "hand contained a scoring",
+          "{C:paperback_stars}Star{} or {C:paperback_crowns}Crown",
+          "{C:inactive}(Currently {C:chips}+#2#{C:inactive} Chips)"
+        }
+      },
       -- Cross-Mod jokers start here
       j_paperback_moon_waltz = {
         name = "Moon Waltz",

@@ -502,6 +502,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "the_dynasty",
   "j_and_js",
   "master_spark",
+  "yacht",
   "prism",
   "fraudulent_joker",
   "pyrite",
