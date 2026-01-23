@@ -8,7 +8,7 @@ SMODS.Joker {
   eternal_compat = true,
   perishable_compat = true,
   paperback_credit = {
-    coder = 'thermo'
+    coder = { 'thermo' }
   },
   calculate = function(self, card, context)
     if context.end_of_round and context.main_eval then

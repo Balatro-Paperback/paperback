@@ -2585,6 +2585,15 @@ return {
           "For every {C:attention}#5#{C:inactive} [#6#]{} cards {C:attention}destroyed"
         }
       },
+      j_paperback_yacht_dice = {
+        name = "Yacht Dice",
+        text = {
+          "This Joker gains {X:mult,C:white} X#1# {} Mult",
+          "for each {C:attention}unique{} hand type",
+          "played this run",
+          "{C:inactive}(Currently {X:mult,C:white} X#2# {C:inactive} Mult)"
+        }
+      },
       -- Cross-Mod jokers start here
       j_paperback_moon_waltz = {
         name = "Moon Waltz",

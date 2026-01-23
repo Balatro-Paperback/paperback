@@ -472,7 +472,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "better_call_jimbo",
   "jimbo_adventure",
   "ddakji",
-  -- "yacht_dice",
+  "yacht_dice",
   "deck_of_cards",
   "pocket_pair",
   "ultra_rare",

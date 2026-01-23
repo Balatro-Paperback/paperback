@@ -1352,3 +1352,11 @@ function PB_UTIL.suit_drink_logic(card, context, check)
     end
   end
 end
+
+--- Count the number of entries in a table not in a sequence
+--- @param table (table)
+function PB_UTIL.count_entries(table)
+  local count = 0
+  for _ in pairs(table) do count = count + 1 end
+  return count
+end

@@ -7,7 +7,7 @@ SMODS.Joker {
   },
 
   paperback_credit = {
-    coder = 'thermo'
+    coder = { 'thermo' }
   },
 
   rarity = 3,

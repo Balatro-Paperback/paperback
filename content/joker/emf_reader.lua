@@ -14,7 +14,7 @@ if PB_UTIL.should_load_spectrum_items() then
     eternal_compat = true,
     perishable_compat = true,
     paperback_credit = {
-      coder = 'thermo'
+      coder = { 'thermo' }
     },
     paperback = {
       requires_custom_suits = true,
