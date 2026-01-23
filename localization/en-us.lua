@@ -2594,6 +2594,15 @@ return {
           "{C:inactive}(Currently {X:mult,C:white} X#2# {C:inactive} Mult)"
         }
       },
+      j_paperback_stereoscopic_specs = {
+        name = "Stereoscopic Specs",
+        text = {
+          "Create a {C:attention}copy{} of the",
+          "last tag used after",
+          "beating a {C:attention}boss{} blind",
+          "{C:inactive}(Currently {C:attention}#1#{C:inactive})"
+        }
+      },
       -- Cross-Mod jokers start here
       j_paperback_moon_waltz = {
         name = "Moon Waltz",
