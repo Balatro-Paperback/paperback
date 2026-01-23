@@ -2620,6 +2620,15 @@ return {
           "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)"
         },
       },
+      j_paperback_joker_duty = {
+        name = "Joker Duty",
+        text = {
+          "This Joker gains {C:mult}+#1#{} Mult if",
+          "round was cleared with",
+          "equal {C:chips}hands{} and {C:mult}discards",
+          "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)"
+        }
+      },
       -- Cross-Mod jokers start here
       j_paperback_moon_waltz = {
         name = "Moon Waltz",

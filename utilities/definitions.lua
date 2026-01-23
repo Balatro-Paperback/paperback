@@ -518,7 +518,7 @@ PB_UTIL.ENABLED_JOKERS = {
   -- "bergentrucking"
   "towering_pillar_of_hats",
   "manilla_folder",
-  -- "joker_duty",
+  "joker_duty",
   "clippy",
   "chip_clip",
   "clothespin",
