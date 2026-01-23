@@ -4,7 +4,8 @@ if PB_UTIL.should_load_spectrum_items() then
     config = {
       extra = {
         mult = 0,
-        change = 1
+        change = 1,
+        divisor = 2
       }
     },
     paperback = {
@@ -29,19 +30,19 @@ if PB_UTIL.should_load_spectrum_items() then
           if playing_card:get_id() == 11 or playing_card:get_id() == 12 or playing_card:get_id() == 13 then rank_tally =
             rank_tally + 1 end
         end
-        local change = rank_tally - card.ability.extra.mult
+        local change = math.floor(rank_tally / card.ability.extra.divisor) - card.ability.extra.mult
         if change ~= 0 then
-          card.ability.extra.mult = rank_tally
+          card.ability.extra.mult = math.floor(rank_tally / card.ability.extra.divisor)
         end
       end
     end,
 
     loc_vars = function(self, info_queue, card)
-      info_queue[#info_queue + 1] = G.P_CENTERS.m_steel
       return {
         vars = {
           card.ability.extra.change,
-          card.ability.extra.mult
+          card.ability.extra.mult,
+          card.ability.extra.divisor
         }
       }
     end,
