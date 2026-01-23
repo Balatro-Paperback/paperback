@@ -513,6 +513,10 @@ PB_UTIL.ENABLED_JOKERS = {
   "solar_eclipse",
   "gambit",
   "king_me",
+  -- "loaded_dice",
+  -- "regicide",
+  -- "bergentrucking"
+  "towering_pillar_of_hats",
   "manilla_folder",
   -- "joker_duty",
   "clippy",

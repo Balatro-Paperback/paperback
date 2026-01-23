@@ -2612,6 +2612,14 @@ return {
           "{C:inactive}(Currently {C:chips}+#2#{C:inactive} Chips)"
         }
       },
+      j_paperback_towering_pillar_of_hats = {
+        name = "Towering Pillar of Hats",
+        text = {
+          "Played {C:paperback_crowns}Crowns{} give {C:mult}+#1#{} Mult for each",
+          "Jack, Queen or King in the deck",
+          "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)"
+        },
+      },
       -- Cross-Mod jokers start here
       j_paperback_moon_waltz = {
         name = "Moon Waltz",
