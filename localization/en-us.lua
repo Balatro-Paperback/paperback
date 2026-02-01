@@ -2664,6 +2664,15 @@ return {
           "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)"
         }
       },
+      j_paperback_red_sun_in_the_sky = {
+        name = "Red Sun in the Sky",
+        text = {
+          "Scored {C:attention}light suits{}",
+          "give {C:mult}+#1#{} Mult for each",
+          "scored {C:attention}light suit{} this round",
+          "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)"
+        }
+      },
       -- Cross-Mod jokers start here
       j_paperback_moon_waltz = {
         name = "Moon Waltz",
@@ -4081,7 +4090,6 @@ return {
       paperback_ui_enable_blinds = "Enable Blinds",
       paperback_ui_enable_minor_arcana = "Enable Minor Arcana",
       paperback_ui_enable_ego_gifts = "Enable E.G.O. Gifts",
-      paperback_ui_show_credits = "Show developer credits",
       paperback_ui_enable_enhancements = "Enable Enhancements",
       paperback_ui_enable_editions = "Enable Editions",
       paperback_ui_enable_paperclips = "Enable Paperclips",

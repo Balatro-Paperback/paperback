@@ -422,7 +422,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "moribund",
   "subterfuge",
   "the_world",
-  -- "red_sun",
+  "red_sun_in_the_sky",
   "jacks",
   "the_sun_rises",
   "blood_rain",
