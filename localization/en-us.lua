@@ -2656,6 +2656,14 @@ return {
           "and {C:attention}last{} card"
         }
       },
+      j_paperback_jacks = {
+        name = "Jacks",
+        text = {
+          "This Joker gains {C:mult}+#1#{} Mult",
+          "when a {C:attention}Jack{} is discarded",
+          "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)"
+        }
+      },
       -- Cross-Mod jokers start here
       j_paperback_moon_waltz = {
         name = "Moon Waltz",

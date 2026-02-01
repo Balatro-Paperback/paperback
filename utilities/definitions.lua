@@ -423,6 +423,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "subterfuge",
   "the_world",
   -- "red_sun",
+  "jacks",
   "the_sun_rises",
   "blood_rain",
   -- "war_without_reason",
