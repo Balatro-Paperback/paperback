@@ -47,41 +47,45 @@ end
 local card_popup_ref = G.UIDEF.card_h_popup
 function G.UIDEF.card_h_popup(card)
   local ret_val = card_popup_ref(card)
-  local obj = card.config.center and card.config.center.paperback_credit
-  local target = ret_val.nodes[1].nodes[1].nodes[1].nodes
-  local owned = function(card)
-    if next(SMODS.find_card(card.config.center.key, true)) then
-      if PB_UTIL.find(SMODS.find_card(card.config.center.key), card) then
-        return true
-      end
-    end
-    return false
-  end
 
-  if obj then
-    if (not obj.hidden) or
-    (obj.hidden and owned(card)) then
-      if obj.artist then
-        local str = PB_UTIL.CREDITS.generate_string(obj.artist, 'paperback_art_credit')
-        if str then
-          table.insert(target, str)
-        end
-      else
-        local str = PB_UTIL.CREDITS.generate_string({ 'papermoonqueen' }, 'paperback_art_credit')
-        if str then
-          table.insert(target, str)
+  if PB_UTIL.config.show_credits then
+    local obj = card.config.center and card.config.center.paperback_credit
+    local target = ret_val.nodes[1].nodes[1].nodes[1].nodes
+    local owned = function(card)
+      if next(SMODS.find_card(card.config.center.key, true)) then
+        if PB_UTIL.find(SMODS.find_card(card.config.center.key), card) then
+          return true
         end
       end
-      if obj.coder then
-        local str = PB_UTIL.CREDITS.generate_string(obj.coder, 'paperback_code_credit')
-        if str then
-          table.insert(target, str)
+      return false
+    end
+
+
+    if obj then
+      if (not obj.hidden) or
+      (obj.hidden and owned(card)) then
+        if obj.artist then
+          local str = PB_UTIL.CREDITS.generate_string(obj.artist, 'paperback_art_credit')
+          if str then
+            table.insert(target, str)
+          end
+        else
+          local str = PB_UTIL.CREDITS.generate_string({ 'papermoonqueen' }, 'paperback_art_credit')
+          if str then
+            table.insert(target, str)
+          end
         end
-      end
-      if obj.composer then
-        local str = PB_UTIL.CREDITS.generate_string(obj.composer, 'paperback_music_credit')
-        if str then
-          table.insert(target, str)
+        if obj.coder then
+          local str = PB_UTIL.CREDITS.generate_string(obj.coder, 'paperback_code_credit')
+          if str then
+            table.insert(target, str)
+          end
+        end
+        if obj.composer then
+          local str = PB_UTIL.CREDITS.generate_string(obj.composer, 'paperback_music_credit')
+          if str then
+            table.insert(target, str)
+          end
         end
       end
     end

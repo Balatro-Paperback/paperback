@@ -4081,6 +4081,7 @@ return {
       paperback_ui_enable_blinds = "Enable Blinds",
       paperback_ui_enable_minor_arcana = "Enable Minor Arcana",
       paperback_ui_enable_ego_gifts = "Enable E.G.O. Gifts",
+      paperback_ui_show_credits = "Show developer credits",
       paperback_ui_enable_enhancements = "Enable Enhancements",
       paperback_ui_enable_editions = "Enable Editions",
       paperback_ui_enable_paperclips = "Enable Paperclips",

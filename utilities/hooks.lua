@@ -440,10 +440,10 @@ end
 -- Used by Coin Collection to add dollars
 local ease_dollars_ref = ease_dollars
 function ease_dollars(mod, instant)
-  if mod > 0 and next(SMODS.find_card("j_paperback_coin_collection")) then
+  if to_big(mod) > to_big(0) and next(SMODS.find_card("j_paperback_coin_collection")) then
     for _, c in ipairs(SMODS.find_card("j_paperback_coin_collection")) do
-      mod = mod + c.ability.extra.dollars
-      SMODS.calculate_effect({message = "+$" .. c.ability.extra.dollars}, c)
+      mod = to_big(mod) + to_big(c.ability.extra.dollars)
+      SMODS.calculate_effect({ message = "+$" .. c.ability.extra.dollars }, c)
     end
   end
   return ease_dollars_ref(mod, instant)

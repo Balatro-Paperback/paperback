@@ -115,6 +115,11 @@ SMODS.current_mod.config_tab = function()
                 ref_table = PB_UTIL.config,
                 ref_value = 'plague_doctor_quotes_enabled'
               },
+              create_toggle {
+                label = localize('paperback_ui_show_credits'),
+                ref_table = PB_UTIL.config,
+                ref_value = 'show_credits',
+              }
             }
           }
         }
