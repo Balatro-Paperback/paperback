@@ -4013,10 +4013,20 @@ return {
   },
   misc = {
     challenge_names = {
+      -- Trials
       c_paperback_trial_of_cups = "Trial of Cups",
       c_paperback_trial_of_wands = "Trial of Wands",
       c_paperback_trial_of_swords = "Trial of Swords",
-      c_paperback_trial_of_pentacles = "Trial of Pentacles"
+      c_paperback_trial_of_pentacles = "Trial of Pentacles",
+      -- Challenges
+      c_paperback_joker_of_the_day = "Joker of the Day",
+      c_paperback_white_nights_and_dark_days = "White Nights and Dark Days",
+      c_paperback_hard_cover = "Hard Cover",
+      c_paperback_borderline = "Borderline",
+      c_paperback_all_smiles = "All Smiles",
+      c_paperback_hide_and_seek = "Hide and Seek",
+      c_paperback_suburbia_overture = "Suburbia Overture",
+      c_paperback_foodie = "Foodie"
     },
     dictionary = {
       -- Badge under cards
@@ -4284,16 +4294,6 @@ return {
       paperback_energized = "Energized",
       paperback_temporary = "Temporary",
       paperback_corroded = "Corroded",
-    },
-    challenge_names = {
-      c_paperback_joker_of_the_day = "Joker of the Day",
-      c_paperback_white_nights_and_dark_days = "White Nights and Dark Days",
-      c_paperback_hard_cover = "Hard Cover",
-      c_paperback_borderline = "Borderline",
-      c_paperback_all_smiles = "All Smiles",
-      c_paperback_hide_and_seek = "Hide and Seek",
-      c_paperback_suburbia_overture = "Suburbia Overture",
-      c_paperback_foodie = "Foodie"
     },
     v_text = {
       ch_c_paperback_banned_vanilla_jokers = {
