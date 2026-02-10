@@ -280,7 +280,7 @@ return {
         name = "Deviled Egg",
         text = {
           "The first scored card",
-          "each round becomes {C:attention}#2#{}.",
+          "each round becomes {C:attention}Gold{}.",
           "Eaten in {C:attention}#1#{} rounds"
         }
       },
