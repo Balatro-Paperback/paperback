@@ -3,7 +3,8 @@ SMODS.Joker {
     config = {
         extra = {
             triggered = false,
-            repetitions = 1
+            repetitions = 1,
+            rank = "Ace"
         }
     },
     rarity = 1,
@@ -17,11 +18,15 @@ SMODS.Joker {
         coder = {'thermo'}
     },
 
+    loc_vars = function (self, info_queue, card)
+        return { vars = { card.ability.extra.rank }}
+    end,
+
 
     calculate = function(self, card, context)
         if context.before then
             for _, v in ipairs(context.scoring_hand) do
-                if v:get_id() == 14 then
+                if PB_UTIL.is_rank(v, card.ability.extra.rank) then
                     card.ability.extra.triggered = true
                     break
                 end

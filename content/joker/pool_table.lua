@@ -15,6 +15,12 @@ SMODS.Joker {
     coder = { 'oppositewolf' }
   },
 
+  loc_vars = function (self, info_queue, card)
+    return {
+      vars = { localize('k_planet') }
+    }
+  end,
+
   -- Calculate function for the Joker
   calculate = function(self, card, context)
     if context.before then

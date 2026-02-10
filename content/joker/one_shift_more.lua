@@ -33,7 +33,8 @@ SMODS.Joker {
         card.ability.extra.a_xmult,
         card.ability.extra.required,
         card.ability.extra.current,
-        card.ability.extra.x_mult
+        card.ability.extra.x_mult,
+        localize(card.ability.extra.suit, 'suits_singular')
       }
     }
   end,

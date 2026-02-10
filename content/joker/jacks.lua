@@ -3,7 +3,8 @@ SMODS.Joker {
   config = {
     extra = {
       mult = 0,
-      change = 1
+      change = 1,
+      rank = "Jack"
     }
   },
   rarity = 1,
@@ -21,7 +22,8 @@ SMODS.Joker {
     return {
       vars = {
         card.ability.extra.change,
-        card.ability.extra.mult
+        card.ability.extra.mult,
+        card.ability.extra.rank
       }
     }
   end,
@@ -32,7 +34,7 @@ SMODS.Joker {
         mult = card.ability.extra.mult
       }
     end
-    if context.discard and context.other_card:get_id() == 11 then
+    if context.discard and PB_UTIL.is_rank(context.other_card, card.ability.extra.rank) then
       card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.change
       return {
         message = localize('k_upgrade_ex'),

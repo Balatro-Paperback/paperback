@@ -26,6 +26,7 @@ SMODS.Joker {
     return {
       vars = {
         card.ability.extra.s_mult,
+        localize(card.ability.extra.suit, 'suits_singular')
       }
     }
   end,

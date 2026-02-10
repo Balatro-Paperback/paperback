@@ -3,7 +3,8 @@ SMODS.Joker {
   config = {
     extra = {
       a_odds = 1,
-      triggered = nil
+      triggered = nil,
+      suit = "paperback_Crowns"
     }
   },
   rarity = 1,
@@ -21,7 +22,7 @@ SMODS.Joker {
   },
 
   loc_vars = function(self, info_queue, card)
-    return { vars = { PB_UTIL.force_signed(card.ability.extra.a_odds) } }
+    return { vars = { PB_UTIL.force_signed(card.ability.extra.a_odds), localize(card.ability.extra.suit, 'suits_singular') } }
   end,
 
   calculate = function(self, card, context)

@@ -3,6 +3,7 @@ SMODS.Joker { -- Guns Blazin'
   config = {
     extra = {
       xmult = 1.5,
+      rank = "Ace"
     }
   },
   pos = {
@@ -17,7 +18,7 @@ SMODS.Joker { -- Guns Blazin'
   discovered = false,
   atlas = 'jokers_atlas',
   loc_vars = function(self, info_queue, card)
-    return { vars = { card.ability.extra.xmult } }
+    return { vars = { card.ability.extra.xmult, card.ability.extra.rank } }
   end,
   locked_loc_vars = function(self, info_queue, card)
     return { vars = { 5 } }
@@ -44,7 +45,7 @@ SMODS.Joker { -- Guns Blazin'
 
   calculate = function(self, card, context)
     if context.individual and context.cardarea == G.play then
-      if context.other_card:get_id() == 14 then
+      if PB_UTIL.is_rank(context.other_card, card.ability.extra.rank) then
         return {
           x_mult = card.ability.extra.xmult
         }

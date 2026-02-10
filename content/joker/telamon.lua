@@ -27,6 +27,7 @@ SMODS.Joker {
     return {
       vars = {
         localize(card.ability.extra.hand, 'poker_hands'),
+        localize('k_paperback_minor_arcana')
       }
     }
   end,

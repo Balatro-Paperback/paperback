@@ -5,7 +5,8 @@ SMODS.Joker {
       unique_suits = 2,
       x_mult = 2,
       hands = 3,
-      hands_remaining = 0
+      hands_remaining = 0,
+      suit = "Hearts"
     }
   },
   rarity = 2,
@@ -29,7 +30,8 @@ SMODS.Joker {
         card.ability.extra.unique_suits,
         card.ability.extra.x_mult,
         math.max(0, card.ability.extra.hands - 1),
-        card.ability.extra.hands_remaining
+        card.ability.extra.hands_remaining,
+        localize(card.ability.extra.suit, 'suits_singular')
       }
     }
   end,
@@ -53,7 +55,7 @@ SMODS.Joker {
 
         local heart_found = false
         for i = 1, #context.scoring_hand do
-          if context.scoring_hand[i]:is_suit("Hearts", false, true) then
+          if context.scoring_hand[i]:is_suit(card.ability.extra.suit, false, true) then
             heart_found = true
             break
           end

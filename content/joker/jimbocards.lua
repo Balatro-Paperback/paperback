@@ -46,6 +46,7 @@ SMODS.Joker {
         card.ability.extra.discount,
         card.ability.extra.hands_reset,
         card.ability.extra.hands_to_death,
+        localize { type = 'name_text', key = 'e_negative', set = 'Edition'}
       }
     }
   end,

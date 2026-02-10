@@ -4,7 +4,7 @@ SMODS.Joker {
     extra = {
       current = 0,
       max = 6,
-      rank = 3
+      rank = "3"
     },
   },
   rarity = 2,
@@ -23,7 +23,8 @@ SMODS.Joker {
     return {
       vars = {
         card.ability.extra.current,
-        card.ability.extra.max
+        card.ability.extra.max,
+        card.ability.extra.rank
       }
     }
   end,

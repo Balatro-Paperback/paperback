@@ -29,6 +29,7 @@ SMODS.Joker {
       vars = {
         card.ability.extra.active_xmult,
         card.ability.extra.inactive_xmult,
+        localize("Three of a Kind", 'poker_hands')
       }
     }
   end,

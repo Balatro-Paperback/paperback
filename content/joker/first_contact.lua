@@ -23,7 +23,8 @@ SMODS.Joker {
     return {
       vars = {
         card.ability.extra.required,
-        card.ability.extra.required - (G.GAME.paperback.first_contact_count % card.ability.extra.required)
+        card.ability.extra.required - (G.GAME.paperback.first_contact_count % card.ability.extra.required),
+        localize('k_spectral')
       }
     }
   end,

@@ -5,7 +5,9 @@ if PB_UTIL.should_load_spectrum_items() then
       extra = {
         mult = 0,
         change = 1,
-        divisor = 2
+        divisor = 2,
+        ranks = {"Jack", "Queen", "King"},
+        suit = "paperback_Crowns"
       }
     },
     paperback = {
@@ -27,8 +29,10 @@ if PB_UTIL.should_load_spectrum_items() then
       if G.playing_cards then
         local rank_tally = 0
         for _, playing_card in ipairs(G.playing_cards) do
-          if playing_card:get_id() == 11 or playing_card:get_id() == 12 or playing_card:get_id() == 13 then rank_tally =
-            rank_tally + 1 end
+          if (PB_UTIL.is_rank(playing_card, card.ability.extra.ranks[1]) or
+              PB_UTIL.is_rank(playing_card, card.ability.extra.ranks[2]) or
+              PB_UTIL.is_rank(playing_card, card.ability.extra.ranks[3])) then
+            rank_tally = rank_tally + 1 end
         end
         local change = math.floor(rank_tally / card.ability.extra.divisor) - card.ability.extra.mult
         if change ~= 0 then
@@ -42,7 +46,11 @@ if PB_UTIL.should_load_spectrum_items() then
         vars = {
           card.ability.extra.change,
           card.ability.extra.mult,
-          card.ability.extra.divisor
+          card.ability.extra.divisor,
+          card.ability.extra.ranks[1],
+          card.ability.extra.ranks[2],
+          card.ability.extra.ranks[3],
+          localize(card.ability.extra.suit, 'suits_plural')
         }
       }
     end,

@@ -2,7 +2,7 @@ SMODS.Joker {
   key = "silent_assassin",
   config = {
     extra = {
-      ranks = { 4, 7 },
+      ranks = { "4", "7" },
       mult = 1,
       change = 1,
       destroy_req = 2,
@@ -35,7 +35,7 @@ SMODS.Joker {
 
   calculate = function(self, card, context)
     if context.individual and context.cardarea == G.play then
-      if context.other_card:get_id() == card.ability.extra.ranks[1] or context.other_card:get_id() ==  card.ability.extra.ranks[2] then
+      if PB_UTIL.is_rank(context.other_card, card.ability.extra.ranks[1]) or PB_UTIL.is_rank(context.other_card, card.ability.extra.ranks[2]) then
         return {
           mult = card.ability.extra.mult
         }

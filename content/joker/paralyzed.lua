@@ -10,6 +10,9 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'thermo' }
   },
+  loc_vars = function (self, info_queue, card)
+    return { vars = {localize('k_tarot')}}
+  end,
   calculate = function(self, card, context)
     if context.end_of_round and context.main_eval then
       if PB_UTIL.try_spawn_card { set = 'Tarot' } then

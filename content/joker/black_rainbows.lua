@@ -30,7 +30,9 @@ SMODS.Joker {
     return {
       vars = {
         numerator,
-        denominator
+        denominator,
+        localize(card.ability.extra.suit1, 'suits_singular'),
+        localize(card.ability.extra.suit2, 'suits_singular')
       }
     }
   end,

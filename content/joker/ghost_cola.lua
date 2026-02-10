@@ -26,6 +26,7 @@ SMODS.Joker {
     return {
       vars = {
         localize { type = 'name_text', set = 'Tag', key = 'tag_negative', nodes = {} },
+        localize ('k_spectral')
       }
     }
   end,

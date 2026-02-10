@@ -28,7 +28,8 @@ SMODS.Joker {
     return {
       vars = {
         card.ability.extra.Xchip_mod,
-        card.ability.extra.Xchip
+        card.ability.extra.Xchip,
+        localize('k_paperback_minor_arcana')
       }
     }
   end,

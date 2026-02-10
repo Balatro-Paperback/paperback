@@ -3,6 +3,7 @@ SMODS.Joker {
   config = {
     extra = {
       amount = 2,
+      enhancement = 'm_paperback_sleeved'
     }
   },
   rarity = 1,
@@ -24,14 +25,14 @@ SMODS.Joker {
   },
 
   loc_vars = function(self, info_queue, card)
-    return { vars = { card.ability.extra.amount } }
+    return { vars = { card.ability.extra.amount, localize { type = 'name_text', set = 'Enhanced', key = card.ability.extra.enhancement }, } }
   end,
 
   calculate = function(self, card, context)
     if context.remove_playing_cards then
       local enhanced = false
       for _, removed in ipairs(context.removed) do
-        if SMODS.has_enhancement(removed, 'm_paperback_sleeved') then
+        if SMODS.has_enhancement(removed, card.ability.extra.enhancement) then
           local targets = {}
           for _, other in ipairs(G.playing_cards) do
             if other.ability.set ~= "Enhanced" then
@@ -41,7 +42,7 @@ SMODS.Joker {
           for i = 1, math.min(#targets, card.ability.extra.amount) do
             local target = table.remove(targets, pseudorandom('plastic_wrap', 1, #targets))
             enhanced = true
-            target:set_ability('m_paperback_sleeved', nil, true)
+            target:set_ability(card.ability.extra.enhancement, nil, true)
             if target.area == G.hand then
               G.E_MANAGER:add_event(Event({
                 func = function()

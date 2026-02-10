@@ -42,7 +42,8 @@ SMODS.Joker {
   loc_vars = function(self, info_queue, card)
     return {
       vars = {
-        card.ability.extra.xMult
+        card.ability.extra.xMult,
+        localize("High Card", 'poker_hands')
       }
     }
   end,

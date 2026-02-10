@@ -4,7 +4,8 @@ SMODS.Joker {
     extra = {
       mult = 0,
       increase = 1,
-      scored = false
+      scored = false,
+      rank = "8"
     }
   },
   rarity = 1,
@@ -26,6 +27,7 @@ SMODS.Joker {
       vars = {
         card.ability.extra.increase,
         card.ability.extra.mult,
+        card.ability.extra.rank
       }
     }
   end,
@@ -40,7 +42,7 @@ SMODS.Joker {
 
     -- Upgrade this Joker for every scored 8
     if not context.blueprint and context.individual and context.cardarea == G.play then
-      if context.other_card:get_id() == 8 then
+      if PB_UTIL.is_rank(context.other_card, card.ability.extra.rank) then
         card.ability.extra.scored = true
         card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.increase
 

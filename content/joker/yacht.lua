@@ -29,7 +29,9 @@ if PB_UTIL.should_load_spectrum_items() then
       return {
         vars = {
           card.ability.extra.change,
-          card.ability.extra.chips
+          card.ability.extra.chips,
+          localize(card.ability.extra.suits[1], 'suits_singular'),
+          localize(card.ability.extra.suits[2], 'suits_singular')
         }
       }
     end,

@@ -13,7 +13,7 @@ SMODS.Joker {
   },
 
   loc_vars = function(self, info_queue, card)
-    return { vars = { card.ability.extra.chips_mod, card.ability.extra.chips_rem, card.ability.extra.chips } }
+    return { vars = { card.ability.extra.chips_mod, card.ability.extra.chips_rem, card.ability.extra.chips, localize('k_planet') } }
   end,
   calculate = function(self, card, context)
     if context.joker_main and card.ability.extra.chips > 0 then

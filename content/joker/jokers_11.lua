@@ -1,6 +1,10 @@
 SMODS.Joker {
   key = "jokers_11",
-  config = {},
+  config = {
+    extra ={
+      rank = "Ace"
+    }
+  },
   rarity = 3,
   pos = { x = 13, y = 7 },
   atlas = "jokers_atlas",
@@ -16,6 +20,10 @@ SMODS.Joker {
     coder = { 'vitellary' },
   },
 
+  loc_vars = function(self, info_queue, card)
+    return { vars = { card.ability.extra.rank}}
+  end,
+
   locked_loc_vars = function(self, info_queue, card)
     return { vars = { 11 } }
   end,
@@ -24,7 +32,7 @@ SMODS.Joker {
     if args.type == 'modify_deck' then
       local count = 0
       for _, v in ipairs(G.playing_cards or {}) do
-        if PB_UTIL.is_rank(v, 'Ace') then
+        if PB_UTIL.is_rank(v, "Ace") then
           count = count + 1
           if count >= 11 then
             return true
@@ -37,7 +45,7 @@ SMODS.Joker {
 
   calculate = function(self, card, context)
     if context.end_of_round and context.individual and context.cardarea == G.hand then
-      if PB_UTIL.is_rank(context.other_card, 'Ace') then
+      if PB_UTIL.is_rank(context.other_card, card.ability.extra.rank) then
         return {
           message = localize('paperback_plus_tag'),
           func = function()

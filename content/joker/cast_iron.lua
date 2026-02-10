@@ -4,7 +4,8 @@ SMODS.Joker {
     extra = {
       divisor = 3,
       hand_size = 0,
-      max = 5
+      max = 5,
+      modifier = 1
     }
   },
   paperback_credit = {
@@ -24,7 +25,7 @@ SMODS.Joker {
       for _, playing_card in ipairs(G.playing_cards) do
         if SMODS.has_enhancement(playing_card, 'm_steel') then steel_tally = steel_tally + 1 end
       end
-      local new_handsize = math.min(math.floor(steel_tally / card.ability.extra.divisor))
+      local new_handsize = math.min(math.floor(steel_tally / card.ability.extra.divisor) * card.ability.extra.modifier, card.ability.extra.max)
       if new_handsize > card.ability.extra.max then return end
       local change = new_handsize - card.ability.extra.hand_size
       if change ~= 0 then
@@ -46,7 +47,8 @@ SMODS.Joker {
           key = 'm_steel'
         },
         card.ability.extra.hand_size,
-        card.ability.extra.max
+        card.ability.extra.max,
+        card.ability.extra.modifier
       }
     }
   end,

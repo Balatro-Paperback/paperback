@@ -24,7 +24,8 @@ if PB_UTIL.should_load_spectrum_items() then
     loc_vars = function(self, info_queue, card)
       return {
         vars = {
-          localize(card.ability.extra.type, 'poker_hands')
+          localize(card.ability.extra.type, 'poker_hands'),
+          localize('k_spectral')
         }
       }
     end,

@@ -38,7 +38,8 @@ SMODS.Joker {
     return {
       vars = {
         card.ability.extra.x_mult_mod,
-        x_mult
+        x_mult,
+        localize('k_planet')
       },
       main_end = card.paperback_show_hands and PB_UTIL.create_base_remaining_hands_ui(function(hand)
         return hand.level <= G.GAME.paperback.solar_system_ct
