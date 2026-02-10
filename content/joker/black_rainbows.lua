@@ -31,8 +31,8 @@ SMODS.Joker {
       vars = {
         numerator,
         denominator,
-        localize(card.ability.extra.suit1, 'suits_singular'),
-        localize(card.ability.extra.suit2, 'suits_singular')
+        localize(card.ability.extra.suit1, 'suits_plural'),
+        localize(card.ability.extra.suit2, 'suits_plural')
       }
     }
   end,

@@ -1539,7 +1539,7 @@ return {
       j_paperback_bicycle = {
         name = "Bicycle",
         text = {
-          "{C:attention}#1#{} give {C:mult}Mult",
+          "{C:attention}#1#s{} give {C:mult}Mult",
           "equal to their {C:chips}Chip value{}",
         },
       },
@@ -2547,7 +2547,7 @@ return {
       j_paperback_attacking_vertical = {
         name = "Attacking Vertical",
         text = {
-          "Scored {C:attention}#1#{}'s and {C:attention}#2#{}'s give {X:mult,C:white} X#3# {} Mult",
+          "Scored {C:attention}#1#{}s and {C:attention}#2#{}s give {X:mult,C:white} X#3# {} Mult",
           "Increased by {X:mult,C:white} X#4# {} Mult",
           "Upon clearing a {C:attention}Boss Blind"
         }
@@ -2616,7 +2616,7 @@ return {
         name = "Towering Pillar of Hats",
         text = {
           "Played {C:paperback_crowns}#7#{} give {C:mult}+#1#{} Mult for every {C:attention}#3#",
-          "#4#, #5# or #6# in the deck",
+          "{C:attention}#4#, #5#{} or {C:attention}#6#{} in the deck",
           "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)"
         },
       },

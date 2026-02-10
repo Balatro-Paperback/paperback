@@ -23,7 +23,14 @@ SMODS.Joker {
   },
 
   loc_vars = function(self, info_queue, card)
-    return { vars = { card.ability.extra.rounds_left }, localize { type = 'name_text', set = 'Enhanced', key = 'm_gold' }, }
+    return {
+      vars = { card.ability.extra.rounds_left },
+      localize {
+          type = 'name_text',
+          set = 'Enhanced',
+          key = 'm_gold'
+        },
+  }
   end,
 
   calculate = function(self, card, context)
