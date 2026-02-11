@@ -32,7 +32,7 @@ SMODS.Joker {
     end
     if context.joker_main and G.GAME.current_round.hands_played == 0 then
       local money = 0
-      money = math.min(G.GAME.hands[context.scoring_name].level * card.ability.extra.multiplier, card.ability.extra.max)
+      money = to_number(math.min(G.GAME.hands[context.scoring_name].level * card.ability.extra.multiplier, card.ability.extra.max))
       if money > 0 then
         return {
           dollars = money
