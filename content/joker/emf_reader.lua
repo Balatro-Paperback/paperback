@@ -35,14 +35,14 @@ if PB_UTIL.should_load_spectrum_items() then
         local eval = function() return G.GAME.current_round.hands_played == 0 and not G.RESET_JIGGLES end
         juice_card_until(card, eval, true)
       end
-      if context.destroy_card and context.cardarea == G.play then
+      if G.GAME.current_round.hands_played == 0 and context.destroy_card and context.cardarea == G.play then
         if PB_UTIL.contains_spectrum(context.poker_hands) then
           return {
             remove = true
           }
         end
       end
-      if context.after then
+      if context.after and G.GAME.current_round.hands_played == 0 then
         if PB_UTIL.contains_spectrum(context.poker_hands) then
           if PB_UTIL.try_spawn_card { set = 'Spectral' } then
             return {
