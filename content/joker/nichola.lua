@@ -1,5 +1,8 @@
 SMODS.Joker {
   key = "nichola",
+  attributes = {
+    'face'
+  },
   rarity = 4,
   pos = { x = 12, y = 4 },
   soul_pos = { x = 13, y = 4 },

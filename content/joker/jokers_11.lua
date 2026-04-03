@@ -5,6 +5,12 @@ SMODS.Joker {
       rank = "Ace"
     }
   },
+  attributes = {
+    'generation',
+    'tag',
+    'rank',
+    'ace'
+  },
   rarity = 3,
   pos = { x = 13, y = 7 },
   atlas = "jokers_atlas",

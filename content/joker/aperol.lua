@@ -8,6 +8,13 @@ SMODS.Joker {
       upgrade = "perma_p_dollars",
     }
   },
+  attributes = {
+    'economy',
+    'permabonus',
+    'suit',
+    'diamonds',
+    'food'
+  },
   rarity = 2,
   pos = { x = 24, y = 0 },
   atlas = "jokers_atlas",

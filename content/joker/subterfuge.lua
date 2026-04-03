@@ -1,5 +1,9 @@
 SMODS.Joker {
   key = 'subterfuge',
+  attributes = {
+    'destroy_cards',
+    'hands'
+  },
   rarity = 3,
   pos = { x = 3, y = 5 },
   pools = {

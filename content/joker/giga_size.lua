@@ -1,5 +1,9 @@
 SMODS.Joker {
   key = 'giga_size',
+  attributes = {
+    'xmult',
+    'hands'
+  },
   rarity = 3,
   pos = { x = 17, y = 7 },
   atlas = 'jokers_atlas',

@@ -9,6 +9,13 @@ SMODS.Joker {
       destroyed = 0,
     }
   },
+  attributes = {
+    'mult',
+    'scaling',
+    'rank',
+    'four',
+    'seven'
+  },
   rarity = 1,
   pos = { x = 14, y = 11 },
   atlas = "jokers_atlas",

@@ -8,6 +8,11 @@ SMODS.Joker {
       odds = 5
     }
   },
+  attributes = {
+    'economy',
+    'chance',
+    'food'
+  },
   rarity = 1,
   pos = { x = 4, y = 5 },
   atlas = 'jokers_atlas',

@@ -1,5 +1,12 @@
 SMODS.Joker {
   key = "as_above_so_below",
+  attributes = {
+    'generation',
+    'apostle',
+    'tarot',
+    'hand_type',
+    'spectral'
+  },
   rarity = 2,
   pos = { x = 16, y = 4 },
   atlas = "jokers_atlas",

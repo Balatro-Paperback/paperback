@@ -1,5 +1,8 @@
 SMODS.Joker {
   key = "backpack",
+  attributes = {
+    'joker',
+  },
   rarity = 1,
   pos = { x = 4, y = 6 },
   atlas = 'jokers_atlas',

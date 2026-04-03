@@ -7,6 +7,12 @@ SMODS.Joker {
   atlas = "jokers_atlas",
   perishable_compat = false,
   config = { extra = { chips_mod = 15, chips_rem = 5, chips = 0 } },
+  attributes = {
+    'chips',
+    'scaling',
+    'planet',
+    'hands'
+  },
 
   paperback_credit = {
     coder = { 'thermo' }

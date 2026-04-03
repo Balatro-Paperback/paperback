@@ -7,6 +7,11 @@ SMODS.Joker {
       revive_treshold = 666
     }
   },
+  attributes = {
+    'chips',
+    'scaling',
+    'secret'
+  },
   rarity = 1,
   pos = { x = 6, y = 4 },
   atlas = 'jokers_atlas',

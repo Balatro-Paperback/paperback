@@ -6,6 +6,11 @@ SMODS.Joker {
       multiplier = 2
     }
   },
+  attributes = {
+    'economy',
+    'hands',
+    'hand_type'
+  },
   rarity = 1,
   pos = { x = 15, y = 11 },
   atlas = "jokers_atlas",

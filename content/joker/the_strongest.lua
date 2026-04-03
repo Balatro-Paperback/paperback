@@ -16,6 +16,12 @@ SMODS.Joker {
       xmult_mod = 0.5
     }
   },
+  attributes = {
+    'xmult',
+    'scaling',
+    'ego_gift',
+    'red'
+  },
   unlocked = false,
 
   paperback_credit = {

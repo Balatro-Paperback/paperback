@@ -6,6 +6,13 @@ SMODS.Joker {
       xm = 1
     }
   },
+  attributes = {
+    'xmult',
+    'scaling',
+    'destroy_card',
+    'enhancements',
+    'red'
+  },
   paperback_credit = {
     coder = { 'thermo' }
   },

@@ -6,6 +6,11 @@ SMODS.Joker {
       current = 1,
     },
   },
+  attributes = {
+    'mod_chance',
+    'scaling',
+    'reset'
+  },
   rarity = 3,
   pos = { x = 24, y = 4 },
   atlas = "jokers_atlas",

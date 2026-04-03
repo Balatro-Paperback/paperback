@@ -4,8 +4,13 @@ SMODS.Joker {
     extra = {
       count = 0,
       coupon_blinds_needed = 2,
-      tags = {'tag_coupon', 'tag_voucher'}
+      tags = { 'tag_coupon', 'tag_voucher' }
     }
+  },
+  attributes = {
+    'economy',
+    'generation',
+    'tag'
   },
   rarity = 3,
   pos = { x = 15, y = 7 },

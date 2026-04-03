@@ -6,6 +6,10 @@ SMODS.Joker {
       chips = 0
     }
   },
+  attributes = {
+    'chips',
+    'scaling'
+  },
   rarity = 4,
   pos = { x = 21, y = 8 },
   soul_pos = { x = 22, y = 8 },

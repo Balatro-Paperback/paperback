@@ -6,6 +6,9 @@ SMODS.Joker {
       h_size = 3
     }
   },
+  attributes = {
+    'hand_size'
+  },
   pos = { x = 10, y = 4 },
   atlas = 'jokers_atlas',
   cost = 6,

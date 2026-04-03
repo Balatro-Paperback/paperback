@@ -6,6 +6,11 @@ SMODS.Joker {
       is_white = true,
     }
   },
+  attributes = {
+    'retrigger',
+    'dark',
+    'light'
+  },
   rarity = 1,
   pos = { x = 23, y = 6 },
   atlas = "jokers_atlas",

@@ -8,6 +8,12 @@ SMODS.Joker {
       chance_multiplier = 1
     }
   },
+  attributes = {
+    'mult',
+    'chips',
+    'chance',
+    'food'
+  },
   rarity = 1,
   pos = { x = 6, y = 5 },
   atlas = 'jokers_atlas',

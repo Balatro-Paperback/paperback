@@ -1,5 +1,9 @@
 SMODS.Joker {
   key = "fodder",
+  attributes = {
+    'on_sell',
+    'ego_gift'
+  },
   rarity = 1,
   pos = { x = 12, y = 5 },
   atlas = "jokers_atlas",

@@ -8,6 +8,12 @@ SMODS.Joker {
       xmult_penalty = 2
     }
   },
+  attributes = {
+    'xmult',
+    'scaling',
+    'hand_type',
+    'boss'
+  },
   rarity = 3,
   pos = { x = 6, y = 10 },
   atlas = 'jokers_atlas',

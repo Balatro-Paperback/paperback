@@ -5,6 +5,10 @@ SMODS.Joker {
       select = 2,
     },
   },
+  attributes = {
+    'hands',
+    'retrigger'
+  },
   rarity = 1,
   pos = { x = 22, y = 5 },
   atlas = "jokers_atlas",

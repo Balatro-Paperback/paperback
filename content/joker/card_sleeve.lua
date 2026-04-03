@@ -1,5 +1,9 @@
 SMODS.Joker {
   key = "card_sleeve",
+  attributes = {
+    'joker',
+    'on_sell'
+  },
   rarity = 1,
   pos = { x = 18, y = 8 },
   atlas = "jokers_atlas",

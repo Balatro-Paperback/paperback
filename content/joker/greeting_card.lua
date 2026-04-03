@@ -6,6 +6,10 @@ SMODS.Joker {
       a_value = 2,
     }
   },
+  attributes = {
+    'sell_value',
+    'enhancements'
+  },
   rarity = 1,
   pos = { x = 21, y = 6 },
   atlas = "jokers_atlas",

@@ -1,5 +1,8 @@
 SMODS.Joker {
   key = "clippy",
+  attributes = {
+    'paperclip'
+  },
   rarity = 2,
   pos = { x = 15, y = 6 },
   soul_pos = { x = 16, y = 6 },

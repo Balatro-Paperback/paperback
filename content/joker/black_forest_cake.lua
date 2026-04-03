@@ -6,6 +6,11 @@ SMODS.Joker {
       a_mult = 2
     }
   },
+  attributes = {
+    'mult',
+    'scaling',
+    'food'
+  },
   rarity = 1,
   pos = { x = 13, y = 10 },
   atlas = "jokers_atlas",

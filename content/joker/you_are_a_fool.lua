@@ -5,6 +5,10 @@ SMODS.Joker {
       faces = 3
     }
   },
+  attributes = {
+    'modify_card',
+    'face'
+  },
   rarity = 3,
   pos = { x = 9, y = 6 },
   atlas = "jokers_atlas",

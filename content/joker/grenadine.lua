@@ -8,6 +8,14 @@ SMODS.Joker {
       upgrade = "perma_x_mult",
     }
   },
+  attributes = {
+    'xmult',
+    'permabonus',
+    'suit',
+    'hearts',
+    'food',
+    'red'
+  },
   rarity = 2,
   pos = { x = 23, y = 10 },
   atlas = "jokers_atlas",

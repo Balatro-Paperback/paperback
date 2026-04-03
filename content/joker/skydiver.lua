@@ -6,6 +6,10 @@ SMODS.Joker {
       lowest_rank = 'Ace',
     }
   },
+  attributes = {
+    'xmult',
+    'music'
+  },
   pools = {
     Music = true
   },

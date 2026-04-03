@@ -638,14 +638,14 @@ return {
         }
       },
       j_paperback_oujia_board = {
-        name = "Oujia Board",
+        name = "Ouija Board",
         text = {
           "{C:spectral}Spectral{} cards may appear",
           "in the shop. Jokers are",
           "{C:attention}shuffled{} before scoring",
         },
         unlock = {
-          "Use the {C:attention}Oujia{}",
+          "Use the {C:attention}Ouija{}",
           "{C:spectral}Spectral{} card",
         }
       },

@@ -5,6 +5,10 @@ SMODS.Joker {
       last_tag = nil
     }
   },
+  attributes = {
+    'generation',
+    'tag'
+  },
   rarity = 3,
   pos = { x = 11, y = 11 },
   atlas = "jokers_atlas",

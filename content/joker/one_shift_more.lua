@@ -10,6 +10,13 @@ SMODS.Joker {
       a_xmult = 0.25
     }
   },
+  attributes = {
+    'xmult',
+    'scaling',
+    'suit',
+    'hearts',
+    'music'
+  },
   pools = {
     Music = true
   },

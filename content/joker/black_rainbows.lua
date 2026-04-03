@@ -7,6 +7,14 @@ SMODS.Joker {
       suit2 = 'Clubs'
     }
   },
+  attributes = {
+    'edition',
+    'chance',
+    'suit',
+    'spades',
+    'clubs',
+    'music'
+  },
   pools = {
     Music = true
   },

@@ -7,6 +7,11 @@ SMODS.Joker {
       suit = 'Spades'
     }
   },
+  attributes = {
+    'economy',
+    'rank',
+    'suit'
+  },
   rarity = 1,
   pos = { x = 1, y = 7 },
   atlas = "jokers_atlas",

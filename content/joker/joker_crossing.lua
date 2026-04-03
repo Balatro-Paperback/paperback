@@ -10,6 +10,12 @@ SMODS.Joker {
   eternal_compat = true,
   perishable_compat = true,
   config = { extra = { odds = 3 } },
+  attributes = {
+    'retrigger',
+    'enhancements',
+    'chance',
+    'red'
+  },
 
   paperback_credit = {
     coder = { 'dowfrin' },

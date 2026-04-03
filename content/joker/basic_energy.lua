@@ -5,6 +5,11 @@ SMODS.Joker {
       odds = 4
     }
   },
+  attributes = {
+    'generation',
+    'negative',
+    'chance'
+  },
   rarity = 2,
   pos = { x = 1, y = 6 },
   atlas = 'jokers_atlas',

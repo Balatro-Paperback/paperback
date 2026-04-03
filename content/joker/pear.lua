@@ -7,6 +7,12 @@ SMODS.Joker {
       chip_loss = 10
     }
   },
+  attributes = {
+    'chips',
+    'scaling',
+    'hand_type',
+    'food'
+  },
   rarity = 1,
   pos = { x = 17, y = 4 },
   atlas = 'jokers_atlas',

@@ -6,6 +6,14 @@ SMODS.Joker {
     }
   },
 
+  attributes = {
+    'generation',
+    'planet',
+    'hand_type',
+    'rank',
+    'queen'
+  },
+
   rarity = 4,
   pos = { x = 12, y = 3 },
   soul_pos = { x = 13, y = 3 },

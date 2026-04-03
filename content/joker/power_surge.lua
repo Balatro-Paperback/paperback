@@ -7,6 +7,13 @@ SMODS.Joker {
       odds = 4,
     }
   },
+  attributes = {
+    'xmult',
+    'destroy_card',
+    'rank',
+    'seven',
+    'chance'
+  },
   rarity = 3,
   pos = { x = 7, y = 10 },
   atlas = 'jokers_atlas',

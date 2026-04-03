@@ -7,6 +7,12 @@ SMODS.Joker {
       odds = 6
     }
   },
+  attributes = {
+    'hand_size',
+    'skip',
+    'chance',
+    'food'
+  },
   rarity = 2,
   pos = { x = 3, y = 6 },
   atlas = 'jokers_atlas',

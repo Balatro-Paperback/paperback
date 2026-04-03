@@ -6,6 +6,12 @@ SMODS.Joker {
       chips_gain = 8,
     },
   },
+  attributes = {
+    'chips',
+    'scaling',
+    'tarot',
+    'minor_arcana'
+  },
   rarity = 1,
   pos = { x = 22, y = 7 },
   atlas = "jokers_atlas",

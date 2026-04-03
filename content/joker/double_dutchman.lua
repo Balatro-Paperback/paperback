@@ -6,6 +6,13 @@ SMODS.Joker {
       hands_left = 5
     }
   },
+  attributes = {
+    'modify_card',
+    'enhancements',
+    'seals',
+    'chance',
+    'food'
+  },
   rarity = 3,
   pos = { x = 11, y = 3 },
   atlas = "jokers_atlas",

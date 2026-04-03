@@ -7,6 +7,14 @@ SMODS.Joker {
       chip_mult = 2
     }
   },
+  attributes = {
+    'hands',
+    'destroy_card',
+    'suit',
+    'crowns',
+    'chips',
+    'permabonus'
+  },
   rarity = 2,
   pos = { x = 14, y = 0 },
   atlas = "jokers_atlas",

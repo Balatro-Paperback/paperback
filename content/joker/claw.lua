@@ -8,6 +8,11 @@ SMODS.Joker {
       starting_mult = 3
     }
   },
+  attributes = {
+    'mult',
+    'rank',
+    'three'
+  },
   rarity = 1,
   pos = { x = 10, y = 1 },
   atlas = "jokers_atlas",

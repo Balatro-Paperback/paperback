@@ -8,6 +8,14 @@ SMODS.Joker {
       active = false,
     }
   },
+  attributes = {
+    'xmult',
+    'scaling',
+    'destroy_card',
+    'hands',
+    'face',
+    'red'
+  },
   pos = { x = 14, y = 5 },
   atlas = 'jokers_atlas',
   cost = 9,

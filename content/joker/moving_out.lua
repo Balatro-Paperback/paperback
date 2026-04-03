@@ -6,6 +6,12 @@ SMODS.Joker {
       mult = 0,
     }
   },
+  attributes = {
+    'mult',
+    'scaling',
+    'hand_type',
+    'music'
+  },
   pools = {
     Music = true
   },

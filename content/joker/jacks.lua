@@ -7,6 +7,14 @@ SMODS.Joker {
       rank = "Jack"
     }
   },
+  attributes = {
+    'mult',
+    'scaling',
+    'discard',
+    'rank',
+    'jack',
+    'red'
+  },
   rarity = 1,
   pos = { x = 24, y = 8 },
   atlas = "jokers_atlas",

@@ -5,6 +5,11 @@ SMODS.Joker {
       rarity = 1
     }
   },
+  attributes = {
+    'retrigger',
+    'joker',
+    'music'
+  },
   pools = {
     Music = true
   },

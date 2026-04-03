@@ -7,6 +7,10 @@ SMODS.Joker {
   atlas = "jokers_atlas",
   perishable_compat = false,
   config = { extra = { mult_mod = 2, dollars = 25, mult = 0 } },
+  attributes = {
+    'mult',
+    'scaling'
+  },
   paperback_credit = {
     artist = { 'thermo' },
     coder = { 'thermo' }

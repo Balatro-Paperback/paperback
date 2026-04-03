@@ -8,6 +8,13 @@ SMODS.Joker {
       suit = "paperback_Stars",
     }
   },
+  attributes = {
+    'xchips',
+    'permabonus',
+    'suit',
+    'stars',
+    'food'
+  },
   rarity = 2,
   pos = { x = 24, y = 1 },
   atlas = "jokers_atlas",

@@ -7,6 +7,10 @@ SMODS.Joker {
       enhancement = 'm_paperback_ceramic'
     }
   },
+  attributes = {
+    'economy',
+    'enhancements'
+  },
   rarity = 2,
   pos = { x = 8, y = 9 },
   atlas = "jokers_atlas",

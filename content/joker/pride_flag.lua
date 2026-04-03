@@ -7,6 +7,12 @@ if PB_UTIL.config.suits_enabled then
         chips = 0,
       }
     },
+    attributes = {
+      'chips',
+      'scaling',
+      'hand_type',
+      'reset'
+    },
     rarity = 1,
     pos = { x = 3, y = 0 },
     atlas = 'jokers_atlas',

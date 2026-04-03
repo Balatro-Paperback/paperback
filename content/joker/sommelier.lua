@@ -5,6 +5,11 @@ SMODS.Joker {
       active = true
     }
   },
+  attributes = {
+    'seals',
+    'enhancements',
+    'discard'
+  },
   rarity = 2,
   pos = { x = 18, y = 0 },
   atlas = 'jokers_atlas',

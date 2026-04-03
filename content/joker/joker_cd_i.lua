@@ -6,6 +6,12 @@ SMODS.Joker {
       cards = 4,
     }
   },
+  attributes = {
+    'generation',
+    'planet',
+    'chance',
+    'hands'
+  },
   rarity = 1,
   pos = { x = 10, y = 9 },
   atlas = "jokers_atlas",

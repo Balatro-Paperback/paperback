@@ -7,6 +7,12 @@ SMODS.Joker {
       card_req = 5
     }
   },
+  attributes = {
+    'mult',
+    'scaling',
+    'reset',
+    'discard'
+  },
   rarity = 1,
   pos = { x = 16, y = 1 },
   atlas = 'jokers_atlas',

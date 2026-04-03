@@ -6,6 +6,10 @@ SMODS.Joker {
       inactive_xmult = 0.5,
     },
   },
+  attributes = {
+    'xmult',
+    'hand_type'
+  },
   rarity = 2,
   pos = { x = 24, y = 5 },
   atlas = "jokers_atlas",

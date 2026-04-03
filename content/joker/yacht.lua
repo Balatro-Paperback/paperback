@@ -11,6 +11,13 @@ if PB_UTIL.should_load_spectrum_items() then
         }
       }
     },
+    attributes = {
+      'chips',
+      'scaling',
+      'suit',
+      'stars',
+      'crowns'
+    },
     rarity = 1,
     pos = { x = 23, y = 5 },
     atlas = "jokers_atlas",

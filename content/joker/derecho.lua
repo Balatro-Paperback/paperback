@@ -6,6 +6,12 @@ SMODS.Joker {
       x_mult = 1
     }
   },
+  attributes = {
+    'xmult',
+    'scaling',
+    'suit',
+    'dark'
+  },
   rarity = 2,
   pos = { x = 0, y = 1 },
   atlas = 'jokers_atlas',

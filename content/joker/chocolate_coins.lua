@@ -6,6 +6,10 @@ SMODS.Joker {
       eaten = 2
     }
   },
+  attributes = {
+    'economy',
+    'food'
+  },
   rarity = 1,
   pos = { x = 3, y = 11 },
   atlas = 'jokers_atlas',

@@ -9,6 +9,13 @@ SMODS.Joker {
       active = false
     }
   },
+  attributes = {
+    'xchips',
+    'scaling',
+    'destroy_card',
+    'hands',
+    'enhancement'
+  },
   pos = { x = 21, y = 1 },
   atlas = 'jokers_atlas',
   cost = 7,

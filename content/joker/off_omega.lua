@@ -6,6 +6,10 @@ SMODS.Joker {
       mult = 0
     }
   },
+  attributes = {
+    'mult',
+    'scaling'
+  },
   rarity = 4,
   pos = { x = 21, y = 10 },
   soul_pos = { x = 22, y = 8 },

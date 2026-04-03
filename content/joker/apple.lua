@@ -6,6 +6,12 @@ SMODS.Joker {
       break_odds = 6
     }
   },
+  attributes = {
+    'generation',
+    'negative',
+    'chance',
+    'food'
+  },
   rarity = 1,
   pos = { x = 6, y = 6 },
   atlas = 'jokers_atlas',

@@ -7,6 +7,11 @@ SMODS.Joker {
       drank_after = 5
     }
   },
+  attributes = {
+    'xmult',
+    'enhancements',
+    'food'
+  },
   rarity = 2,
   pos = { x = 18, y = 9 },
   atlas = "jokers_atlas",

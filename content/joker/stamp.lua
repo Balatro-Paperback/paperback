@@ -8,6 +8,12 @@ SMODS.Joker {
       denominator = 5,
     }
   },
+  attributes = {
+    'chips',
+    'scaling',
+    'seal',
+    'chance'
+  },
   rarity = 3,
   pos = { x = 8, y = 0 },
   atlas = "jokers_atlas",

@@ -1,5 +1,9 @@
 SMODS.Joker {
   key = 'freezer',
+  attributes = {
+    'generation',
+    'joker'
+  },
   rarity = 3,
   pos = { x = 10, y = 6 },
   atlas = 'jokers_atlas',

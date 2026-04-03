@@ -6,6 +6,12 @@ if PB_UTIL.should_load_spectrum_items() then
         type = 'paperback_Spectrum'
       }
     },
+    attributes = {
+      'hand_type',
+      'destroy_card',
+      'generation',
+      'spectral'
+    },
     rarity = 3,
     pos = { x = 25, y = 3 },
     atlas = "jokers_atlas",

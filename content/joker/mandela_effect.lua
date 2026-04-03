@@ -1,5 +1,10 @@
 SMODS.Joker {
   key = 'mandela_effect',
+  attributes = {
+    'modify_card',
+    'enhancements',
+    'face',
+  },
   rarity = 1,
   pos = { x = 20, y = 8 },
   atlas = 'jokers_atlas',

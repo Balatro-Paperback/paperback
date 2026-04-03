@@ -7,6 +7,13 @@ SMODS.Joker {
       chip_inc_per_light = 1,
     }
   },
+  attributes = {
+    'chips',
+    'scaling',
+    'suit',
+    'light',
+    'red'
+  },
   rarity = 3,
   pos = { x = 22, y = 1 },
   atlas = 'jokers_atlas',

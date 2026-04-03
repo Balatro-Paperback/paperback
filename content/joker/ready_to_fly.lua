@@ -21,6 +21,12 @@ SMODS.Joker {
       scaling = 0.02
     }
   },
+  attributes = {
+    'xchips',
+    'scaling',
+    'joker',
+    'music'
+  },
   pools = {
     Music = true
   },

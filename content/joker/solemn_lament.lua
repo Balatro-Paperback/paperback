@@ -7,6 +7,13 @@ SMODS.Joker {
       is_white = true
     }
   },
+  attributes = {
+    'xmult',
+    'scaling',
+    'suit',
+    'dark',
+    'light'
+  },
   rarity = 3,
   pos = { x = 3, y = 1 },
   atlas = "jokers_atlas",
