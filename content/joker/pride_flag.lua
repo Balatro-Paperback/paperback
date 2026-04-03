@@ -99,6 +99,12 @@ else
         mult = 0
       }
     },
+    attributes = {
+      'mult',
+      'scaling',
+      'hands',
+      'suit'
+    },
     rarity = 1,
     pos = { x = 3, y = 0 },
     atlas = 'jokers_atlas',
