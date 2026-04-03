@@ -478,12 +478,8 @@ PB_UTIL.ENABLED_ATTRIBUTES = {
   'paperclip',    -- related to paperclips
   'minor_arcana', -- related to minor arcana
   'ego_gift',     -- related to ego gifts
-  'edition',      -- related to editions
   'negative',     -- related to the negative edition
-  'tag',          -- related to tags
-  'skip',         -- trigger is affected by skipping blind
   'ante',         -- changes ante
-  'balancing',    -- balances score at some point of scoring
   'music',        -- based on a song/album
   'secret',       -- has a secret trigger
   'red',          -- it's red

@@ -8,7 +8,7 @@ SMODS.Joker {
     }
   },
   attributes = {
-    'edition',
+    'editions',
     'chance',
     'suit',
     'stars',

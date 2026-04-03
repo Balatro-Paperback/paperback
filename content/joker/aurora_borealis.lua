@@ -8,7 +8,7 @@ SMODS.Joker {
   attributes = {
     'xmult',
     'scaling',
-    'edition',
+    'editions',
     'joker'
   },
   rarity = 2,

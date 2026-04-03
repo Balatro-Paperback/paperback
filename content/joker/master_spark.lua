@@ -7,7 +7,7 @@ SMODS.Joker {
   },
   attributes = {
     'destroy_card',
-    'edition',
+    'editions',
     'hand_type'
   },
   rarity = 3,

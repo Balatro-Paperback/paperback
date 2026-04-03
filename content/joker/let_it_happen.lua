@@ -6,7 +6,7 @@ SMODS.Joker {
     }
   },
   attributes = {
-    'balancing',
+    'balance',
     'hand_type',
     'music'
   },

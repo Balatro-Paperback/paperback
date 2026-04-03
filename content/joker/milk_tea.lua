@@ -7,7 +7,7 @@ SMODS.Joker {
     }
   },
   attributes = {
-    'balancing',
+    'balance',
     'scaling',
     'food'
   },
