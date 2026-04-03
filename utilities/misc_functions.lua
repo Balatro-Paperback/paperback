@@ -43,12 +43,7 @@ end
 ---@param str string
 ---@return boolean
 function PB_UTIL.is_paperclip(str)
-  for _, v in ipairs(PB_UTIL.Paperclips or {}) do
-    if v == str then
-      return true
-    end
-  end
-  return false
+  return PB_UTIL.PAPERCLIP_SET[str] == true
 end
 
 ---Checks if a card has a paperclip. If found, the first value returned is the key.

@@ -13,6 +13,11 @@ PB_UTIL.ENABLED_PAPERCLIPS = {
   "platinum_clip"
 }
 
+PB_UTIL.PAPERCLIP_SET = {}
+for _, v in ipairs(PB_UTIL.ENABLED_PAPERCLIPS) do
+  PB_UTIL.PAPERCLIP_SET["paperback_" .. v] = true
+end
+
 if PB_UTIL.config.paperclips_enabled then
   -- Table to hold all paperclip keys regardless of mod of origin for easy reference
   PB_UTIL.Paperclips = {}
