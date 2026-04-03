@@ -7,7 +7,8 @@ SMODS.Joker {
   },
   attributes = {
     'generation',
-    'tag'
+    'tag',
+    'boss_blind'
   },
   rarity = 2,
   pos = { x = 18, y = 4 },

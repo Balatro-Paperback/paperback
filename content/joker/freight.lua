@@ -11,7 +11,8 @@ SMODS.Joker {
     'economy',
     'sell_value',
     'on_sell',
-    'discard'
+    'discard',
+    'boss_blind'
   },
   rarity = 2,
   pos = { x = 19, y = 6 },

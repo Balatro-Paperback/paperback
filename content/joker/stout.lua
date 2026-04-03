@@ -10,7 +10,7 @@ SMODS.Joker {
   },
   attributes = {
     'chips',
-    'permabonus',
+    'perma_bonus',
     'suit',
     'spades',
     'food'

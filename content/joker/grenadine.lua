@@ -10,7 +10,7 @@ SMODS.Joker {
   },
   attributes = {
     'xmult',
-    'permabonus',
+    'perma_bonus',
     'suit',
     'hearts',
     'food',

@@ -481,10 +481,8 @@ PB_UTIL.ENABLED_ATTRIBUTES = {
   'edition',      -- related to editions
   'negative',     -- related to the negative edition
   'tag',          -- related to tags
-  'boss',         -- affects or is affected by boss blinds
   'skip',         -- trigger is affected by skipping blind
   'ante',         -- changes ante
-  'permabonus',   -- modifies playing cards to have a permabonus
   'balancing',    -- balances score at some point of scoring
   'music',        -- based on a song/album
   'secret',       -- has a secret trigger

@@ -7,7 +7,7 @@ SMODS.Joker {
   },
   attributes = {
     'chips',
-    'permabonus',
+    'perma_bonus',
     'rankless',
     'music'
   },

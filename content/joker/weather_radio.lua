@@ -12,7 +12,7 @@ SMODS.Joker {
     'xmult',
     'scaling',
     'hand_type',
-    'boss'
+    'boss_blind'
   },
   rarity = 3,
   pos = { x = 6, y = 10 },

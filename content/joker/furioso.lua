@@ -11,7 +11,8 @@ SMODS.Joker {
     'xmult',
     'scaling',
     'reset',
-    'rank'
+    'rank',
+    'boss_blind'
   },
   rarity = 2,
   pos = { x = 2, y = 0 },

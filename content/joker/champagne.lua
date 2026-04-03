@@ -8,7 +8,7 @@ SMODS.Joker {
   },
   attributes = {
     'economy',
-    'boss',
+    'boss_blind',
     'seals',
     'food'
   },

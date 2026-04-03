@@ -10,7 +10,8 @@ SMODS.Joker {
   attributes = {
     'economy',
     'generation',
-    'tag'
+    'tag',
+    'boss_blind'
   },
   rarity = 3,
   pos = { x = 15, y = 7 },

@@ -4,7 +4,8 @@ SMODS.Joker {
     'xmult',
     'suit',
     'light',
-    'sell_value'
+    'sell_value',
+    'red'
   },
   rarity = 3,
   pos = { x = 8, y = 1 },

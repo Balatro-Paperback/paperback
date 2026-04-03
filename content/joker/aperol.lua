@@ -10,7 +10,7 @@ SMODS.Joker {
   },
   attributes = {
     'economy',
-    'permabonus',
+    'perma_bonus',
     'suit',
     'diamonds',
     'food'

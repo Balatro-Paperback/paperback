@@ -20,7 +20,8 @@ SMODS.Joker {
     'xmult',
     'scaling',
     'ego_gift',
-    'red'
+    'red',
+    'boss_blind'
   },
   unlocked = false,
 

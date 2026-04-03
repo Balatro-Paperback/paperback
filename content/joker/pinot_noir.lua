@@ -8,7 +8,7 @@ SMODS.Joker {
   },
   attributes = {
     'mult',
-    'permabonus',
+    'perma_bonus',
     'enhancements',
     'food'
   },

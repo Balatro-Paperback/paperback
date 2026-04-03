@@ -3,7 +3,8 @@ SMODS.Joker {
   attributes = {
     'destroy_card',
     'generation',
-    'joker'
+    'joker',
+    'boss_blind'
   },
   rarity = 3,
   pos = { x = 4, y = 9 },

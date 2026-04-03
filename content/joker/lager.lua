@@ -10,7 +10,7 @@ SMODS.Joker {
   },
   attributes = {
     'mod_chance',
-    'permabonus',
+    'perma_bonus',
     'suit',
     'crowns',
     'food'

@@ -9,7 +9,7 @@ SMODS.Joker {
     'economy',
     'generation',
     'tag',
-    'boss',
+    'boss_blind',
     'skip'
   },
   rarity = 1,

@@ -7,7 +7,7 @@ SMODS.Joker {
     'negative',
     'suit',
     'clubs',
-    'boss'
+    'boss_blind'
   },
   rarity = 2,
   pos = { x = 24, y = 3 },
