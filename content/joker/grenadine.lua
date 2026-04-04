@@ -10,6 +10,7 @@ SMODS.Joker {
   },
   attributes = {
     'xmult',
+    'modify_card',
     'perma_bonus',
     'suit',
     'hearts',

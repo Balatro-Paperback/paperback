@@ -10,6 +10,7 @@ SMODS.Joker {
   },
   attributes = {
     'chips',
+    'modify_card',
     'perma_bonus',
     'suit',
     'spades',

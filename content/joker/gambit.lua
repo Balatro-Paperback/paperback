@@ -12,6 +12,7 @@ SMODS.Joker {
     'suit',
     'crowns',
     'chips',
+    'modify_card',
     'perma_bonus'
   },
   rarity = 2,

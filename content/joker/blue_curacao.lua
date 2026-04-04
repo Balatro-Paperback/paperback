@@ -10,6 +10,7 @@ SMODS.Joker {
   },
   attributes = {
     'mult',
+    'modify_card',
     'perma_bonus',
     'suit',
     'clubs',

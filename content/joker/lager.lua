@@ -10,6 +10,7 @@ SMODS.Joker {
   },
   attributes = {
     'mod_chance',
+    'modify_card',
     'perma_bonus',
     'suit',
     'crowns',
