@@ -8,7 +8,6 @@ SMODS.Joker {
   },
   attributes = {
     'economy',
-    'hands',
     'hand_type'
   },
   rarity = 1,

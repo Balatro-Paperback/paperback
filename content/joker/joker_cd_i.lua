@@ -9,8 +9,7 @@ SMODS.Joker {
   attributes = {
     'generation',
     'planet',
-    'chance',
-    'hands'
+    'chance'
   },
   rarity = 1,
   pos = { x = 10, y = 9 },

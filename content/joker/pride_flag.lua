@@ -102,7 +102,6 @@ else
     attributes = {
       'mult',
       'scaling',
-      'hands',
       'suit'
     },
     rarity = 1,

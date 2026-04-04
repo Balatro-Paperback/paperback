@@ -8,7 +8,6 @@ SMODS.Joker {
     }
   },
   attributes = {
-    'hands',
     'destroy_card',
     'suit',
     'crowns',

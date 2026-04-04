@@ -13,7 +13,6 @@ SMODS.Joker {
     'xchips',
     'scaling',
     'destroy_card',
-    'hands',
     'enhancement'
   },
   pos = { x = 21, y = 1 },

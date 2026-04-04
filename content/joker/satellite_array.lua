@@ -10,8 +10,7 @@ SMODS.Joker {
   attributes = {
     'chips',
     'scaling',
-    'planet',
-    'hands'
+    'planet'
   },
 
   paperback_credit = {

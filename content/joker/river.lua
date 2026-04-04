@@ -6,8 +6,7 @@ SMODS.Joker {
     }
   },
   attributes = {
-    'economy',
-    'hands'
+    'economy'
   },
   rarity = 2,
   pos = { x = 4, y = 4 },

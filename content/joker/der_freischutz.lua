@@ -12,7 +12,6 @@ SMODS.Joker {
     },
   },
   attributes = {
-    'hands',
     'rank',
     'seven',
     'destroy_card',
