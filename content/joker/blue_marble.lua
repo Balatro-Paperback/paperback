@@ -36,10 +36,12 @@ SMODS.Joker {
 
   calculate = function(self, card, context)
     if context.using_consumeable and context.consumeable.ability.set == "Planet" then
-      card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.increment
-      return {
-        message = localize('k_upgrade_ex')
-      }
+      SMODS.scale_card(card, {
+        ref_table = card.ability.extra,
+        ref_value = 'mult',
+        scalar_value = 'increment'
+      })
+      return nil, true
     end
 
     if context.joker_main then

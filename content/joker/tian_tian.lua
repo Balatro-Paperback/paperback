@@ -41,10 +41,17 @@ SMODS.Joker {
   calculate = function(self, card, context)
     -- Gains x_mult when playing cards are destroyed. Each card destroyed provides the specified xmult_mod
     if not context.blueprint and context.remove_playing_cards and context.removed and #context.removed > 0 then
-      card.ability.extra.x_mult = card.ability.extra.x_mult + (#context.removed * card.ability.extra.a_xmult)
-
-      card_eval_status_text(card, 'extra', nil, nil, nil,
-        { message = localize { type = 'variable', key = 'a_xmult', vars = { card.ability.extra.x_mult } } })
+      local scale = #context.removed
+      SMODS.scale_card(card, {
+        ref_table = card.ability.extra,
+        ref_value = 'x_mult',
+        scalar_value = 'a_xmult',
+        operation = function(ref_table, ref_value, initial, scaling)
+          ref_table[ref_value] = initial + scaling * scale
+        end,
+        message_key = 'a_xmult'
+      })
+      return nil, true
     end
 
     -- Gives the x_mult when scoring

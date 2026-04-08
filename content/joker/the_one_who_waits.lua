@@ -69,16 +69,14 @@ SMODS.Joker {
         local effects
 
         if not context.blueprint and PB_UTIL.chance(card, "the_one_who_waits_upgrade", nil, card.ability.extra.upgrade_odds) then
-          card.ability.extra.x_mult = card.ability.extra.x_mult + card.ability.extra.x_mult_mod
-
-          effects = {
-            message = localize {
-              type = 'variable',
-              key = 'a_xmult',
-              vars = { card.ability.extra.x_mult }
-            },
-            colour = G.C.MULT
-          }
+          SMODS.scale_card(card, {
+            ref_table = card.ability.extra,
+            ref_value = 'x_mult',
+            scalar_value = 'x_mult_mod',
+            message_key = 'a_xmult',
+            message_colour = G.C.MULT
+          })
+          return nil, true
         end
 
         if PB_UTIL.chance(card, "the_one_who_waits_tarot", nil, card.ability.extra.tarot_odds) then

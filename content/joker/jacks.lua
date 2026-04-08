@@ -43,11 +43,12 @@ SMODS.Joker {
       }
     end
     if not context.blueprint and context.discard and PB_UTIL.is_rank(context.other_card, card.ability.extra.rank) then
-      card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.change
-      return {
-        message = localize('k_upgrade_ex'),
-        colour = G.C.ORANGE
-      }
+      SMODS.scale_card(card, {
+        ref_table = card.ability.extra,
+        ref_value = 'mult',
+        scalar_value = 'change'
+      })
+      return nil, true
     end
   end
 }

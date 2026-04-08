@@ -47,12 +47,18 @@ SMODS.Joker {
 
     -- Increase the sell value at end of round
     if context.end_of_round and not context.blueprint and context.main_eval then
-      PB_UTIL.modify_sell_value(card, 1)
-
-      return {
-        message = localize('k_val_up'),
-        colour = G.C.MONEY
-      }
+      SMODS.scale_card(card, {
+        ref_table = card.ability,
+        ref_value = 'extra_value',
+        scalar_table = card.ability.extra,
+        scalar_value = 'sv_gain',
+        scaling_message = {
+          message = localize('k_val_up'),
+          colour = G.C.MONEY
+        }
+      })
+      card:set_cost()
+      return nil, true
     end
   end,
 

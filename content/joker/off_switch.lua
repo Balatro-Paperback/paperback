@@ -105,15 +105,14 @@ SMODS.Joker {
 
     if not context.blueprint and context.paperback and context.paperback.destroyed_joker and
     not (card == context.paperback.destroyed_joker) then
-      card.ability.extra.x_mult = card.ability.extra.x_mult + card.ability.extra.a_xmult
-      return {
-        message = localize {
-          type = 'variable',
-          key = 'a_xmult',
-          vars = { card.ability.extra.a_xmult }
-        },
-        colour = G.C.MULT
-      }
+      SMODS.scale_card(card, {
+        ref_table = card.ability.extra,
+        ref_value = 'x_mult',
+        scalar_value = 'a_xmult',
+        message_key = 'a_xmult',
+        message_colour = G.C.MULT
+      })
+      return nil, true
     end
 
     if context.joker_main then

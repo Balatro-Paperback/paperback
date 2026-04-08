@@ -43,11 +43,13 @@ SMODS.Joker {
 
   calculate = function(self, card, context)
     if context.using_consumeable and not context.blueprint and (context.consumeable.ability.set == 'Tarot' or context.consumeable.ability.set == 'paperback_minor_arcana') then
-      card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chips_gain
-      return {
-        message = localize('k_upgrade_ex'),
-        colour = G.C.CHIPS
-      }
+      SMODS.scale_card(card, {
+        ref_table = card.ability.extra,
+        ref_value = 'chips',
+        scalar_value = 'chips_gain',
+        message_colour = G.C.CHIPS
+      })
+      return nil, true
     end
     if context.joker_main then
       return {

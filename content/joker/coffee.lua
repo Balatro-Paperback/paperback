@@ -56,12 +56,16 @@ SMODS.Joker {
 
     if context.skip_blind then
       -- Increment the hand size when skipping a blind
-      card.ability.extra.hand_size = card.ability.extra.hand_size + card.ability.extra.increase
-      G.hand:change_size(card.ability.extra.increase)
-
-      return {
-        message = localize('k_upgrade_ex')
-      }
+      SMODS.scale_card(card, {
+        ref_table = card.ability.extra,
+        ref_value = 'hand_size',
+        scalar_value = 'increase',
+        operation = function(ref_table, ref_value, initial, change)
+          ref_table[ref_value] = initial + change
+          G.hand:change_size(change)
+        end,
+      })
+      return nil, true
     end
 
     if context.setting_blind and not context.blind.boss then

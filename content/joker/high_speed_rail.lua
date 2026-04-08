@@ -44,31 +44,32 @@ SMODS.Joker {
   calculate = function(self, card, context)
     if not context.blueprint and context.selling_card and context.card ~= card then
       if context.card.ability.set == 'Joker' and context.card.sell_cost ~= 0 then
-        card.ability.extra.mult = math.max(0, card.ability.extra.mult - context.card.sell_cost)
-
-        return {
-          message = localize {
-            type = 'variable',
-            key = 'a_mult_minus',
-            vars = { context.card.sell_cost }
-          },
-          colour = G.C.MULT
-        }
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'mult',
+          scalar_table = context.card,
+          scalar_value = 'sell_cost',
+          operation = function(ref_table, ref_value, initial, scaling)
+            ref_table[ref_value] = math.max(0, initial - scaling)
+          end,
+          message_key = 'a_mult_minus',
+          message_colour = G.C.MULT
+        })
+        return nil, true
       end
     end
 
     if not context.blueprint and context.buying_card and context.card ~= card then
       if context.card.ability.set == 'Joker' and context.card.cost ~= 0 then
-        card.ability.extra.mult = card.ability.extra.mult + context.card.cost
-
-        return {
-          message = localize {
-            type = 'variable',
-            key = 'a_mult',
-            vars = { context.card.cost }
-          },
-          colour = G.C.MULT
-        }
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'mult',
+          scalar_table = context.card,
+          scalar_value = 'cost',
+          message_key = 'a_mult',
+          message_colour = G.C.MULT
+        })
+        return nil, true
       end
     end
 

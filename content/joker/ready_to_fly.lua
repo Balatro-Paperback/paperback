@@ -86,11 +86,12 @@ SMODS.Joker {
       end
 
       if (left_joker and context.other_card == left_joker) or (right_joker and context.other_card == right_joker) then
-        card.ability.extra.xchips = card.ability.extra.xchips + card.ability.extra.scaling
-        return {
-          message = localize('k_upgrade_ex'),
-          message_card = card
-        }
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'xchips',
+          scalar_value = 'scaling'
+        })
+        return nil, true
       end
     end
 

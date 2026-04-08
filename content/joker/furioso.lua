@@ -73,14 +73,16 @@ SMODS.Joker {
 
         if rank and not card.ability.extra.ranks[rank] then
           card.ability.extra.x_mult = card.ability.extra.x_mult + card.ability.extra.x_mult_mod
+          SMODS.scale_card(card, {
+            ref_table = card.ability.extra,
+            ref_value = 'x_mult',
+            scalar_value = 'x_mult_mod',
+            message_colour = G.C.MULT
+          })
           card.ability.extra.ranks[rank] = context.other_card.base.value
           -- recalc ranks_sorted
           card.ability.extra.ranks_sorted = nil
-
-          return {
-            extra = { focus = card, message = localize('k_upgrade_ex'), colour = G.C.MULT },
-            card = card,
-          }
+          return nil, true
         end
       end
     end

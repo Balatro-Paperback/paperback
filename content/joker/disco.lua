@@ -21,11 +21,12 @@ SMODS.Joker {
   end,
   calculate = function(self, card, context)
     if not context.blueprint and context.buying_card and to_big(G.GAME.dollars) <= to_big(card.ability.extra.dollars) and context.card ~= card then
-      card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.mult_mod
-      return {
-        message = localize('k_upgrade_ex'),
-        colour = G.C.ORANGE
-      }
+      SMODS.scale_card(card, {
+        ref_table = card.ability.extra,
+        ref_value = 'mult',
+        scalar_value = 'mult_mod'
+      })
+      return nil, true
     end
     if context.joker_main then
       return {

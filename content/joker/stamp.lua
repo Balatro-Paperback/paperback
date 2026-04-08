@@ -77,10 +77,13 @@ SMODS.Joker {
         if context.other_card:get_seal() then
           -- Gives chips if roll succeeds
           if PB_UTIL.chance(card, 'stamp', card.ability.extra.numerator, card.ability.extra.denominator) then
-            card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chip_mod
-
-            card_eval_status_text(card, 'extra', nil, nil, nil,
-              { message = localize('k_upgrade_ex'), colour = G.C.CHIPS })
+            SMODS.scale_card(card, {
+              ref_table = card.ability.extra,
+              ref_value = 'chips',
+              scalar_value = 'chip_mod',
+              message_colour = G.C.CHIPS
+            })
+            return nil, true
           end
         end
       end

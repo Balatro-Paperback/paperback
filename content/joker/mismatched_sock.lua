@@ -40,11 +40,12 @@ SMODS.Joker {
     -- Upgrade x mult if discard contains only one card
     if not context.blueprint and context.discard then
       if #context.full_hand == 1 then
-        card.ability.extra.x_mult = card.ability.extra.x_mult + card.ability.extra.a_xmult
-        return {
-          message = localize('k_upgrade_ex'),
-          colour = G.C.ORANGE
-        }
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'x_mult',
+          scalar_value = 'a_xmult'
+        })
+        return nil, true
       end
     end
 

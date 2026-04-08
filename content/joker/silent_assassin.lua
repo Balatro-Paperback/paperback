@@ -51,13 +51,16 @@ SMODS.Joker {
     if context.remove_playing_cards and not context.blueprint then
       local destroyed = card.ability.extra.destroyed + #context.removed
       card.ability.extra.destroyed = destroyed % card.ability.extra.destroy_req
-      local change = math.floor(destroyed / card.ability.extra.destroy_req) * card.ability.extra.change
-      card.ability.extra.mult = card.ability.extra.mult + change
-      if change > 0 then
-        return {
-          message = localize('k_upgrade_ex')
-        }
-      end
+      local change = math.floor(destroyed / card.ability.extra.destroy_req)
+      SMODS.scale_card(card, {
+        ref_table = card.ability.extra,
+        ref_value = 'mult',
+        scalar_value = 'change',
+        operation = function(ref_table, ref_value, initial, scaling)
+          ref_table[ref_value] = initial + scaling * change
+        end
+      })
+      return nil, true
     end
   end
 }

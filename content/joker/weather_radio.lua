@@ -45,10 +45,21 @@ SMODS.Joker {
   calculate = function(self, card, context)
     if not context.blueprint and context.before then
       if next(context.poker_hands[G.GAME.paperback.weather_radio_hand]) then
-        card.ability.extra.x_mult = card.ability.extra.x_mult + card.ability.extra.a_xmult
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'x_mult',
+          scalar_value = 'a_xmult',
+          no_message = true
+        })
 
         if G.GAME.blind.boss and not G.GAME.blind.disabled and card.ability.extra.x_mult >= card.ability.extra.xmult_disable then
-          card.ability.extra.x_mult = card.ability.extra.x_mult - card.ability.extra.xmult_penalty
+          SMODS.scale_card(card, {
+            ref_table = card.ability.extra,
+            ref_value = 'x_mult',
+            scalar_value = 'xmult_penalty',
+            operation = '-',
+            no_message = true
+          })
 
           return {
             message = localize('ph_boss_disabled'),
@@ -71,7 +82,13 @@ SMODS.Joker {
 
     if not context.blueprint and context.first_hand_drawn and G.GAME.blind.boss and not G.GAME.blind.disabled then
       if card.ability.extra.x_mult >= card.ability.extra.xmult_disable then
-        card.ability.extra.x_mult = card.ability.extra.x_mult - card.ability.extra.xmult_penalty
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'x_mult',
+          scalar_value = 'xmult_penalty',
+          operation = '-',
+          no_message = true
+        })
 
         G.GAME.blind:disable()
 

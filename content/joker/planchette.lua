@@ -32,11 +32,13 @@ SMODS.Joker {
 
   calculate = function(self, card, context)
     if not context.blueprint and context.using_consumeable and context.consumeable.ability.set == 'Spectral' then
-      card.ability.extra.xmult = card.ability.extra.xmult + card.ability.extra.xmult_gain
-      return {
-        message = localize('k_upgrade_ex'),
-        colour = G.C.MULT,
-      }
+      SMODS.scale_card(card, {
+        ref_table = card.ability.extra,
+        ref_value = 'xmult',
+        scalar_value = 'xmult_gain',
+        message_colour = G.C.MULT
+      })
+      return nil, true
     end
     if context.joker_main then
       return { xmult = card.ability.extra.xmult }

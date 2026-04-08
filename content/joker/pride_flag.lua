@@ -62,13 +62,13 @@ if PB_UTIL.config.suits_enabled then
           }
           -- Give chips if hand contains a Spectrum
         elseif PB_UTIL.get_unique_suits(context.full_hand, nil, true) >= 5 then
-          card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.a_chips
-
-          SMODS.calculate_effect {
-            message = localize('k_upgrade_ex'),
-            colour = G.C.CHIPS,
-            card = card
-          }
+          SMODS.scale_card(card, {
+            ref_table = card.ability.extra,
+            ref_value = 'chips',
+            scalar_value = 'a_chips',
+            message_colour = G.C.CHIPS
+          })
+          return nil, true
         end
       end
 
@@ -162,13 +162,13 @@ else
 
         -- If there are 3 unique suits, upgrade the joker
         if unique_suits >= 3 then
-          card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.a_mult
-
-          return {
-            message = localize('k_upgrade_ex'),
-            colour = G.C.MULT,
-            card = card
-          }
+          SMODS.scale_card(card, {
+            ref_table = card.ability.extra,
+            ref_value = 'mult',
+            scalar_value = 'a_mult',
+            message_colour = G.C.MULT
+          })
+          return nil, true
         end
       end
 

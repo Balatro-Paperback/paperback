@@ -37,16 +37,14 @@ SMODS.Joker {
     if not context.blueprint and context.before and context.main_eval then
       -- Check that scoring hand is exactly the one needed
       if context.scoring_name == G.GAME.paperback.joke_master_hand then
-        card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.a_mult
-
-        return {
-          message = localize {
-            type = 'variable',
-            key = 'a_mult',
-            vars = { card.ability.extra.mult }
-          },
-          colour = G.C.MULT
-        }
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'mult',
+          scalar_value = 'a_mult',
+          message_key = 'a_mult',
+          message_colour = G.C.MULT
+        })
+        return nil, true
       end
     end
 

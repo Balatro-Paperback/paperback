@@ -52,7 +52,12 @@ SMODS.Joker {
     and PB_UTIL.is_suit(context.other_card, 'light') then
       local chips = card.ability.extra.chips
       if not context.blueprint then
-        card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chip_inc_per_light
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'chips',
+          scalar_value = 'chip_inc_per_light',
+          no_message = true
+        })
       end
       return {
         chips = chips

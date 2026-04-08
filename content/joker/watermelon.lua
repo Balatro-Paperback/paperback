@@ -40,29 +40,40 @@ SMODS.Joker {
 
   calculate = function(self, card, context)
     if not context.blueprint and context.setting_ability and context.other_card.ability.set == 'Enhanced' and not context.unchanged then
-      card.ability.extra.x_mult = card.ability.extra.x_mult + card.ability.extra.a_xmult
-      return {
-        message = localize { type = 'variable', key = 'a_xmult', vars = { card.ability.extra.a_xmult } },
-        colour = G.C.MULT
-      }
+      SMODS.scale_card(card, {
+        ref_table = card.ability.extra,
+        ref_value = 'x_mult',
+        scalar_value = 'a_xmult',
+        message_key = 'a_xmult',
+        message_colour = G.C.MULT
+      })
+      return nil, true
     end
     if not context.blueprint and context.remove_playing_cards and #context.removed > 0 then
-      card.ability.extra.x_mult = card.ability.extra.x_mult - (card.ability.extra.a_xmult * #context.removed)
-      if card.ability.extra.x_mult < 1 then
+      if card.ability.extra.x_mult - (card.ability.extra.a_xmult * #context.removed) < 1 then
         PB_UTIL.destroy_joker(card)
         return {
           message = localize('k_eaten_ex'),
           colour = G.C.FILTER
         }
       else
-        return {
-          message = localize {
-            type = 'variable',
-            key = 'a_xmult_minus',
-            vars = { card.ability.extra.a_xmult * #context.removed }
-          },
-          colour = G.C.MULT
-        }
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'x_mult',
+          scalar_value = 'a_xmult',
+          operation = function(ref_table, ref_value, initial, scaling)
+            ref_table[ref_value] = initial - scaling * #context.removed
+          end,
+          scaling_message = {
+            message = localize {
+              type = 'variable',
+              key = 'a_xmult_minus',
+              vars = { card.ability.extra.a_xmult * #context.removed }
+            },
+            colour = G.C.MULT
+          }
+        })
+        return nil, true
       end
     end
     if context.cardarea == G.jokers and context.joker_main then
