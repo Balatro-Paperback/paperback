@@ -54,7 +54,7 @@ SMODS.Joker {
           message = localize {
             type = 'variable',
             key = 'a_chips',
-            vars = { count * card.ability.extra.mult_mod }
+            vars = { count * card.ability.extra.a_chips }
           },
           colour = G.C.CHIPS
         }
