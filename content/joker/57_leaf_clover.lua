@@ -43,7 +43,7 @@ SMODS.Joker {
           ref_table = card.ability.extra,
           ref_value = 'current',
           scalar_value = 'gain',
-          message_key = 'paperback_plus_odds',
+          message_key = 'paperback_a_odds',
           message_colour = G.C.GREEN
         })
         return nil, true

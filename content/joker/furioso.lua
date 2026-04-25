@@ -77,12 +77,15 @@ SMODS.Joker {
             ref_table = card.ability.extra,
             ref_value = 'x_mult',
             scalar_value = 'x_mult_mod',
-            message_colour = G.C.MULT
+            no_message = true
           })
           card.ability.extra.ranks[rank] = context.other_card.base.value
           -- recalc ranks_sorted
           card.ability.extra.ranks_sorted = nil
-          return nil, true
+          return {
+            extra = { focus = card, message = localize('k_upgrade_ex'), colour = G.C.MULT },
+            card = card,
+          }
         end
       end
     end

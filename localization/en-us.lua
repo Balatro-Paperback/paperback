@@ -4276,6 +4276,7 @@ return {
       paperback_a_plus_cards = "+#1# #2#s",
       paperback_a_plus_tags = "+#1# Tags",
       paperback_a_dollars = "$#1#",
+      paperback_a_odds = "+#1# Odds",
 
       paperback_a_plus_consumable_slot = "+#1# Consumable Slots",
       paperback_a_minus_consumable_slot = "-#1# Consumable Slots",
