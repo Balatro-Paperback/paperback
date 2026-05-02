@@ -22,7 +22,7 @@ PB_UTIL.MinorArcana {
       for _, v in ipairs(G.hand.highlighted) do
         local enhancement = SMODS.poll_enhancement {
           type_key = 'seven_of_cups',
-          no_replace = true,
+          options = PB_UTIL.get_ranked_enhancements(),
           guaranteed = true
         }
 
