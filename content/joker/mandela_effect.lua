@@ -34,6 +34,7 @@ SMODS.Joker {
       if not first_face.debuff then
         local enhancement = SMODS.poll_enhancement {
           key = 'mandela_effect_enh',
+          no_replace = true,
           guaranteed = true
         }
         first_face:set_ability(enhancement, nil, true)
