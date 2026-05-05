@@ -58,10 +58,17 @@ SMODS.Joker {
           ref_table = card.ability.extra,
           ref_value = 'mult',
           scalar_value = 'a_mult',
-          message_key = 'a_mult',
-          message_colour = G.C.MULT
+          no_message = true
         })
-        return nil, true
+        return {
+          message = localize {
+            type = 'variable',
+            key = 'a_mult',
+            vars = { card.ability.extra.mult },
+          },
+          colour = G.C.MULT,
+          message_card = card
+        }
       end
     end
   end,
