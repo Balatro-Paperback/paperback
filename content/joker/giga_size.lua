@@ -45,7 +45,12 @@ SMODS.Joker {
 
   calculate = function(self, card, context)
     if not context.blueprint and context.before then
-      card.ability.extra.xmult = card.ability.extra.xmult + card.ability.extra.xmult_mod
+      SMODS.scale_card(card, {
+        ref_table = card.ability.extra,
+        ref_value = 'xmult',
+        scalar_value = 'xmult_mod',
+        no_message = true
+      })
     end
 
     if context.joker_main then

@@ -53,14 +53,19 @@ SMODS.Joker {
 
         if card.ability.extra.current >= card.ability.extra.required then
           card.ability.extra.current = 0
-          card.ability.extra.x_mult = card.ability.extra.x_mult + card.ability.extra.a_xmult
           local key = 'paperback_one_shift_more_' .. tostring(card.ability.extra.odd)
           card.ability.extra.odd = not card.ability.extra.odd
-          return {
-            message = localize(key),
-            colour = G.C.MULT,
-            message_card = card
-          }
+          SMODS.scale_card(card, {
+            ref_table = card.ability.extra,
+            ref_value = 'x_mult',
+            scalar_value = 'a_xmult',
+            scaling_message = {
+              message = localize(key),
+              colour = G.C.MULT,
+              message_card = card
+            }
+          })
+          return nil, true
         end
       end
     end

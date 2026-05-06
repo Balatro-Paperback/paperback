@@ -41,18 +41,22 @@ SMODS.Joker {
     -- Gains +10 chips for each 10 held in hand at end of round
     if context.end_of_round and context.individual and context.cardarea == G.hand and not context.blueprint then
       if PB_UTIL.is_rank(context.other_card, card.ability.extra.rank) then
-        card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.a_chips_held
-
-        return {
-          message = localize {
-            type = 'variable',
-            key = 'a_chips',
-            vars = { card.ability.extra.a_chips_held }
-          },
-          colour = G.C.CHIPS,
-          juice_card = context.other_card,
-          message_card = card,
-        }
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'chips',
+          scalar_value = 'a_chips_held',
+          scaling_message = {
+            message = localize {
+              type = 'variable',
+              key = 'a_chips',
+              vars = { card.ability.extra.a_chips_held }
+            },
+            colour = G.C.CHIPS,
+            juice_card = context.other_card,
+            message_card = card,
+          }
+        })
+        return nil, true
       end
     end
 

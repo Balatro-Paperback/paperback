@@ -54,16 +54,23 @@ SMODS.Joker {
     -- Make sure that this joker isn't being removed
     and not (context.paperback and context.paperback.destroyed_joker and card == context.paperback.destroyed_joker)
     then
-      card.ability.extra.mult = card.ability.extra.mult + count * card.ability.extra.mult_mod
-
-      return {
-        message = localize {
-          type = 'variable',
-          key = 'a_mult',
-          vars = { count * card.ability.extra.mult_mod }
-        },
-        colour = G.C.MULT
-      }
+      SMODS.scale_card(card, {
+        ref_table = card.ability.extra,
+        ref_value = 'mult',
+        scalar_value = 'mult_mod',
+        operation = function(ref_table, ref_value, initial, scaling)
+          ref_table[ref_value] = initial + scaling * count
+        end,
+        scaling_message = {
+          message = localize {
+            type = 'variable',
+            key = 'a_mult',
+            vars = { count * card.ability.extra.mult_mod }
+          },
+          colour = G.C.MULT
+        }
+      })
+      return nil, true
     end
 
     -- Gives the mult when scoring

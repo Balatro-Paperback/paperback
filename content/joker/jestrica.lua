@@ -51,16 +51,13 @@ SMODS.Joker {
     if not context.blueprint and context.individual and context.cardarea == G.play then
       if PB_UTIL.is_rank(context.other_card, card.ability.extra.rank) then
         card.ability.extra.scored = true
-        card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.increase
-
-        return {
-          extra = {
-            focus = card,
-            message = localize('k_upgrade_ex'),
-            colour = G.C.MULT,
-          },
-          card = card
-        }
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'mult',
+          scalar_value = 'increase',
+          message_colour = G.C.MULT
+        })
+        return nil, true
       end
     end
 

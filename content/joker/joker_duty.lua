@@ -40,11 +40,12 @@ SMODS.Joker {
     end
     if context.end_of_round and context.main_eval then
       if G.GAME.current_round.discards_left == G.GAME.current_round.hands_left then
-        card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.change
-        return {
-          message = localize("k_upgrade_ex"),
-          colour = G.C.ORANGE
-        }
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'mult',
+          scalar_value = 'change'
+        })
+        return nil, true
       end
     end
   end

@@ -53,16 +53,14 @@ SMODS.Joker {
     if not context.blueprint
     and context.paperback and context.paperback.destroyed_joker and not (card == context.paperback.destroyed_joker) and not (context.paperback.destroyed_joker.config.center.paperback and context.paperback.destroyed_joker.config.center.paperback.addon)
     then
-      card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.mult_mod
-
-      return {
-        message = localize {
-          type = 'variable',
-          key = 'a_mult',
-          vars = { card.ability.extra.mult_mod }
-        },
-        colour = G.C.MULT
-      }
+      SMODS.scale_card(card, {
+        ref_table = card.ability.extra,
+        ref_value = 'mult',
+        scalar_value = 'mult_mod',
+        message_key = 'a_mult',
+        message_colour = G.C.MULT
+      })
+      return nil, true
     end
 
     if context.joker_main then

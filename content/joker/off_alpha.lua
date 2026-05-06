@@ -53,16 +53,14 @@ SMODS.Joker {
     if not context.blueprint
     and context.paperback and context.paperback.destroyed_joker and not (card == context.paperback.destroyed_joker) and not (context.paperback.destroyed_joker.config.center.paperback and context.paperback.destroyed_joker.config.center.paperback.addon)
     then
-      card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chips_mod
-
-      return {
-        message = localize {
-          type = 'variable',
-          key = 'a_chips',
-          vars = { card.ability.extra.chips_mod }
-        },
-        colour = G.C.CHIPS
-      }
+      SMODS.scale_card(card, {
+        ref_table = card.ability.extra,
+        ref_value = 'chips',
+        scalar_value = 'chips_mod',
+        message_key = 'a_chips',
+        message_colour = G.C.CHIPS
+      })
+      return nil, true
     end
 
     if context.joker_main then

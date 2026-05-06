@@ -66,12 +66,13 @@ SMODS.Joker {
       -- Upgrade the Joker when the user cashes out
       if context.paperback and context.paperback.cashing_out then
         if card.ability.extra.dollar_bonus < card.ability.extra.dollar_max then
-          card.ability.extra.dollar_bonus = card.ability.extra.dollar_bonus + card.ability.extra.dollar_gain
-
-          return {
-            message = localize('k_upgrade_ex'),
-            colour = G.C.MONEY
-          }
+          SMODS.scale_card(card, {
+            ref_table = card.ability.extra,
+            ref_value = 'dollar_bonus',
+            scalar_value = 'dollar_gain',
+            message_colour = G.C.MONEY
+          })
+          return nil, true
         end
       end
     end

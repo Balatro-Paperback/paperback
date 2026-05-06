@@ -38,26 +38,26 @@ SMODS.Joker {
     -- Upgrade joker if boss blind defeated
     if context.end_of_round and context.main_eval and not context.blueprint then
       if G.GAME.blind.boss then
-        card.ability.extra.x_mult = card.ability.extra.x_mult + card.ability.extra.Xmult_mod
-
-        return {
-          message = localize('k_upgrade_ex'),
-          colour = G.C.MULT,
-          card = card
-        }
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'x_mult',
+          scalar_value = 'Xmult_mod',
+          message_colour = G.C.MULT
+        })
+        return nil, true
       end
     end
 
     -- Upgrade joker if boss blind triggered
     if context.debuffed_hand and not context.blueprint then
       if G.GAME.blind.triggered then
-        card.ability.extra.x_mult = card.ability.extra.x_mult + card.ability.extra.Xmult_mod
-
-        return {
-          message = localize('k_upgrade_ex'),
-          colour = G.C.MULT,
-          card = card
-        }
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'x_mult',
+          scalar_value = 'Xmult_mod',
+          message_colour = G.C.MULT
+        })
+        return nil, true
       end
     end
 

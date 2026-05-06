@@ -45,14 +45,18 @@ SMODS.Joker {
   calculate = function(self, card, context)
     if not context.blueprint and context.individual and context.cardarea == G.hand and context.end_of_round then
       if PB_UTIL.has_paperclip(context.other_card) and not context.other_card.debuff then
-        card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.a_chips
-
-        return {
-          message = localize('k_upgrade_ex'),
-          colour = G.C.CHIPS,
-          message_card = card,
-          juice_card = context.other_card
-        }
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'chips',
+          scalar_value = 'a_chips',
+          scaling_message = {
+            message = localize('k_upgrade_ex'),
+            colour = G.C.CHIPS,
+            message_card = card,
+            juice_card = context.other_card
+          }
+        })
+        return nil, true
       end
     end
 

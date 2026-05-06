@@ -39,11 +39,14 @@ SMODS.Joker {
         card.ability.extra.current = 1
         return { message = localize('k_reset') }
       else
-        card.ability.extra.current = card.ability.extra.current + card.ability.extra.gain
-        return {
-          message = localize('paperback_plus_odds'),
-          colour = G.C.GREEN,
-        }
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'current',
+          scalar_value = 'gain',
+          message_key = 'paperback_a_odds',
+          message_colour = G.C.GREEN
+        })
+        return nil, true
       end
     end
   end

@@ -62,13 +62,13 @@ if PB_UTIL.config.suits_enabled then
           }
           -- Give chips if hand contains a Spectrum
         elseif PB_UTIL.get_unique_suits(context.full_hand, nil, true) >= 5 then
-          card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.a_chips
-
-          SMODS.calculate_effect {
-            message = localize('k_upgrade_ex'),
-            colour = G.C.CHIPS,
-            card = card
-          }
+          SMODS.scale_card(card, {
+            ref_table = card.ability.extra,
+            ref_value = 'chips',
+            scalar_value = 'a_chips',
+            message_colour = G.C.CHIPS
+          })
+          return nil, true
         end
       end
 

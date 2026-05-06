@@ -45,30 +45,28 @@ SMODS.Joker {
         bad_suit = bad_suit or PB_UTIL.is_non_suit(v, 'light')
       end
       if not bad_suit then
-        card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.a_mult
-        return {
-          message = localize {
-            type = 'variable',
-            key = 'a_mult',
-            vars = { card.ability.extra.a_mult }
-          },
-          colour = G.C.FILTER
-        }
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'mult',
+          scalar_value = 'a_mult',
+          message_key = 'a_mult'
+        })
+        return nil, true
       end
     end
 
     if context.individual and context.cardarea == G.play and not context.blueprint then
       if card.ability.extra.mult > 0 then
         if PB_UTIL.is_non_suit(context.other_card, 'light') then
-          card.ability.extra.mult = card.ability.extra.mult - card.ability.extra.a_mult
-          return {
-            message = localize {
-              type = 'variable',
-              key = 'a_mult_minus',
-              vars = { card.ability.extra.a_mult },
-              colour = G.C.MULT
-            }
-          }
+          SMODS.scale_card(card, {
+            ref_table = card.ability.extra,
+            ref_value = 'mult',
+            scalar_value = 'a_mult',
+            operation = '-',
+            message_key = 'a_mult_minus',
+            message_colour = G.C.MULT
+          })
+          return nil, true
         end
       end
     end

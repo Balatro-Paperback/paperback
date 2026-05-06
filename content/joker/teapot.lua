@@ -50,15 +50,13 @@ SMODS.Joker {
   calculate = function(self, card, context)
     if context.individual and context.cardarea == G.play and not context.blueprint then
       if SMODS.has_enhancement(context.other_card, card.ability.extra.enhancement) then
-        card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.a_chips
-        return {
-          message = localize {
-            type = 'variable',
-            key = 'a_chips',
-            vars = { card.ability.extra.chips },
-            colour = G.C.FILTER,
-          },
-        }
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'chips',
+          scalar_value = 'a_chips',
+          message_key = 'a_chips'
+        })
+        return nil, true
       end
     end
 
