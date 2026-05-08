@@ -5,6 +5,12 @@ SMODS.Joker {
       x_mult = 4,
     }
   },
+  attributes = {
+    'xmult',
+    'destroy_card',
+    'food',
+    'red'
+  },
   rarity = 3,
   pos = { x = 0, y = 7 },
   atlas = 'jokers_atlas',

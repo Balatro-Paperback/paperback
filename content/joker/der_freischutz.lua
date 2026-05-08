@@ -11,6 +11,13 @@ SMODS.Joker {
       current = 0,
     },
   },
+  attributes = {
+    'rank',
+    'seven',
+    'destroy_card',
+    'full_deck',
+    'secret'
+  },
   rarity = 2,
   pos = { x = 14, y = 4 },
   atlas = "jokers_atlas",

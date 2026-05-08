@@ -8,6 +8,11 @@ SMODS.Joker {
       starting_mult = 3
     }
   },
+  attributes = {
+    'mult',
+    'rank',
+    'three'
+  },
   rarity = 1,
   pos = { x = 10, y = 1 },
   atlas = "jokers_atlas",
@@ -36,7 +41,12 @@ SMODS.Joker {
         local mult = card.ability.extra.mult
 
         if not context.blueprint then
-          card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.mult_inc
+          SMODS.scale_card(card, {
+            ref_table = card.ability.extra,
+            ref_value = 'mult',
+            scalar_value = 'mult_inc',
+            no_message = true
+          })
         end
 
         return {

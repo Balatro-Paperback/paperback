@@ -7,6 +7,11 @@ SMODS.Joker {
       revive_treshold = 666
     }
   },
+  attributes = {
+    'chips',
+    'scaling',
+    'secret'
+  },
   rarity = 1,
   pos = { x = 6, y = 4 },
   atlas = 'jokers_atlas',
@@ -38,16 +43,23 @@ SMODS.Joker {
     -- Make sure that this joker isn't being removed
     and not (context.paperback and context.paperback.destroyed_joker and card == context.paperback.destroyed_joker)
     then
-      card.ability.extra.chips = card.ability.extra.chips + count * card.ability.extra.a_chips
-
-      return {
-        message = localize {
-          type = 'variable',
-          key = 'a_chips',
-          vars = { count * card.ability.extra.a_chips }
-        },
-        colour = G.C.CHIPS
-      }
+      SMODS.scale_card(card, {
+        ref_table = card.ability.extra,
+        ref_value = 'chips',
+        scalar_value = 'a_chips',
+        operation = function(ref_table, ref_value, initial, scaling)
+          ref_table[ref_value] = initial + scaling * count
+        end,
+        scaling_message = {
+          message = localize {
+            type = 'variable',
+            key = 'a_chips',
+            vars = { count * card.ability.extra.a_chips }
+          },
+          colour = G.C.CHIPS
+        }
+      })
+      return nil, true
     end
 
     -- Gives the chips when scoring

@@ -5,6 +5,13 @@ SMODS.Joker {
       tags = 1
     }
   },
+  attributes = {
+    'economy',
+    'generation',
+    'tag',
+    'boss_blind',
+    'skip'
+  },
   rarity = 1,
   pos = { x = 7, y = 7 },
   atlas = 'jokers_atlas',

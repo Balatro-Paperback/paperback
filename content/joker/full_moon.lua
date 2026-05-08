@@ -5,6 +5,12 @@ SMODS.Joker {
       odds = 2
     }
   },
+  attributes = {
+    'planet',
+    'retrigger',
+    'chance',
+    'red'
+  },
   rarity = 2,
   pos = { x = 5, y = 9 },
   atlas = 'jokers_atlas',

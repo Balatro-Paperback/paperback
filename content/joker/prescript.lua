@@ -6,6 +6,11 @@ SMODS.Joker {
       active = false,
     },
   },
+  attributes = {
+    'retrigger',
+    'hand_type',
+    'hands'
+  },
   rarity = 2,
   pos = { x = 22, y = 10 },
   atlas = "jokers_atlas",

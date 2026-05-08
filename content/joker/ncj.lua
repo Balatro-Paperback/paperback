@@ -8,6 +8,12 @@ SMODS.Joker {
       scaling = 4
     }
   },
+  attributes = {
+    'chips',
+    'joker',
+    'sell_value',
+    'music'
+  },
   pools = {
     Music = true
   },

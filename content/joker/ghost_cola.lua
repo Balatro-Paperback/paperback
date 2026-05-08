@@ -1,6 +1,13 @@
 SMODS.Joker {
   key = 'ghost_cola',
   config = {},
+  attributes = {
+    'generation',
+    'tag',
+    'negative',
+    'spectral',
+    'on_sell'
+  },
   rarity = 2,
   pos = { x = 5, y = 1 },
   atlas = 'jokers_atlas',
@@ -26,7 +33,7 @@ SMODS.Joker {
     return {
       vars = {
         localize { type = 'name_text', set = 'Tag', key = 'tag_negative', nodes = {} },
-        localize ('k_spectral')
+        localize('k_spectral')
       }
     }
   end,

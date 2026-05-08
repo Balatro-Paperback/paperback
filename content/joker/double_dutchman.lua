@@ -6,6 +6,13 @@ SMODS.Joker {
       hands_left = 5
     }
   },
+  attributes = {
+    'modify_card',
+    'enhancements',
+    'seals',
+    'chance',
+    'food'
+  },
   rarity = 3,
   pos = { x = 11, y = 3 },
   atlas = "jokers_atlas",
@@ -41,6 +48,7 @@ SMODS.Joker {
         if PB_UTIL.chance(card, 'dd_enhancement_roll') and v.ability.set ~= 'Enhanced' then
           local enhancement = SMODS.poll_enhancement {
             key = 'dd_enhancement',
+            options = PB_UTIL.get_ranked_enhancements(),
             guaranteed = true
           }
 

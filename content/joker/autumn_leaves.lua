@@ -8,6 +8,11 @@ SMODS.Joker {
       suit = "Diamonds",
     }
   },
+  attributes = {
+    'xmult',
+    'suit',
+    'diamonds'
+  },
   rarity = 2,
   pos = { x = 0, y = 4 },
   atlas = "jokers_atlas",

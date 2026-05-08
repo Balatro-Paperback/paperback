@@ -6,6 +6,12 @@ SMODS.Joker {
       odds = 6
     }
   },
+  attributes = {
+    'xmult',
+    'chance',
+    'food',
+    'red'
+  },
   rarity = 2,
   pos = { x = 0, y = 2 },
   atlas = "jokers_atlas",

@@ -1,5 +1,8 @@
 SMODS.Joker {
   key = 'tome',
+  attributes = {
+    'joker'
+  },
   rarity = 2,
   pos = { x = 17, y = 5 },
   atlas = 'jokers_atlas',

@@ -7,6 +7,14 @@ SMODS.Joker {
       chance_mult = 1
     }
   },
+  attributes = {
+    'generation',
+    'joker',
+    'on_sell',
+    'negative',
+    'chance',
+    'music'
+  },
   pools = {
     Music = true
   },

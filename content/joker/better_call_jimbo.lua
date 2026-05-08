@@ -6,6 +6,9 @@ SMODS.Joker {
       threshold = 4
     },
   },
+  attributes = {
+    'xmult',
+  },
   rarity = 3,
   pos = { x = 18, y = 5 },
   atlas = 'jokers_atlas',

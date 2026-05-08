@@ -2,9 +2,11 @@ SMODS.Enhancement {
   key = "sleeved",
   atlas = "enhancements_atlas",
   pos = { x = 7, y = 0 },
-  config = { extra = {
-    money = 5
-  } },
+  config = {
+    extra = {
+      money = 5
+    }
+  },
 
   loc_vars = function(self, info_queue, card)
     return { vars = { card.ability.extra.money } }

@@ -16,6 +16,12 @@ SMODS.Joker {
       rounds = 3,
     }
   },
+  attributes = {
+    'economy',
+    'enhancements',
+    'full_deck',
+    'food'
+  },
   rarity = 2,
   pos = { x = 24, y = 6 },
   atlas = "jokers_atlas",

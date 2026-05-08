@@ -5,6 +5,10 @@ if PB_UTIL.should_load_spectrum_items() then
       t_chips = 80,
       type = 'paperback_Spectrum'
     },
+    attributes = {
+      'chips',
+      'hand_type'
+    },
     rarity = 1,
     pos = { x = 19, y = 1 },
     atlas = "jokers_atlas",

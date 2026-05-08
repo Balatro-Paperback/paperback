@@ -6,6 +6,11 @@ SMODS.Joker {
       enhancement = 'm_paperback_wrapped'
     }
   },
+  attributes = {
+    'generation',
+    'enhancements',
+    'chance'
+  },
   rarity = 2,
   pos = { x = 9, y = 10 },
   atlas = "jokers_atlas",

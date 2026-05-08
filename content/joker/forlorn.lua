@@ -5,6 +5,11 @@ SMODS.Joker {
       suit = 'Spades',
     }
   },
+  attributes = {
+    'destroy_card',
+    'suit',
+    'spades'
+  },
   rarity = 1,
   pos = { x = 16, y = 10 },
   atlas = "jokers_atlas",

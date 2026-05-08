@@ -10,6 +10,10 @@ SMODS.Joker {
   eternal_compat = true,
   perishable_compat = true,
   config = { extra = { h_size = 4, hands = -1 } },
+  attributes = {
+    'hand_size',
+    'hands'
+  },
 
   paperback_credit = {
     coder = { 'infinityplus' }

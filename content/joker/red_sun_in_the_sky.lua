@@ -6,6 +6,12 @@ SMODS.Joker {
       change = 1
     }
   },
+  attributes = {
+    'mult',
+    'suit',
+    'light',
+    'red'
+  },
   rarity = 1,
   pos = { x = 19, y = 5 },
   atlas = "jokers_atlas",
@@ -30,7 +36,12 @@ SMODS.Joker {
   calculate = function(self, card, context)
     if context.individual and context.cardarea == G.play then
       if PB_UTIL.is_suit(context.other_card, 'light') then
-        if not context.blueprint then card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.change end
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'mult',
+          scalar_value = 'change',
+          no_message = true
+        })
         return {
           mult = card.ability.extra.mult
         }

@@ -5,6 +5,10 @@ SMODS.Joker {
       enhancement = 'm_paperback_bandaged',
     }
   },
+  attributes = {
+    'discard',
+    'enhancements'
+  },
   rarity = 1,
   pos = { x = 21, y = 5 },
   atlas = 'jokers_atlas',

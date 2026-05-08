@@ -9,6 +9,12 @@ SMODS.Joker {
       active = false
     }
   },
+  attributes = {
+    'xchips',
+    'scaling',
+    'destroy_card',
+    'enhancement'
+  },
   pos = { x = 21, y = 1 },
   atlas = 'jokers_atlas',
   cost = 7,
@@ -43,12 +49,13 @@ SMODS.Joker {
   calculate = function(self, card, context)
     if not context.blueprint and context.before and #context.full_hand == 1 then
       if SMODS.has_enhancement(context.scoring_hand[1], card.ability.extra.enhancement) then
-        card.ability.extra.x_chips = card.ability.extra.x_chips + card.ability.extra.Xchips_mod
         card.ability.extra.active = true
-
-        return {
-          message = localize('k_upgrade_ex'),
-        }
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'x_chips',
+          scalar_value = 'Xchips_mod'
+        })
+        return nil, true
       end
     end
 

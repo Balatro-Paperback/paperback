@@ -5,6 +5,11 @@ SMODS.Joker {
       delta = -1,
     }
   },
+  attributes = {
+    'prevents_death',
+    'ante',
+    'hand_size'
+  },
   rarity = 3,
   pos = { x = 16, y = 9 },
   atlas = 'jokers_atlas',

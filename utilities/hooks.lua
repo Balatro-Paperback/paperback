@@ -276,8 +276,7 @@ function SMODS.calculate_main_scoring(context, scoring_hand)
   if context.cardarea == G.play or context.cardarea == 'unscored' then
     SMODS.calculate_context {
       paperback = {
-        nichola = true -- Name can be changed later
-        -- the context is "after played cards score", a better name probably exists
+        before_joker_effects = true
       },
       full_hand = G.play.cards,
       scoring_hand = context.scoring_hand,

@@ -6,6 +6,13 @@ SMODS.Joker {
     }
   },
 
+  attributes = {
+    'generation',
+    'spectral',
+    'suit',
+    'dark'
+  },
+
   paperback_credit = {
     coder = { 'thermo' }
   },

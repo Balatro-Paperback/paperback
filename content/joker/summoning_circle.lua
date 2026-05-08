@@ -5,6 +5,11 @@ SMODS.Joker {
       hand = 'Five of a Kind'
     }
   },
+  attributes = {
+    'generation',
+    'hand_type',
+    'red'
+  },
   rarity = 3,
   pos = { x = 1, y = 0 },
   atlas = "jokers_atlas",

@@ -1,5 +1,8 @@
 SMODS.Joker {
   key = "chaplin",
+  attributes = {
+    'economy'
+  },
   rarity = 4,
   pos = { x = 12, y = 1 },
   soul_pos = { x = 13, y = 1 },

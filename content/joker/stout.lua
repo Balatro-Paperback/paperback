@@ -8,6 +8,14 @@ SMODS.Joker {
       upgrade = "perma_bonus",
     }
   },
+  attributes = {
+    'chips',
+    'modify_card',
+    'perma_bonus',
+    'suit',
+    'spades',
+    'food'
+  },
   rarity = 2,
   pos = { x = 23, y = 8 },
   atlas = "jokers_atlas",

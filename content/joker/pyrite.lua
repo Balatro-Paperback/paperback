@@ -6,6 +6,13 @@ SMODS.Joker {
       odds = 3
     }
   },
+  attributes = {
+    'generation',
+    'tarot',
+    'suit',
+    'crowns',
+    'chance'
+  },
   rarity = 2,
   pos = { x = 2, y = 9 },
   atlas = 'jokers_atlas',

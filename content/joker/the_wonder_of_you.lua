@@ -5,6 +5,11 @@ SMODS.Joker {
       tag_count = 2
     }
   },
+  attributes = {
+    'generation',
+    'tag',
+    'boss_blind'
+  },
   rarity = 2,
   pos = { x = 18, y = 4 },
   atlas = 'jokers_atlas',

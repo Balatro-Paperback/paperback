@@ -6,6 +6,13 @@ SMODS.Joker {
       a_xmult = 0.1,
     }
   },
+  attributes = {
+    'xmult',
+    'scaling',
+    'discard',
+    'hand_type',
+    'reset'
+  },
   rarity = 2,
   pos = { x = 6, y = 1 },
   atlas = 'jokers_atlas',
@@ -33,11 +40,12 @@ SMODS.Joker {
     -- Upgrade x mult if discard contains only one card
     if not context.blueprint and context.discard then
       if #context.full_hand == 1 then
-        card.ability.extra.x_mult = card.ability.extra.x_mult + card.ability.extra.a_xmult
-        return {
-          message = localize('k_upgrade_ex'),
-          colour = G.C.ORANGE
-        }
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'x_mult',
+          scalar_value = 'a_xmult'
+        })
+        return nil, true
       end
     end
 

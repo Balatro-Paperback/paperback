@@ -206,6 +206,15 @@ return { -- Español
           "mano más jugada"
         }
       },
+      j_paperback_ampersand = {
+        name = "Ampersand",
+        text = {
+          "Si la {C:blue}mano{} anotada contiene",
+          "{C:paperback_light_suit}palos claros{}",
+          "y {C:paperback_dark_suit}palos oscuros{}, reactiva la",
+          "primera de cada tipo {C:attention}#1#{} vez"
+        },
+      },
       j_paperback_insurance_policy = {
         name = "Politica de Seguros",
         text = {
@@ -847,8 +856,9 @@ return { -- Español
       j_paperback_penumbra_phantasm = {
         name = "Fantasma de la Penumbra",
         text = {
-          "Gana {C:red}+#1#{} Multi cada vez que una",
-          "carta {C:attention}sin categoría{} es {C:attention}anotada",
+          "Gana {C:red}+#1#{} Multi cada vez que una carta",
+          "{C:attention}sin categoría{} es {C:attention}anotada{}, las cartas",
+          "de figura ya no tienen {C:attention}categoría{}",
           "{C:inactive}(Actualmente {C:red}+#2#{C:inactive} Multi)"
         }
       },
@@ -1811,48 +1821,43 @@ return { -- Español
       j_paperback_grenadine = {
         name = "Granadina",
         text = {
-          "Los {C:hearts}#1#{} otorgan {X:mult,C:white}X#2#{} Multi al anotar",
-          "aumenta en {X:mult,C:white}X#3#{} cuando falla una {C:green}probabilidad{}",
+          "Las próximas {C:attention}#1#{} {V:1}#2#{} anotadas",
+          "ganan permanentemente {X:mult,C:white}X#3#{} Multi",
         },
       },
       j_paperback_stout = {
         name = "Stout",
         text = {
-          "Las {C:spades}#1#{} otorgan {X:chips,C:white}X#2#{} Fichas al anotar",
-          "Aumenta en {X:chips,C:white}X#3#{} cuando {C:attention}#4#{} o más",
-          "played {C:spades}#1#{} anotan",
+          "Las próximas {C:attention}#1#{} {V:1}#2#{} anotadas",
+          "ganan permanentemente {C:chips}+#3#{} Fichas",
         },
       },
       j_paperback_aperol = {
         name = "Aperol",
         text = {
-          "Los {C:diamonds}#3#{} otorgan {C:mult}+#1#{} Multi",
-          "por cada {C:money}$#2#{} que tengas al anotar",
-          "{C:inactive}(Actualmente {C:mult}+#4#{C:inactive} Multi)",
+          "Las próximas {C:attention}#1#{} {V:1}#2#{} anotadas",
+          "ganan permanentemente {C:money}$#3#{} al anotar",
         },
       },
       j_paperback_blue_curacao = {
         name = "Licor de Curazao",
         text = {
-          "Los {C:clubs}#1#{} otorgan {X:mult,C:white}X#2#{} Multi al anotar",
-          "Aumenta en {X:mult,C:white}X#3#{} cuando {C:attention}#4#{} o más",
-          "played {C:clubs}#1#{} anotan",
+          "Las próximas {C:attention}#1#{} {V:1}#2#{} anotadas",
+          "ganan permanentemente {C:mult}+#3#{} Multi",
         },
       },
       j_paperback_nigori = {
         name = "Nigori",
         text = {
-          "Las {C:paperback_stars}#1#{} otorgan {C:chips}+#2#{} Fichas al",
-          "anotar, aumenta en {C:chips}+#3#{} cuando",
-          "se anota {X:chips,C:white}XFichas{}",
+          "Las próximas {C:attention}#1#{} {V:1}#2#{} anotadas",
+          "ganan permanentemente {X:chips,C:white}X#3#{} Fichas",
         },
       },
       j_paperback_lager = {
         name = "Lager",
         text = {
-          "{C:attention}+#1#{} Ranuras de Consumibles",
-          "Aumenta en {C:attention}+#2#{} si la mano anotada",
-          "contiene al menos {C:attention}3{} {C:paperback_crowns}#4#{}",
+          "Las próximas {C:attention}#1#{} {V:1}#2#{} anotadas",
+          "ganan permanentemente {C:green}+#3#{} probabilidad",
         },
       },
       j_paperback_paranoia = {
@@ -2190,15 +2195,6 @@ return { -- Español
           "{C:inactive,s:0.8}(Se reinicia después de jugar la mano)",
         },
       },
-      j_paperback_clothespin = {
-        name = "Gancho de ropa",
-        text = {
-          "Gana {C:chips}+#1#{} Fichas al",
-          "{C:attention}final de la ronda{}",
-          "por cada {C:attention}Clip{} {C:attention}en mano",
-          "{C:inactive}(Actualmente {C:chips}+#2#{C:inactive} Fichas)"
-        }
-      },
       j_paperback_watercolor_joker = {
         name = "Comodín de Acuarela",
         text = {
@@ -2411,17 +2407,17 @@ return { -- Español
       j_paperback_clothespin = {
         name = "Gancho de ropa",
         text = {
-          "Este Comodín cuenta simultáneamente como un {C:attention}Clip de papel{}",
+          "Este Comodín cuenta simultáneamente",
+          "como un {C:attention}Clip de papel{}",
           "{C:attention}jugado{} y {C:attention}en mano{}",
         }
       },
       j_paperback_happy_accident = {
         name = "Accidente Feliz",
         text = {
-          "Cada {C:attention}#1#{}",
-          "en mano otorga {X:chips,C:white}XFichas{}",
-          "{C:attention}reducido{} a la mitad",
-          "del con escalado",
+          "Cada {C:attention}#1#{} en mano",
+          "otorga {X:chips,C:white}XFichas{} {C:attention}reducido{}",
+          "a la mitad de su escalado",
           "{X:chips,C:white}X1.5{C:inactive} -> {X:chips,C:white}X1.25{}",
         },
       },
@@ -2539,23 +2535,23 @@ return { -- Español
         text = {
           "Las cartas {C:mult}#3#{}",
           "anotadas son {C:red}destruidas{}",
-          "y gana {X:mult,C:white}X#1#{} Multi",
+          "y ganas {X:mult,C:white}X#1#{} Multi",
           "{C:inactive}(Actualmente {X:mult,C:white} X#2# {C:inactive} Multi)",
         }
       },
       j_paperback_stella_octangula = {
         name = "Stella Octangula",
         text = {
-          "La primera {V:1}#2#{} jugada cada ronda",
-          "Otorga {X:chips,C:white} X#1# {} Fichas"
+          "La primera {V:1}#2#{} jugada cada",
+          "{C:attetion}ronda{} otorga {X:chips,C:white} X#1# {} Fichas"
         },
 
       },
       j_paperback_silent_assassin = {
         name = "Asesino Silencioso",
         text = {
-          "Las {C:attention}#1#{} y {C:attention}#2#{} anotadas otorgan {C:mult}+#3#{} Multi.",
-          "Aumenta en {C:mult}+#4#{} Multi",
+          "Las {C:attention}#1#{} y {C:attention}#2#{} anotadas otorgan",
+          "{C:mult}+#3#{} Multi. Aumenta en {C:mult}+#4#{} Multi",
           "cada {C:attention}#5#{C:inactive} [#6#]{} cartas {C:attention}destruidas"
         }
       },

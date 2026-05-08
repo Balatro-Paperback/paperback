@@ -5,6 +5,9 @@ SMODS.Joker {
       dollars = 13
     }
   },
+  attributes = {
+    'economy'
+  },
   rarity = 4,
   pos = { x = 21, y = 9 },
   soul_pos = { x = 22, y = 8 },

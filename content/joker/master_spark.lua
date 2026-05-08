@@ -5,6 +5,11 @@ SMODS.Joker {
       ready = false
     }
   },
+  attributes = {
+    'destroy_card',
+    'editions',
+    'hand_type'
+  },
   rarity = 3,
   pos = { x = 11, y = 7 },
   atlas = "jokers_atlas",

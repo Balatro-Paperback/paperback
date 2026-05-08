@@ -1,7 +1,7 @@
 [manifest]
 version = "1.0.0"
 dump_lua = true
-priority = 0
+priority = -1
 
 # Adds a new check for jokers that unlock new jokers by turning into others, such as Alert -> Legacy, or The Batter -> Off Switch
 
