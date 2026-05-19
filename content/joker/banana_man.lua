@@ -6,6 +6,12 @@ SMODS.Joker { -- Banana Man
       odds = 3,
     }
   },
+  attributes = {
+    'xmult',
+    'joker',
+    'chance',
+    'music'
+  },
   pos = {
     x = 1,
     y = 10

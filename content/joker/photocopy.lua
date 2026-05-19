@@ -1,5 +1,8 @@
 SMODS.Joker {
   key = "photocopy",
+  attributes = {
+    'copying'
+  },
   rarity = 3,
   pos = { x = 22, y = 3 },
   atlas = "jokers_atlas",

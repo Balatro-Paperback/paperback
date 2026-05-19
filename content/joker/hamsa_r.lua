@@ -6,6 +6,10 @@ SMODS.Joker {
       ready = false,
     },
   },
+  attributes = {
+    'hands',
+    'mod_chance'
+  },
   rarity = 1,
   pos = { x = 22, y = 6 },
   atlas = "jokers_atlas",

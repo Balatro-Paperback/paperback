@@ -5,6 +5,11 @@ SMODS.Joker {
       mult_per_dark = 2,
     }
   },
+  attributes = {
+    'mult',
+    'suit',
+    'dark'
+  },
   rarity = 1,
   pos = { x = 19, y = 8 },
   atlas = "jokers_atlas",

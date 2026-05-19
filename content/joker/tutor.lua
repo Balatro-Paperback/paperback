@@ -1,6 +1,19 @@
 SMODS.Joker {
   key = "tutor",
   rarity = 1,
+  attributes = {
+    'chips',
+    'rank',
+    'two',
+    'three',
+    'four',
+    'five',
+    'six',
+    'seven',
+    'eight',
+    'nine',
+    'ten'
+  },
   pos = { x = 4, y = 10 },
   atlas = "jokers_atlas",
   cost = 6,

@@ -8,6 +8,11 @@ SMODS.Joker {
       modifier = 1
     }
   },
+  attributes = {
+    'hand_size',
+    'enhancements',
+    'full_deck'
+  },
   paperback_credit = {
     coder = { 'thermo' }
   },

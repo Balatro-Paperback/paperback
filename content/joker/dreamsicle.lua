@@ -8,6 +8,13 @@ SMODS.Joker {
       stick_key = 'j_paperback_popsicle_stick'
     }
   },
+  attributes = {
+    'mult',
+    'chance',
+    'suit',
+    'diamonds',
+    'food'
+  },
   rarity = 1,
   pos = { x = 8, y = 2 },
   atlas = 'jokers_atlas',

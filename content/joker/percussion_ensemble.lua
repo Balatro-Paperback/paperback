@@ -6,6 +6,11 @@ SMODS.Joker {
       xMult_mod = .25
     }
   },
+  attributes = {
+    'xmult',
+    'enhancements',
+    'full_deck'
+  },
   rarity = 2,
   pos = { x = 16, y = 5 },
   atlas = "jokers_atlas",

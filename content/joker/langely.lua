@@ -1,5 +1,10 @@
 SMODS.Joker {
   key = "langely",
+  attributes = {
+    'economy',
+    'sell_value',
+    'boss_blind'
+  },
   rarity = 4,
   pos = { x = 12, y = 2 },
   soul_pos = { x = 13, y = 2 },

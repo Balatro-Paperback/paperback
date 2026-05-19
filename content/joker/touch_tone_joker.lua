@@ -10,6 +10,11 @@ SMODS.Joker {
       }
     }
   },
+  attributes = {
+    'tarot',
+    'planet',
+    'spectral'
+  },
   pools = {
     Music = true
   },

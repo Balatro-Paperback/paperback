@@ -6,9 +6,19 @@ if PB_UTIL.should_load_spectrum_items() then
         mult = 0,
         change = 1,
         divisor = 2,
-        ranks = {"Jack", "Queen", "King"},
+        ranks = { "Jack", "Queen", "King" },
         suit = "paperback_Crowns"
       }
+    },
+    attributes = {
+      'mult',
+      'suit',
+      'crowns',
+      'full_deck',
+      'rank',
+      'king',
+      'queen',
+      'jack'
     },
     paperback = {
       requires_custom_suits = true,
@@ -30,9 +40,10 @@ if PB_UTIL.should_load_spectrum_items() then
         local rank_tally = 0
         for _, playing_card in ipairs(G.playing_cards) do
           if (PB_UTIL.is_rank(playing_card, card.ability.extra.ranks[1]) or
-              PB_UTIL.is_rank(playing_card, card.ability.extra.ranks[2]) or
-              PB_UTIL.is_rank(playing_card, card.ability.extra.ranks[3])) then
-            rank_tally = rank_tally + 1 end
+            PB_UTIL.is_rank(playing_card, card.ability.extra.ranks[2]) or
+            PB_UTIL.is_rank(playing_card, card.ability.extra.ranks[3])) then
+            rank_tally = rank_tally + 1
+          end
         end
         local change = math.floor(rank_tally / card.ability.extra.divisor) - card.ability.extra.mult
         if change ~= 0 then

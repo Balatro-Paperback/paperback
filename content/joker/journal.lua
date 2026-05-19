@@ -6,6 +6,9 @@ SMODS.Joker {
       next_chips = 0,
     }
   },
+  attributes = {
+    'chips'
+  },
   paperback_credit = {
     coder = { 'thermo' }
   },

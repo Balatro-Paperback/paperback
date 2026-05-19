@@ -8,6 +8,12 @@ SMODS.Joker {
       money_odds = 2,
     }
   },
+  attributes = {
+    'retrigger',
+    'economy',
+    'chance',
+    'enhancements'
+  },
   rarity = 1,
   pos = { x = 5, y = 2 },
   atlas = "jokers_atlas",

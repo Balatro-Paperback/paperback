@@ -6,6 +6,11 @@ SMODS.Joker {
       Xchip = 1
     }
   },
+  attributes = {
+    'xchips',
+    'scaling',
+    'minor_arcana'
+  },
   rarity = 2,
   pos = { x = 15, y = 9 },
   atlas = 'jokers_atlas',

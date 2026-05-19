@@ -8,6 +8,12 @@ SMODS.Joker {
       stick_key = 'j_paperback_sweet_stick'
     }
   },
+  attributes = {
+    'mult',
+    'suit',
+    'crowns',
+    'chance'
+  },
   rarity = 1,
   pos = { x = 9, y = 8 },
   atlas = 'jokers_atlas',

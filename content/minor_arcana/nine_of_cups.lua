@@ -48,7 +48,8 @@ PB_UTIL.MinorArcana {
           SMODS.add_card {
             set = 'Joker',
             rarity = rarity,
-            edition = joker.edition
+            edition = joker.edition,
+            key_append = 'nine_of_cups_joker'
           }
         end)
 

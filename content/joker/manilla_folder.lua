@@ -5,6 +5,11 @@ SMODS.Joker {
       money = 2
     }
   },
+  attributes = {
+    'economy',
+    'paperclip',
+    'full_deck'
+  },
   rarity = 1,
   pos = { x = 10, y = 8 },
   atlas = "jokers_atlas",

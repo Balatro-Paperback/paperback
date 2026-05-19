@@ -5,6 +5,9 @@ SMODS.Joker {
       dollars = 25
     }
   },
+  attributes = {
+    'economy'
+  },
   paperback_credit = {
     coder = { 'thermo' }
   },

@@ -5,10 +5,7 @@ PB_UTIL.config = SMODS.current_mod.config
 SMODS.current_mod.optional_features = {
   retrigger_joker = true,
   post_trigger = true,
-  quantum_enhancements = true,
-  cardareas = {
-    deck = true
-  }
+  quantum_enhancements = true
 }
 
 -- Global mod calculate

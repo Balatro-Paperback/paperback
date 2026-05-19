@@ -14,6 +14,11 @@ SMODS.load_file("utilities/cross-mod.lua")()
 -- Load the atlases
 SMODS.load_file("content/atlas.lua")()
 
+-- Load Attributes (doesn't use individual files)
+for _, key in ipairs(PB_UTIL.ENABLED_ATTRIBUTES) do
+  SMODS.Attribute { key = key }
+end
+
 -- Load Jokers
 PB_UTIL.register_items(PB_UTIL.ENABLED_JOKERS, "content/joker")
 

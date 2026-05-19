@@ -9,6 +9,12 @@ SMODS.Joker {
       suit = 'Hearts'
     }
   },
+  attributes = {
+    'economy',
+    'suit',
+    'hearts',
+    'red'
+  },
   atlas = "jokers_atlas",
   rarity = 1,
   blueprint_compat = true,

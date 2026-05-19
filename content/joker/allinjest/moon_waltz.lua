@@ -10,6 +10,14 @@ SMODS.Joker {
   pools = {
     Music = true
   },
+  attributes = {
+    'chips',
+    'mult',
+    'scaling',
+    'chance',
+    'planet',
+    'music'
+  },
   rarity = 2,
   pos = { x = 15, y = 8 },
   atlas = 'jokers_atlas',

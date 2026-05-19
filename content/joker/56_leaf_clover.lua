@@ -1,6 +1,14 @@
 SMODS.Joker {
   key = "56_leaf_clover",
   config = { extra = { active = false } },
+  attributes = {
+    'generation',
+    'tag',
+    'negative',
+    'suit',
+    'clubs',
+    'boss_blind'
+  },
   rarity = 2,
   pos = { x = 24, y = 3 },
   atlas = "jokers_atlas",

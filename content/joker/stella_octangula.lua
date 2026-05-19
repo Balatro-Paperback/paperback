@@ -9,6 +9,11 @@ if PB_UTIL.should_load_spectrum_items() then
         first_star = nil
       }
     },
+    attributes = {
+      'xchips',
+      'suit',
+      'stars'
+    },
     rarity = 1,
     pos = { x = 23, y = 7 },
     atlas = "jokers_atlas",

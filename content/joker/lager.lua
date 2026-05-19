@@ -8,6 +8,14 @@ SMODS.Joker {
       upgrade = "perma_paperback_plus_odds",
     }
   },
+  attributes = {
+    'mod_chance',
+    'modify_card',
+    'perma_bonus',
+    'suit',
+    'crowns',
+    'food'
+  },
   rarity = 2,
   pos = { x = 24, y = 2 },
   atlas = "jokers_atlas",

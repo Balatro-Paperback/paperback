@@ -1,5 +1,9 @@
 SMODS.Joker {
   key = "paralyzed",
+  attributes = {
+    'generation',
+    'tarot'
+  },
   rarity = 2,
   pos = { x = 20, y = 0 },
   atlas = "jokers_atlas",
@@ -10,8 +14,8 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'thermo' }
   },
-  loc_vars = function (self, info_queue, card)
-    return { vars = {localize('k_tarot')}}
+  loc_vars = function(self, info_queue, card)
+    return { vars = { localize('k_tarot') } }
   end,
   calculate = function(self, card, context)
     if context.end_of_round and context.main_eval then

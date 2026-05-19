@@ -7,6 +7,11 @@ SMODS.Joker {
       suit = 'paperback_Stars'
     }
   },
+  attributes = {
+    'mult',
+    'suit',
+    'stars'
+  },
   rarity = 1,
   pos = { x = 5, y = 8 },
   atlas = "jokers_atlas",

@@ -7,6 +7,12 @@ if PB_UTIL.config.suits_enabled then
         chips = 0,
       }
     },
+    attributes = {
+      'chips',
+      'scaling',
+      'hand_type',
+      'reset'
+    },
     rarity = 1,
     pos = { x = 3, y = 0 },
     atlas = 'jokers_atlas',
@@ -56,13 +62,13 @@ if PB_UTIL.config.suits_enabled then
           }
           -- Give chips if hand contains a Spectrum
         elseif PB_UTIL.get_unique_suits(context.full_hand, nil, true) >= 5 then
-          card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.a_chips
-
-          SMODS.calculate_effect {
-            message = localize('k_upgrade_ex'),
-            colour = G.C.CHIPS,
-            card = card
-          }
+          SMODS.scale_card(card, {
+            ref_table = card.ability.extra,
+            ref_value = 'chips',
+            scalar_value = 'a_chips',
+            message_colour = G.C.CHIPS
+          })
+          return nil, true
         end
       end
 
@@ -89,9 +95,13 @@ else
     key = 'pride_flag',
     config = {
       extra = {
-        a_mult = 2,
-        mult = 0
+        a_chips = 30
       }
+    },
+    attributes = {
+      'mult',
+      'scaling',
+      'suit'
     },
     rarity = 1,
     pos = { x = 3, y = 0 },
@@ -110,8 +120,7 @@ else
     loc_vars = function(self, info_queue, card)
       return {
         vars = {
-          card.ability.extra.a_mult,
-          card.ability.extra.mult
+          card.ability.extra.a_chips
         },
         key = "j_paperback_pride_flag_no_spectrums"
       }
@@ -144,39 +153,11 @@ else
 
     -- Calculate function for the Joker
     calculate = function(self, card, context)
-      -- Check if the card is being calculated before the scoring hand is scored and not blueprinted
-      if context.before and not context.blueprint then
-        -- Get the number of unique suits in the scoring hand
-        local unique_suits = PB_UTIL.get_unique_suits(context.scoring_hand)
-
-        -- If there are 3 unique suits, upgrade the joker
-        if unique_suits >= 3 then
-          card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.a_mult
-
-          return {
-            message = localize('k_upgrade_ex'),
-            colour = G.C.MULT,
-            card = card
-          }
-        end
-      end
-
-      -- Gives the mult during scoring
       if context.joker_main then
         return {
-          mult = card.ability.extra.mult
+          chips = card.ability.extra.a_chips * PB_UTIL.get_unique_suits(context.scoring_hand)
         }
       end
-    end,
-
-    joker_display_def = function(JokerDisplay)
-      return {
-        text = {
-          { text = "+" },
-          { ref_table = "card.ability.extra", ref_value = "mult", retrigger_type = "mult" }
-        },
-        text_config = { colour = G.C.MULT },
-      }
     end,
   }
 end

@@ -8,6 +8,12 @@ SMODS.Joker {
       discount = 3,
     }
   },
+  attributes = {
+    'destroy_card',
+    'generation',
+    'joker',
+    'economy'
+  },
   rarity = 3,
   pos = { x = 8, y = 7 },
   atlas = "jokers_atlas",
@@ -46,7 +52,7 @@ SMODS.Joker {
         card.ability.extra.discount,
         card.ability.extra.hands_reset,
         card.ability.extra.hands_to_death,
-        localize { type = 'name_text', key = 'e_negative', set = 'Edition'}
+        localize { type = 'name_text', key = 'e_negative', set = 'Edition' }
       }
     }
   end,

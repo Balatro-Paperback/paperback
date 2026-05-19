@@ -8,6 +8,14 @@ SMODS.Joker {
       suit = "Clubs",
     }
   },
+  attributes = {
+    'mult',
+    'modify_card',
+    'perma_bonus',
+    'suit',
+    'clubs',
+    'food'
+  },
   rarity = 2,
   pos = { x = 23, y = 9 },
   atlas = "jokers_atlas",

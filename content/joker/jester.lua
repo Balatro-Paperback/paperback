@@ -1,5 +1,8 @@
 SMODS.Joker {
   key = "jester",
+  attributes = {
+    'destroy_card'
+  },
   rarity = 2,
   pos = { x = 13, y = 11 },
   atlas = "jokers_atlas",

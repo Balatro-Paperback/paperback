@@ -992,7 +992,12 @@ function PB_UTIL.panorama_logic(self, card, context)
       local xMult = card.ability.extra.xMult
       -- Upgrade the xMult if not blueprint
       if not context.blueprint then
-        card.ability.extra.xMult = card.ability.extra.xMult + card.ability.extra.xMult_gain
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'xMult',
+          scalar_value = 'xMult_gain',
+          no_message = true
+        })
       end
 
       return {
@@ -1395,4 +1400,15 @@ function PB_UTIL.count_entries(table)
   local count = 0
   for _ in pairs(table) do count = count + 1 end
   return count
+end
+
+--- Get a list of all non-rankless enhancement keys (based on logic from spectrals)
+function PB_UTIL.get_ranked_enhancements()
+  local cen_pool = {}
+  for i, key in ipairs(get_current_pool('Enhanced')) do
+    if key ~= "UNAVAILABLE" and key ~= 'm_stone' and not G.P_CENTERS[key].overrides_base_rank then
+      cen_pool[#cen_pool + 1] = key
+    end
+  end
+  return cen_pool
 end

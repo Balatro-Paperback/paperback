@@ -7,6 +7,13 @@ if PB_UTIL.config.minor_arcana_enabled then
         minor_arcana_odds = 4
       }
     },
+    attributes = {
+      'generation',
+      'tarot',
+      'minor_arcana',
+      'hand_type',
+      'chance'
+    },
     rarity = 2,
     pos = { x = 5, y = 4 },
     atlas = 'jokers_atlas',

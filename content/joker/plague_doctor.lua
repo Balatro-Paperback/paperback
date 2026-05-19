@@ -5,6 +5,13 @@ SMODS.Joker {
       xMult = 1.25
     }
   },
+  attributes = {
+    'xmult',
+    'modify_card',
+    'apostle',
+    'hand_type',
+    'secret'
+  },
   rarity = 2,
   pos = { x = 8, y = 4 },
   atlas = "jokers_atlas",

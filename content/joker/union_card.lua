@@ -1,5 +1,12 @@
 SMODS.Joker {
   key = 'union_card',
+  attributes = {
+    'xmult',
+    'suit',
+    'light',
+    'sell_value',
+    'red'
+  },
   rarity = 3,
   pos = { x = 8, y = 1 },
   atlas = "jokers_atlas",

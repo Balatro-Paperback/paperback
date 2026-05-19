@@ -1,5 +1,11 @@
 SMODS.Joker {
   key = "book_of_vengeance",
+  attributes = {
+    'destroy_card',
+    'generation',
+    'joker',
+    'boss_blind'
+  },
   rarity = 3,
   pos = { x = 4, y = 9 },
   atlas = 'jokers_atlas',

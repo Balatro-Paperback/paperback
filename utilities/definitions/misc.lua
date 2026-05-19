@@ -467,3 +467,21 @@ PB_UTIL.ENABLED_STICKERS = {
   'temporary',
   'corroded'
 }
+
+PB_UTIL.ENABLED_ATTRIBUTES = {
+  'light',        -- trigger is affected by any light suit (hearts, diamonds, stars)
+  'dark',         -- trigger is affected by any dark suit (spades, clubs, crowns)
+  'stars',        -- trigger is affected by stars
+  'crowns',       -- trigger is affected by crowns
+  'apostle',      -- trigger is affected by apostles
+  'rankless',     -- trigger is affected by rankless cards
+  'paperclip',    -- related to paperclips
+  'minor_arcana', -- related to minor arcana
+  'ego_gift',     -- related to ego gifts
+  'negative',     -- related to the negative edition
+  'ante',         -- changes ante
+  'music',        -- based on a song/album
+  'secret',       -- has a secret trigger
+  'red',          -- it's red
+  'stick'         -- it's stick
+}

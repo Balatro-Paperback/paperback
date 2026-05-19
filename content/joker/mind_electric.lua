@@ -6,6 +6,13 @@ SMODS.Joker {
       xm = 1
     }
   },
+  attributes = {
+    'xmult',
+    'scaling',
+    'destroy_card',
+    'enhancements',
+    'red'
+  },
   paperback_credit = {
     coder = { 'thermo' }
   },
@@ -40,11 +47,14 @@ SMODS.Joker {
     end
     if context.destroy_card and context.cardarea == G.play and not context.blueprint then
       if SMODS.has_enhancement(context.destroy_card, "m_mult") then
-        card.ability.extra.xm = card.ability.extra.xm + card.ability.extra.change
-        return {
-          message = localize { type = 'variable', key = 'a_xmult', vars = { card.ability.extra.xm } },
-          remove = true
-        }
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'xm',
+          scalar_value = 'change',
+          message_key = 'a_xmult',
+          message_colour = G.C.MULT
+        })
+        return { remove = true }
       end
     end
   end,

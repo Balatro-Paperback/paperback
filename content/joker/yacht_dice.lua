@@ -6,6 +6,11 @@ SMODS.Joker {
       xm = 1
     }
   },
+  attributes = {
+    'xmult',
+    'scaling',
+    'hand_type'
+  },
   rarity = 3,
   pos = { x = 12, y = 7 },
   atlas = "jokers_atlas",
@@ -26,7 +31,7 @@ SMODS.Joker {
     }
   end,
 
-  add_to_deck =function (self, card, from_debuff)
+  add_to_deck = function(self, card, from_debuff)
     local total_hands = PB_UTIL.count_entries(G.GAME.hand_usage)
     card.ability.extra.xm = 1 + total_hands * card.ability.extra.change
   end,

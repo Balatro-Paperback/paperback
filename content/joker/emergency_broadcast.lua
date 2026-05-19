@@ -6,6 +6,13 @@ SMODS.Joker {
       a_chips = 8,
     }
   },
+  attributes = {
+    'mult',
+    'chips',
+    'rank',
+    'five',
+    'eight'
+  },
   rarity = 1,
   pos = { x = 9, y = 4 },
   atlas = 'jokers_atlas',

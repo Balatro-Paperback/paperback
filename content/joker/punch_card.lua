@@ -7,6 +7,10 @@ SMODS.Joker {
       antes = -1
     }
   },
+  attributes = {
+    'ante',
+    'on_sell'
+  },
   rarity = 3,
   pos = { x = 15, y = 3 },
   atlas = "jokers_atlas",

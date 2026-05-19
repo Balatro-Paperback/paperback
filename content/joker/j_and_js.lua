@@ -7,6 +7,12 @@ SMODS.Joker {
       rounds_reset = 3,
     }
   },
+  attributes = {
+    'generation',
+    'tag',
+    'hand_type',
+    'red'
+  },
   rarity = 2,
   pos = { x = 11, y = 8 },
   atlas = "jokers_atlas",

@@ -5,6 +5,13 @@ SMODS.Joker {
       a_pchips = 10,
     }
   },
+  attributes = {
+    'chips',
+    'modify_card',
+    'perma_bonus',
+    'rankless',
+    'music'
+  },
   pools = {
     Music = true
   },

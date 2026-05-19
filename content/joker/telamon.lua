@@ -6,6 +6,11 @@ SMODS.Joker {
       active = false
     }
   },
+  attributes = {
+    'generation',
+    'minor_arcana',
+    'hand_type'
+  },
   rarity = 2,
   pos = { x = 18, y = 10 },
   atlas = 'jokers_atlas',
