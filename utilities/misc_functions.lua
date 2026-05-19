@@ -43,7 +43,7 @@ end
 ---@param str string
 ---@return boolean
 function PB_UTIL.is_paperclip(str)
-  return PB_UTIL.PAPERCLIP_SET[str] == true
+  return PB_UTIL.Paperclips_keys[str] == true
 end
 
 ---Checks if a card has a paperclip. If found, the first value returned is the key.
