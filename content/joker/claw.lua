@@ -11,7 +11,9 @@ SMODS.Joker {
   attributes = {
     'mult',
     'rank',
-    'three'
+    'three',
+    'scaling',
+    'reset'
   },
   rarity = 1,
   pos = { x = 10, y = 1 },
@@ -65,11 +67,12 @@ SMODS.Joker {
     end
 
     if context.end_of_round and not context.blueprint and context.main_eval then
-      card.ability.extra.mult = card.ability.extra.starting_mult
-
-      return {
-        message = localize('k_reset')
-      }
+      SMODS.reset_card(card, {
+        ref_table = card.ability.extra,
+        ref_value = 'mult',
+        reset_value = card.ability.extra.starting_mult
+      })
+      return nil, true
     end
   end,
 
