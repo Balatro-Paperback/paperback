@@ -76,9 +76,10 @@ SMODS.Joker {
           ref_table = card.ability.extra,
           ref_value = 'total',
           scalar_value = 'increase',
+          scalar_factor = inc,
           operation = function(ref_table, ref_value, initial, scaling)
-            ref_table[ref_value] = math.min(initial + scaling * inc, card.ability.extra.max)
-            G.GAME.paperback.ceramic_inc = G.GAME.paperback.ceramic_inc + scaling * inc
+            ref_table[ref_value] = initial + scaling
+            G.GAME.paperback.ceramic_inc = G.GAME.paperback.ceramic_inc + scaling
           end
         })
         return nil, true

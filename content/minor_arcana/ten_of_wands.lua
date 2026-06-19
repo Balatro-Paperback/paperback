@@ -6,6 +6,12 @@ PB_UTIL.MinorArcana {
     min_highlighted = 3,
     max_highlighted = 3
   },
+  attributes = {
+    'modify_card',
+    'destroy_card',
+    'chips',
+    'perma_bonus'
+  },
   paperback_credit = {
     coder = { 'srockw' }
   },

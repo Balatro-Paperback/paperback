@@ -11,6 +11,7 @@ SMODS.Joker {
     'economy',
     'generation',
     'tag',
+    'shop',
     'boss_blind'
   },
   rarity = 3,

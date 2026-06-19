@@ -3,6 +3,9 @@ if SMODS.Tags.tag_bunc_breaking then return end
 
 SMODS.Tag {
   key = 'breaking',
+  attributes = {
+    'boss_blind'
+  },
   atlas = 'tags_atlas',
   pos = { x = 4, y = 0 },
   discovered = false,

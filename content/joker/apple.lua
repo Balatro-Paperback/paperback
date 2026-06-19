@@ -10,6 +10,7 @@ SMODS.Joker {
     'generation',
     'negative',
     'chance',
+    'consumable',
     'food'
   },
   rarity = 1,

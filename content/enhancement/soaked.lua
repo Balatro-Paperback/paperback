@@ -7,6 +7,12 @@ SMODS.Enhancement {
       odds = 2
     }
   },
+  attributes = {
+    'chips',
+    'destroy_card',
+    'chance',
+    'discard'
+  },
 
   loc_vars = function(self, info_queue, card)
     local numerator, denominator = PB_UTIL.chance_vars(card, self.key)
@@ -40,7 +46,9 @@ SMODS.Enhancement {
             G.GAME.blind.triggered = true
             G.E_MANAGER:add_event(Event {
               trigger = "immediate",
-              func = function() SMODS.juice_up_blind(); return true end
+              func = function()
+                SMODS.juice_up_blind(); return true
+              end
             })
             card_eval_status_text(held_card, "debuff")
           else

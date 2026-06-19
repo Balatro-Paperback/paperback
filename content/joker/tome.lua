@@ -1,7 +1,9 @@
 SMODS.Joker {
   key = 'tome',
   attributes = {
-    'joker'
+    'joker',
+    'rarity',
+    'consumable_slot'
   },
   rarity = 2,
   pos = { x = 17, y = 5 },

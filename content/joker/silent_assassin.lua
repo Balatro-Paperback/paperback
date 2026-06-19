@@ -70,9 +70,7 @@ SMODS.Joker {
         ref_table = card.ability.extra,
         ref_value = 'mult',
         scalar_value = 'change',
-        operation = function(ref_table, ref_value, initial, scaling)
-          ref_table[ref_value] = initial + scaling * change
-        end
+        scalar_factor = change
       })
       return nil, true
     end

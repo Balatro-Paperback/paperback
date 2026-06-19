@@ -4,6 +4,10 @@ PB_UTIL.EGO_Gift {
     sin = 'envy',
     active = true
   },
+  attributes = {
+    'generation',
+    'consumable'
+  },
   atlas = 'ego_gift_atlas',
   pos = { x = 6, y = 2 },
   soul_pos = { x = 6, y = 6 },

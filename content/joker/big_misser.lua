@@ -7,7 +7,8 @@ SMODS.Joker {
     }
   },
   attributes = {
-    'xmult'
+    'xmult',
+    'consumable_slot'
   },
   rarity = 2,
   pos = { x = 9, y = 5 },

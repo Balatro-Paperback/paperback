@@ -4,6 +4,9 @@ PB_UTIL.MinorArcana {
     max_highlighted = 1,
     money_cap = 30,
   },
+  attributes = {
+    'economy'
+  },
   atlas = 'minor_arcana_atlas',
   pos = { x = 5, y = 0 },
   paperback_credit = {

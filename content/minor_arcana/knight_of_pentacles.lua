@@ -15,6 +15,11 @@ end
 
 PB_UTIL.MinorArcana {
   key = 'knight_of_pentacles',
+  attributes = {
+    'reroll',
+    'shop',
+    'economy'
+  },
   atlas = 'minor_arcana_atlas',
   pos = { x = 4, y = 7 },
   paperback_credit = {

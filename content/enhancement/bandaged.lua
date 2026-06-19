@@ -7,6 +7,11 @@ SMODS.Enhancement {
       odds = 5
     }
   },
+  attributes = {
+    'retrigger',
+    'chance',
+    'destroy_card'
+  },
 
   loc_vars = function(self, info_queue, card)
     local numerator, denominator = PB_UTIL.chance_vars(card, self.key)

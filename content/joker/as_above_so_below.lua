@@ -4,8 +4,9 @@ SMODS.Joker {
     'generation',
     'apostle',
     'tarot',
-    'hand_type',
-    'spectral'
+    'consumable',
+    'spectral',
+    'hand_type'
   },
   rarity = 2,
   pos = { x = 16, y = 4 },

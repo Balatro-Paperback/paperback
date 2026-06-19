@@ -5,6 +5,12 @@ PB_UTIL.MinorArcana {
   config = {
     max_highlighted = 1,
   },
+  attributes = {
+    'modify_card',
+    'enhancements',
+    'seals',
+    'editions'
+  },
   paperback_credit = {
     coder = { 'srockw' }
   },

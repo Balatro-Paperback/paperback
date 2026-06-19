@@ -7,6 +7,10 @@ PB_UTIL.EGO_Gift {
       odds = 5
     }
   },
+  attributes = {
+    'xmult',
+    'chance'
+  },
   atlas = 'ego_gift_atlas',
   pos = { x = 5, y = 0 },
   soul_pos = { x = 5, y = 4 },

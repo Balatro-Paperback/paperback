@@ -1,5 +1,11 @@
 SMODS.Voucher {
   key = 'rabbit_protocol',
+  attributes = {
+    'boss_blind',
+    'on_sell',
+    'ego_gift',
+    'consumable'
+  },
   atlas = 'vouchers_atlas',
   pos = { x = 2, y = 1 },
   unlocked = false,

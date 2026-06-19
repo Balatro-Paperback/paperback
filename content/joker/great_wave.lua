@@ -1,7 +1,8 @@
 SMODS.Joker {
   key = "great_wave",
   attributes = {
-    'retrigger'
+    'retrigger',
+    'position'
   },
   rarity = 3,
   pos = { x = 4, y = 2 },

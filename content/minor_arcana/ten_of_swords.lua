@@ -3,6 +3,11 @@ PB_UTIL.MinorArcana {
   config = {
     max_highlighted = 1,
   },
+  attributes = {
+    'destroy_card',
+    'rank',
+    'full_deck'
+  },
   atlas = 'minor_arcana_atlas',
   pos = { x = 2, y = 5 },
   paperback_credit = {

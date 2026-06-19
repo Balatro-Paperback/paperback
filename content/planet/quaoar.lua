@@ -8,5 +8,10 @@ PB_UTIL.Planet {
   config = {
     hand_type = 'paperback_Spectrum',
     softlock = true
+  },
+  attributes = {
+    'hand_type',
+    'hand_level',
+    'space'
   }
 }

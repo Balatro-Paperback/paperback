@@ -6,6 +6,10 @@ PB_UTIL.MinorArcanaBooster {
     extra = 5,
     choose = 1
   },
+  attributes = {
+    'minor_arcana',
+    'consumable'
+  },
   weight = 1,
   cost = 6,
   discovered = false,

@@ -9,6 +9,7 @@ SMODS.Joker {
   attributes = {
     'generation',
     'planet',
+    'consumable',
     'hand_type',
     'rank',
     'nine',

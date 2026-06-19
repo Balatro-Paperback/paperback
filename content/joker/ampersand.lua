@@ -10,7 +10,8 @@ SMODS.Joker {
     'retrigger',
     'dark',
     'light',
-    'music'
+    'music',
+    'position'
   },
   rarity = 1,
   pos = { x = 23, y = 6 },

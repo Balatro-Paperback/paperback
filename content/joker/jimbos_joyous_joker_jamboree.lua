@@ -8,6 +8,7 @@ SMODS.Joker {
   attributes = {
     'generation',
     'minor_arcana',
+    'consumable',
     'music'
   },
   pools = {

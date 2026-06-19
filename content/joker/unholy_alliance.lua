@@ -10,6 +10,7 @@ SMODS.Joker {
   attributes = {
     'chips',
     'scaling',
+    'prevents_death',
     'secret'
   },
   rarity = 1,
@@ -62,9 +63,7 @@ SMODS.Joker {
         ref_table = card.ability.extra,
         ref_value = 'chips',
         scalar_value = 'a_chips',
-        operation = function(ref_table, ref_value, initial, scaling)
-          ref_table[ref_value] = initial + scaling * count
-        end,
+        scalar_factor = count,
         scaling_message = {
           message = localize {
             type = 'variable',

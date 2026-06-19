@@ -5,6 +5,10 @@ PB_UTIL.EGO_Gift {
     chip_mod = 5,
     chips = 0
   },
+  attributes = {
+    'chips',
+    'scaling'
+  },
   atlas = 'ego_gift_atlas',
   pos = { x = 2, y = 2 },
   soul_pos = { x = 2, y = 6 },

@@ -13,6 +13,7 @@ SMODS.Joker {
   attributes = {
     'generation',
     'joker',
+    'rarity',
     'music'
   },
   pools = {

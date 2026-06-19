@@ -73,12 +73,13 @@ SMODS.Joker {
     -- Check if this Joker's mult should reset depending on if an 8 was scored this round
     if not context.blueprint and context.end_of_round and context.main_eval then
       if not card.ability.extra.scored and card.ability.extra.mult > 0 then
-        card.ability.extra.mult = 0
-
-        return {
-          message = localize('k_reset'),
-          colour = G.C.MULT
-        }
+        SMODS.reset_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'mult',
+          reset_value = 0,
+          message_colour = G.C.MULT
+        })
+        return nil, true
       end
 
       -- Reset the scored flag after round ends

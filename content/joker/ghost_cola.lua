@@ -6,6 +6,7 @@ SMODS.Joker {
     'tag',
     'negative',
     'spectral',
+    'consumable',
     'on_sell'
   },
   rarity = 2,

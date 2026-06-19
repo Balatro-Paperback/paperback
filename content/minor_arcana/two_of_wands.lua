@@ -1,5 +1,11 @@
 PB_UTIL.MinorArcana {
   key = 'two_of_wands',
+  attributes = {
+    'generation',
+    'planet',
+    'consumable',
+    'hand_type'
+  },
   atlas = 'minor_arcana_atlas',
   pos = { x = 1, y = 2 },
   paperback_credit = {

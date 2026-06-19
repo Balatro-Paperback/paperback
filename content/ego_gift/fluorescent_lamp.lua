@@ -6,6 +6,10 @@ PB_UTIL.EGO_Gift {
     threshold = 2,
     total = 1
   },
+  attributes = {
+    'discard',
+    'joker_slot'
+  },
   atlas = 'ego_gift_atlas',
   pos = { x = 5, y = 2 },
   soul_pos = { x = 5, y = 6 },

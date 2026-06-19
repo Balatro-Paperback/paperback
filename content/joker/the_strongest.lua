@@ -20,6 +20,7 @@ SMODS.Joker {
     'xmult',
     'scaling',
     'ego_gift',
+    'consumable',
     'red',
     'boss_blind'
   },

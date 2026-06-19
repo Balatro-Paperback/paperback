@@ -7,6 +7,9 @@ PB_UTIL.Paperclip {
     x_mult = 1,
     x_mult_mod = 0.1
   },
+  attributes = {
+    'xmult'
+  },
 
   loc_vars = function(self, info_queue, card)
     return {

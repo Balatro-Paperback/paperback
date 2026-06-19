@@ -7,6 +7,12 @@ SMODS.Enhancement {
       scaling = 1
     }
   },
+  attributes = {
+    'mult',
+    'discard',
+    'scaling',
+    'reset'
+  },
 
   loc_vars = function(self, info_queue, card)
     local count = 0

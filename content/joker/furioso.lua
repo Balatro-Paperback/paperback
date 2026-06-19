@@ -99,14 +99,18 @@ SMODS.Joker {
 
     -- If boss blind defeated, reset all rank flags and reset x_mult
     if context.end_of_round and context.main_eval and G.GAME.blind.boss and not context.blueprint then
-      card.ability.extra.ranks = {}
-      card.ability.extra.ranks_sorted = {}
-      card.ability.extra.x_mult = 1
-
-      return {
-        message = localize('k_reset'),
-        colour = G.C.RED
-      }
+      SMODS.reset_card(card, {
+        ref_table = card.ability.extra,
+        ref_value = 'x_mult',
+        reset_value = 1,
+        operation = function(ref_table, ref_value, initial, reset)
+          ref_table[ref_value] = reset
+          ref_table['ranks'] = {}
+          ref_table['ranks_sorted'] = {}
+        end,
+        message_colour = G.C.MULT
+      })
+      return nil, true
     end
   end,
 

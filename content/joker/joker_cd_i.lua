@@ -9,6 +9,7 @@ SMODS.Joker {
   attributes = {
     'generation',
     'planet',
+    'consumable',
     'chance'
   },
   rarity = 1,

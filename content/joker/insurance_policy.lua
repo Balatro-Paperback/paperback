@@ -11,7 +11,8 @@ SMODS.Joker {
     'mult',
     'rank',
     'king',
-    'jack'
+    'jack',
+    'full_deck'
   },
   rarity = 2,
   pos = { x = 19, y = 7 },

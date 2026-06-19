@@ -1,7 +1,8 @@
 SMODS.Joker {
   key = 'shopping_center',
   attributes = {
-    'passive'
+    'passive',
+    'shop'
   },
   rarity = 1,
   pos = { x = 7, y = 1 },

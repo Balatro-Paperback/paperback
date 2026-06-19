@@ -7,7 +7,9 @@ SMODS.Joker {
   },
   attributes = {
     'chance',
-    'generation'
+    'generation',
+    'consumable',
+    'face_down'
   },
   rarity = 3,
   pos = { x = 8, y = 6 },

@@ -5,6 +5,10 @@ SMODS.Consumable {
       ante_mod = -2
     }
   },
+  attributes = {
+    'destroy_card',
+    'ante'
+  },
   set = "Spectral",
   atlas = 'spectral_atlas',
   pos = { x = 2, y = 0 },

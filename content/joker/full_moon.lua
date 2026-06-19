@@ -7,6 +7,7 @@ SMODS.Joker {
   },
   attributes = {
     'planet',
+    'consumable',
     'retrigger',
     'chance',
     'red'

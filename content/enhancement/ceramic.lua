@@ -10,11 +10,15 @@ SMODS.Enhancement {
       mult_gt_chip = false
     }
   },
+  attributes = {
+    'economy',
+    'destroy_card'
+  },
 
   loc_vars = function(self, info_queue, card)
     return {
       vars = {
-        card.ability.extra.a_money_low  + G.GAME.paperback.ceramic_inc,
+        card.ability.extra.a_money_low + G.GAME.paperback.ceramic_inc,
         card.ability.extra.a_money_high + G.GAME.paperback.ceramic_inc,
       }
     }

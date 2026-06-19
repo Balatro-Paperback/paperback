@@ -4,6 +4,10 @@ PB_UTIL.EGO_Gift {
     sin = 'wrath',
     a_rep = 1,
   },
+  attributes = {
+    'retrigger',
+    'joker_slot'
+  },
   atlas = 'ego_gift_atlas',
   pos = { x = 0, y = 0 },
   soul_pos = { x = 0, y = 4 },

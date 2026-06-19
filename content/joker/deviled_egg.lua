@@ -9,6 +9,7 @@ SMODS.Joker {
   attributes = {
     'modify_card',
     'enhancements',
+    'position',
     'food'
   },
   rarity = 1,

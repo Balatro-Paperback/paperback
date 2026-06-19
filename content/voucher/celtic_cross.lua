@@ -3,6 +3,11 @@ SMODS.Voucher {
   config = {
     triggered = false
   },
+  attributes = {
+    'booster',
+    'boss_blind',
+    'shop'
+  },
   atlas = 'vouchers_atlas',
   pos = { x = 0, y = 0 },
   discovered = false,

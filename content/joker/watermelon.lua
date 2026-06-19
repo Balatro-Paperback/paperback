@@ -70,9 +70,7 @@ SMODS.Joker {
           ref_table = card.ability.extra,
           ref_value = 'x_mult',
           scalar_value = 'a_xmult',
-          operation = function(ref_table, ref_value, initial, scaling)
-            ref_table[ref_value] = initial - scaling * #context.removed
-          end,
+          scalar_factor = #context.removed,
           scaling_message = {
             message = localize {
               type = 'variable',

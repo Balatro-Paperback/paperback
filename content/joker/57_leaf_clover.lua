@@ -44,8 +44,12 @@ SMODS.Joker {
     end
     if context.end_of_round and context.main_eval then
       if G.GAME.blind.boss then
-        card.ability.extra.current = 1
-        return { message = localize('k_reset') }
+        SMODS.reset_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'current',
+          reset_value = 1
+        })
+        return nil, true
       else
         SMODS.scale_card(card, {
           ref_table = card.ability.extra,

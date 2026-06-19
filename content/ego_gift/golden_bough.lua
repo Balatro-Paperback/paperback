@@ -4,6 +4,14 @@ PB_UTIL.EGO_Gift {
     sin = 'madness',
     delta = -1,
   },
+  attributes = {
+    'generation',
+    'ego_gift',
+    'consumable',
+    'negative',
+    'boss_blind',
+    'joker_slot'
+  },
   atlas = 'ego_gift_atlas',
   pos = { x = 7, y = 2 },
   soul_pos = { x = 7, y = 6 },

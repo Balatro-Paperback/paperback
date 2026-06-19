@@ -7,6 +7,13 @@ PB_UTIL.MinorArcana {
     cost_per_joker = 5,
     min_jokers = 5,
   },
+  attributes = {
+    'lose_economy',
+    'generation',
+    'tag',
+    'negative',
+    'joker'
+  },
   paperback_credit = {
     coder = { 'srockw' }
   },

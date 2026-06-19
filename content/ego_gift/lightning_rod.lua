@@ -4,6 +4,10 @@ PB_UTIL.EGO_Gift {
     sin = 'envy',
     odds = 2
   },
+  attributes = {
+    'retrigger',
+    'chance'
+  },
   atlas = 'ego_gift_atlas',
   pos = { x = 6, y = 0 },
   soul_pos = { x = 6, y = 4 },

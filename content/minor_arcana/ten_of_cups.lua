@@ -7,6 +7,11 @@ PB_UTIL.MinorArcana {
       odds = 3
     }
   },
+  attributes = {
+    'modify_card',
+    'editions',
+    'chance'
+  },
   paperback_credit = {
     coder = { 'srockw' }
   },

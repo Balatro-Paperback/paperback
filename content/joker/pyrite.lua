@@ -9,6 +9,7 @@ SMODS.Joker {
   attributes = {
     'generation',
     'tarot',
+    'consumable',
     'suit',
     'crowns',
     'chance'

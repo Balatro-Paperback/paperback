@@ -5,6 +5,11 @@ PB_UTIL.EGO_Gift {
     a_xmult = 0.25,
     starting_xmult = 1,
   },
+  attributes = {
+    'xmult',
+    'discard',
+    'hands'
+  },
   atlas = 'ego_gift_atlas',
   pos = { x = 3, y = 0 },
   soul_pos = { x = 3, y = 4 },

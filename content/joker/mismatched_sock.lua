@@ -62,11 +62,12 @@ SMODS.Joker {
 
     if context.before and not context.blueprint then
       if next(context.poker_hands['Pair']) then
-        card.ability.extra.x_mult = 1
-        return {
-          message = localize('k_reset'),
-          colour = G.C.ORANGE
-        }
+        SMODS.reset_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'x_mult',
+          reset_value = 1
+        })
+        return nil, true
       end
     end
 

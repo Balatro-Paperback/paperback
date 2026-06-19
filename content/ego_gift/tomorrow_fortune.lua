@@ -4,6 +4,10 @@ PB_UTIL.EGO_Gift {
     sin = 'pride',
     bonus = 1,
   },
+  attributes = {
+    'passive',
+    'booster'
+  },
   atlas = 'ego_gift_atlas',
   pos = { x = 5, y = 1 },
   soul_pos = { x = 5, y = 5 },

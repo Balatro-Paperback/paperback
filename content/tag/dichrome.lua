@@ -1,5 +1,10 @@
 SMODS.Tag {
   key = 'dichrome',
+  attributes = {
+    'joker',
+    'editions',
+    'shop'
+  },
   atlas = 'tags_atlas',
   pos = { x = 1, y = 0 },
   discovered = false,

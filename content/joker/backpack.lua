@@ -2,6 +2,8 @@ SMODS.Joker {
   key = "backpack",
   attributes = {
     'joker',
+    'booster',
+    'shop'
   },
   rarity = 1,
   pos = { x = 4, y = 6 },

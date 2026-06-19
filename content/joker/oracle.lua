@@ -9,7 +9,8 @@ SMODS.Joker {
   attributes = {
     'xchips',
     'scaling',
-    'minor_arcana'
+    'minor_arcana',
+    'consumable'
   },
   rarity = 2,
   pos = { x = 15, y = 9 },

@@ -5,6 +5,12 @@ PB_UTIL.EGO_Gift {
     xmult = 1,
     a_xmult = 0.25
   },
+  attributes = {
+    'destroy_card',
+    'consumable',
+    'xmult',
+    'scaling',
+  },
   atlas = 'ego_gift_atlas',
   pos = { x = 4, y = 1 },
   soul_pos = { x = 4, y = 5 },

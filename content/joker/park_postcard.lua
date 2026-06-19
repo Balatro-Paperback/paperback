@@ -54,11 +54,12 @@ SMODS.Joker {
       return nil, true
     end
     if context.playing_card_added or context.remove_playing_cards and not context.blueprint then
-      card.ability.extra.xm = 1
-      return {
-        message = localize('k_reset'),
-        colour = G.C.ORANGE
-      }
+      SMODS.reset_card(card, {
+        ref_table = card.ability.extra,
+        ref_value = 'xm',
+        reset_value = 1
+      })
+      return nil, true
     end
   end
 }

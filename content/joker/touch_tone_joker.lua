@@ -13,7 +13,9 @@ SMODS.Joker {
   attributes = {
     'tarot',
     'planet',
-    'spectral'
+    'spectral',
+    'consumable',
+    'booster'
   },
   pools = {
     Music = true

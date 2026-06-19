@@ -4,6 +4,11 @@ PB_UTIL.EGO_Gift {
     sin = 'gloom',
     odds = 4
   },
+  attributes = {
+    'generation',
+    'playing_card',
+    'chance',
+  },
   atlas = 'ego_gift_atlas',
   pos = { x = 4, y = 2 },
   soul_pos = { x = 4, y = 6 },

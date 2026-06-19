@@ -2,7 +2,8 @@ SMODS.Joker {
   key = "paralyzed",
   attributes = {
     'generation',
-    'tarot'
+    'tarot',
+    'consumable'
   },
   rarity = 2,
   pos = { x = 20, y = 0 },

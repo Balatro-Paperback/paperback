@@ -9,6 +9,11 @@ PB_UTIL.Paperclip {
     mult_minus = 5,
     odd = 0
   },
+  attributes = {
+    'mult',
+    'scaling',
+    'discard'
+  },
 
   loc_vars = function(self, info_queue, card)
     return {

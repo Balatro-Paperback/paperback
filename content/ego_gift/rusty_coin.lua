@@ -3,6 +3,10 @@ PB_UTIL.EGO_Gift {
   config = {
     sin = 'sloth',
   },
+  attributes = {
+    'hands',
+    'seals'
+  },
   atlas = 'ego_gift_atlas',
   pos = { x = 2, y = 1 },
   soul_pos = { x = 2, y = 5 },

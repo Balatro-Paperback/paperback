@@ -6,6 +6,13 @@ PB_UTIL.MinorArcana {
       money = 5
     }
   },
+  attributes = {
+    'modify_card',
+    'enhancements',
+    'seals',
+    'editions',
+    'economy'
+  },
   atlas = 'minor_arcana_atlas',
   pos = { x = 3, y = 0 },
   paperback_credit = {

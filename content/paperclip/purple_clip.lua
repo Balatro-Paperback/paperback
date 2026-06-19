@@ -8,6 +8,12 @@ PB_UTIL.Paperclip {
     numerator = 0,
     denominator = 10
   },
+  attributes = {
+    'generation',
+    'tarot',
+    'consumable',
+    'chance'
+  },
 
   loc_vars = function(self, info_queue, card)
     local num, den = SMODS.get_probability_vars(card, card.ability[self.key].numerator,

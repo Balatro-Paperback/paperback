@@ -3,6 +3,10 @@ SMODS.Blind {
   boss = {
     min = 1,
   },
+  attributes = {
+    'modify_card',
+    'rank'
+  },
 
   in_pool = function(self)
     return G.GAME.bosses_used.bl_paperback_sharp == 0

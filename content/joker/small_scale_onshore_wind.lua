@@ -43,11 +43,12 @@ SMODS.Joker {
         })
         return nil, true
       else
-        card.ability.extra.mult = 0
-        return {
-          message = localize('k_reset'),
-          colour = G.C.ORANGE
-        }
+        SMODS.reset_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'mult',
+          reset_value = 0
+        })
+        return nil, true
       end
     end
     if context.joker_main then

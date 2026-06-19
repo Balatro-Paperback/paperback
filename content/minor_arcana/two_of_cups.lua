@@ -1,5 +1,9 @@
 PB_UTIL.MinorArcana {
   key = 'two_of_cups',
+  attributes = {
+    'generation',
+    'tag'
+  },
   atlas = 'minor_arcana_atlas',
   pos = { x = 1, y = 0 },
   paperback_credit = {

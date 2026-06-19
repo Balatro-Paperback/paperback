@@ -3,6 +3,10 @@ SMODS.Blind {
   boss = {
     showdown = true, min = 1
   },
+  attributes = {
+    'debuff',
+    'enhancements'
+  },
   dollars = 8,
   mult = 2,
   boss_colour = HEX("AB9C84"),

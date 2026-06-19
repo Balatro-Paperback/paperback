@@ -1,5 +1,9 @@
 PB_UTIL.MinorArcana {
   key = 'seven_of_wands',
+  attributes = {
+    'generation',
+    'tag'
+  },
   atlas = 'minor_arcana_atlas',
   pos = { x = 6, y = 2 },
   paperback_credit = {

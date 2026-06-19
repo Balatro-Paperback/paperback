@@ -11,6 +11,7 @@ if PB_UTIL.config.minor_arcana_enabled then
       'generation',
       'tarot',
       'minor_arcana',
+      'consumable',
       'hand_type',
       'chance'
     },

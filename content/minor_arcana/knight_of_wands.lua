@@ -1,5 +1,9 @@
 PB_UTIL.MinorArcana {
   key = 'knight_of_wands',
+  attributes = {
+    'generation',
+    'tag'
+  },
   atlas = 'minor_arcana_atlas',
   pos = { x = 4, y = 3 },
   paperback_credit = {

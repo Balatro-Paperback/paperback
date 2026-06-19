@@ -7,6 +7,9 @@ PB_UTIL.Paperclip {
     x_chips_base = 1,
     x_chips_mod = 0.1
   },
+  attributes = {
+    'xchips'
+  },
 
   loc_vars = function(self, info_queue, card)
     local clips = PB_UTIL.count_paperclips {

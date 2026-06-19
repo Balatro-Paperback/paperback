@@ -1,5 +1,8 @@
 PB_UTIL.Paperclip {
   key = 'platinum_clip',
+  attributes = {
+    'retrigger'
+  },
   atlas = 'paperclips_atlas',
   pos = { x = 5, y = 0 },
   badge_colour = G.C.PAPERBACK_PLATINUM,

@@ -10,6 +10,7 @@ SMODS.Joker {
     'mult',
     'scaling',
     'planet',
+    'consumable',
     'space'
   },
   rarity = 1,

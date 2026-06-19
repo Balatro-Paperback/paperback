@@ -4,6 +4,9 @@ PB_UTIL.EGO_Gift {
     sin = 'sloth',
     blind_mod = 0.05
   },
+  attributes = {
+    'xblindsize',
+  },
   atlas = 'ego_gift_atlas',
   pos = { x = 2, y = 0 },
   soul_pos = { x = 2, y = 4 },

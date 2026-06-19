@@ -11,12 +11,17 @@ PB_UTIL.MinorArcana {
     min = 5,
     max = 10
   } },
+  attributes = {
+    'economy'
+  },
 
   loc_vars = function(self, info_queue, card)
-    return { vars = {
-      card.ability.extra.min,
-      card.ability.extra.max
-    } }
+    return {
+      vars = {
+        card.ability.extra.min,
+        card.ability.extra.max
+      }
+    }
   end,
 
   can_use = function(self, card)

@@ -16,6 +16,7 @@ SMODS.Joker {
     'scaling',
     'chance',
     'planet',
+    'consumable',
     'music'
   },
   rarity = 2,

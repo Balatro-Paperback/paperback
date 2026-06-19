@@ -5,6 +5,12 @@ PB_UTIL.MinorArcana {
       max_jokers = 1
     }
   },
+  attributes = {
+    'destroy_card',
+    'generation',
+    'joker',
+    'rarity'
+  },
   atlas = 'minor_arcana_atlas',
   pos = { x = 1, y = 1 },
   paperback_credit = {

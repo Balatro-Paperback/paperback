@@ -3,6 +3,11 @@ PB_UTIL.MinorArcana {
   config = {
     targets = 3,
   },
+  attributes = {
+    'modify_card',
+    'suit',
+    'full_deck'
+  },
   atlas = 'minor_arcana_atlas',
   pos = { x = 5, y = 5 },
   paperback_credit = {

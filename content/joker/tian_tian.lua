@@ -64,9 +64,7 @@ SMODS.Joker {
         ref_table = card.ability.extra,
         ref_value = 'x_mult',
         scalar_value = 'a_xmult',
-        operation = function(ref_table, ref_value, initial, scaling)
-          ref_table[ref_value] = initial + scaling * scale
-        end,
+        scalar_factor = scale,
         message_key = 'a_xmult'
       })
       return nil, true

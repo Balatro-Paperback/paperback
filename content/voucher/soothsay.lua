@@ -1,5 +1,10 @@
 SMODS.Voucher {
   key = 'soothsay',
+  attributes = {
+    'shop',
+    'minor_arcana',
+    'consumable'
+  },
   atlas = 'vouchers_atlas',
   pos = { x = 0, y = 1 },
   discovered = false,

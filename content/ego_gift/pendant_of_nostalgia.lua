@@ -4,6 +4,11 @@ if PB_UTIL.config.minor_arcana_enabled then
     config = {
       sin = 'gloom',
     },
+    attributes = {
+      'generation',
+      'tarot',
+      'minor_arcana'
+    },
     atlas = 'ego_gift_atlas',
     pos = { x = 4, y = 0 },
     soul_pos = { x = 4, y = 4 },

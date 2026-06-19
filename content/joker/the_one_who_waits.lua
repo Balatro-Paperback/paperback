@@ -14,6 +14,7 @@ SMODS.Joker {
     'scaling',
     'generation',
     'tarot',
+    'consumable',
     'suit',
     'crowns',
     'chance'

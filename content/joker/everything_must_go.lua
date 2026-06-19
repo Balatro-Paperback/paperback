@@ -6,7 +6,8 @@ SMODS.Joker {
     }
   },
   attributes = {
-    'passive'
+    'passive',
+    'shop'
   },
   rarity = 2,
   pos = { x = 14, y = 10 },

@@ -513,7 +513,6 @@ PB_UTIL.ENABLED_ATTRIBUTES = {
   'minor_arcana', -- related to minor arcana
   'ego_gift',     -- related to ego gifts
   'negative',     -- related to the negative edition
-  'ante',         -- changes ante
   'music',        -- based on a song/album
   'secret',       -- has a secret trigger
   'red',          -- it's red

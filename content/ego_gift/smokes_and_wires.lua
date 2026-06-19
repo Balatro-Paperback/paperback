@@ -4,6 +4,10 @@ PB_UTIL.EGO_Gift {
     sin = 'wrath',
     xmult = 2,
   },
+  attributes = {
+    'xmult',
+    'hands'
+  },
   atlas = 'ego_gift_atlas',
   pos = { x = 0, y = 2 },
   soul_pos = { x = 0, y = 6 },

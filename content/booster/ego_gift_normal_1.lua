@@ -6,6 +6,10 @@ PB_UTIL.EGO_GiftBooster {
     extra = 2,
     choose = 1
   },
+  attributes = {
+    'ego_gift',
+    'consumable'
+  },
   weight = 1,
   cost = 4,
   discovered = false,

@@ -1,7 +1,8 @@
 SMODS.Joker {
   key = "photocopy",
   attributes = {
-    'copying'
+    'copying',
+    'position'
   },
   rarity = 3,
   pos = { x = 22, y = 3 },

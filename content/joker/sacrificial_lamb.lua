@@ -55,9 +55,7 @@ SMODS.Joker {
         ref_table = card.ability.extra,
         ref_value = 'mult',
         scalar_value = 'mult_mod',
-        operation = function(ref_table, ref_value, initial, scaling)
-          ref_table[ref_value] = initial + scaling * count
-        end,
+        scalar_factor = count,
         scaling_message = {
           message = localize {
             type = 'variable',

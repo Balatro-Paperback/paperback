@@ -7,7 +7,8 @@ SMODS.Joker {
   },
   attributes = {
     'hands',
-    'retrigger'
+    'retrigger',
+    'position'
   },
   rarity = 1,
   pos = { x = 22, y = 5 },

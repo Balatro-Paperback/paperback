@@ -11,7 +11,8 @@ SMODS.Joker {
     'spades',
     'hearts',
     'clubs',
-    'diamonds'
+    'diamonds',
+    'debuff'
   },
   rarity = 3,
   pos = { x = 17, y = 8 },

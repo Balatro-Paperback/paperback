@@ -1,5 +1,9 @@
 PB_UTIL.MinorArcana {
   key = 'six_of_pentacles',
+  attributes = {
+    'generation',
+    'tag'
+  },
   atlas = 'minor_arcana_atlas',
   pos = { x = 5, y = 6 },
   paperback_credit = {

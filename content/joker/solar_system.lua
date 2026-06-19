@@ -9,7 +9,9 @@ SMODS.Joker {
   attributes = {
     'xmult',
     'scaling',
-    'planet'
+    'planet',
+    'consumable',
+    'space'
   },
   rarity = 2,
   pos = { x = 7, y = 0 },

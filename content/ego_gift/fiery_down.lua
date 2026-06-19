@@ -5,6 +5,10 @@ PB_UTIL.EGO_Gift {
     threshold = 15,
     discarded = 0
   },
+  attributes = {
+    'discard',
+    'hand_level'
+  },
   atlas = 'ego_gift_atlas',
   pos = { x = 1, y = 1 },
   soul_pos = { x = 1, y = 5 },

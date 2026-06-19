@@ -3,6 +3,11 @@ PB_UTIL.EGO_Gift {
   config = {
     sin = 'gluttony',
   },
+  attributes = {
+    'mult',
+    'enhancements',
+    'rank',
+  },
   atlas = 'ego_gift_atlas',
   pos = { x = 3, y = 2 },
   soul_pos = { x = 3, y = 6 },

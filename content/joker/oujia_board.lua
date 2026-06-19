@@ -3,7 +3,9 @@ SMODS.Joker {
   config = { extra = { allow_soul = false } },
   attributes = {
     'generation',
-    'spectral'
+    'spectral',
+    'consumable',
+    'shop'
   },
   rarity = 3,
   pos = { x = 24, y = 10 },

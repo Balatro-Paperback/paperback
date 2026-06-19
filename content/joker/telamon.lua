@@ -9,6 +9,7 @@ SMODS.Joker {
   attributes = {
     'generation',
     'minor_arcana',
+    'consumable',
     'hand_type'
   },
   rarity = 2,

@@ -3,6 +3,10 @@ PB_UTIL.EGO_Gift {
   config = {
     sin = 'lust',
   },
+  attributes = {
+    'hands',
+    'destroy_card',
+  },
   atlas = 'ego_gift_atlas',
   pos = { x = 1, y = 2 },
   soul_pos = { x = 1, y = 6 },

@@ -9,6 +9,9 @@ PB_UTIL.Paperclip {
     money = 1,
     max_money = 10,
   },
+  attributes = {
+    'economy'
+  },
 
   loc_vars = function(self, info_queue, card)
     return {

@@ -8,6 +8,7 @@ SMODS.Joker {
   attributes = {
     'generation',
     'hand_type',
+    'consumable',
     'red'
   },
   rarity = 3,

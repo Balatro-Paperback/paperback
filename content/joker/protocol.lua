@@ -1,7 +1,8 @@
 SMODS.Joker {
   key = 'protocol',
   attributes = {
-    'passive'
+    'passive',
+    'booster'
   },
   rarity = 1,
   pos = { x = 12, y = 6 },

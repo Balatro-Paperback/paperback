@@ -4,6 +4,12 @@ PB_UTIL.EGO_Gift {
     sin = 'gluttony',
     cards = 2,
   },
+  attributes = {
+    'generation',
+    'planet',
+    'consumable',
+    'negative'
+  },
   atlas = 'ego_gift_atlas',
   pos = { x = 3, y = 1 },
   soul_pos = { x = 3, y = 5 },

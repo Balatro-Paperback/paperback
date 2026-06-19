@@ -9,7 +9,8 @@ SMODS.Joker {
     'modify_card',
     'suit',
     'light',
-    'crowns'
+    'crowns',
+    'space'
   },
   rarity = 3,
   pos = { x = 11, y = 4 },

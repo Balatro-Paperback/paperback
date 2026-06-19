@@ -9,6 +9,7 @@ SMODS.Joker {
   attributes = {
     'generation',
     'spectral',
+    'consumable',
     'suit',
     'dark'
   },
