@@ -3347,7 +3347,7 @@ return {
         name = "Chalice of Trickle Down",
         text = {
           "During {C:attention}Boss Blinds{}, gives",
-          "{C:money}money{} equal to lowest rank",
+          "{C:money}money{} equal to half lowest rank",
           "in {C:attention}scoring hand"
         }
       },
