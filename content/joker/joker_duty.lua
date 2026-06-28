@@ -38,7 +38,7 @@ SMODS.Joker {
         mult = card.ability.extra.mult
       }
     end
-    if context.end_of_round and context.main_eval then
+    if not context.blueprint and context.end_of_round and context.main_eval then
       if G.GAME.current_round.discards_left == G.GAME.current_round.hands_left then
         SMODS.scale_card(card, {
           ref_table = card.ability.extra,
