@@ -3,7 +3,7 @@ SMODS.Joker {
   config = {
     extra = {
       suit = "Diamonds",
-      amount = 2,
+      amount = 1,
       remaining = 5,
       upgrade = "perma_p_dollars",
     }
