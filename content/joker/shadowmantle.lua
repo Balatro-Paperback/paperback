@@ -3,7 +3,8 @@ SMODS.Joker {
   config = {
     extra = {
       odds = 15,
-      suit = 'paperback_Stars'
+      suit = 'paperback_Stars',
+      active = true
     }
   },
   attributes = {
@@ -50,15 +51,19 @@ SMODS.Joker {
   end,
 
   calculate = function(self, card, context)
-    if context.individual and context.cardarea == G.play and context.other_card:is_suit(card.ability.extra.suit) then
+    if card.ability.extra.active and context.individual and context.cardarea == G.play and context.other_card:is_suit(card.ability.extra.suit) then
       if PB_UTIL.chance(card, 'shadowmantle') then
         PB_UTIL.add_tag("tag_negative", true)
+	card.ability.extra.active = false
         return {
           message = localize('paperback_plus_tag'),
           colour = G.C.BLACK,
           message_card = context.blueprint_card or card
         }
       end
+    end
+    if not card.ability.extra.active and context.end_of_round and context.main_eval then
+      card.ability.extra.active = true
     end
   end
 }
