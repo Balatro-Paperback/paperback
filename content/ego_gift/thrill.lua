@@ -8,6 +8,9 @@ PB_UTIL.EGO_Gift {
   atlas = 'ego_gift_atlas',
   pos = { x = 3, y = 0 },
   soul_pos = { x = 3, y = 3 },
+  paperback = {
+    ignores_the_world = true
+  },
 
   ego_loc_vars = function(self, info_queue, card)
     -- Outside Blind
@@ -18,7 +21,7 @@ PB_UTIL.EGO_Gift {
       } }
     end
     -- In Blind, inactive
-    if not (G.GAME.current_round.hands_played <= 0) then
+    if not (G.GAME.current_round.hands_played <= 0 or next(SMODS.find_card("j_paperback_the_world"))) then
       return {
         key = self.key..'_inactive',
         vars = {
@@ -56,7 +59,7 @@ PB_UTIL.EGO_Gift {
     end
 
     if context.joker_main then
-      if G.GAME.current_round.hands_played <= 0 then
+      if G.GAME.current_round.hands_played <= 0 or next(SMODS.find_card("j_paperback_the_world")) then
         return {
           xmult = card.ability.a_xmult * G.GAME.current_round.discards_used + card.ability.starting_xmult
         }
