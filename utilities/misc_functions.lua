@@ -1412,3 +1412,12 @@ function PB_UTIL.get_ranked_enhancements()
   end
   return cen_pool
 end
+
+--- Calls set cost on every shop card to refresh pricing
+function PB_UTIL.refresh_shop_cost()
+  G.E_MANAGER:add_event(Event({func = function()
+    for k, v in pairs(G.I.CARD) do
+      if v.set_cost then v:set_cost() end
+    end
+  return true end }))
+end

@@ -94,6 +94,23 @@ SMODS.current_mod.calculate = function(self, context)
       PB_UTIL.set_paperclip(context.card, PB_UTIL.poll_paperclip("clip_in_shop"))
     end
   end
+
+  -- count owned normalJKRs
+  if context.starting_shop then
+    G.GAME.paperback.free_purchases = #SMODS.find_card("j_paperback_normalJKR", false)
+    PB_UTIL.refresh_shop_cost()
+  end
+
+  -- subtracts a free purchase if available and used
+  if context.buying_card and context.card.cost == 0 and (context.card.ability.set ~= "Voucher" and context.card.ability.set ~= "Booster")then
+    G.GAME.paperback.free_purchases = math.max(0, G.GAME.paperback.free_purchases - 1)
+    PB_UTIL.refresh_shop_cost()
+  end
+
+  -- reset free purchases from normalJKRs (done this way to allow for other forms of stored free purchases)
+  if context.ending_shop then
+    G.GAME.paperback.free_purchases = math.max(0, G.GAME.paperback.free_purchases - #SMODS.find_card("j_paperback_normalJKR", false))
+  end
 end
 
 -- Sleeved cards can't be debuffed
@@ -143,6 +160,7 @@ SMODS.current_mod.reset_game_globals = function(run_start)
       end
     }))
     G.GAME.paperback.banned_run_keys = {}
+    G.GAME.paperback.free_purchases = 0
   end
 end
 

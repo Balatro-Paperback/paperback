@@ -998,6 +998,14 @@ return {
           "{S:1.1,C:red,E:2}self-destructs",
         }
       },
+      j_paperback_red_key = {
+        name = "Red Key",
+        text = {
+          "When {C:attention}Blind{} is selected, create",
+          "a {C:paperback_temporary}temporary{} {C:red}Ultra Secret{} Joker",
+          "When sold, remove {C:paperback_temporary}temporary{} from {C:attention}all{} Jokers"
+        }
+      },
       j_paperback_book_of_vengeance = {
         name = "Book of Vengeance",
         text = {
@@ -2081,6 +2089,13 @@ return {
           "Joker {C:attention}destroyed",
         },
       },
+      j_paperback_superjoker = {
+        name = "SUPERJOKER",
+        text = {
+          "RETRIGGER {C:attention}ALL{} CARDS IN {C:attention}FIRST HAND",
+          "GIVES {X:mult,C:white}X#1#{} MULT ON SUBSEQUENTLY PLAYED HANDS",
+        },
+      },
       j_paperback_photocopy = {
         name = "Photocopy",
         text = {
@@ -2200,6 +2215,26 @@ return {
         unlock = {
           "Spend {C:money,E:1}$50{} in one shop"
         }
+      },
+      j_paperback_membership_card = {
+        name = "Membership Card",
+        text = {
+          "All cards and packs in shop are {C:attention}#1#%{} off",
+        },
+      },
+      j_paperback_normalJKR = {
+        name = "normalJKR",
+        text = {
+          "The first card or pack in shop",
+          "you buy is {C:attention}free{}"
+        },
+      },
+      j_paperback_normalJKR_alt = {
+        name = "jimbo_follower_c",
+        text = {
+          "The first card or pack in shop",
+          "you buy is {C:attention}free{}"
+        },
       },
       j_paperback_cakepop = {
         name = "Cakepop",
@@ -4156,6 +4191,9 @@ return {
       paperback_one_shift_more_false = "Beat!",
       paperback_warning_ex = "Warning!",
       paperback_watch_ex = "Watch!",
+      paperback_red_ex = "Ultra Secret!",
+      paperback_superhot_true = "SUPER",
+      paperback_superhot_false = "HOT",
 
       paperback_ui_requires_restart = "Requires Restart",
       paperback_ui_no_requires_restart = "Doesn't Require Restart",
