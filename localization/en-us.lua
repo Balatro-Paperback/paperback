@@ -512,7 +512,7 @@ return {
           "Scored {V:1}#1#{} have a",
           "{C:green}#2# in #3#{} chance to create",
           "a {C:dark_edition}Negative {C:attention}Tag{}",
-	  "Once per round"
+	        "{s:0.9,C:inactive}Once per round{}"
         }
       },
       j_paperback_shooting_star = {
