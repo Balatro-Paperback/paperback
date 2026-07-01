@@ -2711,6 +2711,14 @@ return {
           "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)"
         }
       },
+      j_paperback_shabu_shabu = {
+        name = "Shabu Shabu",
+        text = {
+          "{C:attention}+#1#{} Joker slots",
+          "Reduces by {C:attention}#2#{}",
+          "After clearing {C:attention}Boss Blind{}"
+        }
+      },
       -- Cross-Mod jokers start here
       j_paperback_moon_waltz = {
         name = "Moon Waltz",
