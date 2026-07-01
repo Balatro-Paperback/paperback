@@ -2225,15 +2225,15 @@ return {
       j_paperback_normalJKR = {
         name = "normalJKR",
         text = {
-          "The first card in shop",
+          "The first card or pack in shop",
           "you buy is {C:attention}free{}"
         },
       },
       j_paperback_normalJKR_alt = {
         name = "jimbo_follower_c",
         text = {
-          "The first card in shop",
-          "you buy is {C:attention}2G{}"
+          "The first card or pack in shop",
+          "you buy is {C:attention}free{}"
         },
       },
       j_paperback_cakepop = {
@@ -2711,6 +2711,15 @@ return {
           "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)"
         }
       },
+      j_paperback_shabu_shabu = {
+        name = "Shabu Shabu",
+        text = {
+          "{C:attention}+#1#{} Joker slots",
+          "Reduces by {C:attention}#2#{}",
+          "After clearing {C:attention}Boss Blind{}"
+        }
+      },
+      j_paperback_nigiri = {},
       -- Cross-Mod jokers start here
       j_paperback_moon_waltz = {
         name = "Moon Waltz",
