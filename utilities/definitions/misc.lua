@@ -237,6 +237,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "alert",
   "legacy",
   -- "redscreen",
+  "freedom_of_choice",
   "telamon",
   "emf_reader",
   -- "squall_line",

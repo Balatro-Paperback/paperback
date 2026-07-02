@@ -2742,6 +2742,13 @@ return {
           "Increases by {C:money}$#2#{} each time",
         },
       },
+      j_paperback_freedom_of_choice = {
+        name = "Freedom of Choice",
+        text = { "If played hand contains a",
+          "{C:attention}#1#{}, scored cards",
+          "permanently gain {X:mult,C:white}X#2#{} Mult",
+        }
+      },
       -- Cross-Mod jokers start here
       j_paperback_moon_waltz = {
         name = "Moon Waltz",
