@@ -2719,6 +2719,29 @@ return {
           "After clearing {C:attention}Boss Blind{}"
         }
       },
+      j_paperback_takoyaki = {
+        name = "Takoyaki",
+        text = {
+          "Scored {C:attention}#1#{}s give {C:money}#2#G{}",
+          "{C:green}#3# in #4#{} chance to eat",
+          "This Joker when scored"
+        }
+      },
+      j_paperback_bamboo_stick = {
+        name = "Bamboo Stick",
+        text = {
+          "{X:mult,C:white}X#1#{} Mult if you have",
+          "another {C:attention}\"Stick\"{} Joker",
+          "{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult)",
+        },
+      },
+      j_paperback_shugi_bukuro = {
+        name = "Shūgi Bukuro",
+        text = {
+          "Earn {C:money}$#1#{} when a Blind is skipped",
+          "Increases by {C:money}$#2#{} each time",
+        },
+      },
       -- Cross-Mod jokers start here
       j_paperback_moon_waltz = {
         name = "Moon Waltz",
@@ -4202,6 +4225,7 @@ return {
       paperback_red_ex = "Ultra Secret!",
       paperback_superhot_true = "SUPER",
       paperback_superhot_false = "HOT",
+      paperback_goner_ex = "Goner!",
 
       paperback_ui_requires_restart = "Requires Restart",
       paperback_ui_no_requires_restart = "Doesn't Require Restart",
