@@ -6,7 +6,7 @@ PB_UTIL.EGO_Gift {
   },
   atlas = 'ego_gift_atlas',
   pos = { x = 7, y = 2 },
-  soul_pos = { x = 7, y = 5 },
+  soul_pos = { x = 7, y = 6 },
 
   hidden = true,
   set = 'Spectral',
@@ -14,9 +14,11 @@ PB_UTIL.EGO_Gift {
   soul_rate = 0.001,
 
   ego_loc_vars = function(self, info_queue, card)
-    return { vars = {
-      card.ability.delta
-    } }
+    return {
+      vars = {
+        card.ability.delta
+      }
+    }
   end,
 
   ego_gift_calc = function(self, card, context)

@@ -6,7 +6,7 @@ PB_UTIL.EGO_Gift {
   },
   atlas = 'ego_gift_atlas',
   pos = { x = 6, y = 0 },
-  soul_pos = { x = 6, y = 3 },
+  soul_pos = { x = 6, y = 4 },
 
   ego_loc_vars = function(self, info_queue, card)
     local n, d = PB_UTIL.chance_vars(card, nil, 1, card.ability.odds)

@@ -8,7 +8,7 @@ PB_UTIL.EGO_Gift {
   },
   atlas = 'ego_gift_atlas',
   pos = { x = 5, y = 2 },
-  soul_pos = { x = 5, y = 5 },
+  soul_pos = { x = 5, y = 6 },
 
 
   ego_gift_calc = function(self, card, context)
@@ -41,10 +41,12 @@ PB_UTIL.EGO_Gift {
     else
       card.ability.total = card.ability.discards
     end
-    return { vars = {
-      card.ability.discards,
-      card.ability.threshold,
-      card.ability.total
-    } }
+    return {
+      vars = {
+        card.ability.discards,
+        card.ability.threshold,
+        card.ability.total
+      }
+    }
   end,
 }

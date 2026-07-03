@@ -7,7 +7,7 @@ PB_UTIL.EGO_Gift {
   },
   atlas = 'ego_gift_atlas',
   pos = { x = 1, y = 1 },
-  soul_pos = { x = 1, y = 4 },
+  soul_pos = { x = 1, y = 5 },
 
 
 

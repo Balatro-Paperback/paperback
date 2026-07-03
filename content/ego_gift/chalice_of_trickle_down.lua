@@ -5,7 +5,7 @@ PB_UTIL.EGO_Gift {
   },
   atlas = 'ego_gift_atlas',
   pos = { x = 6, y = 1 },
-  soul_pos = { x = 6, y = 4 },
+  soul_pos = { x = 6, y = 5 },
 
   ego_gift_calc = function(self, card, context)
     if context.before and G.GAME.blind.boss then
