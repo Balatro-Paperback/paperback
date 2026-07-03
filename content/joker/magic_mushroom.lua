@@ -51,7 +51,7 @@ SMODS.Joker {
           })
       end
     end
-    if context.blind_defeated then
+    if context.blind_defeated and not context.blueprint_card then
       card.ability.extra.xmult = card.ability.extra.reset
         return {
           message = localize('k_reset')
