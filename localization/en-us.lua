@@ -2767,6 +2767,14 @@ return {
           "and scored {C:hearts}#4#{} are {C:attention}destroyed"
         }
       },
+      j_paperback_technology = {
+        name = "Technology",
+        text = {
+          "This Joker gives {X:mult,C:white}X#1#{} Mult for each",
+          "played and scored {C:attention}#2#{} this round",
+          "{C:inactive}(Currently {X:mult,C:white}X#3#{C:inactive} Mult){}"
+        }
+      },
       -- Cross-Mod jokers start here
       j_paperback_moon_waltz = {
         name = "Moon Waltz",
