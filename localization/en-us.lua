@@ -2744,9 +2744,19 @@ return {
       },
       j_paperback_freedom_of_choice = {
         name = "Freedom of Choice",
-        text = { "If played hand contains a",
+        text = {
+          "If played hand contains a",
           "{C:attention}#1#{}, scored cards",
           "permanently gain {X:mult,C:white}X#2#{} Mult",
+        }
+      },
+      j_paperback_magic_mushroom = {
+        name = "Magic Mushroom",
+        text = {
+          "{X:mult,C:white}X#1#{} Mult",
+          "Loses {X:mult,C:white}X#2#{} Mult for every hand played",
+          "Resets after clearing a Blind",
+          "{C:inactive}(Cannot exceed {X:mult,C:white}X#1#{C:inactive} Mult)"
         }
       },
       -- Cross-Mod jokers start here
