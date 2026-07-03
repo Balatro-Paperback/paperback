@@ -320,7 +320,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "king_me",
   "loaded_dice",
   -- "regicide",
-  -- "bergentrucking"
+  "bergentrucking",
   "towering_pillar_of_hats",
   "manilla_folder",
   "joker_duty",

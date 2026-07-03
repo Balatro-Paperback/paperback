@@ -512,7 +512,7 @@ return {
           "Scored {V:1}#1#{} have a",
           "{C:green}#2# in #3#{} chance to create",
           "a {C:dark_edition}Negative {C:attention}Tag{}",
-	        "{s:0.9,C:inactive}Once per round{}"
+          "{s:0.9,C:inactive}Once per round{}"
         }
       },
       j_paperback_shooting_star = {
@@ -2757,6 +2757,14 @@ return {
           "Loses {X:mult,C:white}X#2#{} Mult for every hand played",
           "Resets after clearing a Blind",
           "{C:inactive}(Cannot exceed {X:mult,C:white}X#1#{C:inactive} Mult)"
+        }
+      },
+      j_paperback_bergentrucking = {
+        name = "Bergentrücking",
+        text = {
+          "Scored {C:paperback_crowns}#1#{} gain {X:mult,C:white}X#2#{} Mult",
+          "if scored hand contains a {C:hearts}#3#{}",
+          "and scored {C:hearts}#4#{} are {C:attention}destroyed"
         }
       },
       -- Cross-Mod jokers start here
