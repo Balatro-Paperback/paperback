@@ -731,8 +731,9 @@ return {
         name = "Donor Card",
         text = {
           { "This Joker gains {C:mult}+#1#{} Mult for",
-            "every scored {C:hearts}Heart{} card" },
-          { "Scored {C:hearts}Hearts{} lose {C:chips}#2#{} chips",
+            "every scored {C:hearts}Heart{} card",
+            "{C:inactive}(Currently {C:mult}+#3#{C:inactive} Mult){}" },
+          { "Scored {C:hearts}Hearts{} lose {C:chips}#2#{} Chips",
             "and are {C:attention}destroyed{} upon reaching {C:attention}0{}" },
         },
       },

@@ -6,6 +6,7 @@ SMODS.Joker {
       mult = 0,
       a_mult = 1,
       s_chips = 2,
+      to_destroy = {},
     }
   },
   attributes = {
@@ -45,10 +46,14 @@ SMODS.Joker {
       -- Subtract the chips one at a time
       for i = 1, card.ability.extra.s_chips do
         if context.other_card:get_chip_bonus() > 0 then
-          context.other_card.ability.perma_bonus = (context.other_card.ability.perma_bonus or
-            0) - 1
-        else
-          SMODS.destroy_cards({ context.other_card })
+          context.other_card.ability.perma_bonus = (context.other_card.ability.perma_bonus or 0) - 1
+        end
+        if context.other_card:get_chip_bonus() <= 0 then
+          if not context.other_card.paperback_donor_done then
+            context.other_card.paperback_donor_done = true
+            card.ability.extra.to_destroy[#card.ability.extra.to_destroy + 1] = context.other_card
+          end
+          break
         end
       end
 
@@ -56,9 +61,22 @@ SMODS.Joker {
         ref_table = card.ability.extra,
         ref_value = 'mult',
         scalar_value = 'a_mult',
-        message_key = 'a_mult',
+        no_message = true,
       })
-      return nil, true
+      return {
+        message = localize {
+          type = 'variable',
+          key = 'a_mult',
+          vars = { card.ability.extra.a_mult }
+        },
+        message_card = card,
+        colour = G.C.MULT
+      }
+    end
+
+    if context.after and next(card.ability.extra.to_destroy) and not context.blueprint_card then
+      SMODS.destroy_cards(card.ability.extra.to_destroy)
+      card.ability.extra.to_destroy = {}
     end
 
     if context.joker_main then
