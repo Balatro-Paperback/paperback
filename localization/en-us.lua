@@ -2832,6 +2832,14 @@ return {
           "{C:inactive}(Currently {X:mult,C:white}X#3#{C:inactive} Mult){}"
         }
       },
+      j_paperback_doppler_radar = {
+        name = "Doppler Radar",
+        text = {
+          "Create a random {C:planet}#1#{} card",
+          "for each empty {C:attention}consumable{} slot",
+          "upon clearing a blind"
+        }
+      },
       -- Cross-Mod jokers start here
       j_paperback_moon_waltz = {
         name = "Moon Waltz",
