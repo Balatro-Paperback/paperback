@@ -25,19 +25,20 @@ SMODS.Joker {
 
   calculate = function(self, card, context)
     if context.end_of_round and context.main_eval then
+      local created_consumable = #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit
       for i = 1, G.consumeables.config.card_limit, 1 do
         G.E_MANAGER:add_event(Event({
           func = (function()
             if PB_UTIL.try_spawn_card { set = 'Planet' } then
-              return {
-                message = localize('k_plus_planet'),
-                colour = G.C.PLANET,
-                card = context.blueprint_card or card,
-                message_card = context.blueprint_card or card
-              }
+              card_eval_status_text(context.blueprint_card or card, 'extra', nil, nil, nil,
+                {
+                  message = localize('k_plus_planet'),
+                  colour = G.C.SECONDARY_SET.Planet
+                })
             end
             return true
-          end)
+          end),
+          message = localize('k_plus_planet')
         }))
       end
     end
