@@ -13,7 +13,7 @@ SMODS.Joker {
     'red'
   },
   rarity = 2,
-  pos = { x = 19, y = 7 },
+  pos = { x = 20, y = 6 },
   atlas = "jokers_atlas",
   cost = 6,
   unlocked = false,
