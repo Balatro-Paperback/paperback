@@ -1161,8 +1161,8 @@ return {
       j_paperback_redscreen = {
         name = "Redscreen",
         text = {
-          "This Joker gains {X:mult,C:white}X#1#{} Mult for each {C:paperback_light_suit}light suit{}",
-          "and loses {X:mult,C:white}X#1#{} Mult for each {C:paperback_dark_suit}dark suit{}",
+          "{X:mult,C:white}+X#1#{} Mult for each {C:paperback_light_suit}light suit{}",
+          "and {X:mult,C:white}-X#1#{} Mult for each {C:paperback_dark_suit}dark suit{}",
           "in your full deck",
           "{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult){}",
         },
