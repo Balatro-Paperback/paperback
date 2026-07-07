@@ -210,6 +210,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "57_leaf_clover",
   "mexican_train",
   "coin_collection",
+  "cardboard_box",
   "chocolate_joker",
   "tropic_birds",
   "attacking_vertical",

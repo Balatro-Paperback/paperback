@@ -2840,6 +2840,17 @@ return {
           "upon clearing a blind"
         }
       },
+      j_paperback_cardboard_box = {
+        name = "Cardboard Box",
+        text = {
+          "If the first played hand of round",
+          "contains a scoring queen",
+          "add {C:money}$#1#{} of {C:attention}sell value",
+          "to every {C:attention}Joker{}",
+          "Increases by {C:money}$#2#{} when",
+          "a {C:attention}Food Joker{} is destroyed"
+        }
+      },
       -- Cross-Mod jokers start here
       j_paperback_moon_waltz = {
         name = "Moon Waltz",
