@@ -38,7 +38,7 @@ SMODS.Joker {
     return {
       vars = {
         card.ability.extra.a_xmult,
-        1 + (card.ability.extra.a_xmult * red_tally),
+        math.max(1 + (card.ability.extra.a_xmult * red_tally), 1),
       }
     }
   end,
@@ -57,7 +57,7 @@ SMODS.Joker {
       local red_tally = PB_UTIL.count_reds()
 
       return {
-        xmult = 1 + (card.ability.extra.a_xmult * red_tally),
+        xmult = math.max(1 + (card.ability.extra.a_xmult * red_tally), 1),
         card = card
       }
     end
@@ -71,7 +71,7 @@ SMODS.Joker {
       text_config = { colour = G.C.MULT },
       calc_function = function(card)
         local red_tally = PB_UTIL.count_reds()
-        card.joker_display_values.mult = PB_UTIL.force_signed(1 + (card.ability.extra.a_xmult * red_tally))
+        card.joker_display_values.mult = PB_UTIL.force_signed(math.max(1 + (card.ability.extra.a_xmult * red_tally), 1))
       end
     }
   end,
@@ -81,8 +81,8 @@ function PB_UTIL.count_reds()
   local red_tally = 0
   if G.playing_cards then
     for k, v in pairs(G.playing_cards) do
-      if PB_UTIL.is_suit(v, 'light') then red_tally = red_tally + 1 end
-      if PB_UTIL.is_suit(v, 'dark') and not SMODS.has_any_suit(v) then red_tally = red_tally - 1 end
+      if PB_UTIL.is_suit(v, 'light', true) then red_tally = red_tally + 1 end
+      if PB_UTIL.is_suit(v, 'dark', true) and not SMODS.has_any_suit(v) then red_tally = red_tally - 1 end
     end
   end
   return math.max(red_tally, -10)
