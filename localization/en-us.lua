@@ -2851,6 +2851,14 @@ return {
           "a {C:attention}Food Joker{} is destroyed"
         }
       },
+      j_paperback_malibu = {
+        name = "Malibu",
+        text = {
+          "This {C:attention}Joker{} gives {C:chips}Chips{} equal to",
+          "{C:attenttion}#1#{} times the {C:attenttion}lowest{} Chip value",
+          "card in scored hand"
+        },
+      },
       -- Cross-Mod jokers start here
       j_paperback_moon_waltz = {
         name = "Moon Waltz",
