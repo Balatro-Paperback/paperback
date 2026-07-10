@@ -248,6 +248,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "freedom_of_choice",
   "telamon",
   "emf_reader",
+  "spirit_box",
   -- "squall_line",
   "weather_radio",
   "power_surge",

@@ -2859,6 +2859,15 @@ return {
           "card in scored hand"
         },
       },
+      j_paperback_spirit_box = {
+        name = "Spirit Box",
+        text = {
+          "Create a random {C:attention}Tag{} if",
+          "{C:attention}played hand{} contains a {C:attention}#1#{}.",
+          "{C:inactive}(Once per round)",
+          "{s:0.75}poker hand changes at end of round"
+        }
+      },
       -- Cross-Mod jokers start here
       j_paperback_moon_waltz = {
         name = "Moon Waltz",
