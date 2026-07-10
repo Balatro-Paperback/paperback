@@ -2868,6 +2868,12 @@ return {
           "{s:0.75}poker hand changes at end of round"
         }
       },
+      j_paperback_seven_stars = {
+        name = "Seven Stars",
+        text = {
+          "Retrigger all scored {C:paperback_stars}#1#{}"
+        }
+      },
       -- Cross-Mod jokers start here
       j_paperback_moon_waltz = {
         name = "Moon Waltz",

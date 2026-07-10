@@ -274,6 +274,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "blade_dance",
   "claw",
   "inner_peace",
+  "seven_stars",
   "jimbos_joyous_joker_jamboree",
   "banana_man",
   "mind_electric",
