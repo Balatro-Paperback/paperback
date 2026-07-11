@@ -292,7 +292,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "deck_of_cards",
   "pocket_pair",
   "ultra_rare",
-  -- "lore_digger",
+  "lone_digger",
   "the_quiet",
   "big_misser",
   -- "sinister_minds",

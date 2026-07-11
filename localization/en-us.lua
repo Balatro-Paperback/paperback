@@ -2874,6 +2874,14 @@ return {
           "Retrigger all scored {C:paperback_stars}#1#{}"
         }
       },
+      j_paperback_lone_digger = {
+        name = "Lone Digger",
+        text = {
+          "If {C:attention}scored hand{} has only",
+          "one face card, {C:attention}retrigger{} it",
+          "for each scored card"
+        }
+      },
       -- Cross-Mod jokers start here
       j_paperback_moon_waltz = {
         name = "Moon Waltz",
