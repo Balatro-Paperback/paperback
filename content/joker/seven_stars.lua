@@ -21,7 +21,7 @@ SMODS.Joker {
     requires_stars = true
   },
   paperback_credit = {
-    coder = { 'ThermoDyn' }
+    coder = { 'thermo' }
   },
 
   loc_vars = function(self, info_queue, card)

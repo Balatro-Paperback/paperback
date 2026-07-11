@@ -23,8 +23,8 @@ SMODS.Joker {
   eternal_compat = true,
   perishable_compat = true,
   paperback_credit = {
-    coder = { "ThermoDyn" },
-    artist = { "ThermoDyn" }
+    coder = { "thermo" },
+    artist = { "thermo" }
   },
 
   loc_vars = function(self, info_queue, card)
@@ -39,7 +39,8 @@ SMODS.Joker {
   calculate = function(self, card, context)
     if context.before and context.main_eval and next(context.poker_hands[card.ability.extra.poker_hands]) then
       for _, scored_card in ipairs(context.scoring_hand) do
-        scored_card.ability[card.ability.extra.upgrade] = (scored_card.ability[card.ability.extra.upgrade] or 1) + card.ability.extra.a_xmult
+        scored_card.ability[card.ability.extra.upgrade] = (scored_card.ability[card.ability.extra.upgrade] or 1) +
+        card.ability.extra.a_xmult
       end
       return {
         message = localize('k_upgrade_ex'),

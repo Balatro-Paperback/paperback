@@ -14,7 +14,7 @@ SMODS.Joker {
   eternal_compat = true,
   perishable_compat = false,
   paperback_credit = {
-    coder = { 'ThermoDyn' }
+    coder = { 'thermo' }
   },
 
   loc_vars = function(self, info_queue, card)

@@ -30,7 +30,7 @@ SMODS.Joker {
     Food = true
   },
   paperback_credit = {
-    coder = { 'ThermoDyn' }
+    coder = { 'thermo' }
   },
 
   loc_vars = function(self, info_queue, card)
@@ -51,10 +51,10 @@ SMODS.Joker {
       if PB_UTIL.chance(card, card.ability.extra.stick_key) then
         card.ability.extra.eaten = true
         return {
-        dollars = card.ability.extra.dollars,
-        message = localize('paperback_goner_ex'),
-        colour = G.C.FILTER
-      }
+          dollars = card.ability.extra.dollars,
+          message = localize('paperback_goner_ex'),
+          colour = G.C.FILTER
+        }
       end
       return {
         dollars = card.ability.extra.dollars,

@@ -27,7 +27,7 @@ SMODS.Joker {
   eternal_compat = true,
   perishable_compat = true,
   paperback_credit = {
-    coder = { 'ThermoDyn' }
+    coder = { 'thermo' }
   },
   paperback = {
     requires_crowns = true

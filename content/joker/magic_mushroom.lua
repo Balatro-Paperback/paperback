@@ -23,7 +23,7 @@ SMODS.Joker {
   eternal_compat = true,
   perishable_compat = true,
   paperback_credit = {
-    coder = { 'ThermoDyn' }
+    coder = { 'thermo' }
   },
 
   loc_vars = function(self, info_queue, card)
@@ -41,21 +41,21 @@ SMODS.Joker {
       }
     end
     if context.after and not context.blueprint_card then
-        if card.ability.extra.xmult - card.ability.extra.a_xmult >= 1 then
-          SMODS.scale_card(card, {
-            ref_table = card.ability.extra,
-            ref_value = 'xmult',
-            scalar_value = 'a_xmult',
-            operation = '-',
-            message_key = 'a_xmult_minus'
-          })
+      if card.ability.extra.xmult - card.ability.extra.a_xmult >= 1 then
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'xmult',
+          scalar_value = 'a_xmult',
+          operation = '-',
+          message_key = 'a_xmult_minus'
+        })
       end
     end
     if context.blind_defeated and not context.blueprint_card then
       card.ability.extra.xmult = card.ability.extra.reset
-        return {
-          message = localize('k_reset')
-        }
+      return {
+        message = localize('k_reset')
+      }
     end
   end
 }
