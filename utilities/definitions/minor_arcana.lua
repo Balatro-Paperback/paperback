@@ -150,12 +150,23 @@ if PB_UTIL.config.minor_arcana_enabled then
     end,
 
     create_card = function(self, card, i)
-      return {
-        set = 'paperback_minor_arcana',
-        area = G.pack_cards,
-        skip_materialize = true,
-        soulable = true -- Allow creating Apostle cards
-      }
+      local _card
+      if G.GAME.used_vouchers.v_omen_globe and pseudorandom('omen_globe') > 0.8 then
+        _card = {
+          set = "Spectral",
+          area = G.pack_cards,
+          skip_materialize = true,
+          soulable = true
+        }
+      else
+        _card = {
+          set = 'paperback_minor_arcana',
+          area = G.pack_cards,
+          skip_materialize = true,
+          soulable = true -- Allow creating Apostle cards
+        }
+      end
+      return _card
     end,
 
     ease_background_colour = function(self)
@@ -163,4 +174,11 @@ if PB_UTIL.config.minor_arcana_enabled then
       ease_background_colour { new_colour = G.C.PAPERBACK_MINOR_ARCANA, special_colour = G.C.BLACK, contrast = 2 }
     end,
   }
+
+  -- explain that Omen Globe allows Minor Arcana packs to spawn Spectrals
+  SMODS.Voucher:take_ownership("omen_globe", {
+    loc_vars = function(self, info_queue, card)
+      info_queue[#info_queue + 1] = { set = "Other", key = "paperback_omen_globe_minor_arcana" }
+    end
+  })
 end

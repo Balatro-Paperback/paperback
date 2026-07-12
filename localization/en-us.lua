@@ -3855,6 +3855,14 @@ return {
           "have a {C:attention}Paperclip{}"
         }
       },
+      paperback_omen_globe_minor_arcana = {
+        name = "Added Functionality",
+        text = {
+          "{C:spectral}Spectral{} cards may",
+          "also appear in",
+          "{C:paperback_minor_arcana}Minor Arcana Packs",
+        }
+      },
 
       -- Stickers
       paperback_energized = {
