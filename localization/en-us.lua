@@ -2882,6 +2882,16 @@ return {
           "for each scored card"
         }
       },
+      j_paperback_sinister_minds = {
+        name = "Sinister Minds",
+        text = {
+          "Retrigger all scored cards {C:attention}#1#{} time#2#",
+          "if played hand was a {C:attention}#7#",
+          "Increases by {C:attention}#3#{} when",
+          "using {C:attention}#4#{} {C:spectral}#5#{} card#6#",
+          "{C:inactive}(Currently {C:attention}#8#{C:inactive} #5# card#6# left)"
+        }
+      },
       -- Cross-Mod jokers start here
       j_paperback_moon_waltz = {
         name = "Moon Waltz",

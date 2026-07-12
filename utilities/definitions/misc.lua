@@ -295,7 +295,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "lone_digger",
   "the_quiet",
   "big_misser",
-  -- "sinister_minds",
+  "sinister_minds",
   "stereoscopic_specs",
   "fodder",
   "the_strongest",
