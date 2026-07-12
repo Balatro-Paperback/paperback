@@ -30,7 +30,9 @@ PB_UTIL.MinorArcana {
     local joker = G.jokers.highlighted[1]
     local rarity = joker.config.center.rarity
 
-    if type(rarity) == "number" then
+    if joker.config.center.paperback_nine_of_cups_rarity_override then
+      rarity = joker.config.center.paperback_nine_of_cups_rarity_override
+    elseif type(rarity) == "number" then
       if rarity < 3 then
         rarity = rarity + 1
       end

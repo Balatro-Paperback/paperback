@@ -28,6 +28,7 @@ SMODS.Joker {
     'j_paperback_off_epsilon',
   },
   paperback_secret_unlock = true,
+  paperback_nine_of_cups_rarity_override = 3,
 
   paperback_credit = {
     artist = { 'dylan_hall' },
