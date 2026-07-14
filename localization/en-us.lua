@@ -2907,7 +2907,7 @@ return {
         text = {
           "{V:1}#4#{} held in hand have a ",
           "{C:green}#1# in #2#{} chance to give {C:money}$#3#",
-          "Consumed if not triggered",
+          "{C:red,E:1}Consumed{} if not triggered",
           "{s:0.8}suit changes at end of round"
         }
       },
