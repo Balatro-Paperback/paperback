@@ -1436,13 +1436,14 @@ function PB_UTIL.refresh_shop_cost()
 end
 
 --- Choose a new item from a list
---- @param current_item (string|integer|nil)
+--- @param current_item (string|nil)
 --- @param list (table)
 --- @param seed (string)
 --- @return (string)
 function PB_UTIL.choose_new_item(current_item, list, seed)
-  if current_item then
-    list[current_item] = nil
+  local new_list = {}
+  for _, item in ipairs(list) do
+    table.insert(new_list, (item ~= current_item or nil))
   end
-  return pseudorandom_element(list, seed)
+  return pseudorandom_element(new_list, seed)
 end
