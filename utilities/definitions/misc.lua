@@ -121,6 +121,7 @@ PB_UTIL.ENABLED_JOKERS = {
   'grenadine',
   'blue_curacao',
   'stout',
+  'ponzu',
   "pear",
   "teapot",
   "sake_cup",

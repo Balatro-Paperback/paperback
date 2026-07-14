@@ -2902,6 +2902,15 @@ return {
           "{C:inactive}(Must have room)"
         }
       },
+      j_paperback_ponzu = {
+        name = "Ponzu",
+        text = {
+          "{V:1}#4#{} held in hand have a ",
+          "{C:green}#1# in #2#{} chance to give {C:money}$#3#",
+          "Consumed if not triggered",
+          "{s:0.8}suit changes at end of round"
+        }
+      },
       -- Cross-Mod jokers start here
       j_paperback_moon_waltz = {
         name = "Moon Waltz",

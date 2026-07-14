@@ -145,6 +145,7 @@ SMODS.current_mod.reset_game_globals = function(run_start)
   G.GAME.paperback.highest_rank_this_round = nil
   G.GAME.paperback.weather_radio_hand = PB_UTIL.get_random_visible_hand('weather_radio')
   G.GAME.paperback.joke_master_hand = PB_UTIL.get_random_visible_hand('joke_master')
+  G.GAME.paperback.ponzu_suit = PB_UTIL.choose_new_item(G.GAME.paperback.ponzu_suit or nil, PB_UTIL.base_suits, 'ponzu')
   -- Shopkeep
   local shopkeeps = SMODS.find_card('j_paperback_shopkeep')
   if #shopkeeps > 0 then
