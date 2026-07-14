@@ -1443,7 +1443,9 @@ end
 function PB_UTIL.choose_new_item(current_item, list, seed)
   local new_list = {}
   for _, item in ipairs(list) do
-    table.insert(new_list, (item ~= current_item or nil))
+    if item ~= current_item then
+      table.insert(new_list, item)
+    end
   end
   return pseudorandom_element(new_list, seed)
 end
