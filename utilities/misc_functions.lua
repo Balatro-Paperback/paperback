@@ -1517,3 +1517,22 @@ function PB_UTIL.get_career_stat(key, default)
   local career_stats = profile and profile.career_stats
   return career_stats and career_stats["paperback_" .. key] or default
 end
+
+--- Saves a value to the current profile, this will persist when the game is closed
+---@param key string
+---@param value any
+function PB_UTIL.save_profile_value(key, value)
+  local profile = G.PROFILES[G.SETTINGS.profile]
+  profile.paperback = profile.paperback or {}
+  profile.paperback[key] = value
+  G:save_progress()
+end
+
+--- Get a value from the current profile
+---@param key string
+---@param default any
+function PB_UTIL.get_profile_value(key, default)
+  local profile = G.PROFILES[G.SETTINGS.profile]
+  profile.paperback = profile.paperback or {}
+  return profile.paperback[key] or default
+end

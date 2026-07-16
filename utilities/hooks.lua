@@ -87,6 +87,7 @@ function Game.init_game_object(self)
     unique_clips_this_run = {},
     num_bandages_broken_last_hand = 0,
     num_food_jokers_obtained = 0,
+    food_jokers_purchased = 0,
 
     permabonus_odds = 0,
 
@@ -333,6 +334,23 @@ function add_tag(tag)
   }
 
   return add_tag_ref(tag)
+end
+
+-- New context for when the deck is "modified" (basically the modify_deck check for unlock)
+local set_ability_ref = Card.set_ability
+function Card.set_ability(self, center, initial, delay_sprites)
+  local ret = set_ability_ref(self, center, initial, delay_sprites)
+
+  if not initial and self.playing_card then
+    SMODS.calculate_context {
+      paperback = {
+        deck_modified = true,
+        card = self
+      }
+    }
+  end
+
+  return ret
 end
 
 -- Apostle-high straight flushes get renamed to "Rapture"

@@ -84,6 +84,11 @@ SMODS.current_mod.config_tab = function()
                 label = localize('paperback_ui_enable_spectrals'),
                 ref_table = PB_UTIL.config,
                 ref_value = 'spectrals_enabled'
+              },
+              create_toggle {
+                label = localize('paperback_ui_enable_tickets'),
+                ref_table = PB_UTIL.config,
+                ref_value = "tickets_enabled"
               }
             }
           }

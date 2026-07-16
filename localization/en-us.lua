@@ -4851,6 +4851,59 @@ return {
         }
       }
     },
+    paperback_ticket_to_ride = {
+      c_paperback_the_pyramids = {
+        name = "The Pyramids",
+        obfuscated_names = {
+          "??? ????????",
+          "??e ??ram??s",
+          "?he P?rami?s"
+        },
+        text = {
+          {
+            "Create {C:attention}#5#{} {C:dark_edition}Negative{} copies of",
+            "a selected {C:attention}Joker{} when {C:attention}used"
+          },
+          {
+            "Buy or have used the {C:attention}#1#{} Voucher"
+          },
+          {
+            "Play a hand with {C:attention}#2#{} scoring {C:attention}#3#s{}"
+          },
+          {
+            "Acquire a face {C:attention}#4#{}"
+          },
+        }
+      },
+      c_paperback_eiffel_tower = {
+        name = "Eiffel Tower",
+        obfuscated_names = {
+          "?????? ?????",
+          "?if?e? ???er",
+          "?iffel To?er"
+        },
+        text = {
+          {
+            "When used all Jokers gain a random edition,",
+            "and {C:attention}Doubles{} your {C:money}money{} for every Joker",
+            "that already had an edition",
+            "{C:inactive}(Max of {C:money}$#1#{C:inactive})"
+          },
+          {
+            "Destroy {C:attention}#2#{} face cards",
+            "{C:inactive}(Currently #3#/#2#)"
+          },
+          {
+            "Play {C:attention}#4# #6#s{}",
+            "{C:inactive}(Currently #5#/#4#)"
+          },
+          {
+            "Buy {C:attention}#7# Food Jokers{}",
+            "{C:inactive}(Currently #8#/#7#)"
+          }
+        }
+      }
+    },
     Voucher = {
       v_paperback_celtic_cross = {
         name = "Celtic Cross",
@@ -5383,15 +5436,23 @@ return {
           "to be used immediately"
         }
       },
-      -- -- Informational
-      -- paperback_suit_drink = {
-      --   name = "Suit Drink",
-      --   text = {
-      --     "This Joker {C:red}self-destructs{} after",
-      --     "playing no {C:attention}scoring{} {V:1}#1#{}",
-      --     "for {C:attention}two{} hands in a row",
-      --   }
-      -- },
+      -- Tickets to Ride
+      p_paperback_travel_pack_normal = {
+        name = "Travel Pack",
+        text = {
+          "Choose {C:attention}#1#{} of up to",
+          "{C:attention}#2#{C:paperback_ticket} Tickets to Ride{}",
+        },
+      },
+      -- Informational
+      paperback_ticket_info = {
+        name = "Tickets to Ride",
+        text = {
+          "{C:attention}Consumables{} with strong effects",
+          "that require completing a",
+          "{C:attention}set of tasks{} to {C:attention}enable{} them",
+        }
+      },
     },
     Partner = {
       pnr_paperback_virtual = {
@@ -5738,6 +5799,13 @@ return {
       k_paperback_ego_sin_gluttony = "Gluttony",
       k_paperback_ego_sin_madness = "Madness",
 
+      -- Badge under tickets
+      k_paperback_ticket_to_ride = "Ticket to Ride",
+      -- Name of consumable type in collection
+      b_paperback_ticket_to_ride_cards = "Tickets to Ride",
+      -- Text shown at the bottom while opening booster
+      paperback_ticket_pack = "Travel Pack",
+
       paperback_confessed_ex = "Confessed!",
       paperback_polychrome_ex = "Polychrome!",
       paperback_destroyed_ex = "Destroyed!",
@@ -5789,6 +5857,9 @@ return {
       paperback_fall_ex = "Fall!",
       paperback_prevented_ex = "Prevented!",
       paperback_swoon_ex = "SWOON",
+      paperback_no_duplicates_ex = "No Duplicates!",
+      paperback_stage_completed = "Stage Completed",
+      paperback_ticket_wonder = "Wonder",
 
       paperback_ui_requires_restart = "Requires Restart",
       paperback_ui_no_requires_restart = "Doesn't Require Restart",
@@ -5804,11 +5875,12 @@ return {
       paperback_ui_enable_ranks = "Enable Ranks",
       paperback_ui_lock_cards = "Lock All Items",
       paperback_ui_unlock_cards = "Unlock All Items",
+      paperback_ui_enable_spectrals = "Enable Spectral Cards",
+      paperback_ui_enable_tickets = "Enable Tickets to Ride",
       paperback_ui_developers = "Developers",
       paperback_ui_artists = "Artists",
       paperback_ui_localization = "Localization",
       paperback_ui_paperclips = "Paperclips",
-      paperback_ui_enable_spectrals = "Enable Spectral Cards",
       paperback_ui_plague_doctor_quotes = "Plague Doctor Quotes",
       paperback_ui_select = "Select",
       paperback_ui_info = "(i)",
@@ -5919,6 +5991,8 @@ return {
       paperback_a_plus_consumable_slot = "+#1# Consumable Slots",
       paperback_a_minus_consumable_slot = "-#1# Consumable Slots",
       paperback_a_ante = "#1# Ante",
+
+      paperback_ticket_stage = "Stage #1#",
     },
     ranks = {
       paperback_Apostle = 'Apostle',

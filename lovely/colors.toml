@@ -37,6 +37,10 @@ PAPERBACK_SIN_ENVY = HEX('C571F9'),
 PAPERBACK_SIN_SLOTH = HEX('965A2F'),
 PAPERBACK_SIN_GLUTTONY = HEX('2E8B57'),
 PAPERBACK_SIN_MADNESS = HEX('4584FA'),
+
+-- Tickets to Ride colors
+PAPERBACK_TICKET = HEX('EFC06E'),
+PAPERBACK_TICKET_STAGE = HEX('93A095'),
 '''
 
 [[patches]]
@@ -58,4 +62,5 @@ payload = '''
   paperback_perishable = G.C.PERISHABLE,
   paperback_temporary = G.C.PAPERBACK_TEMPORARY,
   paperback_ego_gift = G.C.PAPERBACK_EGO_RED,
+  paperback_ticket = G.C.PAPERBACK_TICKET,
 '''

@@ -13,4 +13,5 @@ return {
   plague_doctor_quotes_enabled = true,
   show_credits = true,
   upgrade_indicators = true,
+  tickets_enabled = true,
 }

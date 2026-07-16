@@ -95,6 +95,32 @@ if PB_UTIL.config.ego_gifts_enabled then
   PB_UTIL.register_items(PB_UTIL.ENABLED_EGO_GIFT_BOOSTERS, "content/booster")
 end
 
+-- Load Tickets to Ride if enabled
+if PB_UTIL.config.tickets_enabled then
+  -- Register the consumable type to be used by Tickets to Ride
+  SMODS.ConsumableType {
+    key = 'ticket_to_ride',
+    prefix_config = { key = true },          -- Add the prefix of the mod to the key
+    primary_colour = G.C.PALE_GREEN,
+    secondary_colour = G.C.PAPERBACK_TICKET, -- Color of the collection button and badge
+    shop_rate = 0,                           -- These will not appear in the shop
+    default = 'c_paperback_the_pyramids',    -- Card to spawn if pool is empty
+    collection_rows = { 6, 6 },
+  }
+
+  -- Register the sprite for undiscovered Tickets to Ride
+  SMODS.UndiscoveredSprite {
+    key = 'ticket_to_ride',
+    prefix_config = { key = true },
+    atlas = "tickets_atlas",
+    pos = { x = 6, y = 0 },
+    no_overlay = true,
+  }
+
+  PB_UTIL.register_items(PB_UTIL.ENABLED_TICKETS, "content/ticket")
+  PB_UTIL.register_items(PB_UTIL.ENABLED_TICKET_BOOSTERS, "content/booster")
+end
+
 -- Load Spectral cards if they are enabled
 if PB_UTIL.config.spectrals_enabled then
   PB_UTIL.register_items(PB_UTIL.ENABLED_SPECTRALS, "content/spectrals")

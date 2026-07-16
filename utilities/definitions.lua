@@ -42,6 +42,16 @@ SMODS.current_mod.calculate = function(self, context)
     end
   end
 
+  -- Reset the amount of removed playing cards this round
+  if context.end_of_round then
+    G.GAME.paperback.destroyed_cards_this_round = 0
+  end
+
+  -- Count amount of food jokers purchased
+  if context.buying_card and PB_UTIL.is_food(context.card) and context.card.ability.set == "Joker" then
+    G.GAME.paperback.food_jokers_purchased = G.GAME.paperback.food_jokers_purchased + 1
+  end
+
   if context.before then
     -- green clip: gain mult for every other played and scored clip
     local clips_played = PB_UTIL.count_paperclips { area = context.scoring_hand }
@@ -246,3 +256,4 @@ SMODS.load_file("utilities/definitions/ego_gifts.lua")()
 SMODS.load_file("utilities/definitions/paperclips.lua")()
 SMODS.load_file("utilities/definitions/suits.lua")()
 SMODS.load_file("utilities/definitions/minor_arcana.lua")()
+SMODS.load_file("utilities/definitions/tickets.lua")()
