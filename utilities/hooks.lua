@@ -359,6 +359,7 @@ G.FUNCS.toggle_shop = function(e)
 end
 
 -- if a special clip is copied, replace it with a random non-special clip
+-- also stop HATRED's marked cards from copying the mark
 local copy_card_ref = copy_card
 copy_card = function(other, new_card, card_scale, playing_card, strip_edition)
   local card = copy_card_ref(other, new_card, card_scale, playing_card, strip_edition)
@@ -366,6 +367,10 @@ copy_card = function(other, new_card, card_scale, playing_card, strip_edition)
 
   if clip and not G.SETTINGS.paused and PB_UTIL.is_special_clip(clip) then
     PB_UTIL.set_paperclip(card, PB_UTIL.poll_paperclip('plat_copy', false))
+  end
+
+  if card.ability.paperback_hatred_mark then
+    card.ability.paperback_hatred_mark = nil
   end
 
   return card
