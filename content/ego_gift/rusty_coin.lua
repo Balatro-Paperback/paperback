@@ -8,6 +8,10 @@ PB_UTIL.EGO_Gift {
   soul_pos = { x = 2, y = 5 },
 
   ego_gift_calc = function(self, card, context)
+    if context.first_hand_drawn and not context.blueprint then
+      local eval = function() return G.GAME.current_round.hands_played <= 0 and not G.RESET_JUGGLES end
+      juice_card_until(card, eval, true)
+    end
     if context.before and #context.full_hand == 1 and G.GAME.current_round.hands_played <= 0 and not context.blueprint then
       local coin = context.full_hand[1]
       local seal = SMODS.poll_seal {
