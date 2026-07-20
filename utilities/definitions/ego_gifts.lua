@@ -6,7 +6,7 @@ PB_UTIL.ENABLED_EGO_GIFTS = {
   'coffee_and_cranes',
   'fiery_down',
   'decamillennial_stewpot',
-  -- "tango_marmalade",
+  "tango_marinade",
   'downpour',
   'rusty_coin',
   'ragged_umbrella',

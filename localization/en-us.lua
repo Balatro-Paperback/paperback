@@ -3466,6 +3466,15 @@ return {
           "is a {C:attention}single{} card, destroy it",
         }
       },
+      c_paperback_tango_marinade = {
+        name = "Tango Marinade",
+        text = {
+          "If played hand contains",
+          "a {C:attention}#1#",
+          "retrigger the first {C:attention}#2#",
+          "cards used in scoring"
+        }
+      },
       c_paperback_downpour = {
         name = "Downpour",
         text = {
