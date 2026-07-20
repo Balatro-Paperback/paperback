@@ -3540,6 +3540,14 @@ return {
           "equal to their {C:attention}rank{} when scored",
         }
       },
+      c_paperback_hardwood_liquor_cup = {
+        name = "Hardwood Liquor Cup",
+        text = {
+          "The {C:attention}first{} scored card on the",
+          "{C:attention}last{} hand of round permanently gains",
+          "{C:chips}+#1#{} Chips, {C:mult}+#2#{} Mult, {C:money}+$#3#{} or {X:mult,C:white}X#4#{} Mult"
+        }
+      },
       c_paperback_pendant_of_nostalgia_minor_arcana = {
         name = "Pendant of Nostalgia",
         text = {

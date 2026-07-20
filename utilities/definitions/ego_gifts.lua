@@ -14,7 +14,7 @@ PB_UTIL.ENABLED_EGO_GIFTS = {
   'thrill',
   'disk_fragment',
   'death_seeker',
-  -- "hardwood_liquor_cup",
+  "hardwood_liquor_cup",
   'pendant_of_nostalgia',
   'blue_lighter',
   'broken_glasses',
