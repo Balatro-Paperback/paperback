@@ -3438,6 +3438,13 @@ return {
           "{C:attention}hand{} of round",
         }
       },
+      c_paperback_red_tassle = {
+        name = "Red Tassle",
+        text = {
+          "Lowest rank in {C:attention}scoring hand",
+          "permanently gains {C:mult}+#1#{} Mult"
+        }
+      },
       c_paperback_coffee_and_cranes = {
         name = "Coffee and Cranes",
         text = {

@@ -2,24 +2,31 @@ PB_UTIL.ENABLED_EGO_GIFTS = {
   'imposed_weight',
   'phlebotomy_pack',
   'smokes_and_wires',
+  "red_tassle",
   'coffee_and_cranes',
   'fiery_down',
   'decamillennial_stewpot',
+  -- "tango_marmalade",
   'downpour',
   'rusty_coin',
   'ragged_umbrella',
+  -- "canned_ice_cream"
   'thrill',
   'disk_fragment',
   'death_seeker',
+  -- "hardwood_liquor_cup",
   'pendant_of_nostalgia',
   'blue_lighter',
   'broken_glasses',
+  -- "snuffed_candlestick"
   'nebulizer',
   'tomorrow_fortune',
   'fluorescent_lamp',
+  -- "vestiges_of_the_king"
   'lightning_rod',
   'chalice_of_trickle_down',
   'patrolling_flashlight',
+  -- "prestige_card"
   'golden_bough',
   'dark_vestige',
 }
