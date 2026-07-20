@@ -18,15 +18,15 @@ PB_UTIL.ENABLED_EGO_GIFTS = {
   'pendant_of_nostalgia',
   'blue_lighter',
   'broken_glasses',
-  -- "snuffed_candlestick"
+  "snuffed_candlestick",
   'nebulizer',
   'tomorrow_fortune',
   'fluorescent_lamp',
-  -- "vestiges_of_the_king"
+  -- "vestiges_of_the_king",
   'lightning_rod',
   'chalice_of_trickle_down',
   'patrolling_flashlight',
-  -- "prestige_card"
+  -- "prestige_card",
   'golden_bough',
   'dark_vestige',
 }

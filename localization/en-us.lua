@@ -3581,6 +3581,13 @@ return {
           "{C:green}#1# in #2#{} chance to {C:red}self-destruct{} after"
         }
       },
+      c_paperback_snuffed_candlestick = {
+        name = "Snuffed Candlestick",
+        text = {
+          "Earn {C:money}$#1#{} for each played hand",
+          "after the first each round"
+        }
+      },
       c_paperback_nebulizer = {
         name = "Nebulizer",
         text = {
