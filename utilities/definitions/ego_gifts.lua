@@ -26,7 +26,7 @@ PB_UTIL.ENABLED_EGO_GIFTS = {
   'lightning_rod',
   'chalice_of_trickle_down',
   'patrolling_flashlight',
-  -- "prestige_card",
+  "prestige_card",
   'golden_bough',
   'dark_vestige',
 }

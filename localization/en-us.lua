@@ -3643,6 +3643,15 @@ return {
           "creates a {C:attention}Energized copy{}"
         }
       },
+      c_paperback_prestige_card = {
+        name = "Prestige Card",
+        text = {
+          "Purchases in the shop",
+          "have a {C:green}#1# in #2#{} chance to",
+          "make a random tag",
+          "{C:inactive}(Once per shop)"
+        }
+      }
     },
     Voucher = {
       v_paperback_celtic_cross = {
