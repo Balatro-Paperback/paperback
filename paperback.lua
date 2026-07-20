@@ -75,7 +75,7 @@ if PB_UTIL.config.ego_gifts_enabled then
     secondary_colour = G.C.PAPERBACK_EGO_GIFT_RED, -- Color of the collection button and badge
     shop_rate = 0,                                 -- These will not appear in the shop
     default = 'c_paperback_dark_vestige',          -- Card to spawn if pool is empty
-    collection_rows = { 6, 6 },
+    collection_rows = { 4, 4, 4 },
   }
 
   -- Register the sprite for undiscovered E.G.O Gifts
