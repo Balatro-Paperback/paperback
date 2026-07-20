@@ -22,7 +22,7 @@ PB_UTIL.ENABLED_EGO_GIFTS = {
   'nebulizer',
   'tomorrow_fortune',
   'fluorescent_lamp',
-  -- "vestiges_of_the_king",
+  "vestiges_of_the_king",
   'lightning_rod',
   'chalice_of_trickle_down',
   'patrolling_flashlight',

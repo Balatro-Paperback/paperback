@@ -3611,6 +3611,15 @@ return {
           "{C:inactive}(Currently {C:red}+#3#{C:inactive} discards)"
         }
       },
+      c_paperback_vestiges_of_the_king = {
+        name = "Vestiges Of The King",
+        text = {
+          "If discard contains",
+          "exactly {C:attention}one{} card",
+          "Enhance it with a random",
+          "{C:paperback_minor_arcana}Minor Arcana{} enhancement"
+        }
+      },
       c_paperback_lightning_rod = {
         name = "Lightning Rod",
         text = {
