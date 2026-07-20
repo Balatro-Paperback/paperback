@@ -16,6 +16,11 @@ PB_UTIL.EGO_Gift {
     }
   end,
 
+  paperback_credit = {
+    coder = { 'thermo' },
+    artist = { 'papermoonqueen', 'ari' }
+  },
+
   ego_gift_calc = function(self, card, context)
     if context.before then
       local cards, indecies = {}, {}
