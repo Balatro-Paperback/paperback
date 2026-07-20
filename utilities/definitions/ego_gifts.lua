@@ -10,7 +10,7 @@ PB_UTIL.ENABLED_EGO_GIFTS = {
   'downpour',
   'rusty_coin',
   'ragged_umbrella',
-  -- "canned_ice_cream"
+  "canned_ice_cream",
   'thrill',
   'disk_fragment',
   'death_seeker',

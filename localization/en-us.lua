@@ -3499,6 +3499,15 @@ return {
           "{C:inactive}(Currently {C:chips}+#2#{C:inactive} Chips)",
         }
       },
+      c_paperback_canned_ice_cream = {
+        name = "Canned Ice Cream",
+        text = {
+          "When a card is {C:attention}destroyed",
+          "this EGO Gift gains",
+          "half its {C:chips}chips",
+          "{C:inactive}(Currently {C:chips}+#1#{C:inactive} Chips)"
+        }
+      },
       c_paperback_thrill = {
         name = "Thrill",
         text = {
