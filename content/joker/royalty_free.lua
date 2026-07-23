@@ -6,6 +6,9 @@ SMODS.Joker {
       active = true
     }
   },
+  pools = {
+    Music = true
+  },
   attributes = {
     'chips',
     'modify_card',

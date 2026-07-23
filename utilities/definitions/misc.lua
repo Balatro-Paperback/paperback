@@ -183,6 +183,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "a_balatro_movie",
   "royalty_free",
   "ncj",
+  "whitebeard",
   "bicycle",
   -- "mezzetino",
   "gauze",

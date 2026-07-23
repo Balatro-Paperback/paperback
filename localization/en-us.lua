@@ -2928,6 +2928,15 @@ return {
           "permanent gains {C:chips}+#1#{} Chips"
         }
       },
+      j_paperback_whitebeard = {
+        name = "Whitebeard",
+        text = {
+          "During a {C:attention}Boss Blind{}",
+          "scored cards give {X:red,C:white}X#1#{} Mult",
+          "The last played hand",
+          "is {C:attention}destroyed{} after scoring"
+        }
+      },
       -- Cross-Mod jokers start here
       j_paperback_moon_waltz = {
         name = "Moon Waltz",
@@ -4479,6 +4488,7 @@ return {
       paperback_superhot_false = "HOT",
       paperback_goner_ex = "Goner!",
       paperback_hatred_death_ex = "DREAD",
+      paperback_whitebeard_death_ex = "Quake!",
 
       paperback_ui_requires_restart = "Requires Restart",
       paperback_ui_no_requires_restart = "Doesn't Require Restart",
