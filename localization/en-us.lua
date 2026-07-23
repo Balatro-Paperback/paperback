@@ -2937,6 +2937,14 @@ return {
           "is {C:attention}destroyed{} after scoring"
         }
       },
+      j_paperback_mezzetino = {
+        name = "Mezzetino",
+        text = {
+          "{C:mult}Discards{} give {C:money}$#1#{}",
+          "and destroy a {C:attention}random{} card",
+          "at end of round"
+        }
+      },
       -- Cross-Mod jokers start here
       j_paperback_moon_waltz = {
         name = "Moon Waltz",

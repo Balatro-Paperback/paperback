@@ -185,7 +185,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "ncj",
   "whitebeard",
   "bicycle",
-  -- "mezzetino",
+  "mezzetino",
   "gauze",
   "joke_master",
   "jokers_11",
