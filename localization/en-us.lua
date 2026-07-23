@@ -2945,6 +2945,16 @@ return {
           "at end of round"
         }
       },
+      j_paperback_twenty_first_century = {
+        name = "21{s:0.8}st{} Century Joker",
+        text = {
+          "When {C:attention}Big Blind{} or {C:attention}Boss Blind{}",
+          "is cleared, {C:attention}destroy{} Joker to the left",
+          "and create a {C:attention}new{} Joker",
+          "of equal or higher rarity",
+          "{C:inactive}(Cannot upgrade to Legendary Jokers)"
+        }
+      },
       -- Cross-Mod jokers start here
       j_paperback_moon_waltz = {
         name = "Moon Waltz",
