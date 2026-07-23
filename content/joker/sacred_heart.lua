@@ -34,6 +34,17 @@ SMODS.Joker {
     }
   end,
 
+  in_pool = function(self, args)
+    -- Only in pool if you have played a Five of a Kind or a Flush Five
+    for k, v in pairs(G.GAME.hands) do
+      if string.find(k, "Flush Five", nil, true) then
+        if G.GAME.hands[k].played > 0 then
+          return true
+        end
+      end
+    end
+  end,
+
   calculate = function(self, card, context)
     if context.after and context.scoring_name == card.ability.extra.poker_hand then
       context.scoring_hand[1].ability.perma_repetitions = (context.scoring_hand[1].ability.perma_repetitions or 0) + 1
