@@ -181,6 +181,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "deadringer",
   "penumbra_phantasm",
   "a_balatro_movie",
+  "royalty_free",
   "ncj",
   "bicycle",
   -- "mezzetino",

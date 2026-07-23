@@ -2920,6 +2920,14 @@ return {
           "destroy all other scored cards"
         }
       },
+      j_paperback_royalty_free = {
+        name = "Royalty Free",
+        text = {
+          "The first scored",
+          "{C:attention}non-face{} card each round",
+          "permanent gains {C:chips}+#1#{} Chips"
+        }
+      },
       -- Cross-Mod jokers start here
       j_paperback_moon_waltz = {
         name = "Moon Waltz",
