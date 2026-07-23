@@ -130,6 +130,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "emergency_broadcast",
   "blue_marble",
   "triple_moon_goddess",
+  "sacred_heart",
   "as_above_so_below",
   "one_sin_and_hundreds_of_good_deeds",
   "plague_doctor",

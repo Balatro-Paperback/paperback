@@ -2911,6 +2911,15 @@ return {
           "{s:0.8}suit changes at end of round"
         }
       },
+      j_paperback_sacred_heart = {
+        name = "Sacred Heart",
+        text = {
+          "If played hand is a {C:attention}#1#",
+          "Give the {C:attention}first{} scored card",
+          "a {C:red,E:1}permament retrigger{}",
+          "destroy all other scored cards"
+        }
+      },
       -- Cross-Mod jokers start here
       j_paperback_moon_waltz = {
         name = "Moon Waltz",
