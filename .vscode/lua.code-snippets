@@ -30,7 +30,7 @@
       "\t\t$13",
       "\t},",
       "\tpaperback_credit = {",
-      "\t\tcoder = $14",
+      "\t\tcoder = { '$14' }",
       "\t},",
       "",
       "\tloc_vars = function(self, info_queue, card)",

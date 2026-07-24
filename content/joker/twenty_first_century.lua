@@ -17,7 +17,7 @@ SMODS.Joker {
   eternal_compat = true,
   perishable_compat = true,
   paperback_credit = {
-    coder = 'thermo'
+    coder = { 'thermo' }
   },
 
   calculate = function(self, card, context)
