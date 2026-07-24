@@ -305,6 +305,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "sinister_minds",
   "stereoscopic_specs",
   "fodder",
+  "arayashiki",
   "the_strongest",
   "da_capo",
   "golden_egg",

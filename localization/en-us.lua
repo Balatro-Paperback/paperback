@@ -2966,6 +2966,16 @@ return {
           "{C:money}$#1#{} for each card"
         }
       },
+      j_paperback_arayashiki = {
+        name = "Arayashiki",
+        text = {
+          "Upon clearing a blind",
+          "{C:paperback_ego_gift}E.G.O Gifts{} have a",
+          "{C:green}#1# in #2#{} chance to create",
+          "a {C:dark_edition}negative{} {C:paperback_minor_arcana}#3#{}",
+          "If none exist"
+        }
+      },
       -- Cross-Mod jokers start here
       j_paperback_moon_waltz = {
         name = "Moon Waltz",
