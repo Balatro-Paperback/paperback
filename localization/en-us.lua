@@ -2976,6 +2976,16 @@ return {
           "If none exist"
         }
       },
+      j_paperback_man = {
+        name = "Man",
+        text = {
+          "Every played",
+          "{C:paperback_dark_suit}Dark Suit{C:attention} card",
+          "permanently",
+          "gains {C:mult}+#1#{} Mult",
+          "when scored"
+        }
+      },
       -- Cross-Mod jokers start here
       j_paperback_moon_waltz = {
         name = "Moon Waltz",

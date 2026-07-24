@@ -124,6 +124,7 @@ PB_UTIL.ENABLED_JOKERS = {
   'ponzu',
   "pear",
   "teapot",
+  "man",
   "sake_cup",
   "full_moon",
   "black_rainbows",
