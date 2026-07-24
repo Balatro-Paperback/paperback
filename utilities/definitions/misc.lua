@@ -238,6 +238,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "paranoia",
   "hatred",
   "der_fluschutze",
+  "buckshot",
   "touch_tone_joker",
   "the_batter",
   "off_switch",

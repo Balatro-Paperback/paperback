@@ -2955,6 +2955,17 @@ return {
           "{C:inactive}(Cannot upgrade to Legendary Jokers)"
         }
       },
+      j_paperback_buckshot = {
+        name = "Buckshot",
+        text = {
+          "If played hand",
+          "contains a {C:attention}Two Pair",
+          "{C:attention}destroy{} all cards of a",
+          "{C:attention}random rank{} in",
+          "scoring hand and earn",
+          "{C:money}$#1#{} for each card"
+        }
+      },
       -- Cross-Mod jokers start here
       j_paperback_moon_waltz = {
         name = "Moon Waltz",
