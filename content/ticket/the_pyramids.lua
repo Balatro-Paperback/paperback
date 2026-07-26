@@ -60,12 +60,9 @@ PB_UTIL.Ticket {
       end
     end
 
-    if context.paperback and context.paperback.deck_modified then
-      for _, v in ipairs(G.playing_cards) do
-        if SMODS.has_enhancement(v, card.ability.extra.enhancement_face) and v:is_face() then
-          self:complete_stage(card, 3)
-          break
-        end
+    if context.setting_ability and not context.unchanged then
+      if context.new == card.ability.extra.enhancement_face and context.other_card:is_face() then
+        self:complete_stage(card, 3)
       end
     end
   end,
