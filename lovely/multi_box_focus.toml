@@ -1,0 +1,29 @@
+[manifest]
+version = "1.0.0"
+priority = 0
+
+# Allows centers to define a `paperback_filter_multi_box` which can decide which 
+# multi box to show at any given time, if it returns false it skips it
+[[patches]]
+[patches.pattern]
+target = 'functions/UI_definitions.lua'
+pattern = "for i, box in ipairs(AUT.multi_box) do"
+position = "after"
+match_indent = true
+payload = """
+    if card and card.config and card.config.center and card.config.center.paperback_filter_multi_box then
+      if not card.config.center:paperback_filter_multi_box(card, i) then
+        goto paperback_continue
+      end
+    end
+"""
+
+[[patches]]
+[patches.pattern]
+target = 'functions/UI_definitions.lua'
+pattern = "multi_boxes[#multi_boxes+1] = desc_from_rows(box)"
+position = "after"
+match_indent = true
+payload = """
+::paperback_continue::
+"""

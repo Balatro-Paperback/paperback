@@ -5888,6 +5888,7 @@ return {
       paperback_ui_remaining_hands = "Remaining Hands",
       paperback_ui_show_credits = "Show Credits",
       paperback_ui_upgrade_indicators = "Show Upgrade Indicators",
+      paperback_ui_ticket_cycle_help = "Press Left or Right to view other stages",
 
       -- Plague Doctor's quotes
       paperback_plague_quote_1_1 = 'On this rock I will build my church, and the',
@@ -5992,7 +5993,7 @@ return {
       paperback_a_minus_consumable_slot = "-#1# Consumable Slots",
       paperback_a_ante = "#1# Ante",
 
-      paperback_ticket_stage = "Stage #1#",
+      paperback_ticket_stage = "Stage #1#/#2#",
     },
     ranks = {
       paperback_Apostle = 'Apostle',

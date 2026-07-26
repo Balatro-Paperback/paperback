@@ -55,7 +55,7 @@ if card.ability and card.ability.set == "paperback_ticket_to_ride" then
               text = localize {
                 type = "variable",
                 key = "paperback_ticket_stage",
-                vars = { i }
+                vars = { i, #AUT.multi_box }
               },
               scale = 0.3,
               colour = G.C.UI.TEXT_LIGHT

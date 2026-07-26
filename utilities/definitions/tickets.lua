@@ -29,6 +29,11 @@ if PB_UTIL.config.tickets_enabled then
       { x = 6, y = 0 }
     },
 
+    -- Cannot be used by default, but tickets can override if needed
+    can_use = function(self, card)
+      return false
+    end,
+
     -- Initialize the generic config that all tickets should have
     -- Rather than overriding this, tickets should define a `ticket_set_ability` function
     set_ability = function(self, card, initial, delay_sprites)
@@ -187,10 +192,66 @@ if PB_UTIL.config.tickets_enabled then
       G.localization.descriptions[self.set][self.key].name_parsed = nil
     end,
 
-    -- Cannot be used by default, but tickets can override if needed
-    can_use = function(self, card)
-      return false
+    -- Show the stage cycling tooltip
+    set_badges = function(self, card, badges)
+      table.insert(badges, 1, {
+        n = G.UIT.R,
+        config = { align = 'cm', padding = 0.03 },
+        nodes = {
+          {
+            n = G.UIT.C,
+            config = { align = 'cm' },
+            nodes = {
+              {
+                n = G.UIT.T,
+                config = {
+                  text = localize('paperback_ui_ticket_cycle_help'),
+                  scale = 0.26,
+                  colour = G.C.UI.TEXT_LIGHT
+                }
+              }
+            }
+          },
+        }
+      })
     end,
+
+    paperback_filter_multi_box = function(self, card, i)
+      return i == (card.paperback_multi_box_focus or 1)
+    end,
+  }
+
+  -- Stage cycling UI
+  local function try_cycle_stage(direction)
+    local hovered = G.CONTROLLER.hovering.target
+    if not hovered or not Object.is(hovered, Card) then return end
+    if not hovered.ability or hovered.ability.set ~= "paperback_ticket_to_ride" then return end
+
+    local total = #hovered.config.center.stages
+    hovered.paperback_multi_box_focus = (hovered.paperback_multi_box_focus or 1) + direction
+
+    if hovered.paperback_multi_box_focus < 1 then
+      hovered.paperback_multi_box_focus = total
+    elseif hovered.paperback_multi_box_focus > total then
+      hovered.paperback_multi_box_focus = 1
+    end
+
+    hovered:stop_hover()
+    hovered:hover()
+  end
+
+  SMODS.Keybind {
+    key_pressed = "left",
+    action = function(self)
+      try_cycle_stage(-1)
+    end
+  }
+
+  SMODS.Keybind {
+    key_pressed = "right",
+    action = function(self)
+      try_cycle_stage(1)
+    end
   }
 
   PB_UTIL.TicketPack = SMODS.Booster:extend {
