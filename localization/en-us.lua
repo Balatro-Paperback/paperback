@@ -38,7 +38,7 @@ return {
         text = {
           "Start run with a {C:paperback_temporary}temporary",
           "{C:paperback_minor_arcana,T:c_paperback_apostle_of_wands}#1#",
-          "{C:attention}#2#{} Joker slot"
+          "Run starts on the {C:attention}Big Blind"
         },
         unlock = {
           "Win a run with any",
@@ -4640,7 +4640,7 @@ return {
         text = {
           "Start run with a {C:paperback_temporary}temporary",
           "{C:paperback_minor_arcana,T:c_paperback_apostle_of_wands}#1#",
-          "{C:attention}#2#{} Joker slot"
+          "Run starts on the {C:attention}Big Blind"
         }
       },
       sleeve_paperback_dreamer_buff = {
