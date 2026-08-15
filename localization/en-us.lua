@@ -3590,7 +3590,12 @@ return {
           "{C:attention}random rank{} in",
           "scoring hand and earn",
           "{C:money}$#1#{} for each card"
-        }
+        },
+        unlock = {
+          "Win a run with",
+          "{E:1,C:attention}#1#",
+          "as your most played hand",
+        },
       },
       j_paperback_arayashiki = {
         name = "Arayashiki",
