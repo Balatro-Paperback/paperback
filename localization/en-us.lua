@@ -804,7 +804,8 @@ return {
             "and are {C:attention}destroyed{} upon reaching {C:attention}0{}" },
         },
         unlock = {
-          "Have no {C:hearts,E:1}Hearts{}",
+          "Have no {C:hearts,E:1}Heart{}",
+          "{C:attention,E:1}face cards{}",
           "in your deck"
         }
       },
@@ -2676,6 +2677,11 @@ return {
           "is a single {C:attention}face{} card, destroy it",
           "and this Joker gains {X:mult,C:white}X#1#{} Mult",
           "{C:inactive}(Currently {X:mult,C:white}X#2#{} {C:inactive}Mult)"
+        },
+        unlock = {
+          "Have no",
+          "{C:attention,E:1}face cards{}",
+          "in your deck"
         }
       },
       j_paperback_deck_of_cards = {

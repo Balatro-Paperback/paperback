@@ -25,6 +25,7 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'aa7' },
   },
+  unlocked = false,
 
   loc_vars = function(self, info_queue, card)
     return {
@@ -33,6 +34,17 @@ SMODS.Joker {
         card.ability.extra.x_mult
       }
     }
+  end,
+
+  check_for_unlock = function(self, args)
+    if G.GAME.round >= 1 then
+      for _, v in ipairs(G.playing_cards or {}) do
+        if v:is_face() then 
+          return false
+        end
+      end
+      return true
+    end
   end,
 
   calculate = function(self, card, context)
