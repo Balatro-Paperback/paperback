@@ -12,7 +12,7 @@ local j = SMODS.Joker {
   },
   pos = { x = 24, y = 11 },
   soul_pos = { x = 23, y = 11 },
-  rarity = 1,
+  rarity = 3,
   atlas = "jokers_atlas",
   cost = 5,
   unlocked = false,

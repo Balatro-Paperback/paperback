@@ -5,17 +5,19 @@ SMODS.Joker {
       dollars = 3,
       m_dollars = 1,
       rank = "Jack",
+      -- M.A Enabled vs Disabled
       consumable_odds = {
+        -- 30% vs 42.85%
         'Planet',
         'Planet',
         'Planet',
+        -- 30% vs 42.85%
         'Tarot',
         'Tarot',
         'Tarot',
-        'paperback_minor_arcana',
-        'paperback_minor_arcana',
-        'paperback_minor_arcana',
-        'Spectral'
+        -- 10% vs 15.4%
+        'Spectral',
+        -- 30% vs 0%
       }
     }
   },
@@ -68,8 +70,14 @@ SMODS.Joker {
     end
     if context.end_of_round and context.main_eval and not context.blueprint_card then
       if card.ability.extra.dollars - card.ability.extra.m_dollars < 1 then
-        PB_UTIL.destroy_joker(card)
-        local set = pseudorandom_element(card.ability.extra.consumable_odds, "joker_jacks")
+        -- Selecting and creating the card
+        local odds = card.ability.extra.consumable_odds
+        if PB_UTIL.config.minor_arcana_enabled then
+          for i = 1, 3, 1 do
+            table.insert(odds, 'paperback_minor_arcana')
+          end
+        end
+        local set = pseudorandom_element(odds, "joker_jacks_prize")
         if PB_UTIL.try_spawn_card { set = set } then
           card_eval_status_text(context.blueprint_card or card, 'extra', nil, nil, nil,
             {
@@ -77,6 +85,9 @@ SMODS.Joker {
               colour = G.C.ORANGE
             })
         end
+
+        -- Consuming
+        PB_UTIL.destroy_joker(card)
         return {
           message = localize('paperback_consumed_ex'),
           colour = G.C.MULT

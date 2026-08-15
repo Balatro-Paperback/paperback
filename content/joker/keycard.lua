@@ -29,6 +29,13 @@ SMODS.Joker {
 
   calculate = function(self, card, context)
     if context.end_of_round and context.beat_boss and context.main_eval and not context.blueprint then
+      card.ability.extra.active = true
+      return {
+        message = localize('k_active_ex')
+      }
+    end
+
+    if context.paperback and context.paperback.cashing_out and card.ability.extra.active and not context.blueprint then
       PB_UTIL.destroy_joker(card)
       return {
         dollars = card.ability.extra.dollars,

@@ -52,5 +52,8 @@ SMODS.Joker {
         end
       }
     end
+    if context.end_of_round and context.main_eval and not context.blueprint then
+      card.ability.extra.active = true
+    end
   end
 }

@@ -51,7 +51,7 @@ SMODS.Joker {
         mult = card.ability.extra.mult
       }
     end
-    if not context.blueprint and context.discard and PB_UTIL.is_rank(context.other_card, card.ability.extra.rank) then
+    if not context.blueprint and context.discard and PB_UTIL.is_rank(context.other_card, card.ability.extra.rank) and not context.other_card.debuff then
       SMODS.scale_card(card, {
         ref_table = card.ability.extra,
         ref_value = 'mult',
