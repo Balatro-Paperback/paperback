@@ -18,14 +18,23 @@ SMODS.Joker {
   blueprint_compat = true,
   eternal_compat = true,
   perishable_compat = true,
-  paperback = {
-
-  },
+  unlocked = false,
   paperback_credit = {
     coder = { 'dowfrin' },
     artist = { 'shizi' }
   },
 
+  check_for_unlock = function(self, args)
+    if G.GAME.round >= 1 then
+      for _, v in ipairs(G.playing_cards or {}) do
+        if v:is_suit('Hearts', true) then 
+          return false
+        end
+      end
+      return true
+    end
+  end,
+  
   loc_vars = function(self, info_queue, card)
     return {
       vars = {

@@ -2431,6 +2431,10 @@ return {
           "{C:red,E:1,7}Marked{} cards give {X:mult,C:white}X#1#{} Mult when scored",
           "and are destroyed if not scored"
         },
+        unlock = {
+          "Have no {C:hearts,E:1}Hearts{}",
+          "in your deck"
+        }
       },
       j_paperback_unholy_alliance = {
         name = "Unholy Alliance",
