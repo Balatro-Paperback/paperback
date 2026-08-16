@@ -148,6 +148,21 @@ SMODS.current_mod.calculate = function(self, context)
       end
     end
 
+    -- Spirit Box unlock
+    if not next(context.poker_hands['Straight']) then
+      local number_count = 0
+      for _, v in ipairs(context.scoring_hand) do
+        local id = v:get_id()
+        if (2 <= id and id <= 10) then
+          number_count = number_count + 1
+        end
+        if number_count >= 5 then
+          check_for_unlock({ type = 'paperback_played_five_numbers' })
+          break
+        end
+      end
+    end
+
     for _, v in ipairs(context.scoring_hand) do
       -- Penumbra Phantasm unlock
       if PB_UTIL.is_rank(v, "Jack") and v:is_suit('Hearts') then
@@ -171,10 +186,9 @@ SMODS.current_mod.calculate = function(self, context)
       end
 
       -- Jestrica unlock
-      if PB_UTIL.is_rank(v, 8) then
+      if not PB_UTIL.is_rank(v, 8) then
         G.GAME.paperback.hand_only_scored_8s = false
       end
-
     end
 
     -- Whitebeard unlock

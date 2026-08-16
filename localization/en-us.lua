@@ -730,7 +730,7 @@ return {
         },
         unlock = {
           "Win a run without",
-          "any rare Jokers"
+          "any{C:red,E:1} rare{} Jokers"
         },
       },
       j_paperback_pink_joker = {
@@ -3236,7 +3236,14 @@ return {
           "contains a {C:attention}#1#{}, destroy",
           "played cards and create",
           "a random {C:spectral}#2#{} card"
-        }
+        },
+        unlock = {
+          "Win a run with",
+          "a hand containing",
+          "a {E:1,C:attention}#1#{} as your",
+          "most played hand",
+        },
+        
       },
       j_paperback_jester = {
         name = "Jester",
@@ -3499,6 +3506,11 @@ return {
           "{C:attention}played hand{} contains a {C:attention}#1#{}.",
           "{C:inactive}(Once per round)",
           "{s:0.75}poker hand changes at end of round"
+        },
+        unlock = {
+          "Score a hand containing",
+          "{C:attention,E:1}#1#{} number cards",
+          "without playing a {C:attention,E:1}#2#{}"
         }
       },
       j_paperback_seven_stars = {

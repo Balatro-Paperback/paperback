@@ -17,12 +17,22 @@ SMODS.Joker {
   blueprint_compat = true,
   eternal_compat = true,
   perishable_compat = true,
-  paperback = {
-
-  },
+  unlocked = false,
   paperback_credit = {
     coder = { "thermo" }
   },
+
+  check_for_unlock = function (self, args)
+    return args.type == 'paperback_played_five_numbers'
+  end,
+
+  locked_loc_vars = function(self, info_queue, card)
+    return {
+      vars = {
+        5, localize('Straight', 'poker_hands')
+      }
+    }
+  end,
 
   loc_vars = function(self, info_queue, card)
     local hand = G.GAME.paperback.weather_radio_hand
