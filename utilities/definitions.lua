@@ -258,12 +258,12 @@ SMODS.current_mod.calculate = function(self, context)
     end
     -- track minor arcana usage across runs
     if center.set == "paperback_minor_arcana" then
-      PB_UTIL.minor_arcana_profile_usage(1)
+      PB_UTIL.minor_arcana_profile_usage()
     end
   end
     -- track blind skips across runs
   if context.skip_blind then
-    PB_UTIL.blind_skip_profile_usage(1)
+    PB_UTIL.blind_skip_profile_usage()
   end
 
   -- Keep Solar System global variable updated

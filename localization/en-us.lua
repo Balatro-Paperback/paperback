@@ -1343,6 +1343,11 @@ return {
           "a {C:attention}#1#{}, create a random",
           "{C:attention}Swords{} {C:paperback_minor_arcana}#2#{} card",
           "{C:inactive}(Must have room)"
+        },
+        unlock = {
+          "Use {C:attention,E:1}#1# {C:paperback_minor_arcana,E:1}Swords",
+          "{C:paperback_minor_arcana,E:1}Minor Arcana",
+          "in one run"
         }
       },
       j_paperback_backpack = {

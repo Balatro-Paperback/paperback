@@ -1436,7 +1436,6 @@ function PB_UTIL.refresh_shop_cost()
 end
 
 --- Tracks Minor Arcana usage for profile
---- @param val number
 function PB_UTIL.minor_arcana_profile_usage(val)
   val = val or 1
   G.PROFILES[G.SETTINGS.profile].career_stats.paperback_minor_arcana_used = (G.PROFILES[G.SETTINGS.profile].career_stats.paperback_minor_arcana_used or 0) + val
@@ -1445,7 +1444,6 @@ function PB_UTIL.minor_arcana_profile_usage(val)
   end
 end
 --- Tracks Blind skips for profile
---- @param val number
 function PB_UTIL.blind_skip_profile_usage(val)
   val = val or 1
   G.PROFILES[G.SETTINGS.profile].career_stats.paperback_blind_skips = (G.PROFILES[G.SETTINGS.profile].career_stats.paperback_blind_skips or 0) + val
