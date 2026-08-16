@@ -3440,6 +3440,11 @@ return {
           "This Joker gives {X:mult,C:white}X#1#{} Mult for each",
           "played and scored {C:attention}#2#{} this round",
           "{C:inactive}(Currently {X:mult,C:white}X#3#{C:inactive} Mult){}"
+        },
+        unlock = {
+          "Play a hand that",
+          "contains {C:attention,E:1}#1#{}",
+          "{C:attention,E:1}Mult cards"
         }
       },
       j_paperback_doppler_radar = {
