@@ -867,7 +867,11 @@ return {
           "{C:attention}draw{} the {C:attention}first card{} in it",
           "to your consumables",
           "{C:inactive}(Must have room)"
-        }
+        },
+        unlock = {
+          "Discover every",
+          "{E:1,C:attention}Booster Pack{}",
+        },
       },
       j_paperback_joker_cd_i = {
         name = 'Joker CD-i',

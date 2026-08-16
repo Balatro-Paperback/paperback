@@ -15,9 +15,7 @@ if PB_UTIL.config.minor_arcana_enabled then
             count = count + 1
           end
         end
-        if count == count2 then
-          unlock_card(self)
-        end
+        return count == count2 
       end
     end
   }
