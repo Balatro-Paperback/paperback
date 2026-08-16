@@ -18,7 +18,7 @@ SMODS.Joker {
   pos = { x = 6, y = 10 },
   atlas = 'jokers_atlas',
   cost = 9,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -27,6 +27,14 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'srockw' }
   },
+
+  locked_loc_vars = function (self, info_queue, card)
+    return { vars = { 3 }}
+  end,
+
+  check_for_unlock = function (self, args)
+    return G.GAME.paperback.num_blinds_disabled >= 3
+  end,
 
   loc_vars = function(self, info_queue, card)
     local hand = G.GAME.paperback.weather_radio_hand
@@ -133,3 +141,10 @@ SMODS.Joker {
     end
   end
 }
+
+local disable_ref = Blind.disable
+function Blind:disable()
+  local ret = disable_ref
+  G.GAME.paperback.num_blinds_disabled = G.GAME.paperback.num_blinds_disabled + 1
+  return ret
+end

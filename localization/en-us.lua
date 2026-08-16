@@ -1031,6 +1031,10 @@ return {
           "and this Joker loses {X:mult,C:white}X#4#{} Mult",
           "{C:inactive}(Currently {X:mult,C:white}X#5#{C:inactive} Mult)",
           "{s:0.75}poker hand changes at end of round"
+        },
+        unlock = {
+          "{C:attention,E:1}Disable{} a Boss Blind",
+          "{C:attention,E:1}#1#{} times in one run"
         }
       },
       j_paperback_power_surge = {
@@ -1054,7 +1058,6 @@ return {
           "scoring {C:attention,E:1}#1#{} suits"
         }
       },
-
       j_paperback_bismuth = {
         name = "Bismuth",
         text = {

@@ -46,6 +46,7 @@ function Game.init_game_object(self)
     heart_kings_scored = 0,
     bloodstone_triggers = 0,
     buffoon_packs_bought = 0,
+    num_blinds_disabled = 0,
     last_scored_suit = 'Spades',
     hand_contained_crown = false,
     hand_only_scored_aces = true,
