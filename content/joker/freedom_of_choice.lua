@@ -1,6 +1,6 @@
 SMODS.Joker {
   key = "freedom_of_choice",
-
+  unlocked = false,
   config = {
     extra = {
       poker_hands = 'Five of a Kind',
@@ -26,6 +26,12 @@ SMODS.Joker {
     coder = { "thermo" },
     artist = { "thermo" }
   },
+  
+  check_for_unlock = function(self, args)
+    if args.type == 'paperback_played_flush_five_hearts' then
+      return true
+    end
+  end,
 
   loc_vars = function(self, info_queue, card)
     return {

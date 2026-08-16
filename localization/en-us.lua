@@ -3410,6 +3410,10 @@ return {
           "If played hand contains a",
           "{C:attention}#1#{}, scored cards",
           "permanently gain {X:mult,C:white}X#2#{} Mult",
+        },
+        unlock = {
+          "Play a {C:hearts,E:1}Hearts{}",
+          "{C:attention,E:1}Flush Five{}"
         }
       },
       j_paperback_magic_mushroom = {
