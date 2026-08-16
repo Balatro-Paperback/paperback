@@ -45,7 +45,7 @@ SMODS.Joker {
     -- we need to also check for G.GAME.round because the game decides to run this on every single card being added to the deck on run start
     if G.GAME.round >= 1 then
       for _, v in ipairs(G.playing_cards or {}) do
-        if v:is_face() and not PB_UTIL.is_rank(v, 'Queen') then 
+        if v:is_face(true) and not PB_UTIL.is_rank(v, 'Queen') then 
           return false
         end
       end
