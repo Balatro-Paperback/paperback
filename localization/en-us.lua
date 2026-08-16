@@ -1048,6 +1048,10 @@ return {
           "at least {C:attention}#1#{} suits,",
           "this Joker gains {C:mult}+#2#{} Mult",
           "{C:inactive}(Currently {C:mult}+#3#{C:inactive} Mult)",
+        },
+        unlock = {
+          "Play a hand",
+          "scoring {C:attention,E:1}#1#{} suits"
         }
       },
 

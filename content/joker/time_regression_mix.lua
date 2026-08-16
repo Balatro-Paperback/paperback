@@ -26,6 +26,16 @@ SMODS.Joker {
     coder = { 'dowfrin' }
   },
 
+  locked_loc_vars = function(self, info_queue, card)
+    return { vars = { 4 } }
+  end,
+
+  check_for_unlock = function(self, args)
+    if args.type == 'hand' then
+      return PB_UTIL.get_unique_suits(args.scoring_hand, nil, true) >= 4
+    end
+  end,
+
   loc_vars = function(self, info_queue, card)
     return {
       vars = {
