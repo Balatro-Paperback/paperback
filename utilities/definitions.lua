@@ -35,11 +35,6 @@ SMODS.current_mod.calculate = function(self, context)
         G.GAME.paperback.destroyed_faces = G.GAME.paperback.destroyed_faces + 1
       end
 
-      -- Count the amount of destroyed face cards
-      if v:is_face() then
-        G.GAME.paperback.destroyed_faces = G.GAME.paperback.destroyed_faces + 1
-      end
-
       -- Count the amount of destroyed dark suits
       if PB_UTIL.is_suit(v, 'dark', false, true) then
         G.GAME.paperback.destroyed_dark_suits = G.GAME.paperback.destroyed_dark_suits + 1
@@ -58,6 +53,11 @@ SMODS.current_mod.calculate = function(self, context)
       -- Count the amount of destroyed stars
       if v:is_suit('paperback_Stars') then
         G.GAME.paperback.destroyed_stars = G.GAME.paperback.destroyed_stars + 1
+      end
+
+      -- Power Surge unlock
+      if PB_UTIL.is_rank(v, 7) and SMODS.has_enhancement(v, 'm_steel') then
+        check_for_unlock({ type = 'paperback_destroyed_steel_7' })
       end
     end
     check_for_unlock({ type = 'paperback_removed_playing_cards' })

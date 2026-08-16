@@ -1043,6 +1043,10 @@ return {
           "Played {C:attention}#1#s{} give {X:mult,C:white}X#2#{} Mult when scored",
           "and have a {C:green}#3# in #4#{} chance to",
           "{C:red}destroy{} a card {C:attention}held in hand{}",
+        },
+        unlock = {
+          "Destroy a",
+          "{C:attention,E:1}Steel 7{}"
         }
       },
       j_paperback_time_regression_mix = {
