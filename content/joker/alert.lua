@@ -19,7 +19,7 @@ SMODS.Joker {
   pos = { x = 3, y = 7 },
   atlas = 'jokers_atlas',
   cost = 4,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = false,
   eternal_compat = false,
@@ -36,6 +36,22 @@ SMODS.Joker {
         card.ability.extra.max
       }
     }
+  end,
+
+  locked_loc_vars = function (self, info_queue, card)
+    return { vars = { 5 }}
+  end,
+
+  check_for_unlock = function(self, args)
+    if args.type == 'hand_contents' then
+      local count = 0
+      for j = 1, #args.cards do
+        if args.cards[j]:is_face() then
+          count = count + 1
+        end
+      end
+      return count >= 5
+    end
   end,
 
   calculate = function(self, card, context)

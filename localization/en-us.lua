@@ -997,8 +997,8 @@ return {
           "{S:1.1,C:red,E:2}self-destructs",
         },
         unlock = {
-          "Have a deck containing {C:attention}only{}",
-          "{C:attention}face cards{}"
+          "Have a deck containing",
+          "{C:attention,E:1}only face cards{}"
         }
       },
       j_paperback_kintsugi_joker = {
@@ -1305,6 +1305,10 @@ return {
           "If {C:attention}played hand{} is a single",
           "{C:attention}face card{}, destroy it",
           "{C:inactive}(#1#/#2#)?"
+        },
+        unlock = {
+          "Score {C:attention,E:1}#1# Face cards",
+          "in one hand"
         }
       },
       j_paperback_legacy = {
