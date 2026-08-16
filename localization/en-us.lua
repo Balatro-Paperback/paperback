@@ -2236,6 +2236,11 @@ return {
           -- TODO might want to indicate if an 8 hasn't been scored
           "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)"
         },
+        unlock = {
+          "Beat a Blind",
+          "with a {E:1,C:attention}#1#",
+          "containing only {E:1,C:attention}8s",
+        },
       },
       j_paperback_grand_strategy = {
         name = "Grand Strategy",
@@ -2582,6 +2587,10 @@ return {
           "RETRIGGER {C:attention}ALL{} CARDS IN {C:attention}FIRST HAND",
           "GIVES {X:mult,C:white}X#1#{} MULT ON SUBSEQUENTLY PLAYED HANDS",
         },
+        unlock = {
+          "Destroy a",
+          "{C:paperback_light_suit,E:1}light suit"
+        }
       },
       j_paperback_photocopy = {
         name = "Photocopy",

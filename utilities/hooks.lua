@@ -49,6 +49,7 @@ function Game.init_game_object(self)
     last_scored_suit = 'Spades',
     hand_contained_crown = false,
     hand_only_scored_aces = true,
+    hand_only_scored_8s = true,
     domino_ranks = {},
     jjjj_count = 0,
     first_contact_count = 0,

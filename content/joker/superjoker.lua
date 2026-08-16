@@ -14,7 +14,7 @@ SMODS.Joker {
   pos = { x = 3, y = 12 },
   atlas = 'jokers_atlas',
   cost = 5,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -22,6 +22,11 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'dowfrin' },
   },
+
+  check_for_unlock = function (self, args)
+    return G.GAME.paperback.destroyed_light_suits >= 1
+  end,
+    
 
   loc_vars = function(self, info_queue, card)
     return {

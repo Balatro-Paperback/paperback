@@ -132,7 +132,6 @@ SMODS.current_mod.calculate = function(self, context)
       if all_hearts then
         check_for_unlock({ type = 'paperback_played_flush_five_hearts' })
       end
-
     end
 
     -- Joker Jacks unlock
@@ -170,6 +169,12 @@ SMODS.current_mod.calculate = function(self, context)
       if not PB_UTIL.is_rank(v, "Ace") then
         G.GAME.paperback.hand_only_scored_aces = false
       end
+
+      -- Jestrica unlock
+      if PB_UTIL.is_rank(v, 8) then
+        G.GAME.paperback.hand_only_scored_8s = false
+      end
+
     end
 
     -- Whitebeard unlock
@@ -269,6 +274,8 @@ SMODS.current_mod.calculate = function(self, context)
   if context.before then
     -- Tropic Birds unlock
     G.GAME.paperback.hand_only_scored_aces = true
+    -- Jestrica unlock
+    G.GAME.paperback.hand_only_scored_8s = true
     -- Keep Reference Card global variable updated
     PB_UTIL.calculate_highest_shared_played(card)
   end
