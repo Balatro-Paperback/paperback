@@ -7,7 +7,7 @@ SMODS.Joker {
   pos = { x = 17, y = 5 },
   atlas = 'jokers_atlas',
   cost = 6,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = false,
   eternal_compat = true,
@@ -26,6 +26,23 @@ SMODS.Joker {
         card.ability.extra.slots == 1 and "" or "s",
       }
     }
+  end,
+
+  check_for_unlock = function(self, args)
+    if args.type == 'modify_jokers' and G.jokers then
+      local common = false
+      local uncommon = false
+      local rare = false
+
+      for _, v in ipairs(G.jokers.cards) do
+        local rarity = v.config.center.rarity
+        if rarity == 1 then common = true end
+        if rarity == 2 then uncommon = true end
+        if rarity == 3 then rare = true end
+      end
+
+      return common and uncommon and rare
+    end
   end,
 
   add_to_deck = function(self, card, from_debuff)

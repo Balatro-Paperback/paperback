@@ -854,6 +854,12 @@ return {
           "{C:attention}+#1#{} Consumable Slot for every",
           "unique Joker {C:attention}rarity{} you have",
           "{C:inactive}(Currently {C:attention}+#2#{C:inactive} Slot#3#){}",
+        },
+        unlock = {
+          "Have a {C:blue,E:1}Common{},",
+          "{C:green,E:1}Uncommon{}, and",
+          "{C:red,E:1}Rare{} Joker at",
+          "the same time"
         }
       },
       j_paperback_better_call_jimbo = {
