@@ -840,6 +840,12 @@ return {
           "{C:mult}+#1#{} Mult for every",
           "{C:paperback_dark_suit}dark suit{} {C:attention}held in hand{}",
           "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult){}",
+        },
+        unlock = {
+          "Play {C:attention,E:1}#1#{} hands",
+          "containing only",
+          "{C:paperback_dark_suit,E:1}dark suits",
+          "in one run"
         }
       },
       j_paperback_tome = {

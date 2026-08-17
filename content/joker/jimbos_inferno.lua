@@ -14,7 +14,7 @@ SMODS.Joker {
   pos = { x = 19, y = 8 },
   atlas = "jokers_atlas",
   cost = 5,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -23,6 +23,14 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'dowfrin' },
   },
+
+  locked_loc_vars = function (self, info_queue, card)
+    return {vars = { 5 }}
+  end,
+
+  check_for_unlock = function (self, args)
+    return G.GAME.paperback.played_dark_suit_hands >= 5
+  end,
 
   loc_vars = function(self, info_queue, card)
     info_queue[#info_queue + 1] = PB_UTIL.suit_tooltip('dark')

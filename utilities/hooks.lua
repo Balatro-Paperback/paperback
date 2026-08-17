@@ -51,6 +51,8 @@ function Game.init_game_object(self)
     hand_contained_crown = false,
     hand_only_scored_aces = true,
     hand_only_scored_8s = true,
+    hand_only_scored_light = true,
+    hand_only_scored_dark = true,
     domino_ranks = {},
     jjjj_count = 0,
     first_contact_count = 0,
@@ -72,6 +74,8 @@ function Game.init_game_object(self)
     played_5_card_hand = false,
     played_flushes = {},
     played_straight_flushes = {},
+    played_dark_suit_hands = 0,
+    played_light_suit_hands = 0,
 
     permabonus_odds = 0,
 

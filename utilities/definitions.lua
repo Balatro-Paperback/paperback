@@ -129,6 +129,8 @@ SMODS.current_mod.calculate = function(self, context)
     G.GAME.paperback.hand_only_scored_aces = true
     -- Jestrica unlock
     G.GAME.paperback.hand_only_scored_8s = true
+    G.GAME.paperback.hand_only_scored_light = true
+    G.GAME.paperback.hand_only_scored_dark = true
     
     -- Keep Reference Card global variable updated
     PB_UTIL.calculate_highest_shared_played(card)
@@ -137,30 +139,30 @@ SMODS.current_mod.calculate = function(self, context)
     local jack_count = 0
     local number_count = 0
     for _, v in ipairs(context.scoring_hand) do
+      local id = v:get_id()
       -- handle permabonus odds
       G.GAME.paperback.permabonus_odds = G.GAME.paperback.permabonus_odds + v.ability.perma_paperback_plus_odds
       -- counting face cards
       if v:is_face() then
         G.GAME.paperback.round.scored_face_cards = G.GAME.paperback.round.scored_face_cards + 1
       end
-      -- Rosary Beads unlock
-      if next(context.poker_hands['Flush Five']) then
-        if not (v:is_suit('Hearts') or SMODS.has_any_suit(v)) then
-          all_hearts = false
-        end
+      if not PB_UTIL.is_suit(v, 'dark', false, true) then
+        G.GAME.paperback.hand_only_scored_dark = false
+      end
+      if not PB_UTIL.is_suit(v, 'light', false, true) then
+        G.GAME.paperback.hand_only_scored_light = false
+      end
+      -- Rosary Beads, Technology unlock
+      if not (v:is_suit('Hearts') or SMODS.has_any_suit(v)) then
+        all_hearts = false
       end
       -- Joker Jacks unlock
-      if next(context.poker_hands['Three of a Kind']) then
-        if PB_UTIL.is_rank(v, "Jack") then
-          jack_count = jack_count + 1
-        end
+      if PB_UTIL.is_rank(v, "Jack") then
+        jack_count = jack_count + 1
       end
       -- Spirit Box unlock
-      if not next(context.poker_hands['Straight']) then
-        local id = v:get_id()
-        if (2 <= id and id <= 10) then
-          number_count = number_count + 1
-        end
+      if (2 <= id and id <= 10) then
+        number_count = number_count + 1
       end
       -- Penumbra Phantasm unlock
       if PB_UTIL.is_rank(v, "Jack") and v:is_suit('Hearts') then
@@ -178,31 +180,24 @@ SMODS.current_mod.calculate = function(self, context)
       if not PB_UTIL.is_rank(v, 8) then
         G.GAME.paperback.hand_only_scored_8s = false
       end
-      -- checks if played hand contains a flush for the suit drink's unlock
-      if next(context.poker_hands['Flush']) and not SMODS.has_any_suit(v) then
-        for suit, _ in pairs(SMODS.Suits) do
-          if v:is_suit(suit) then
-            G.GAME.paperback.played_flushes[suit] = (G.GAME.paperback.played_flushes[suit] and G.GAME.paperback.played_flushes[suit] or 0) + 1
-            check_for_unlock({type = 'paperback_suit_flushes'})
-            if next(context.poker_hands['Straight']) then
-              G.GAME.paperback.played_straight_flushes[suit] = (G.GAME.paperback.played_straight_flushes[suit] and G.GAME.paperback.played_straight_flushes[suit] or 0) + 1
-              check_for_unlock({type = 'paperback_suit_straight_flushes'})
-            end
-          end
-          break
-        end
-      end
     end
-    -- Rosary Beads unlock
-    if all_hearts then
+
+    if G.GAME.paperback.hand_only_scored_dark then
+      G.GAME.paperback.played_dark_suit_hands = G.GAME.paperback.played_dark_suit_hands + 1
+    end
+    if G.GAME.paperback.hand_only_scored_light then
+      G.GAME.paperback.played_light_suit_hands = G.GAME.paperback.played_light_suit_hands + 1
+    end
+    -- Rosary Beads, Technology unlock
+    if all_hearts and next(context.poker_hands['Flush Five']) then
       check_for_unlock({ type = 'paperback_played_flush_five_hearts' })
     end
     -- Joker Jacks unlock
-    if jack_count >= 3 then
+    if jack_count >= 3 and next(context.poker_hands['Three of a Kind']) then
       check_for_unlock({ type = 'paperback_played_three_jacks' })
     end
     -- Spirit Box unlock
-    if number_count >= 5 then
+    if number_count >= 5 and not next(context.poker_hands['Straight']) then
       check_for_unlock({ type = 'paperback_played_five_numbers' })
     end
     -- Penumbra Phantasm unlock
@@ -212,6 +207,26 @@ SMODS.current_mod.calculate = function(self, context)
     -- Red Key unlock
     if G.GAME.paperback.heart_kings_scored >= 5 then
       check_for_unlock({ type = 'paperback_played_five_heart_kings' })
+    end
+
+    -- checks if played hand contains a flush for the suit drink's unlock
+    if next(context.poker_hands['Flush']) then
+      for _, card in ipairs(context.scoring_hand) do
+        if not SMODS.has_any_suit(card) then
+          for suit, count in pairs(SMODS.Suits) do
+            if card:is_suit(suit) then
+              G.GAME.paperback.played_flushes[suit] = (G.GAME.paperback.played_flushes[suit] and G.GAME.paperback.played_flushes[suit] or 0) + 1
+              check_for_unlock({type = 'paperback_suit_flushes'})
+              if next(context.poker_hands['Straight']) then
+                G.GAME.paperback.played_straight_flushes[suit] = (G.GAME.paperback.played_straight_flushes[suit] and G.GAME.paperback.played_straight_flushes[suit] or 0) + 1
+                check_for_unlock({type = 'paperback_suit_straight_flushes'})
+              end
+              break
+            end
+          end
+          break
+        end
+      end
     end
     
     for _, v in ipairs(context.full_hand) do
