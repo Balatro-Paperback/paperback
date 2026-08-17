@@ -63,21 +63,26 @@ SMODS.current_mod.calculate = function(self, context)
     check_for_unlock({ type = 'paperback_removed_playing_cards' })
   end
 
-  if context.end_of_round and context.game_over == false and context.main_eval then
-    if context.beat_boss and not G.GAME.paperback.discarded_this_ante then
-      check_for_unlock({ type = 'paperback_no_ante_discard' })
-    end
-    G.GAME.paperback.discarded_this_ante = false
+  if context.end_of_round then
+    if context.game_over == false then
+      if context.beat_boss and not G.GAME.paperback.discarded_this_ante then
+        check_for_unlock({ type = 'paperback_no_ante_discard' })
+      end
+      G.GAME.paperback.discarded_this_ante = false
 
-    if G.GAME.current_round.discards_left == G.GAME.round_resets.discards then
-      G.GAME.paperback.consecutive_rounds_played_without_discards = G.GAME.paperback.consecutive_rounds_played_without_discards + 1
-      if G.GAME.paperback.consecutive_rounds_played_without_discards >= 5 then
-        check_for_unlock({ type = 'paperback_five_rounds_no_discards' })
+      if G.GAME.current_round.discards_left == G.GAME.round_resets.discards then
+        G.GAME.paperback.consecutive_rounds_played_without_discards = G.GAME.paperback.consecutive_rounds_played_without_discards + 1
+        if G.GAME.paperback.consecutive_rounds_played_without_discards >= 5 then
+          check_for_unlock({ type = 'paperback_five_rounds_no_discards' })
+        end
+      end
+
+      if not G.GAME.modifiers.no_interest and not next(SMODS.find_card('j_paperback_better_call_jimbo', false)) then
+        if G.GAME.interest_amount*math.min(math.floor(G.GAME.dollars/5), G.GAME.interest_cap/5) >= 20 then check_for_unlock({ type = 'paperback_angel_investor_interest' }) end
       end
     end
-
-    if not G.GAME.modifiers.no_interest and not next(SMODS.find_card('j_paperback_better_call_jimbo', false)) then
-      if G.GAME.interest_amount*math.min(math.floor(G.GAME.dollars/5), G.GAME.interest_cap/5) >= 20 then check_for_unlock({ type = 'paperback_angel_investor_interest' }) end
+    if context.game_over and G.GAME.blind.boss and G.GAME.blind.config.blind.boss.showdown then
+      check_for_unlock({ type = 'paperback_lose_to_showdown' })
     end
   end
   
@@ -120,103 +125,104 @@ SMODS.current_mod.calculate = function(self, context)
       check_for_unlock({ type = 'paperback_played_spectrum_five' })
     end
 
-    -- Rosary Beads unlock
-    if next(context.poker_hands['Flush Five']) then
-      local all_hearts = true
-      for _, v in ipairs(context.scoring_hand) do
+    -- Tropic Birds unlock
+    G.GAME.paperback.hand_only_scored_aces = true
+    -- Jestrica unlock
+    G.GAME.paperback.hand_only_scored_8s = true
+    
+    -- Keep Reference Card global variable updated
+    PB_UTIL.calculate_highest_shared_played(card)
+    
+    local all_hearts = true
+    local jack_count = 0
+    local number_count = 0
+    for _, v in ipairs(context.scoring_hand) do
+      -- handle permabonus odds
+      G.GAME.paperback.permabonus_odds = G.GAME.paperback.permabonus_odds + v.ability.perma_paperback_plus_odds
+      -- counting face cards
+      if v:is_face() then
+        G.GAME.paperback.round.scored_face_cards = G.GAME.paperback.round.scored_face_cards + 1
+      end
+      -- Rosary Beads unlock
+      if next(context.poker_hands['Flush Five']) then
         if not (v:is_suit('Hearts') or SMODS.has_any_suit(v)) then
           all_hearts = false
-          break
         end
       end
-      if all_hearts then
-        check_for_unlock({ type = 'paperback_played_flush_five_hearts' })
-      end
-    end
-
-    -- Joker Jacks unlock
-    if next(context.poker_hands['Three of a Kind']) then
-      local jack_count = 0
-      for _, v in ipairs(context.scoring_hand) do
+      -- Joker Jacks unlock
+      if next(context.poker_hands['Three of a Kind']) then
         if PB_UTIL.is_rank(v, "Jack") then
           jack_count = jack_count + 1
         end
-        if jack_count >= 3 then
-          check_for_unlock({ type = 'paperback_played_three_jacks' })
-          break
-        end
       end
-    end
-
-    -- Spirit Box unlock
-    if not next(context.poker_hands['Straight']) then
-      local number_count = 0
-      for _, v in ipairs(context.scoring_hand) do
+      -- Spirit Box unlock
+      if not next(context.poker_hands['Straight']) then
         local id = v:get_id()
         if (2 <= id and id <= 10) then
           number_count = number_count + 1
         end
-        if number_count >= 5 then
-          check_for_unlock({ type = 'paperback_played_five_numbers' })
-          break
-        end
       end
-    end
-
-    for _, v in ipairs(context.scoring_hand) do
       -- Penumbra Phantasm unlock
       if PB_UTIL.is_rank(v, "Jack") and v:is_suit('Hearts') then
         G.GAME.paperback.heart_jacks_scored = G.GAME.paperback.heart_jacks_scored + 1
-      end
-      if G.GAME.paperback.heart_jacks_scored >= 7 then
-        check_for_unlock({ type = 'paperback_played_seven_heart_jacks' })
-        break
       end
       -- Red Key unlock
       if PB_UTIL.is_rank(v, "King") and v:is_suit('Hearts') then
         G.GAME.paperback.heart_kings_scored = G.GAME.paperback.heart_kings_scored + 1
       end
-      if G.GAME.paperback.heart_kings_scored >= 5 then
-        check_for_unlock({ type = 'paperback_played_five_heart_kings' })
-        break
-      end
       -- Tropic Birds unlock
       if not PB_UTIL.is_rank(v, "Ace") then
         G.GAME.paperback.hand_only_scored_aces = false
       end
-
       -- Jestrica unlock
       if not PB_UTIL.is_rank(v, 8) then
         G.GAME.paperback.hand_only_scored_8s = false
       end
-    end
-
-    -- Whitebeard unlock
-    for _, v in ipairs(context.full_hand) do
-      if not PB_UTIL.is_rank(v, "Ace") and not PB_UTIL.is_rank(v, "King") then
-        G.GAME.paperback.round.played_only_ace_or_king = false
-        break
-      end
-    end
-
-    -- checks if played hand contains a flush for the suit drink's unlock
-    if next(context.poker_hands['Flush']) then
-      G.GAME.paperback.played_flushes = G.GAME.paperback.played_flushes or {}
-      for _, card in ipairs(context.scoring_hand) do
-        if not SMODS.has_any_suit(card) then
-          for suit, count in pairs(SMODS.Suits) do
-            if card:is_suit(suit) then
-              G.GAME.paperback.played_flushes[suit] = (G.GAME.paperback.played_flushes[suit] and G.GAME.paperback.played_flushes[suit] or 0) + 1
-              check_for_unlock({type = 'paperback_suit_flushes'})
-              if next(context.poker_hands['Straight']) then
-                G.GAME.paperback.played_straight_flushes[suit] = (G.GAME.paperback.played_straight_flushes[suit] and G.GAME.paperback.played_straight_flushes[suit] or 0) + 1
-                check_for_unlock({type = 'paperback_suit_straight_flushes'})
-              end
-              break
+      -- checks if played hand contains a flush for the suit drink's unlock
+      if next(context.poker_hands['Flush']) and not SMODS.has_any_suit(v) then
+        for suit, _ in pairs(SMODS.Suits) do
+          if v:is_suit(suit) then
+            G.GAME.paperback.played_flushes[suit] = (G.GAME.paperback.played_flushes[suit] and G.GAME.paperback.played_flushes[suit] or 0) + 1
+            check_for_unlock({type = 'paperback_suit_flushes'})
+            if next(context.poker_hands['Straight']) then
+              G.GAME.paperback.played_straight_flushes[suit] = (G.GAME.paperback.played_straight_flushes[suit] and G.GAME.paperback.played_straight_flushes[suit] or 0) + 1
+              check_for_unlock({type = 'paperback_suit_straight_flushes'})
             end
           end
           break
         end
+      end
+    end
+    -- Rosary Beads unlock
+    if all_hearts then
+      check_for_unlock({ type = 'paperback_played_flush_five_hearts' })
+    end
+    -- Joker Jacks unlock
+    if jack_count >= 3 then
+      check_for_unlock({ type = 'paperback_played_three_jacks' })
+    end
+    -- Spirit Box unlock
+    if number_count >= 5 then
+      check_for_unlock({ type = 'paperback_played_five_numbers' })
+    end
+    -- Penumbra Phantasm unlock
+    if G.GAME.paperback.heart_jacks_scored >= 7 then
+      check_for_unlock({ type = 'paperback_played_seven_heart_jacks' })
+    end
+    -- Red Key unlock
+    if G.GAME.paperback.heart_kings_scored >= 5 then
+      check_for_unlock({ type = 'paperback_played_five_heart_kings' })
+    end
+    
+    for _, v in ipairs(context.full_hand) do
+      if not v.paperback_num_times_played then
+        v.paperback_num_times_played = 1
+      else
+        v.paperback_num_times_played = v.paperback_num_times_played + 1
+      end
+      -- Whitebeard unlock
+      if not PB_UTIL.is_rank(v, "Ace") and not PB_UTIL.is_rank(v, "King") then
+        G.GAME.paperback.round.played_only_ace_or_king = false
       end
     end
   end
@@ -284,33 +290,7 @@ SMODS.current_mod.calculate = function(self, context)
   if context.paperback and context.paperback.level_up then
     PB_UTIL.update_solar_system(card)
   end
-  
-  if context.before then
-    -- Tropic Birds unlock
-    G.GAME.paperback.hand_only_scored_aces = true
-    -- Jestrica unlock
-    G.GAME.paperback.hand_only_scored_8s = true
-    -- Keep Reference Card global variable updated
-    PB_UTIL.calculate_highest_shared_played(card)
-  end
 
-  if context.before then
-    for i, v in ipairs(context.scoring_hand) do
-      -- handle permabonus odds
-      G.GAME.paperback.permabonus_odds = G.GAME.paperback.permabonus_odds + v.ability.perma_paperback_plus_odds
-      -- counting face cards
-      if v:is_face() then
-        G.GAME.paperback.round.scored_face_cards = G.GAME.paperback.round.scored_face_cards + 1
-      end
-    end
-    for i, v in ipairs(context.full_hand) do
-      if not v.paperback_num_times_played then
-        v.paperback_num_times_played = 1
-      else
-        v.paperback_num_times_played = v.paperback_num_times_played + 1
-      end
-    end
-  end
   if context.mod_probability then
     local h_odds = 0
     for i, v in ipairs(G.hand.cards) do
@@ -364,10 +344,6 @@ SMODS.current_mod.calculate = function(self, context)
     if hand_chips >= 1000 then
       check_for_unlock({ type = 'paperback_hand_scored_1000_chips' })
     end
-  end
-
-  if context.end_of_round and context.game_over and G.GAME.blind.boss and G.GAME.blind.config.blind.boss.showdown then
-      check_for_unlock({ type = 'paperback_lose_to_showdown' })
   end
 end
 

@@ -13,6 +13,15 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'thermo' }
   },
+  unlocked = false,
+
+  check_for_unlock = function (self, args)
+    for _, v in ipairs(G.playing_cards or {}) do
+      if PB_UTIL.is_rank(v, "Jack") and SMODS.has_enhancement(v, 'm_mult') then
+        return true
+      end
+    end
+  end,
 
   calculate = function(self, card, context)
     if context.remove_playing_cards and not G.GAME.paperback.jester_destroying_cards then

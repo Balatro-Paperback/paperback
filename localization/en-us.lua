@@ -1503,6 +1503,11 @@ return {
           "{C:attention}Enhanced{} cards",
           "have a {C:green}#1# in #2#{}",
           "chance to retrigger"
+        },
+        unlock = {
+          "Play a hand that",
+          "contains {C:attention,E:1}#1#{}",
+          "{C:attention,E:1}Lucky cards"
         }
       },
       j_paperback_jimbocards = {
@@ -3261,7 +3266,11 @@ return {
         text = {
           "Any time a card is {C:attention}destroyed",
           "destroy a {C:attention}random{} card in deck"
-        }
+        },
+        unlock = {
+          "Have a",
+          "{C:attention,E:1}Mult Jack{}",
+        },
       },
       j_paperback_journal = {
         name = "Journal",
