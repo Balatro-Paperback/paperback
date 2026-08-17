@@ -41,7 +41,7 @@ SMODS.Joker {
   
   check_for_unlock = function(self, args)
     if args.type == 'win_no_hand' then
-      if not G.GAME.paperback.destroyed_card_this_run then
+      if not (G.GAME.paperback.destroyed_cards >= 1) then
         return true
       end
     end

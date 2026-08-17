@@ -3169,7 +3169,12 @@ return {
           "{C:attention}Resets{} when a card is",
           "{C:attention}added{} or {C:attention}removed{} from deck",
           "{C:inactive}(Currently {X:mult,C:white} X#2# {C:inactive} Mult)"
-        }
+        },
+        unlock = {
+          "Win a run without",
+          "{E:1,C:attention}adding{} or {E:1,C:attention}destroying",
+          "a playing card",
+        },
       },
       j_paperback_keycard = {
         name = "Keycard",

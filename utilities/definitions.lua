@@ -12,7 +12,6 @@ SMODS.current_mod.optional_features = {
 SMODS.current_mod.calculate = function(self, context)
   -- Count the amount of removed playing cards
   if context.remove_playing_cards then
-    G.GAME.paperback.destroyed_card_this_run = true
     for _, v in ipairs(context.removed or {}) do
       G.GAME.paperback.destroyed_cards = G.GAME.paperback.destroyed_cards + 1
       G.GAME.paperback.round.destroyed_cards_this_round = G.GAME.paperback.round.destroyed_cards_this_round + 1
@@ -359,6 +358,10 @@ SMODS.current_mod.calculate = function(self, context)
     if hand_chips >= 1000 then
       check_for_unlock({ type = 'paperback_hand_scored_1000_chips' })
     end
+  end
+
+  if context.playing_card_added then
+    G.GAME.paperback.cards_added_to_deck = G.GAME.paperback.cards_added_to_deck + #context.cards
   end
 end
 

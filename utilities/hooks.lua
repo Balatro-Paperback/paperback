@@ -35,7 +35,6 @@ function Game.init_game_object(self)
     destroyed_faces = 0,
     destroyed_kings = 0,
     destroyed_jacks = 0,
-    destroyed_card_this_run = false,
     tags_redeemed_this_run = 0,
     last_tarot_energized = false,
     ranks_scored_this_ante = {},
@@ -76,6 +75,7 @@ function Game.init_game_object(self)
     played_straight_flushes = {},
     played_dark_suit_hands = 0,
     played_light_suit_hands = 0,
+    cards_added_to_deck = 0,
 
     permabonus_odds = 0,
 
