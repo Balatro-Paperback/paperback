@@ -7,7 +7,7 @@ SMODS.Joker {
   pos = { x = 12, y = 6 },
   atlas = 'jokers_atlas',
   cost = 5,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = false,
   eternal_compat = true,
@@ -17,6 +17,14 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'dowfrin' }
   },
+
+  locked_loc_vars = function (self, info_queue, card)
+    return { vars = { 10 } }
+  end,
+
+  check_for_unlock = function (self, args)
+    return args.type == 'paperback_bought_packs'
+  end,
 
   loc_vars = function(self, info_queue, card)
     return { vars = { card.ability.extra.pack_size } }

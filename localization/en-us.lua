@@ -186,6 +186,11 @@ return {
           "{V:1}#1#{} and {V:2}#2#{} {C:attention}held",
           "{C:attention}in hand{} have a {C:green}#3# in #4#",
           "chance to earn {C:money}$#5#",
+        },
+        unlock = {
+          "Play a {C:attention,E:1}Full House",
+          "containing a scoring",
+          "{C:paperback_stars,E:1}Star{} and {C:paperback_crowns,E:1}Crown"
         }
       },
       j_paperback_golden_egg = {
@@ -1558,11 +1563,20 @@ return {
           "is {V:1}#1#{}, destroy a random",
           "card {C:attention}held in hand",
         },
+        unlock = {
+          "Lose during",
+          "{C:attention,E:1}Ante #1#"
+        }
       },
       j_paperback_protocol = {
         name = "Protocol",
         text = {
           "{C:attention}+#1#{} Booster Pack size"
+        },
+        unlock = {
+          "Open {C:attention,E:1}#1#",
+          "booster packs",
+          "in one run"
         }
       },
       j_paperback_cream_liqueur = {
@@ -3086,8 +3100,8 @@ return {
           "when scored",
         },
         unlock = {
-          "Play a hand of",
-          "{C:attention,E:1}#1# Steel{} cards",
+          "Have no {C:clubs,E:1}Clubs{}",
+          "in your deck"
         }
       },
       j_paperback_satellite_array = {

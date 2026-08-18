@@ -18,7 +18,7 @@ SMODS.Joker {
   pos = { x = 13, y = 6 },
   atlas = "jokers_atlas",
   cost = 5,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -34,6 +34,13 @@ SMODS.Joker {
   in_pool = function(self, args)
     return PB_UTIL.has_suit_in_deck('paperback_Crowns', true)
         or PB_UTIL.has_suit_in_deck('paperback_Stars', true)
+  end,
+
+  check_for_unlock = function (self, args)
+    return args.type == 'paperback_played_star_crown_house'
+  end,
+  locked_loc_vars = function(self, info_queue, card)
+    return { vars = { localize('Full House', 'poker_hands') } }
   end,
 
   loc_vars = function(self, info_queue, card)

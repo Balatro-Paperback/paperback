@@ -11,10 +11,12 @@ position = "after"
 match_indent = true
 payload = '''
   G.GAME.paperback.hand_contained_crown = false
+  G.GAME.paperback.hand_contained_star = false
   for k, v in ipairs(final_scoring_hand) do
     if not SMODS.has_no_suit(v) then
       G.GAME.paperback.last_scored_suit = v.base.suit
       G.GAME.paperback.hand_contained_crown = G.GAME.paperback.hand_contained_crown or SMODS.has_any_suit(v) or (v.base.suit == "paperback_Crowns")
+      G.GAME.paperback.hand_contained_star = G.GAME.paperback.hand_contained_star or SMODS.has_any_suit(v) or (v.base.suit == "paperback_Stars")
     end
   end
 '''

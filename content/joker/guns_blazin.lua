@@ -34,18 +34,14 @@ SMODS.Joker { -- Guns Blazin'
   },
 
   check_for_unlock = function(self, args)
-    if args.type == 'hand_contents' then
-      local tally = 0
-      for j = 1, #args.cards do
-        if SMODS.has_enhancement(args.cards[j], 'm_steel') then
-          tally = tally + 1
-          if tally >= 5 then
-            return true
-          end
+    if G.GAME.round >= 1 then
+      for _, v in ipairs(G.playing_cards or {}) do
+        if v:is_suit('Clubs', true) then 
+          return false
         end
       end
+      return true
     end
-    return false
   end,
 
   calculate = function(self, card, context)

@@ -80,8 +80,13 @@ SMODS.current_mod.calculate = function(self, context)
         if G.GAME.interest_amount*math.min(math.floor(G.GAME.dollars/5), G.GAME.interest_cap/5) >= 20 then check_for_unlock({ type = 'paperback_angel_investor_interest' }) end
       end
     end
-    if context.game_over and G.GAME.blind.boss and G.GAME.blind.config.blind.boss.showdown then
-      check_for_unlock({ type = 'paperback_lose_to_showdown' })
+    if context.game_over then 
+      if G.GAME.blind.boss and G.GAME.blind.config.blind.boss.showdown then
+        check_for_unlock({ type = 'paperback_lose_to_showdown' })
+      end
+      if G.GAME.round_resets.ante == 1 then
+        check_for_unlock({ type = 'paperback_lose_on_ante_1' })
+      end
     end
   end
   
@@ -251,11 +256,18 @@ SMODS.current_mod.calculate = function(self, context)
     end
   end
 
-  -- backpack unlock
-  if context.open_booster and context.card.config.center.kind == "Buffoon" then
-    G.GAME.paperback.buffoon_packs_bought = G.GAME.paperback.buffoon_packs_bought + 1
-    if G.GAME.paperback.buffoon_packs_bought >= 5 then
-      check_for_unlock({type = 'paperback_bought_buffoon_packs'})
+  if context.open_booster then
+    G.GAME.paperback.booster_packs_bought = G.GAME.paperback.booster_packs_bought + 1
+    -- Protocol unlock
+    if G.GAME.paperback.booster_packs_bought >= 10 then
+      check_for_unlock({type = 'paperback_bought_packs'})
+    end
+   -- Backpack unlock
+    if context.card.config.center.kind == "Buffoon" then
+      G.GAME.paperback.buffoon_packs_bought = G.GAME.paperback.buffoon_packs_bought + 1
+      if G.GAME.paperback.buffoon_packs_bought >= 5 then
+        check_for_unlock({type = 'paperback_bought_buffoon_packs'})
+      end
     end
   end
 
@@ -321,6 +333,10 @@ SMODS.current_mod.calculate = function(self, context)
     if SMODS.last_hand_oneshot and G.GAME.current_round.hands_left == 0 then
       check_for_unlock({ type = 'paperback_determination_oneshot' })
     end
+    -- Showdown unlock
+    if G.GAME.paperback.hand_contained_star and G.GAME.paperback.hand_contained_crown and next(context.poker_hands['Full House']) then
+      check_for_unlock({ type = 'paperback_played_star_crown_house' })
+    end
   end
 
   -- add paperclips to shop cards if Illusion is owned
@@ -352,6 +368,7 @@ SMODS.current_mod.calculate = function(self, context)
 
   if context.tag_triggered then
     G.GAME.paperback.tags_redeemed_this_run = G.GAME.paperback.tags_redeemed_this_run + 1
+    -- Keycard unlock
     if context.tag_triggered.key == "tag_investment" then
       check_for_unlock({ type = 'paperback_use_investment_tag' })
     end
