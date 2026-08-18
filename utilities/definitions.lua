@@ -352,6 +352,9 @@ SMODS.current_mod.calculate = function(self, context)
 
   if context.tag_triggered then
     G.GAME.paperback.tags_redeemed_this_run = G.GAME.paperback.tags_redeemed_this_run + 1
+    if context.tag_triggered.key == "tag_investment" then
+      check_for_unlock({ type = 'paperback_use_investment_tag' })
+    end
   end
 
   if context.final_scoring_step then

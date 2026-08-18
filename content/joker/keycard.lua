@@ -18,6 +18,15 @@ SMODS.Joker {
   blueprint_compat = false,
   eternal_compat = false,
   perishable_compat = true,
+  unlocked = false,
+
+  locked_loc_vars = function (self, info_queue, card)
+    return { vars = { localize { type = 'name_text', set = 'Tag', key = 'tag_investment' } } }
+  end,
+
+  check_for_unlock = function (self, args)
+    return args.type == "paperback_use_investment_tag"
+  end,
 
   loc_vars = function(self, info_queue, card)
     return {

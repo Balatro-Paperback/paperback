@@ -3187,6 +3187,10 @@ return {
           "After defeating a {C:attention}Boss Blind",
           "this Joker {C:red,E:1}self-destructs{}",
           "and gives {C:money}$#1#{} after {C:attention}cashing out{}"
+        },
+        unlock = {
+          "Use a",
+          "{C:attention,E:1}#1#",
         }
       },
       j_paperback_mind_electric = {
