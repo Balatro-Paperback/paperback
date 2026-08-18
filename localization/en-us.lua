@@ -2184,6 +2184,11 @@ return {
           "Gains {C:money}$#1#{} of {C:attention}sell value{} if a",
           "played {C:attention}#2#{} is {C:attention}scored",
         },
+        unlock = {
+          "Score a {C:attention,E:1}Wrapped",
+          "and {C:attention,E:1}Lucky Card",
+          "in the same hand"
+        }
       },
       j_paperback_calling_card = {
         name = "Calling Card",

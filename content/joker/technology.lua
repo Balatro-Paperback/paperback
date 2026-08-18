@@ -30,7 +30,7 @@ SMODS.Joker {
       local tally = 0
       for i = 1, #args.cards do
         if SMODS.has_enhancement(args.cards[i], "m_mult") then
-            tally = tally + 1
+          tally = tally + 1
         end
       end
       return tally >= 4

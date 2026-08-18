@@ -14,7 +14,7 @@ SMODS.Joker {
   pos = { x = 21, y = 6 },
   atlas = "jokers_atlas",
   cost = 4,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -28,6 +28,21 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'dowfrin' },
   },
+
+  check_for_unlock = function(self, args)
+    if args.type == 'hand_contents' then
+      local wrapped = false
+      local lucky = false
+      for i = 1, #args.cards do
+        if SMODS.has_enhancement(args.cards[i], "m_paperback_wrapped") then
+          wrapped = true
+        elseif SMODS.has_enhancement(args.cards[i], "m_lucky") then
+          lucky = true
+        end
+      end
+      return wrapped and lucky
+    end
+  end,
 
   loc_vars = function(self, info_queue, card)
     info_queue[#info_queue + 1] = G.P_CENTERS[card.ability.extra.enhancement]
