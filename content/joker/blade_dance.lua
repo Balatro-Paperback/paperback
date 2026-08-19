@@ -20,6 +20,27 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'srockw' }
   },
+  unlocked = false,
+
+  check_for_unlock = function(self, args)
+    if args.type == 'hand_contents' then
+      local tally = 0
+      for i = 1, #args.cards do
+        if SMODS.has_enhancement(args.cards[i], "m_steel") then
+          tally = tally + 1
+        end
+      end
+      return tally >= 3
+    end
+  end,
+
+  locked_loc_vars = function (self, info_queue, card)
+    return {
+      vars = {
+        3
+      }
+    }
+  end,
 
   loc_vars = function(self, info_queue, card)
     info_queue[#info_queue + 1] = G.P_CENTERS[card.ability.extra.enhancement]

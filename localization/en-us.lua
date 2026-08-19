@@ -224,6 +224,11 @@ return {
           "When {C:attention}Blind{} is selected,",
           "add {C:attention}#1#{} random {C:paperback_temporary}temporary",
           "{C:attention}#2#s{} to your hand"
+        },
+        unlock = {
+          "Play a hand that",
+          "contains {C:attention,E:1}#1#{}",
+          "{C:attention,E:1}Steel cards"
         }
       },
       j_paperback_claw = {
