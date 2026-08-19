@@ -782,7 +782,11 @@ return {
           "random {C:blue}Common{}, {C:green}Uncommon",
           "and {C:red}Rare{} Temporary {C:dark_edition}Negative",
           "{C:attention}Jokers{} with {C:money}$#1#{} sell value"
-        }
+        },
+        unlock = {
+          "Have at least {E:1,C:attention}#1#",
+          "{C:dark_edition,E:1}Negative{} Jokers",
+        },
       },
       j_paperback_manilla_folder = {
         name = "Manilla Folder",

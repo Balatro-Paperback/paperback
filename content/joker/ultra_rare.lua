@@ -25,10 +25,24 @@ SMODS.Joker {
   blueprint_compat = true,
   eternal_compat = true,
   perishable_compat = true,
-
+  unlocked = false,
   paperback_credit = {
     coder = { 'srockw' }
   },
+
+  locked_loc_vars = function(self, info_queue, card)
+    return { vars = { 3 } }
+  end,
+  check_for_unlock = function(self, args)
+    if args.type == 'modify_jokers' and G.jokers then
+      local count = 0
+
+      for i, v in ipairs(G.jokers.cards) do
+        if v.edition and v.edition.key == 'e_negative' then count = count + 1 end
+      end
+      return count >= 3
+    end
+  end,
 
   loc_vars = function(self, info_queue, card)
     info_queue[#info_queue + 1] = G.P_CENTERS.e_negative
