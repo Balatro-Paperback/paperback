@@ -211,6 +211,11 @@ return {
         text = {
           "If a {C:attention}discard{} has only {C:attention}#1#{} card,",
           "draw {C:attention}#2#{} additional cards"
+        },
+        unlock = {
+          "Defeat {C:attention,E:1}The Serpent",
+          "Boss Blind without",
+          "{C:attention,E:1}disabling{} it"
         }
       },
       j_paperback_blade_dance = {

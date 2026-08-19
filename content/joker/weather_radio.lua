@@ -144,7 +144,7 @@ SMODS.Joker {
 
 local disable_ref = Blind.disable
 function Blind:disable()
-  local ret = disable_ref
+  local ret = disable_ref(self)
   G.GAME.paperback.num_blinds_disabled = G.GAME.paperback.num_blinds_disabled + 1
   return ret
 end
