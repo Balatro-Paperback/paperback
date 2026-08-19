@@ -16,7 +16,7 @@ SMODS.Joker {
   pos = { x = 23, y = 6 },
   atlas = "jokers_atlas",
   cost = 3,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -37,6 +37,13 @@ SMODS.Joker {
         card.ability.extra.retriggers
       }
     }
+  end,
+
+  locked_loc_vars = function(self, info_queue, card)
+    return { vars = { localize('Two Pair', 'poker_hands'), 2 } }
+  end,
+  check_for_unlock = function(self, args)
+    return args.type == 'paperback_two_pair_light_dark'
   end,
 
   calculate = function(self, card, context)

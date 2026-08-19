@@ -846,6 +846,11 @@ return {
           "{C:paperback_dark_suit}dark{} and {C:paperback_light_suit}light suits{},",
           "retrigger the first of each {C:attention}#1#{} time"
         },
+        unlock = {
+          "Play a {C:attention,E:1}#1#",
+          "containing {C:attention,E:1}#2#{C:paperback_light_suit,E:1} light suits",
+          "and {C:attention,E:1}#2#{C:paperback_dark_suit,E:1} dark suits"
+        }
       },
       j_paperback_insurance_policy = {
         name = "Insurance Policy",

@@ -149,6 +149,8 @@ SMODS.current_mod.calculate = function(self, context)
     local all_hearts = true
     local jack_count = 0
     local number_count = 0
+    local light_count = 0
+    local dark_count = 0
     for _, v in ipairs(context.scoring_hand) do
       local id = v:get_id()
       -- handle permabonus odds
@@ -162,6 +164,12 @@ SMODS.current_mod.calculate = function(self, context)
       end
       if not PB_UTIL.is_suit(v, 'light', false, true) then
         G.GAME.paperback.hand_only_scored_light = false
+      end
+      if PB_UTIL.is_suit(v, 'dark', false, true) then
+        dark_count = dark_count + 1
+      end
+      if PB_UTIL.is_suit(v, 'light', false, true) then
+        light_count = light_count + 1
       end
       -- Rosary Beads, Technology unlock
       if not (v:is_suit('Hearts') or SMODS.has_any_suit(v)) then
@@ -218,6 +226,10 @@ SMODS.current_mod.calculate = function(self, context)
     -- Red Key unlock
     if G.GAME.paperback.heart_kings_scored >= 5 then
       check_for_unlock({ type = 'paperback_played_five_heart_kings' })
+    end
+    -- & unlock
+    if light_count >= 2 and dark_count >= 2 and next(context.poker_hands['Two Pair']) then
+      check_for_unlock({ type = 'paperback_two_pair_light_dark' })
     end
 
     -- checks if played hand contains a flush for the suit drink's unlock
