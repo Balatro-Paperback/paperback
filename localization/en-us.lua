@@ -3357,6 +3357,10 @@ return {
           "Scored {C:attention}#1#{}s and {C:attention}#2#{}s give {C:mult}+#3#{} Mult",
           "Increased by {C:mult}+#4#{} Mult",
           "For every {C:attention}#5#{C:inactive} [#6#]{} cards {C:attention}destroyed"
+        },
+        unlock = {
+          "Destroy {C:attention,E:1}#1#{} cards",
+          "during a run"
         }
       },
       j_paperback_yacht_dice = {

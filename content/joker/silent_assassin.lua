@@ -26,6 +26,22 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'thermo' }
   },
+  unlocked = false,
+
+  check_for_unlock = function(self, args)
+    if args.type == 'paperback_removed_playing_cards' then
+      if G.GAME.paperback.destroyed_cards >= 47 then
+        return true
+      end
+    end
+  end,
+
+  locked_loc_vars = function(self, info_queue, card)
+    return {
+      vars = { 47 }
+    }
+  end,
+
 
   loc_vars = function(self, info_queue, card)
     return {
