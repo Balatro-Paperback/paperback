@@ -411,6 +411,11 @@ SMODS.current_mod.calculate = function(self, context)
   if context.money_altered then
     G.GAME.paperback.highest_amount_of_money_had = math.max(G.GAME.paperback.highest_amount_of_money_had, (G.GAME.dollars + (G.GAME.dollar_buffer or 0)))
   end
+
+  if context.modify_final_cashout then
+    -- Better Call Jimbo unlock
+    if context.amount >= 25 then check_for_unlock({ type = 'paperback_25_dollar_cashout' }) end
+  end
 end
 
 -- Sleeved cards can't be debuffed

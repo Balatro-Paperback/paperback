@@ -901,7 +901,11 @@ return {
           "every {C:money}$#2#{} owned",
           "Earn no {C:money}Interest{}",
           "{C:inactive}(Currently {X:mult,C:white}X#3#{C:inactive} Mult)"
-        }
+        },
+        unlock = {
+          "Earn {E:1,C:money}$#1#{} in",
+          "one cash out",
+        },
       },
       j_paperback_touch_tone_joker = {
         name = "Touch Tone Joker",
