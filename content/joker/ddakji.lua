@@ -13,13 +13,23 @@ SMODS.Joker {
   pos = { x = 8, y = 6 },
   atlas = 'jokers_atlas',
   cost = 8,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
   paperback_credit = {
     coder = { 'srockw' },
   },
+
+  locked_loc_vars = function(self, info_queue, card)
+    return {
+      vars = { 5 }
+    }
+  end,
+
+  check_for_unlock = function(self, args)
+    return args.type == 'paperback_5_face_down_cards'
+  end,
 
   loc_vars = function(self, info_queue, card)
     local numerator, denominator = PB_UTIL.chance_vars(card)

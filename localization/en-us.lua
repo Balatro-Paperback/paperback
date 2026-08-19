@@ -1076,6 +1076,11 @@ return {
           "{C:attention}face down{} card, create",
           "a random Consumable",
           "{C:inactive}(Must have room)"
+        },
+        unlock = {
+          "Play a hand that",
+          "contains {C:attention,E:1}#1#{}",
+          "{C:attention,E:1}face down{} cards"
         }
       },
       j_paperback_weather_radio = {

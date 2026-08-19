@@ -416,6 +416,15 @@ SMODS.current_mod.calculate = function(self, context)
     -- Better Call Jimbo unlock
     if context.amount >= 25 then check_for_unlock({ type = 'paperback_25_dollar_cashout' }) end
   end
+
+  if context.press_play then
+    -- Ddakji unlock
+    local count = 0
+    for _, v in ipairs(G.hand.highlighted) do
+      if v.facing == 'back' then count = count + 1 end
+    end
+    if count >= 5 then check_for_unlock({ type = 'paperback_5_face_down_cards' }) end
+  end
 end
 
 -- Sleeved cards can't be debuffed
