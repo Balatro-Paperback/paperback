@@ -64,10 +64,12 @@ SMODS.current_mod.calculate = function(self, context)
 
   if context.end_of_round then
     if context.game_over == false then
-      if context.beat_boss and not G.GAME.paperback.discarded_this_ante then
-        check_for_unlock({ type = 'paperback_no_ante_discard' })
+      if context.beat_boss then
+        if G.GAME.paperback.num_discards_this_ante == 0 then
+          check_for_unlock({ type = 'paperback_no_ante_discard' })
+        end
+        G.GAME.paperback.num_discards_this_ante = 0
       end
-      G.GAME.paperback.discarded_this_ante = false
 
       if G.GAME.current_round.discards_left == G.GAME.round_resets.discards then
         G.GAME.paperback.consecutive_rounds_played_without_discards = G.GAME.paperback.consecutive_rounds_played_without_discards + 1
@@ -271,10 +273,15 @@ SMODS.current_mod.calculate = function(self, context)
     end
   end
 
-  -- green clip: lose mult for each discarded clip
   if context.discard then
-    G.GAME.paperback.discarded_this_ante = true
+    if context.other_card == context.full_hand[#context.full_hand] then
+      G.GAME.paperback.num_discards_this_ante = G.GAME.paperback.num_discards_this_ante + 1
+      if G.GAME.paperback.num_discards_this_ante >= 10 then
+        check_for_unlock({type = 'paperback_discarded_10_times'})
+      end
+    end
     G.GAME.paperback.consecutive_rounds_played_without_discards = 0
+    -- green clip: lose mult for each discarded clip
     if PB_UTIL.has_paperclip(context.other_card) and not context.other_card.debuff then
       for _, v in ipairs(G.playing_cards) do
         local clip = PB_UTIL.has_paperclip(v)

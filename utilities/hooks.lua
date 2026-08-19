@@ -70,7 +70,7 @@ function Game.init_game_object(self)
     jokers_owned_this_run = {},
     played_pair_this_run = false,
     only_pairs_this_run = true,
-    discarded_this_ante = false,
+    num_discards_this_ante = 0,
     consecutive_rounds_played_without_discards = 0,
     played_5_card_hand = false,
     played_flushes = {},

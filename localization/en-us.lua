@@ -2794,6 +2794,10 @@ return {
           "{C:attention}+3{} hand size",
           "before {C:attention}first{} hand",
           "of round is played"
+        },
+        unlock = {
+          "Discard {C:red,E:1}#1#{} times",
+          "in one ante",
         }
       },
       j_paperback_shopkeep = {
