@@ -833,6 +833,10 @@ return {
         text = {
           "Retrigger all",
           "{C:blue}Common {C:attention}Jokers"
+        },
+        unlock = {
+          "Have {C:attention,E:1}#1#{} {C:blue,E:1}Common{} Jokers",
+          "at the same time",
         }
       },
       j_paperback_ampersand = {
