@@ -24,6 +24,11 @@ SMODS.Joker {
   eternal_compat = true,
   perishable_compat = false,
   enhancement_gate = "m_mult",
+  unlocked = false,
+
+  check_for_unlock = function (self, args)
+    return args.type == 'paperback_destroyed_mult'
+  end,
 
   loc_vars = function(self, info_queue, card)
     info_queue[#info_queue + 1] = G.P_CENTERS.m_mult

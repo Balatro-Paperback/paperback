@@ -1244,7 +1244,7 @@ return {
         },
         unlock = {
           "Destroy {C:attention,E:1}#1#{} face cards",
-          "in a run"
+          "during a run"
         }
       },
       j_paperback_marble_soda = {
@@ -1258,7 +1258,7 @@ return {
         unlock = {
           "Destroy {C:attention,E:1}#1#{}",
           "{C:attention,E:1}#2#s{}",
-          "in a run"
+          "during a run"
         }
       },
       j_paperback_vacation_juice = {
@@ -2166,7 +2166,7 @@ return {
         },
         unlock = {
           "Destroy {C:attention,E:1}#1#{} cards",
-          "in a run"
+          "during a run"
         }
       },
       j_paperback_autumn_leaves = {
@@ -2370,7 +2370,7 @@ return {
         },
         unlock = {
           "Use {C:attention,E:1}#1#{} different {C:planet,E:1}#2#{}",
-          "cards in a run"
+          "cards during a run"
         }
       },
       j_paperback_reference_card = {
@@ -3105,9 +3105,8 @@ return {
           "to give {X:mult,C:white} X#3# {} Mult"
         },
         unlock = {
-          "Acquire",
-          "{C:attention,E:1}Cavendish",
-          "in a run"
+          "Acquire {C:attention,E:1}Cavendish",
+          "during a run"
         }
       },
       j_paperback_guns_blazin = {
@@ -3231,6 +3230,10 @@ return {
           "Scored {C:mult}#3#s{} are {C:attention}destroyed",
           "And give this Joker {X:mult,C:white}X#1#{} Mult",
           "{C:inactive}(Currently {X:mult,C:white} X#2# {C:inactive} Mult)"
+        },
+        unlock = {
+          "Destroy a",
+          "{C:attention,E:1}Mult card{}"
         }
       },
       j_paperback_stella_octangula = {
@@ -3597,8 +3600,8 @@ return {
           "Retrigger all scored {C:paperback_stars}#1#{}"
         },
         unlock = {
-          "Have {C:attention,E:1}#1# {C:paperback_stars,E:1}Stars{}",
-          "in your deck",
+          "Have {C:attention,E:1}exactly #1#",
+          "{C:paperback_stars,E:1}Stars{} in your deck",
         }
       },
       j_paperback_lone_digger = {

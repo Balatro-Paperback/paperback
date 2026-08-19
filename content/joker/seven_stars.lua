@@ -37,7 +37,7 @@ SMODS.Joker {
           count = count + 1
         end
       end
-      return count >= 7
+      return count == 7
     end
   end,
 
