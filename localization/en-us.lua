@@ -3406,6 +3406,10 @@ return {
           "for each {C:attention}unique{} hand type",
           "played this run",
           "{C:inactive}(Currently {X:mult,C:white} X#2# {C:inactive} Mult)"
+        },
+        unlock = {
+          "Play {C:attention,E:1}#1#{} different",
+          "hands in one run"
         }
       },
       j_paperback_stereoscopic_specs = {

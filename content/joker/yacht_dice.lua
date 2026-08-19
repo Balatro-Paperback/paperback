@@ -21,6 +21,20 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'thermo' }
   },
+  unlocked = false,
+
+  locked_loc_vars = function (self, info_queue, card)
+    return {vars = { 9 }}
+  end,
+
+  check_for_unlock = function (self, args)
+    local hands = PB_UTIL.get_most_played_hands()
+    local count = 0
+    for _, v in pairs(hands) do
+      if v.hand.played >= 1 then count = count + 1 end
+    end
+    return count >= 9
+  end,
 
   loc_vars = function(self, info_queue, card)
     return {
