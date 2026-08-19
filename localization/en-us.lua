@@ -282,6 +282,9 @@ return {
           "{X:mult,C:white}X#1#{} Mult if played",
           "hand contains",
           "a {C:attention}#2#"
+        },
+        unlock = {
+          "Play a {E:1,C:attention,E:1}Spectrum{}"
         }
       },
       j_paperback_lurid_joker = {
@@ -290,6 +293,9 @@ return {
           "{C:chips}+#1#{} Chips if played",
           "hand contains",
           "a {C:attention}#2#"
+        },
+        unlock = {
+          "Play a {E:1,C:attention,E:1}Spectrum{}"
         }
       },
       j_paperback_zealous_joker = {
@@ -298,6 +304,9 @@ return {
           "{C:mult}+#1#{} Mult if played",
           "hand contains",
           "a {C:attention}#2#"
+        },
+        unlock = {
+          "Play a {E:1,C:attention,E:1}Spectrum{}"
         }
       },
       j_paperback_deviled_egg = {
