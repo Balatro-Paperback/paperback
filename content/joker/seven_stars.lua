@@ -23,6 +23,23 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'thermo' }
   },
+  unlocked = false,
+
+  locked_loc_vars = function (self, info_queue, card)
+    return { vars = { 7 }}
+  end,
+
+  check_for_unlock = function (self, args)
+    if G.GAME.round >= 1 then
+      local count = 0
+      for _, v in ipairs(G.playing_cards or {}) do
+        if v:is_suit("paperback_Stars") then 
+          count = count + 1
+        end
+      end
+      return count >= 7
+    end
+  end,
 
   loc_vars = function(self, info_queue, card)
     return {

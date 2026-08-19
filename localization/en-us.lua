@@ -3595,6 +3595,10 @@ return {
         name = "Seven Stars",
         text = {
           "Retrigger all scored {C:paperback_stars}#1#{}"
+        },
+        unlock = {
+          "Have {C:attention,E:1}#1# {C:paperback_stars,E:1}Stars{}",
+          "in your deck",
         }
       },
       j_paperback_lone_digger = {
