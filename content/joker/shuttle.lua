@@ -20,6 +20,22 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'thermo' }
   },
+  unlocked = false,
+
+  locked_loc_vars = function (self, info_queue, card)
+    return { vars = { 9 }}
+  end,
+
+  check_for_unlock = function (self, args)
+    if args.type == 'upgrade_hand' then
+      local hands = G.GAME.hands
+      local count = 0
+      for _, v in pairs(hands) do
+        if v.level >= 2 then count = count + 1 end
+      end
+      return count >= 9
+    end
+  end,
 
   loc_vars = function(self, info_queue, card)
     return {

@@ -3414,6 +3414,10 @@ return {
           "gives {C:money}money{} equal to",
           "{C:attention}double{} the played hand's level",
           "{C:inactive}(Max of {C:money}$#1#{C:inactive})"
+        },
+        unlock = {
+          "Level {C:attention,E:1}#1#{} different",
+          "hands during a run"
         }
       },
       j_paperback_loaded_dice = {
