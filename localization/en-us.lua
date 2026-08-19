@@ -3178,6 +3178,11 @@ return {
           "This Joker gains {C:mult}+#1#{} Mult when",
           "buying a card with {C:money}$#2#{} or less",
           "{C:inactive}(Currently {C:mult}+#3#{C:inactive} Mult)"
+        },
+        unlock = {
+          "Win a run without",
+          "having more than {C:money,E:1}$#1#{}",
+          "during the run",
         }
       },
       j_paperback_a_balatro_movie = {
@@ -3201,6 +3206,11 @@ return {
           "while you have {C:money}$#1#{} or less",
           "{C:attention}Halves{} probabilities otherwise",
           "{C:inactive}(ex: {C:green}1 in 3{C:inactive} -> {C:green}#2# in #3#{C:inactive})"
+        },
+        unlock = {
+          "Win a run without",
+          "having more than {C:money,E:1}$#1#{}",
+          "during the run",
         }
       },
       j_paperback_chocolate_coins = {

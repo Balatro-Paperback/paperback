@@ -78,6 +78,7 @@ function Game.init_game_object(self)
     played_dark_suit_hands = 0,
     played_light_suit_hands = 0,
     cards_added_to_deck = 0,
+    highest_amount_of_money_had = 0,
 
     permabonus_odds = 0,
 

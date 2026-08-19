@@ -407,6 +407,10 @@ SMODS.current_mod.calculate = function(self, context)
   if context.playing_card_added then
     G.GAME.paperback.cards_added_to_deck = G.GAME.paperback.cards_added_to_deck + #context.cards
   end
+
+  if context.money_altered then
+    G.GAME.paperback.highest_amount_of_money_had = math.max(G.GAME.paperback.highest_amount_of_money_had, (G.GAME.dollars + (G.GAME.dollar_buffer or 0)))
+  end
 end
 
 -- Sleeved cards can't be debuffed
