@@ -9,7 +9,7 @@ SMODS.Joker {
   pos = { x = 1, y = 5 },
   atlas = 'jokers_atlas',
   cost = 4,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -18,6 +18,14 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'oppositewolf' },
   },
+
+  check_for_unlock = function (self, args)
+    return G.GAME.tags and #G.GAME.tags >= 4
+  end,
+
+  locked_loc_vars = function (self, info_queue, card)
+    return { vars = { 4 }}
+  end,
 
   calculate = function(self, card, context)
     if context.skip_blind then
