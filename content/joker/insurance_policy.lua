@@ -17,7 +17,7 @@ SMODS.Joker {
   pos = { x = 19, y = 7 },
   atlas = "jokers_atlas",
   cost = 6,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -27,6 +27,16 @@ SMODS.Joker {
     coder = { 'dowfrin' },
   },
 
+  check_for_unlock = function(self, args)
+    if G.GAME.round >= 1 then
+      for _, v in ipairs(G.playing_cards or {}) do
+        if PB_UTIL.is_rank(v, "King") then 
+          return false
+        end
+      end
+      return true
+    end
+  end,
 
   loc_vars = function(self, info_queue, card)
     -- a reference to nothing in particular

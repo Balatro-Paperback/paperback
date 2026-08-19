@@ -859,6 +859,10 @@ return {
           "and {C:mult}-#1#{} Mult for each {C:attention}#4#{}",
           "in your full deck",
           "{C:inactive}(Currently {C:mult}#2#{C:inactive} Mult){}",
+        },
+        unlock = {
+          "Have no {C:attention,E:1}Kings{}",
+          "in your deck"
         }
       },
       j_paperback_jimbos_inferno = {
