@@ -3676,6 +3676,11 @@ return {
           "If {C:attention}scored hand{} has only",
           "one face card, {C:attention}retrigger{} it",
           "for each scored card"
+        },
+        unlock = {
+          "Have both {C:attention,E:1}#1#",
+          "and {C:attention,E:1}#2#",
+          "at the same time"
         }
       },
       j_paperback_sinister_minds = {
