@@ -2808,6 +2808,11 @@ return {
           "If played hand is a single {C:attention}#1#{},",
           "this Joker gains {X:chips,C:white}X#2#{} Chips and destroys it",
           "{C:inactive}(Currently {X:chips,C:white}X#3#{} {C:inactive}Chips)"
+        },
+        unlock = {
+          "Play a {C:attention,E:1}#1#",
+          "containing an",
+          "{C:attention,E:1}Antique card"
         }
       },
       j_paperback_the_wonder_of_you = {

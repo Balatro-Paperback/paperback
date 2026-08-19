@@ -27,6 +27,15 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'dowfrin' },
   },
+  unlocked = false,
+
+  check_for_unlock = function (self, args)
+    return args.type == 'paperback_high_card_antique'
+  end,
+
+  locked_loc_vars = function(self, info_queue, card)
+    return { vars = { localize('High Card', 'poker_hands') } }
+  end,
 
   loc_vars = function(self, info_queue, card)
     info_queue[#info_queue + 1] = G.P_CENTERS[card.ability.extra.enhancement]

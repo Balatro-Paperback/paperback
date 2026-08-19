@@ -199,6 +199,10 @@ SMODS.current_mod.calculate = function(self, context)
       if not PB_UTIL.is_rank(v, 8) then
         G.GAME.paperback.hand_only_scored_8s = false
       end
+      -- Deck of Cards unlock
+      if SMODS.has_enhancement(v, 'm_paperback_antique') and context.scoring_name == 'High Card' then
+        check_for_unlock({ type = 'paperback_high_card_antique' })
+      end
     end
 
     if G.GAME.paperback.hand_only_scored_dark then
@@ -208,11 +212,11 @@ SMODS.current_mod.calculate = function(self, context)
       G.GAME.paperback.played_light_suit_hands = G.GAME.paperback.played_light_suit_hands + 1
     end
     -- Rosary Beads, Technology unlock
-    if all_hearts and next(context.poker_hands['Flush Five']) then
+    if all_hearts and context.scoring_name == 'Flush Five' then
       check_for_unlock({ type = 'paperback_played_flush_five_hearts' })
     end
     -- Joker Jacks unlock
-    if jack_count >= 3 and next(context.poker_hands['Three of a Kind']) then
+    if jack_count >= 3 and context.scoring_name == 'Three of a Kind' then
       check_for_unlock({ type = 'paperback_played_three_jacks' })
     end
     -- Spirit Box unlock
@@ -228,7 +232,7 @@ SMODS.current_mod.calculate = function(self, context)
       check_for_unlock({ type = 'paperback_played_five_heart_kings' })
     end
     -- & unlock
-    if light_count >= 2 and dark_count >= 2 and next(context.poker_hands['Two Pair']) then
+    if light_count >= 2 and dark_count >= 2 and context.scoring_name == 'Two Pair' then
       check_for_unlock({ type = 'paperback_two_pair_light_dark' })
     end
 
