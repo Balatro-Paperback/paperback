@@ -238,6 +238,10 @@ return {
           "{C:mult}+#2#{} more Mult for each",
           "previously scored {C:attention}#1#{} this round",
           "{C:inactive}(Currently {C:mult}+#3#{C:inactive} Mult)"
+        },
+        unlock = {
+          "Play {C:attention,E:1}#1# 3s",
+          "in one round"
         }
       },
       j_paperback_chaplin = {
@@ -3292,7 +3296,7 @@ return {
         unlock = {
           "Score {E:1,C:attention}#1#",
           "{E:1,C:attention}9s{} or {E:1,C:attention}5s",
-          "in {C:attention,E:1}one round",
+          "in one round",
         },
       },
       j_paperback_emf_reader = {

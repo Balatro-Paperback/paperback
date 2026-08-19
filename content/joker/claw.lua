@@ -23,6 +23,15 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'srockw' },
   },
+  unlocked = false,
+
+  locked_loc_vars = function (self, info_queue, card)
+    return { vars = { 5 }}
+  end,
+  
+  check_for_unlock = function (self, args)
+    return G.GAME.paperback.round.ranks_scored and G.GAME.paperback.round.ranks_scored[3] or 0 >= 5
+  end,
 
   loc_vars = function(self, info_queue, card)
     return {
