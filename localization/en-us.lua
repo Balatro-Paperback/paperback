@@ -563,6 +563,11 @@ return {
           "If played hand contains a",
           "{C:attention}Spectrum{}, create {C:attention}#1#{} random {C:attention}Tags",
           "Consumed in {C:attention}#2#{} rounds",
+        },
+        unlock = {
+          "Have {C:attention,E:1}#1#{} or",
+          "more {C:attention,E:1}suits{} in",
+          "your deck"
         }
       },
       j_paperback_blue_star = {

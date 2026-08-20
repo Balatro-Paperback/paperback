@@ -24,7 +24,7 @@ SMODS.Joker {
     requires_custom_suits = true,
     requires_spectrum_or_suit = true
   },
-
+  unlocked = false,
   paperback_credit = {
     coder = { 'srockw' },
   },
@@ -36,6 +36,33 @@ SMODS.Joker {
         card.ability.extra.rounds
       }
     }
+  end,
+
+  locked_loc_vars = function(self, info_queue, card)
+    return {
+      vars = {
+        6
+      }
+    }
+  end,
+  check_for_unlock = function(self, args)
+    if args.type == 'modify_deck' then
+      local suits = {}
+      for _, v in ipairs(G.playing_cards) do
+        if not SMODS.has_no_suit(v) then
+          suits[v.base.suit] = true
+        end
+      end
+
+      local count = 0
+      for _, v in pairs(suits) do
+        count = count + 1
+      end
+
+      if count >= 6 then
+        return true
+      end
+    end
   end,
 
   calculate = function(self, card, context)
