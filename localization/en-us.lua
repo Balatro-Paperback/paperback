@@ -2995,7 +2995,12 @@ return {
         text = {
           "Scored {C:paperback_stars}Stars{} give {X:chips,C:white}X1{} Chips,",
           "{X:chips,C:white}+X#1#{} for each other played {C:paperback_stars}Star"
-        }
+        },
+        unlock = {
+          "Have at least {E:1,C:attention}#1#",
+          "cards with {E:1,C:paperback_stars}#2#",
+          "suit in your deck",
+        },
       },
       j_paperback_pyrite = {
         name = "Pyrite",
@@ -3004,7 +3009,12 @@ return {
           "chance to create a random",
           "{C:tarot}Tarot{} card when scored",
           "{C:inactive}(Must have room)"
-        }
+        },
+        unlock = {
+          "Have at least {E:1,C:attention}#1#",
+          "cards with {E:1,C:paperback_crowns}#2#",
+          "suit in your deck",
+        },
       },
       j_paperback_wheat_field = {
         name = "Wheat Field",

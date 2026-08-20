@@ -17,7 +17,7 @@ SMODS.Joker {
   pos = { x = 2, y = 9 },
   atlas = 'jokers_atlas',
   cost = 7,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -28,6 +28,11 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'srockw' }
   },
+  
+  unlock_condition = { type = 'modify_deck', extra = { count = 20, suit = 'paperback_Crowns' } },
+  locked_loc_vars = function(self, info_queue, card)
+    return { vars = { 20, localize('paperback_Crowns', 'suits_singular') } }
+  end,
 
   loc_vars = function(self, info_queue, card)
     local numerator, denominator = PB_UTIL.chance_vars(card)
