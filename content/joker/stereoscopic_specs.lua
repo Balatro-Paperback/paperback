@@ -19,6 +19,18 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'thermo' }
   },
+  unlocked = false,
+  check_for_unlock = function (self, args)
+    local count = 0
+    for i = 1, #G.GAME.tags do
+      if G.GAME.tags[i].key == "tag_double" then count = count + 1 end
+    end
+    return count >= 5
+  end,
+
+  locked_loc_vars = function (self, info_queue, card)
+    return { vars = { 5 }}
+  end,
   loc_vars = function(self, info_queue, card)
     if card.ability.extra.last_tag then
       return {

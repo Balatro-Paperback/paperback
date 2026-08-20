@@ -26,6 +26,17 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'thermo' }
   },
+  unlocked = false,
+  locked_loc_vars = function (self, info_queue, card)
+    return {
+      vars = {
+        localize { type = 'name_text', set = 'paperback_minor_arcana', key = 'c_paperback_nine_of_swords' }, 5
+      }
+    }
+  end,
+  check_for_unlock = function (self, args)
+    return G.GAME.consumeable_usage.c_paperback_nine_of_swords and G.GAME.consumeable_usage.c_paperback_nine_of_swords.count >= 5
+  end,
 
   in_pool = function(self, args)
     return PB_UTIL.has_ego_gift()

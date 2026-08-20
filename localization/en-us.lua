@@ -3427,6 +3427,10 @@ return {
           "last tag used after",
           "beating a {C:attention}Boss Blind",
           "{C:inactive}(Currently {C:attention}#1#{C:inactive})"
+        },
+        unlock = {
+          "Hold {C:attention,E:1}#1#{} Double Tags",
+          "at the same time",
         }
       },
       j_paperback_yacht = {
@@ -3808,6 +3812,10 @@ return {
           "{C:green}#1# in #2#{} chance to create",
           "a {C:dark_edition}negative{} {C:paperback_minor_arcana}#3#{}",
           "If none exist"
+        },
+        unlock = {
+          "Use {C:paperback_minor_arcana,E:1}#1#",
+          "{C:attention,E:1}#2#{} times in one run",
         }
       },
       j_paperback_man = {
