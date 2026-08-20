@@ -1357,7 +1357,7 @@ return {
           "at start of round"
         },
         unlock = {
-          "{C:attention,E:1}Win{} a run with",
+          "Win a run with",
           "{C:attention,E:1}#1#{} as your",
           "most played hand"
         }
@@ -1371,9 +1371,8 @@ return {
           "{C:inactive}(Currently {X:mult,C:white}X#3#{C:inactive} Mult)"
         },
         unlock = {
-          "Win a run without",
-          "{C:attention,E:1}ever{} having a card",
-          "in your {C:attention,E:1}consumables"
+          "Have {C:attention,E:1}#1#{} or less",
+          "cards in your deck"
         }
       },
       j_paperback_alert = {
@@ -3691,7 +3690,12 @@ return {
           "Increases by {C:attention}#3#{} when",
           "using {C:attention}#4#{} {C:spectral}#5#{} card#6#",
           "{C:inactive}(Currently {C:attention}#8#{C:inactive} #5# card#6# left)"
-        }
+        },
+        unlock = {
+          "Win a run with",
+          "{E:1,C:attention}#1#{} as your",
+          "most played hand",
+        },
       },
       j_paperback_joker_jacks = {
         name = "Joker Jacks",
