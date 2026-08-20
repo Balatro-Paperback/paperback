@@ -1792,6 +1792,12 @@ return {
           "every {C:attention}hand{}, in order:",
           "{C:clubs}Clubs{}, {C:spades}Spades{}, {C:diamonds}Diamonds{}, {C:hearts}Hearts{}, {C:inactive}None{}",
           "{C:inactive}(Currently: {V:1}#2#{C:inactive}){}",
+        },
+        unlock = {
+          "Have a deck consisting of",
+          "only {C:clubs,E:1}Clubs{}, {C:spades,E:1}Spades{},",
+          "{C:diamonds,E:1}Diamonds{}, {C:hearts,E:1}Hearts{},",
+          "and {C:paperback_stars,E:1}Stars{}"
         }
       },
       j_paperback_complete_breakfast = {

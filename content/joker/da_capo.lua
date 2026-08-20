@@ -17,7 +17,7 @@ SMODS.Joker {
   pos = { x = 17, y = 8 },
   atlas = 'jokers_atlas',
   cost = 8,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -26,6 +26,26 @@ SMODS.Joker {
     coder = { 'dowfrin' },
     artist = { 'shizi' }
   },
+
+  check_for_unlock = function(self, args)
+    if G.GAME.round >= 1 then
+      local heart = false
+      local diamond = false
+      local club = false
+      local spade = false
+      local star = false
+      for _, v in ipairs(G.playing_cards or {}) do
+        if SMODS.has_any_suit(v) then return false
+        elseif v:is_suit('Hearts', true) then heart = true 
+        elseif v:is_suit('Diamonds', true) then diamond = true 
+        elseif v:is_suit('Clubs', true) then club = true 
+        elseif v:is_suit('Spades', true) then spade = true 
+        elseif v:is_suit('paperback_Stars', true) then star = true 
+        else return false end
+      end
+      return heart and diamond and club and spade and star
+    end
+  end,
 
   add_to_deck = function(self, card, from_debuff)
     for k, v in ipairs(G.playing_cards) do
