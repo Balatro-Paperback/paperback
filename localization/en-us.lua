@@ -531,6 +531,9 @@ return {
         text = {
           "Scored {C:paperback_light_suit}light suits",
           "become {V:1}#1#"
+        },
+        unlock = {
+          "Find a {C:paperback_crowns,E:1}Crown{} card",
         }
       },
       j_paperback_prism = {
@@ -593,6 +596,9 @@ return {
         text = {
           "Scored {C:paperback_dark_suit}dark suits",
           "become {V:1}#1#"
+        },
+        unlock = {
+          "Find a {C:paperback_stars,E:1}Star{} card",
         }
       },
       j_paperback_high_speed_rail = {
