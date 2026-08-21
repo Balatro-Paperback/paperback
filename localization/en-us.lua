@@ -3078,6 +3078,10 @@ return {
           "for each {C:attention}Clip{} {C:attention}held in hand",
           "at {C:attention}end of round{}",
           "{C:inactive}(Currently {C:chips}+#2#{C:inactive} Chips)"
+        },
+        unlock = {
+          "Apply {C:attention,E:1}#1#{} unique",
+          "{C:attention,E:1}Clips{} in one run"
         }
       },
 

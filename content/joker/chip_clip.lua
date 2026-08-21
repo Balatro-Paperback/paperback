@@ -15,7 +15,7 @@ SMODS.Joker {
   pos = { x = 25, y = 7 },
   atlas = "jokers_atlas",
   cost = 6,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -31,6 +31,14 @@ SMODS.Joker {
     for _, v in ipairs(G.playing_cards or {}) do
       if PB_UTIL.has_paperclip(v) then return true end
     end
+  end,
+
+  check_for_unlock = function (self, args)
+    return PB_UTIL.count_entries(G.GAME.paperback.unique_clips_this_run) >= 5
+  end,
+
+  locked_loc_vars = function (self, info_queue, card)
+    return { vars = { 5 }}
   end,
 
   loc_vars = function(self, info_queue, card)
