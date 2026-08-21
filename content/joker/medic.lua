@@ -13,7 +13,7 @@ SMODS.Joker {
   pos = { x = 8, y = 10 },
   atlas = "jokers_atlas",
   cost = 6,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = false,
   eternal_compat = true,
@@ -26,6 +26,14 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'srockw' },
   },
+
+  locked_loc_vars = function(self, info_queue, card)
+    return { vars = { 2 } }
+  end,
+
+  check_for_unlock = function (self, args)
+    return G.GAME.paperback.num_bandages_broken_last_hand >= 2
+  end,
 
   loc_vars = function(self, info_queue, card)
     info_queue[#info_queue + 1] = G.P_CENTERS.m_paperback_bandaged

@@ -1082,7 +1082,11 @@ return {
         text = {
           "{C:attention}#1#s{} retrigger",
           "cards an additional time",
-        }
+        },
+        unlock = {
+          "Break {C:attention,E:1}#1# Bandaged cards",
+          "in one hand"
+        },
       },
       j_paperback_matcha = {
         name = "Matcha",

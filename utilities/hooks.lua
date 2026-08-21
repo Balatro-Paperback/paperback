@@ -87,6 +87,7 @@ function Game.init_game_object(self)
     cards_added_to_deck = 0,
     highest_amount_of_money_had = 0,
     unique_clips_this_run = {},
+    num_bandages_broken_last_hand = 0,
 
     permabonus_odds = 0,
 

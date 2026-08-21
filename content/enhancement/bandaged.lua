@@ -60,6 +60,7 @@ SMODS.Enhancement {
 
     if context.destroy_card and context.cardarea == G.play and context.destroy_card == card then
       if PB_UTIL.chance(card, 'bandaged_break') then
+        G.GAME.paperback.num_bandages_broken_last_hand = G.GAME.paperback.num_bandages_broken_last_hand + 1
         return {
           remove = true
         }

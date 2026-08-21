@@ -147,6 +147,8 @@ SMODS.current_mod.calculate = function(self, context)
     G.GAME.paperback.hand_only_scored_8s = true
     G.GAME.paperback.hand_only_scored_light = true
     G.GAME.paperback.hand_only_scored_dark = true
+    -- reset counter for checking broken bandage cards
+    G.GAME.paperback.num_bandages_broken_last_hand = 0
     
     -- Keep Reference Card global variable updated
     PB_UTIL.calculate_highest_shared_played(card)
