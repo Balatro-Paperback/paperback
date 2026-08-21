@@ -37,6 +37,7 @@ function Game.init_game_object(self)
     destroyed_stars = 0,
     destroyed_cards = 0,
     destroyed_glass = 0,
+    destroyed_ceramic = 0,
     destroyed_faces = 0,
     destroyed_kings = 0,
     destroyed_jacks = 0,

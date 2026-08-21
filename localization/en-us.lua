@@ -1114,7 +1114,12 @@ return {
           "{C:attention}#2#s{} by {C:money}$#1#{} when",
           "a {C:attention}#2#{} is destroyed",
           "{C:inactive}(Currently increased by {C:money}$#3#{C:inactive})"
-        }
+        },
+        unlock = {
+          "Destroy {C:attention,E:1}#1#{}",
+          "{C:attention,E:1}Ceramic Cards",
+          "during a run"
+        },
       },
       j_paperback_ddakji = {
         name = "Ddakji",

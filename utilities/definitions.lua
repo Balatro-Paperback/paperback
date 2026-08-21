@@ -29,6 +29,11 @@ SMODS.current_mod.calculate = function(self, context)
         G.GAME.paperback.destroyed_glass = G.GAME.paperback.destroyed_glass + 1
       end
 
+      -- Count the amount of destroyed ceramic cards
+      if SMODS.has_enhancement(v, 'm_paperback_ceramic') then
+        G.GAME.paperback.destroyed_ceramic = G.GAME.paperback.destroyed_ceramic + 1
+      end
+
       -- Count the amount of destroyed face cards
       if v:is_face() then
         G.GAME.paperback.destroyed_faces = G.GAME.paperback.destroyed_faces + 1

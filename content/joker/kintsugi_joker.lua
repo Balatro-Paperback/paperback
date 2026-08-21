@@ -15,7 +15,7 @@ SMODS.Joker {
   pos = { x = 8, y = 9 },
   atlas = "jokers_atlas",
   cost = 7,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = false,
   eternal_compat = true,
@@ -28,6 +28,14 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'srockw' },
   },
+
+  check_for_unlock = function (self, args)
+    return G.GAME.paperback.destroyed_ceramic >= 5
+  end,
+
+  locked_loc_vars = function (self, info_queue, card)
+    return { vars = { 5 }}
+  end,
 
   loc_vars = function(self, info_queue, card)
     return {
