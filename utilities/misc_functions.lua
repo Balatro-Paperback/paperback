@@ -100,6 +100,15 @@ function PB_UTIL.set_paperclip(card, key)
   if card and PB_UTIL.is_paperclip(key) then
     PB_UTIL.remove_paperclip(card)
     SMODS.Stickers[key]:apply(card, true)
+
+    -- Temporary solution to track paperclip discovery for Clippy
+    -- until paperclips are converted to smods generic card modifier
+    for _, v in ipairs(G.playing_cards or {}) do
+      local key, _ = PB_UTIL.has_paperclip(v)
+      if key and key ~= "paperback_platinum_clip" then
+        G.PROFILES[G.SETTINGS.profile].career_stats.paperback_temp_paperclip_discovery[key] = true
+      end
+    end
   end
 end
 

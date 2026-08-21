@@ -843,7 +843,13 @@ return {
           "Add a random {C:attention}Clip{} to a",
           "random card in your deck",
           "when {C:attention}Blind{} is selected",
-        }
+        },
+        unlock = {
+          "Discover all",
+          "{C:attention,E:1}Paperclips{}",
+          "{C:inactive}(Platinum excluded)",
+          "{C:inactive}[#1#/#2#]"
+        },
       },
       j_paperback_jimbos_joyous_joker_jamboree = {
         name = "Jimbo's Joyous Joker Jamboree",

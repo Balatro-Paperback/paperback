@@ -11,6 +11,11 @@ function Game.init_game_object(self)
     if (type(v.visible) == 'function' and not v:visible()) or v.visible == false then table.insert(secrets, k) end
   end
 
+  -- Temporary solution to track paperclip discovery for Clippy
+  -- until paperclips are converted to smods generic card modifier
+  G.PROFILES[G.SETTINGS.profile].career_stats.paperback_temp_paperclip_discovery = 
+  G.PROFILES[G.SETTINGS.profile].career_stats.paperback_temp_paperclip_discovery or {}
+
   ret.paperback = {
     solar_system_ct = 1,
     reference_card_ct = 0,
