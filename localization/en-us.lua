@@ -3488,6 +3488,11 @@ return {
           "hand contained a scoring",
           "{C:paperback_stars}#3#{} or {C:paperback_crowns}#4#",
           "{C:inactive}(Currently {C:chips}+#2#{C:inactive} Chips)"
+        },
+        unlock = {
+          "Score both a {C:paperback_stars,E:1}Star",
+          "and a {C:paperback_crowns,E:1}Crown",
+          "in one run"
         }
       },
       j_paperback_towering_pillar_of_hats = {

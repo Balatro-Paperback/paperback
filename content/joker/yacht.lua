@@ -32,6 +32,7 @@ if PB_UTIL.should_load_spectrum_items() then
     paperback_credit = {
       coder = { 'thermo' }
     },
+    unlocked = false,
     loc_vars = function(self, info_queue, card)
       return {
         vars = {
@@ -41,6 +42,10 @@ if PB_UTIL.should_load_spectrum_items() then
           localize(card.ability.extra.suits[2], 'suits_singular')
         }
       }
+    end,
+
+    check_for_unlock = function (self, args)
+      return G.GAME.paperback.suits_scored_this_run["paperback_Stars"] and G.GAME.paperback.suits_scored_this_run["paperback_Crowns"]
     end,
 
     calculate = function(self, card, context)
