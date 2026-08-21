@@ -27,6 +27,7 @@ function Game.init_game_object(self)
       scored_face_cards = 0,
       destroyed_cards_this_round = 0,
       played_only_ace_or_king = true,
+      played_only_straights = true,
     },
     ceramic_inc = 0,
     bandaged_inc = 0,

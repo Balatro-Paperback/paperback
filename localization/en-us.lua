@@ -1057,6 +1057,11 @@ return {
           "for every {C:attention}#2#{}",
           "in {C:attention}scoring hand{}",
           "{C:inactive}(Currently {X:mult,C:white}X#3#{}{C:inactive} Mult)"
+        },
+        unlock = {
+          "Beat a Boss Blind",
+          "playing only hands that",
+          "contain a {E:1,C:attention}#1#{}",
         }
       },
       j_paperback_sommelier = {

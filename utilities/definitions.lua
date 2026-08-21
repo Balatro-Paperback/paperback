@@ -249,6 +249,10 @@ SMODS.current_mod.calculate = function(self, context)
     if light_count >= 2 and dark_count >= 2 and context.scoring_name == 'Two Pair' then
       check_for_unlock({ type = 'paperback_two_pair_light_dark' })
     end
+    -- Spotty Joker unlock
+    if not next(context.poker_hands['Straight']) then
+      G.GAME.paperback.round.played_only_straights = false
+    end
 
     -- checks if played hand contains a flush for the suit drink's unlock
     if next(context.poker_hands['Flush']) then
@@ -464,6 +468,7 @@ SMODS.current_mod.reset_game_globals = function(run_start)
   G.GAME.paperback.round.suits_scored = {}
   G.GAME.paperback.round.destroyed_cards_this_round = 0
   G.GAME.paperback.round.played_only_ace_or_king = true
+  G.GAME.paperback.round.played_only_straights = true
   G.GAME.paperback.round.scored_face_cards = 0
   G.GAME.paperback.highest_rank_this_round = nil
   G.GAME.paperback.weather_radio_hand = PB_UTIL.get_random_visible_hand('weather_radio')
