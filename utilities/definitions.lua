@@ -147,6 +147,7 @@ SMODS.current_mod.calculate = function(self, context)
     PB_UTIL.calculate_highest_shared_played(card)
     
     local all_hearts = true
+    local all_4s = true
     local jack_count = 0
     local number_count = 0
     local light_count = 0
@@ -199,6 +200,10 @@ SMODS.current_mod.calculate = function(self, context)
       if not PB_UTIL.is_rank(v, 8) then
         G.GAME.paperback.hand_only_scored_8s = false
       end
+      -- Master Spark unlock
+      if not PB_UTIL.is_rank(v, 4) then
+        all_4s = false
+      end
       -- Deck of Cards unlock
       if SMODS.has_enhancement(v, 'm_paperback_antique') and context.scoring_name == 'High Card' then
         check_for_unlock({ type = 'paperback_high_card_antique' })
@@ -222,6 +227,10 @@ SMODS.current_mod.calculate = function(self, context)
     -- Spirit Box unlock
     if number_count >= 5 and not next(context.poker_hands['Straight']) then
       check_for_unlock({ type = 'paperback_played_five_numbers' })
+    end
+    -- Master Spark unlock
+    if all_4s and context.scoring_name == 'Four of a Kind' then
+      check_for_unlock({ type = 'paperback_4oak_4s' })
     end
     -- Penumbra Phantasm unlock
     if G.GAME.paperback.heart_jacks_scored >= 7 then

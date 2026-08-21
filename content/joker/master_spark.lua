@@ -21,13 +21,21 @@ SMODS.Joker {
     requires_custom_suits = true,
     requires_spectrum_or_suit = true
   },
-
+  unlocked = false,
   paperback_credit = {
     coder = { 'srockw' },
   },
+  
 
   loc_vars = function(self, info_queue, card)
     info_queue[#info_queue + 1] = G.P_CENTERS.e_polychrome
+  end,
+
+  locked_loc_vars = function(self, info_queue, card)
+    return { vars = { localize('Four of a Kind', 'poker_hands') } }
+  end,
+  check_for_unlock = function(self, args)
+    return args.type == 'paperback_4oak_4s'
   end,
 
   calculate = function(self, card, context)

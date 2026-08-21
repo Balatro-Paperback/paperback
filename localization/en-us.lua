@@ -555,7 +555,12 @@ return {
           "destroy all cards {C:attention}held in hand{} and",
           "all played cards become {C:dark_edition}Polychrome",
           "{S:1.1,C:red,E:2}self-destructs",
-        }
+        },
+        unlock = {
+          "Play a",
+          "{E:1,C:attention}#1#",
+          "containing only {E:1,C:attention}4s",
+        },
       },
       j_paperback_j_and_js = {
         name = "J&J's",
