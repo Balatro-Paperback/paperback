@@ -831,7 +831,11 @@ return {
           "for each {C:attention}unique Clip{}",
           "in your full deck",
           "{C:inactive}(Currently {C:money}$#2#{C:inactive})"
-        }
+        },
+        unlock = {
+          "Have at least {E:1,C:attention}#1#",
+          "{C:attention,E:1}Clips{} in your deck",
+        },
       },
       j_paperback_clippy = {
         name = "Clippy",
@@ -3523,7 +3527,12 @@ return {
           "round was cleared with",
           "equal {C:chips}hands{} and {C:mult}discards",
           "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)"
-        }
+        },
+        unlock = {
+          "Defeat a Boss Blind",
+          "with {E:1,C:blue}0 {E:1,C:attention}hands{} and",
+          "{E:1,C:red}0 {E:1,C:attention}discards{} left"
+        },
       },
       j_paperback_shuttle = {
         name = "Shuttle",

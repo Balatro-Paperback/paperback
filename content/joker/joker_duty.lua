@@ -22,6 +22,7 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'thermo' }
   },
+  unlocked = false,
 
   loc_vars = function(self, info_queue, card)
     return {
@@ -30,6 +31,12 @@ SMODS.Joker {
         card.ability.extra.mult
       }
     }
+  end,
+
+  check_for_unlock = function(self, args)
+    return args.type == 'round_win' and G.GAME.current_round.hands_left == 0 and
+        G.GAME.current_round.discards_left == 0 and
+        G.GAME.blind.boss
   end,
 
   calculate = function(self, card, context)
