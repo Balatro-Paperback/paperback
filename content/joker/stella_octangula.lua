@@ -28,7 +28,7 @@ if PB_UTIL.should_load_spectrum_items() then
     paperback_credit = {
       coder = { 'thermo' }
     },
-
+    unlocked = false,
     loc_vars = function(self, info_queue, card)
       return {
         vars = {
@@ -39,6 +39,12 @@ if PB_UTIL.should_load_spectrum_items() then
           }
         }
       }
+    end,
+
+    check_for_unlock = function (self, args)
+      if args.type == 'paperback_suit_flushes' then
+        return G.GAME.paperback.played_flushes['paperback_Stars']
+      end
     end,
     -- thanks vremade :3
     -- also this might be extremely laggy, although im not sure how it can be improved.

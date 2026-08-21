@@ -3325,6 +3325,10 @@ return {
         text = {
           "The first played {V:1}#2#{} each round",
           "gives {X:chips,C:white} X#1# {} Chips"
+        },
+        unlock = {
+          "Play a",
+          "{C:paperback_stars,E:1}Star{C:attention,E:1} Flush"
         }
       },
       j_paperback_cast_iron = {
