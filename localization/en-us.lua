@@ -3090,6 +3090,11 @@ return {
         text = {
           "This Joker simultaneously counts as a {C:attention}played{}",
           "and {C:attention}held{} {C:attention}paperclip{}",
+        },
+        unlock = {
+          "Play a hand that",
+          "contains {C:attention,E:1}#1#{}",
+          "{C:attention,E:1}Paperclips"
         }
       },
       j_paperback_happy_accident = {
