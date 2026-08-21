@@ -79,6 +79,7 @@ SMODS.current_mod.calculate = function(self, context)
           check_for_unlock({ type = 'paperback_no_ante_discard' })
         end
         G.GAME.paperback.num_discards_this_ante = 0
+        G.GAME.paperback.money_gained_this_ante = 0
       end
 
       if G.GAME.current_round.discards_left == G.GAME.round_resets.discards then
@@ -437,6 +438,7 @@ SMODS.current_mod.calculate = function(self, context)
   end
 
   if context.money_altered then
+    G.GAME.paperback.money_gained_this_ante = G.GAME.paperback.money_gained_this_ante + math.max(0, context.amount)
     G.GAME.paperback.highest_amount_of_money_had = math.max(G.GAME.paperback.highest_amount_of_money_had, (G.GAME.dollars + (G.GAME.dollar_buffer or 0)))
   end
 

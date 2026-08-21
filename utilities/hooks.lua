@@ -86,6 +86,7 @@ function Game.init_game_object(self)
     played_light_suit_hands = 0,
     cards_added_to_deck = 0,
     highest_amount_of_money_had = 0,
+    money_gained_this_ante = 0,
     unique_clips_this_run = {},
     num_bandages_broken_last_hand = 0,
 

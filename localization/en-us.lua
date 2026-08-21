@@ -1039,6 +1039,12 @@ return {
           "chance to create a random",
           "{C:attention}Consumable{} when scored",
           "{C:inactive}(Must have room)"
+        },
+        unlock = {
+          "Play a hand that",
+          "contains {C:attention,E:1}#1#{}",
+          "{C:attention,E:1}Wrapped cards",
+          "and a {C:paperback_crowns,E:1}Shiny {C:paperback_stars,E:1}Suit{}"
         }
       },
       j_paperback_collector = {
@@ -1048,6 +1054,10 @@ return {
           "for each {C:attention}#2#{}",
           "in your full deck",
           "{C:inactive}(Currently {C:money}$#3#{C:inactive})"
+        },
+        unlock = {
+          "Gain {C:money,E:1}$#1#{}",
+          "in one ante"
         }
       },
       j_paperback_spotty_joker = {
