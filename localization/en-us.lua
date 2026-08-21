@@ -3110,6 +3110,12 @@ return {
           "at {C:attention}halved{} scaling",
           "{X:chips,C:white}X1.5{C:inactive} -> {X:chips,C:white}X1.25{}",
         },
+        unlock = {
+          "Defeat a Blind in",
+          "{E:1,C:blue}1 {E:1,C:attention}hand{} without",
+          "playing your",
+          "{E:1,C:attention}most played hand{}"
+        }
       },
       j_paperback_watercolor_joker = {
         name = "Watercolor Joker",
