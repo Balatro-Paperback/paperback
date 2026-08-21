@@ -24,10 +24,24 @@ SMODS.Joker {
   paperback = {
     requires_stars = true
   },
-
+  unlocked = false,
   paperback_credit = {
     coder = { 'dowfrin' }
   },
+
+  locked_loc_vars = function(self, info_queue, card)
+    return { vars = { 5 } }
+  end,
+  check_for_unlock = function(self, args)
+    if args.type == 'modify_jokers' and G.jokers then
+      local count = 0
+
+      for i, v in ipairs(G.jokers.cards) do
+        if v.edition and v.edition.key == 'e_negative' then count = count + 1 end
+      end
+      return count >= 5
+    end
+  end,
 
   in_pool = function(self, args)
     -- Only in pool if you have a Star or Wild in deck

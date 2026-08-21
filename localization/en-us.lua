@@ -589,7 +589,11 @@ return {
           "{C:green}#2# in #3#{} chance to create",
           "a {C:dark_edition}Negative {C:attention}Tag{}",
           "{s:0.9,C:inactive}Once per round{}"
-        }
+        },
+        unlock = {
+          "Have at least {E:1,C:attention}#1#",
+          "{C:dark_edition,E:1}Negative{} Jokers",
+        },
       },
       j_paperback_shooting_star = {
         name = "Shooting Star",
