@@ -594,6 +594,10 @@ return {
           "{C:green}#2# in #3#{} chance to",
           "create the {C:planet}Planet{} card",
           "for played {C:attention}poker hand"
+        },
+        unlock = {
+          "Get any {C:attention,E:1}Spectrum",
+          "{C:attention,E:1}hand{} to level {C:attention,E:1}#1#{}"
         }
       },
       j_paperback_black_star = {
