@@ -33,6 +33,21 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'srockw' }
   },
+  unlocked = false,
+
+  check_for_unlock = function(self, args)
+    if G.GAME.round >= 1 then
+      local club = false
+      local star = false
+      for _, v in ipairs(G.playing_cards or {}) do
+        if SMODS.has_any_suit(v) then return false
+        elseif v:is_suit('Clubs', true) then club = true 
+        elseif v:is_suit('paperback_Stars', true) then star = true 
+        else return false end
+      end
+      return club and star
+    end
+  end,
 
   loc_vars = function(self, info_queue, card)
     return {

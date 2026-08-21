@@ -576,6 +576,10 @@ return {
           "Gains {X:chips,C:white}X#1#{} Chips when a {V:1}#2#{} scores",
           "Loses {X:chips,C:white}X#3#{} Chips when a {V:2}#4#{} scores",
           "{C:inactive}(Currently {X:chips,C:white}X#5#{C:inactive} Chips)"
+        },
+        unlock = {
+          "Have a deck consisting of",
+          "only {C:clubs,E:1}Clubs{} and {C:paperback_stars,E:1}Stars{}"
         }
       },
       j_paperback_shadowmantle = {
