@@ -34,7 +34,7 @@ SMODS.Joker {
 
   check_for_unlock = function(self, args)
     for _, v in ipairs(G.playing_cards or {}) do
-      if v:is_suit('paperback_Stars') and SMODS.has_enhancement(v, 'm_bonus') then
+      if v.base.suit == ('paperback_Stars') and SMODS.has_enhancement(v, 'm_bonus') then
         return true
       end
     end

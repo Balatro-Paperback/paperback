@@ -33,7 +33,7 @@ SMODS.Joker {
     if G.GAME.round >= 1 then
       local count = 0
       for _, v in ipairs(G.playing_cards or {}) do
-        if v:is_suit("paperback_Stars") then 
+        if v.base.suit == ("paperback_Stars") then 
           count = count + 1
         end
       end

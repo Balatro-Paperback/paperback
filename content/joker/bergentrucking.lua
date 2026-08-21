@@ -39,8 +39,8 @@ SMODS.Joker {
       local ace = false
       local king = false
       for i = 1, #args.cards do
-        if PB_UTIL.is_rank(args.cards[i], "Ace") and args.cards[i]:is_suit("Hearts") then ace = true end
-        if PB_UTIL.is_rank(args.cards[i], "King") and args.cards[i]:is_suit("paperback_Crowns") then king = true end
+        if PB_UTIL.is_rank(args.cards[i], "Ace") and args.cards[i].base.suit == ("Hearts") then ace = true end
+        if PB_UTIL.is_rank(args.cards[i], "King") and args.cards[i].base.suit == ("paperback_Crowns") then king = true end
       end
       return ace and king
     end

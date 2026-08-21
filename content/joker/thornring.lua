@@ -32,9 +32,9 @@ SMODS.Joker {
   },
 
   check_for_unlock = function(self, args)
-    if args.type == 'modify_deck' and next(G.playing_cards) then
+    if G.GAME.round >= 1 then
       for k, v in pairs(G.playing_cards) do
-        if not v:is_suit('Hearts') then return false end
+        if v.base.suit ~= 'Hearts' then return false end
       end
       return true
     end

@@ -35,12 +35,11 @@ SMODS.Joker {
       local spade = false
       local star = false
       for _, v in ipairs(G.playing_cards or {}) do
-        if SMODS.has_any_suit(v) then return false
-        elseif v:is_suit('Hearts', true) then heart = true 
-        elseif v:is_suit('Diamonds', true) then diamond = true 
-        elseif v:is_suit('Clubs', true) then club = true 
-        elseif v:is_suit('Spades', true) then spade = true 
-        elseif v:is_suit('paperback_Stars', true) then star = true 
+        if v.base.suit == ('Hearts') then heart = true 
+        elseif v.base.suit == ('Diamonds') then diamond = true 
+        elseif v.base.suit == ('Clubs') then club = true 
+        elseif v.base.suit == ('Spades') then spade = true 
+        elseif v.base.suit == ('paperback_Stars') then star = true 
         else return false end
       end
       return heart and diamond and club and spade and star

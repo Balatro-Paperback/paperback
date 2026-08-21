@@ -36,7 +36,7 @@ SMODS.Joker { -- Guns Blazin'
   check_for_unlock = function(self, args)
     if G.GAME.round >= 1 then
       for _, v in ipairs(G.playing_cards or {}) do
-        if v:is_suit('Clubs', true) then 
+        if v.base.suit == ('Clubs') then 
           return false
         end
       end

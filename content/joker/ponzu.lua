@@ -52,7 +52,7 @@ SMODS.Joker {
     if args.type == 'modify_deck' then
       local count = 0
       for _, playing_card in ipairs(G.playing_cards or {}) do
-        if playing_card:is_suit("Diamonds") and playing_card.ability.set == 'Enhanced' then count = count + 1 end
+        if playing_card.base.suit == ("Diamonds") and playing_card.ability.set == 'Enhanced' then count = count + 1 end
         if count >= 10 then
           return true
         end

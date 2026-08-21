@@ -1068,9 +1068,8 @@ return {
           "gets a random {C:attention}seal",
         },
         unlock = {
-          "Play a {C:attention,E:1}Stained",
-          "playing card with",
-          "a {C:attention,E:1}Red Seal",
+          "Play a {C:attention,E:1}Stained card",
+          "with a {C:attention,E:1}Red Seal",
         },
       },
       j_paperback_medic = {
@@ -3114,9 +3113,8 @@ return {
           "{X:chips,C:white}X#2#{} Chips when scored",
         },
         unlock = {
-          "Play a {C:attention,E:1}Soaked",
-          "playing card with",
-          "a {C:attention,E:1}Blue Seal",
+          "Play a {C:attention,E:1}Soaked card",
+          "with a {C:attention,E:1}Blue Seal",
         },
       },
       j_paperback_birches = {

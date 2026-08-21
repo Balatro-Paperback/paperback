@@ -31,7 +31,7 @@ SMODS.Joker {
     if args.type == 'hand_contents' then
       local tally = 0
       for i = 1, #args.cards do
-        if SMODS.has_enhancement(args.cards[i], "m_lucky") and args.cards[i]:is_suit("paperback_Crowns") then
+        if SMODS.has_enhancement(args.cards[i], "m_lucky") and args.cards[i].base.suit == ("paperback_Crowns") then
           tally = tally + 1
         end
       end

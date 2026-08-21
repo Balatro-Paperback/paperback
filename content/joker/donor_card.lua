@@ -34,7 +34,7 @@ SMODS.Joker {
   check_for_unlock = function(self, args)
     if G.GAME.round >= 1 then
       for _, v in ipairs(G.playing_cards or {}) do
-        if v:is_suit('Hearts', true) and v:is_face(true) then 
+        if v.base.suit == ('Hearts') and v:is_face(true) then 
           return false
         end
       end

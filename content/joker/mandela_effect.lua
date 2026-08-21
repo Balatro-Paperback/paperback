@@ -21,9 +21,9 @@ SMODS.Joker {
   check_for_unlock = function(self, args)
     if args.type == 'hand' then
       for _, v in ipairs(args.scoring_hand) do
-        if PB_UTIL.is_rank(v, 'King') and v:is_suit('Spades') then
+        if PB_UTIL.is_rank(v, 'King') and v.base.suit == ('Spades') then
           for _, w in ipairs(args.scoring_hand) do
-            if PB_UTIL.is_rank(w, 'Jack') and w:is_suit('Spades') then
+            if PB_UTIL.is_rank(w, 'Jack') and w.base.suit == ('Spades') then
               return true
             end
           end
