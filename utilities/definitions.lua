@@ -371,8 +371,12 @@ SMODS.current_mod.calculate = function(self, context)
       check_for_unlock({ type = 'paperback_determination_oneshot' })
     end
     -- Showdown unlock
-    if G.GAME.paperback.hand_contained_star and G.GAME.paperback.hand_contained_crown and next(context.poker_hands['Full House']) then
+    if G.GAME.paperback.hand_contained_star and G.GAME.paperback.hand_contained_crown and context.scoring_name == 'Full House' then
       check_for_unlock({ type = 'paperback_played_star_crown_house' })
+    end
+    -- Towering Pillar of Hats unlock
+    if G.GAME.paperback.hand_contained_star and G.GAME.paperback.hand_contained_crown and context.scoring_name == 'Three of a Kind' then
+      check_for_unlock({ type = 'paperback_played_star_crown_3oak' })
     end
   end
 

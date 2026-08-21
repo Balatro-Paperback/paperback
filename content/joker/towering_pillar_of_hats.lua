@@ -34,6 +34,14 @@ if PB_UTIL.should_load_spectrum_items() then
     blueprint_compat = true,
     eternal_compat = true,
     perishable_compat = true,
+    unlocked = false,
+
+    check_for_unlock = function (self, args)
+      return args.type == 'paperback_played_star_crown_3oak'
+    end,
+    locked_loc_vars = function(self, info_queue, card)
+      return { vars = { localize('Three of a Kind', 'poker_hands') } }
+    end,
 
     update_mult = function(self, card)
       if G.playing_cards then

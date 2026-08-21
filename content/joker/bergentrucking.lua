@@ -32,6 +32,19 @@ SMODS.Joker {
   paperback = {
     requires_crowns = true
   },
+  unlocked = false,
+
+  check_for_unlock = function(self, args)
+    if args.type == 'hand_contents' then
+      local ace = false
+      local king = false
+      for i = 1, #args.cards do
+        if PB_UTIL.is_rank(args.cards[i], "Ace") and args.cards[i]:is_suit("Hearts") then ace = true end
+        if PB_UTIL.is_rank(args.cards[i], "King") and args.cards[i]:is_suit("paperback_Crowns") then king = true end
+      end
+      return ace and king
+    end
+  end,
 
   loc_vars = function(self, info_queue, card)
     return {

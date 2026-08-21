@@ -188,7 +188,7 @@ return {
           "chance to earn {C:money}$#5#",
         },
         unlock = {
-          "Play a {C:attention,E:1}Full House",
+          "Play a {C:attention,E:1}#1#",
           "containing a scoring",
           "{C:paperback_stars,E:1}Star{} and {C:paperback_crowns,E:1}Crown"
         }
@@ -3510,6 +3510,11 @@ return {
           "{C:attention}#4#, #5#{} or {C:attention}#6#{} in the deck",
           "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)"
         },
+        unlock = {
+          "Play a {C:attention,E:1}#1#",
+          "containing a scoring",
+          "{C:paperback_stars,E:1}Star{} and {C:paperback_crowns,E:1}Crown"
+        }
       },
       j_paperback_joker_duty = {
         name = "Joker Duty",
@@ -3539,6 +3544,11 @@ return {
           "Adds {C:green}#1#{} to all listed {C:green,E:1,S:1.1}probabilities",
           "If hand contains a",
           "scoring {C:paperback_crowns}#2#{}",
+        },
+        unlock = {
+          "Play a hand that",
+          "contains {C:attention,E:1}#1#{}",
+          "{C:attention,E:1}Lucky {C:paperback_crowns,E:1}Crowns"
         }
       },
       j_paperback_tropic_birds = {
@@ -3659,6 +3669,12 @@ return {
           "Scored {C:paperback_crowns}#1#{} gain {X:mult,C:white}X#2#{} Mult",
           "if scored hand contains a {C:hearts}#3#{}",
           "and scored {C:hearts}#4#{} are {C:attention}destroyed"
+        },
+        unlock = {
+          "Play a hand that",
+          "contains an {C:attention,E:1}Ace{}",
+          "of {C:hearts,E:1}Hearts{} and a",
+          "{C:attention,E:1}King{} of {C:paperback_crowns,E:1}Crowns{}"
         }
       },
       j_paperback_technology = {

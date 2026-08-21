@@ -25,6 +25,27 @@ SMODS.Joker {
   paperback = {
     requires_crowns = true
   },
+  unlocked = false,
+
+  check_for_unlock = function(self, args)
+    if args.type == 'hand_contents' then
+      local tally = 0
+      for i = 1, #args.cards do
+        if SMODS.has_enhancement(args.cards[i], "m_lucky") and args.cards[i]:is_suit("paperback_Crowns") then
+          tally = tally + 1
+        end
+      end
+      return tally >= 5
+    end
+  end,
+
+  locked_loc_vars = function (self, info_queue, card)
+    return {
+      vars = {
+        5
+      }
+    }
+  end,
 
   loc_vars = function(self, info_queue, card)
     return { vars = { PB_UTIL.force_signed(card.ability.extra.a_odds), localize(card.ability.extra.suit, 'suits_singular') } }
