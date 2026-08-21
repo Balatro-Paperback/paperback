@@ -4,7 +4,6 @@ if PB_UTIL.config.spectrals_enabled then
     atlas = 'decks_atlas',
     pos = { x = 3, y = 0 },
     config = {
-      joker_slot = -1,
       consumables = {
         'c_paperback_apostle_of_wands'
       }
@@ -39,12 +38,14 @@ if PB_UTIL.config.spectrals_enabled then
       return {
         vars = {
           localize { type = 'name_text', key = 'c_paperback_apostle_of_wands', set = 'Spectral' },
-          self.config.joker_slot
         }
       }
     end,
 
     apply = function(self, back)
+      G.GAME.round_resets.blind_states.Small = 'Skipped'
+      G.GAME.round_resets.blind_states.Big = 'Select'
+      G.GAME.blind_on_deck = 'Big'
       -- Apply the temporary sticker to the first Apostle of Wands found
       G.E_MANAGER:add_event(Event {
         blocking = false,
