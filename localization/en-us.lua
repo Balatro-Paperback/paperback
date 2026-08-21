@@ -515,6 +515,10 @@ return {
         text = {
           "Scored non-{C:attention}King{} {V:1}#1#{}",
           "increase their rank by {C:attention}#2#",
+        },
+        unlock = {
+          "Have a {C:attention,E:1}King",
+          "of {C:paperback_crowns,E:1}Crowns{}"
         }
       },
       j_paperback_gambit = {
@@ -524,6 +528,10 @@ return {
           "the first scored {V:1}#1#{} {C:attention}destroys{}",
           "the first non-{V:1}#1#{} held in hand",
           "and gains {C:attention}twice{} its {C:chips}Chip value{}",
+        },
+        unlock = {
+          "Have a {C:attention,E:1}Queen",
+          "of {C:paperback_crowns,E:1}Crowns{}"
         }
       },
       j_paperback_solar_eclipse = {
@@ -544,8 +552,8 @@ return {
           "random {C:attention}different suits"
         },
         unlock = {
-          "Play {C:attention,E:1}#1# Wild Cards{}",
-          "in a hand",
+          "Have a {C:attention,E:1}Glass{}",
+          "{C:paperback_crowns,E:1}Crown{} or {C:paperback_stars,E:1}Star{}",
         }
       },
       j_paperback_master_spark = {
