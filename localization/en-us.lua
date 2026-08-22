@@ -479,7 +479,7 @@ return {
           "Discarded {C:attention}Apostles{} are {C:red}destroyed{}"
         },
         unlock = {
-          "Have #1# or more",
+          "Have {C:attention,E:1}#1#{} or more",
           "{C:attention,E:1}Apostles{} in",
           "your deck"
         }
@@ -1389,7 +1389,7 @@ return {
         },
         unlock = {
           "Have the only",
-          "{C:attention,E:1}Face Cards{}",
+          "{C:attention,E:1}face cards{}",
           "in your deck",
           "be {C:attention,E:1}#1#s{}"
         }
@@ -1452,7 +1452,7 @@ return {
           "{C:inactive}(#1#/#2#)?"
         },
         unlock = {
-          "Score {C:attention,E:1}#1# Face cards",
+          "Score {C:attention,E:1}#1# face cards",
           "in one hand"
         }
       },
@@ -1616,7 +1616,7 @@ return {
         },
         unlock = {
           "Defeat a Finisher",
-          "Blind in {E:1,C:attention}#1# hand",
+          "Blind in {E:1,C:blue}#1# {E:1,C:attention}hand",
         },
       },
       j_paperback_find_jimbo = {
@@ -2978,7 +2978,7 @@ return {
           "to become {C:dark_edition}Polychrome"
         },
         unlock = {
-          "Acquire a {C:attention,E:1}Polychrome",
+          "Acquire a {C:dark_edition,E:1}Polychrome",
           "{C:attention,E:1}King{} or {C:attention,E:1}Jack{}",
         },
       },
@@ -2992,8 +2992,8 @@ return {
         },
         unlock = {
           "Score {C:attention,E:1}#1#{}",
-          "Face Cards in",
-          "{C:attention,E:1}one round",
+          "{C:attention,E:1}face cards{} in",
+          "one round",
         },
       },
       j_paperback_apple = {
