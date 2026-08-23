@@ -541,7 +541,8 @@ return {
           "become {V:1}#1#"
         },
         unlock = {
-          "Find a {C:paperback_crowns,E:1}Crown{} card",
+          "Acquire a",
+          "{C:paperback_crowns,E:1}Crown{} card"
         }
       },
       j_paperback_prism = {
@@ -628,7 +629,8 @@ return {
           "become {V:1}#1#"
         },
         unlock = {
-          "Find a {C:paperback_stars,E:1}Star{} card",
+          "Acquire a",
+          "{C:paperback_stars,E:1}Star{} card"
         }
       },
       j_paperback_high_speed_rail = {
@@ -807,7 +809,7 @@ return {
         },
         unlock = {
           "Have at least",
-          "{C:attention}#1# Stained Cards{}",
+          "{C:attention,E:1}#1# Stained cards{}",
           "in your deck",
         }
       },
@@ -1136,7 +1138,7 @@ return {
         },
         unlock = {
           "Destroy {C:attention,E:1}#1#{}",
-          "{C:attention,E:1}Ceramic Cards",
+          "{C:attention,E:1}Ceramic cards",
           "during a run"
         },
       },
@@ -1205,7 +1207,8 @@ return {
           "{C:dark_edition}Holographic{} or {C:dark_edition}Polychrome",
         },
         unlock = {
-          "Find a {C:paperback_crowns,E:1}Shiny {C:paperback_stars,E:1}Suit{}",
+          "Acquire a",
+          "{C:paperback_crowns,E:1}Shiny {C:paperback_stars,E:1}Suit{}"
         }
       },
       j_paperback_deadringer = {
@@ -1627,9 +1630,10 @@ return {
           "{s:0.8}Card changes every round"
         },
         unlock = {
-          "{C:attention,E:1}Win{} a round with",
-          "a {C:attention,E:1}#1# #2#{}"
-        }
+          "Beat a Blind",
+          "with a {E:1,C:attention}#1#",
+          "containing only {E:1,C:attention}#2#s",
+        },
       },
       j_paperback_joker_crossing = {
         name = "Joker Crossing",

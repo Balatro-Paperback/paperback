@@ -46,37 +46,6 @@ SMODS.current_mod.calculate = function(self, context)
     end
   end
 
-  if context.end_of_round then
-    if context.game_over == false then
-      if context.beat_boss then
-        if G.GAME.paperback.num_discards_this_ante == 0 then
-          check_for_unlock({ type = 'paperback_no_ante_discard' })
-        end
-        G.GAME.paperback.num_discards_this_ante = 0
-        G.GAME.paperback.money_gained_this_ante = 0
-      end
-
-      if G.GAME.current_round.discards_left == G.GAME.round_resets.discards then
-        G.GAME.paperback.consecutive_rounds_played_without_discards = G.GAME.paperback.consecutive_rounds_played_without_discards + 1
-        if G.GAME.paperback.consecutive_rounds_played_without_discards >= 5 then
-          check_for_unlock({ type = 'paperback_five_rounds_no_discards' })
-        end
-      end
-
-      if not G.GAME.modifiers.no_interest and not next(SMODS.find_card('j_paperback_better_call_jimbo', false)) then
-        if G.GAME.interest_amount*math.min(math.floor(G.GAME.dollars/5), G.GAME.interest_cap/5) >= 20 then check_for_unlock({ type = 'paperback_angel_investor_interest' }) end
-      end
-    end
-    if context.game_over then 
-      if G.GAME.blind.boss and G.GAME.blind.config.blind.boss.showdown then
-        check_for_unlock({ type = 'paperback_lose_to_showdown' })
-      end
-      if G.GAME.round_resets.ante == 1 then
-        check_for_unlock({ type = 'paperback_lose_on_ante_1' })
-      end
-    end
-  end
-  
   if context.before then
     -- green clip: gain mult for every other played and scored clip
     local clips_played = PB_UTIL.count_paperclips { area = context.scoring_hand }
@@ -94,209 +63,16 @@ SMODS.current_mod.calculate = function(self, context)
       end
     end
 
-    -- checks num times hand has been played
-    if G.GAME.hands[context.scoring_name].played >= 9 then
-      check_for_unlock({ type = 'paperback_hand_played_full_moon' })
-    end
-    -- checks if played hand contains a pair for Mismatched Sock's and Pear's unlock
-    if next(context.poker_hands['Pair']) then
-      G.GAME.paperback.played_pair_this_run = true
-    end
-    if not next(context.poker_hands['Pair']) then
-      G.GAME.paperback.only_pairs_this_run = false
-    end
-
-    -- checks if played hand contains 5 or more cards for Joker CD-I's unlock
-    if #context.full_hand >= 5 then
-      G.GAME.paperback.played_5_card_hand = true
-    end
-
-    -- check for Spectrum Five
-    if PB_UTIL.contains_spectrum(context.poker_hands) and next(context.poker_hands['Five of a Kind']) then
-      check_for_unlock({ type = 'paperback_played_spectrum_five' })
-    end
-
-    -- Tropic Birds unlock
-    G.GAME.paperback.hand_only_scored_aces = true
-    -- Jestrica unlock
-    G.GAME.paperback.hand_only_scored_8s = true
-    G.GAME.paperback.hand_only_scored_light = true
-    G.GAME.paperback.hand_only_scored_dark = true
-    -- reset counter for checking broken bandage cards
-    G.GAME.paperback.num_bandages_broken_last_hand = 0
-    
     -- Keep Reference Card global variable updated
-    PB_UTIL.calculate_highest_shared_played(card)
-    
-    local all_hearts = true
-    local all_4s = true
-    local jack_count = 0
-    local number_count = 0
-    local light_count = 0
-    local dark_count = 0
+    PB_UTIL.calculate_highest_shared_played()
+
     for _, v in ipairs(context.scoring_hand) do
-      local id = v:get_id()
       -- handle permabonus odds
       G.GAME.paperback.permabonus_odds = G.GAME.paperback.permabonus_odds + v.ability.perma_paperback_plus_odds
-      -- counting face cards
-      if v:is_face() then
-        G.GAME.paperback.round.scored_face_cards = G.GAME.paperback.round.scored_face_cards + 1
-      end
-      if not PB_UTIL.is_suit(v, 'dark', false, true) then
-        G.GAME.paperback.hand_only_scored_dark = false
-      end
-      if not PB_UTIL.is_suit(v, 'light', false, true) then
-        G.GAME.paperback.hand_only_scored_light = false
-      end
-      if PB_UTIL.is_suit(v, 'dark', false, true) then
-        dark_count = dark_count + 1
-      end
-      if PB_UTIL.is_suit(v, 'light', false, true) then
-        light_count = light_count + 1
-      end
-      -- Rosary Beads, Technology unlock
-      if not (v:is_suit('Hearts') or SMODS.has_any_suit(v)) then
-        all_hearts = false
-      end
-      -- Joker Jacks unlock
-      if PB_UTIL.is_rank(v, "Jack") then
-        jack_count = jack_count + 1
-      end
-      -- Spirit Box unlock
-      if (2 <= id and id <= 10) then
-        number_count = number_count + 1
-      end
-      -- Penumbra Phantasm unlock
-      if PB_UTIL.is_rank(v, "Jack") and v:is_suit('Hearts') then
-        G.GAME.paperback.heart_jacks_scored = G.GAME.paperback.heart_jacks_scored + 1
-      end
-      -- Red Key unlock
-      if PB_UTIL.is_rank(v, "King") and v:is_suit('Hearts') then
-        G.GAME.paperback.heart_kings_scored = G.GAME.paperback.heart_kings_scored + 1
-      end
-      -- Tropic Birds unlock
-      if not PB_UTIL.is_rank(v, "Ace") then
-        G.GAME.paperback.hand_only_scored_aces = false
-      end
-      -- Jestrica unlock
-      if not PB_UTIL.is_rank(v, 8) then
-        G.GAME.paperback.hand_only_scored_8s = false
-      end
-      -- Master Spark unlock
-      if not PB_UTIL.is_rank(v, 4) then
-        all_4s = false
-      end
-      -- Deck of Cards unlock
-      if SMODS.has_enhancement(v, 'm_paperback_antique') and context.scoring_name == 'High Card' then
-        check_for_unlock({ type = 'paperback_high_card_antique' })
-      end
-    end
-
-    if G.GAME.paperback.hand_only_scored_dark then
-      G.GAME.paperback.played_dark_suit_hands = G.GAME.paperback.played_dark_suit_hands + 1
-    end
-    if G.GAME.paperback.hand_only_scored_light then
-      G.GAME.paperback.played_light_suit_hands = G.GAME.paperback.played_light_suit_hands + 1
-    end
-    -- Rosary Beads, Technology unlock
-    if all_hearts and context.scoring_name == 'Flush Five' then
-      check_for_unlock({ type = 'paperback_played_flush_five_hearts' })
-    end
-    -- Joker Jacks unlock
-    if jack_count >= 3 and context.scoring_name == 'Three of a Kind' then
-      check_for_unlock({ type = 'paperback_played_three_jacks' })
-    end
-    -- Spirit Box unlock
-    if number_count >= 5 and not next(context.poker_hands['Straight']) then
-      check_for_unlock({ type = 'paperback_played_five_numbers' })
-    end
-    -- Master Spark unlock
-    if all_4s and context.scoring_name == 'Four of a Kind' then
-      check_for_unlock({ type = 'paperback_4oak_4s' })
-    end
-    -- Penumbra Phantasm unlock
-    if G.GAME.paperback.heart_jacks_scored >= 7 then
-      check_for_unlock({ type = 'paperback_played_seven_heart_jacks' })
-    end
-    -- Red Key unlock
-    if G.GAME.paperback.heart_kings_scored >= 5 then
-      check_for_unlock({ type = 'paperback_played_five_heart_kings' })
-    end
-    -- & unlock
-    if light_count >= 2 and dark_count >= 2 and context.scoring_name == 'Two Pair' then
-      check_for_unlock({ type = 'paperback_two_pair_light_dark' })
-    end
-    -- Spotty Joker unlock
-    if not next(context.poker_hands['Straight']) then
-      G.GAME.paperback.round.played_only_straights = false
-    end
-
-    -- checks if played hand contains a flush for the suit drink's unlock
-    if next(context.poker_hands['Flush']) then
-      for _, card in ipairs(context.scoring_hand) do
-        if not SMODS.has_any_suit(card) then
-          for suit, count in pairs(SMODS.Suits) do
-            if card:is_suit(suit) then
-              G.GAME.paperback.played_flushes[suit] = (G.GAME.paperback.played_flushes[suit] and G.GAME.paperback.played_flushes[suit] or 0) + 1
-              check_for_unlock({type = 'paperback_suit_flushes'})
-              if next(context.poker_hands['Straight']) then
-                G.GAME.paperback.played_straight_flushes[suit] = (G.GAME.paperback.played_straight_flushes[suit] and G.GAME.paperback.played_straight_flushes[suit] or 0) + 1
-                check_for_unlock({type = 'paperback_suit_straight_flushes'})
-              end
-              break
-            end
-          end
-          break
-        end
-      end
-    end
-    
-    for _, v in ipairs(context.full_hand) do
-      if not v.paperback_num_times_played then
-        v.paperback_num_times_played = 1
-      else
-        v.paperback_num_times_played = v.paperback_num_times_played + 1
-      end
-      -- Whitebeard unlock
-      if not PB_UTIL.is_rank(v, "Ace") and not PB_UTIL.is_rank(v, "King") then
-        G.GAME.paperback.round.played_only_ace_or_king = false
-      end
-    end
-  end
-
-  -- tian tian unlock
-  if context.post_trigger then
-    if context.other_card.config.center_key == "j_bloodstone" then
-      G.GAME.paperback.bloodstone_triggers = G.GAME.paperback.bloodstone_triggers + 1
-      if G.GAME.paperback.bloodstone_triggers >= 13 then
-        check_for_unlock({type = 'paperback_bloodstone_triggers'})
-      end
-    end
-  end
-
-  if context.open_booster then
-    G.GAME.paperback.booster_packs_bought = G.GAME.paperback.booster_packs_bought + 1
-    -- Protocol unlock
-    if G.GAME.paperback.booster_packs_bought >= 10 then
-      check_for_unlock({type = 'paperback_bought_packs'})
-    end
-   -- Backpack unlock
-    if context.card.config.center.kind == "Buffoon" then
-      G.GAME.paperback.buffoon_packs_bought = G.GAME.paperback.buffoon_packs_bought + 1
-      if G.GAME.paperback.buffoon_packs_bought >= 5 then
-        check_for_unlock({type = 'paperback_bought_buffoon_packs'})
-      end
     end
   end
 
   if context.discard then
-    if context.other_card == context.full_hand[#context.full_hand] then
-      G.GAME.paperback.num_discards_this_ante = G.GAME.paperback.num_discards_this_ante + 1
-      if G.GAME.paperback.num_discards_this_ante >= 10 then
-        check_for_unlock({type = 'paperback_discarded_10_times'})
-      end
-    end
-    G.GAME.paperback.consecutive_rounds_played_without_discards = 0
     -- green clip: lose mult for each discarded clip
     if PB_UTIL.has_paperclip(context.other_card) and not context.other_card.debuff then
       for _, v in ipairs(G.playing_cards) do
@@ -309,7 +85,6 @@ SMODS.current_mod.calculate = function(self, context)
     end
   end
 
-  
   if context.using_consumeable then
     local center = context.consumeable.config.center
     local add_new = true
@@ -325,19 +100,11 @@ SMODS.current_mod.calculate = function(self, context)
         G.GAME.paperback.arcana_used[#G.GAME.paperback.arcana_used + 1] = center.key
       end
     end
-    -- track minor arcana usage across runs
-    if center.set == "paperback_minor_arcana" then
-      PB_UTIL.minor_arcana_profile_usage()
-    end
-  end
-    -- track blind skips across runs
-  if context.skip_blind then
-    PB_UTIL.blind_skip_profile_usage()
   end
 
   -- Keep Solar System global variable updated
   if context.paperback and context.paperback.level_up then
-    PB_UTIL.update_solar_system(card)
+    PB_UTIL.update_solar_system()
   end
 
   if context.mod_probability then
@@ -351,19 +118,6 @@ SMODS.current_mod.calculate = function(self, context)
   end
   if context.after then
     G.GAME.paperback.permabonus_odds = 0
-
-    -- Determination unlock
-    if SMODS.last_hand_oneshot and G.GAME.current_round.hands_left == 0 then
-      check_for_unlock({ type = 'paperback_determination_oneshot' })
-    end
-    -- Showdown unlock
-    if G.GAME.paperback.hand_contained_star and G.GAME.paperback.hand_contained_crown and context.scoring_name == 'Full House' then
-      check_for_unlock({ type = 'paperback_played_star_crown_house' })
-    end
-    -- Towering Pillar of Hats unlock
-    if G.GAME.paperback.hand_contained_star and G.GAME.paperback.hand_contained_crown and context.scoring_name == 'Three of a Kind' then
-      check_for_unlock({ type = 'paperback_played_star_crown_3oak' })
-    end
   end
 
   -- add paperclips to shop cards if Illusion is owned
@@ -391,43 +145,6 @@ SMODS.current_mod.calculate = function(self, context)
   if context.ending_shop then
     G.GAME.paperback.free_purchases = math.max(0,
       G.GAME.paperback.free_purchases - #SMODS.find_card("j_paperback_normalJKR", false))
-  end
-
-  if context.tag_triggered then
-    G.GAME.paperback.tags_redeemed_this_run = G.GAME.paperback.tags_redeemed_this_run + 1
-    -- Keycard unlock
-    if context.tag_triggered.key == "tag_investment" then
-      check_for_unlock({ type = 'paperback_use_investment_tag' })
-    end
-  end
-
-  if context.final_scoring_step then
-    if hand_chips >= 1000 then
-      check_for_unlock({ type = 'paperback_hand_scored_1000_chips' })
-    end
-  end
-
-  if context.playing_card_added then
-    G.GAME.paperback.cards_added_to_deck = G.GAME.paperback.cards_added_to_deck + #context.cards
-  end
-
-  if context.money_altered then
-    G.GAME.paperback.money_gained_this_ante = G.GAME.paperback.money_gained_this_ante + math.max(0, context.amount)
-    G.GAME.paperback.highest_amount_of_money_had = math.max(G.GAME.paperback.highest_amount_of_money_had, (G.GAME.dollars + (G.GAME.dollar_buffer or 0)))
-  end
-
-  if context.modify_final_cashout then
-    -- Better Call Jimbo unlock
-    if context.amount >= 25 then check_for_unlock({ type = 'paperback_25_dollar_cashout' }) end
-  end
-
-  if context.press_play then
-    -- Ddakji unlock
-    local count = 0
-    for _, v in ipairs(G.hand.highlighted) do
-      if v.facing == 'back' then count = count + 1 end
-    end
-    if count >= 5 then check_for_unlock({ type = 'paperback_5_face_down_cards' }) end
   end
 end
 

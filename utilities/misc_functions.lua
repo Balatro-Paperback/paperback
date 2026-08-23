@@ -104,7 +104,7 @@ function PB_UTIL.set_paperclip(card, key)
     for _, v in ipairs(G.playing_cards or {}) do
       local k, _ = PB_UTIL.has_paperclip(v)
       if k then G.GAME.paperback.unique_clips_this_run[k] = true end
-      
+
       -- Temporary solution to track paperclip discovery for Clippy
       -- until paperclips are converted to smods generic card modifier
       if k and k ~= "paperback_platinum_clip" then
@@ -1444,23 +1444,6 @@ function PB_UTIL.refresh_shop_cost()
       return true
     end
   }))
-end
-
---- Tracks Minor Arcana usage for profile
-function PB_UTIL.minor_arcana_profile_usage(val)
-  val = val or 1
-  G.PROFILES[G.SETTINGS.profile].career_stats.paperback_minor_arcana_used = (G.PROFILES[G.SETTINGS.profile].career_stats.paperback_minor_arcana_used or 0) + val
-  if G.PROFILES[G.SETTINGS.profile].career_stats.paperback_minor_arcana_used then
-    check_for_unlock({type = 'paperback_use_minor_arcana', minor_arcana_total = G.PROFILES[G.SETTINGS.profile].career_stats.paperback_minor_arcana_used})
-  end
-end
---- Tracks Blind skips for profile
-function PB_UTIL.blind_skip_profile_usage(val)
-  val = val or 1
-  G.PROFILES[G.SETTINGS.profile].career_stats.paperback_blind_skips = (G.PROFILES[G.SETTINGS.profile].career_stats.paperback_blind_skips or 0) + val
-  if G.PROFILES[G.SETTINGS.profile].career_stats.paperback_blind_skips then
-    check_for_unlock({type = 'paperback_skip_blind', blind_skips_total = G.PROFILES[G.SETTINGS.profile].career_stats.paperback_blind_skips})
-  end
 end
 
 --- Choose a new item from a list

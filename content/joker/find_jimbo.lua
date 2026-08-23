@@ -25,9 +25,8 @@ SMODS.Joker {
 
   check_for_unlock = function(self, args)
     if args.type == 'round_win' then
-      return G.GAME.last_hand_played == 'High Card' and G.GAME.paperback.find_jimbo_unlock
+      return G.GAME.last_hand_played == 'High Card' and G.GAME.paperback.hand_only_scored_jacks
     end
-    return false
   end,
 
   locked_loc_vars = function(self, info_queue, card)
@@ -124,16 +123,5 @@ function PB_UTIL.reset_find_jimbo(card)
     local selected_card = pseudorandom_element(valid_cards, pseudoseed('find_jimbo'))
     card.ability.extra.rank = selected_card.base.value
     card.ability.extra.suit = selected_card.base.suit
-  end
-end
-
-local calculate_main_scoring_ref = SMODS.calculate_main_scoring
-function SMODS.calculate_main_scoring(context, scoring_hand)
-  G.GAME.paperback.find_jimbo_unlock = false
-  calculate_main_scoring_ref(context, scoring_hand)
-  for _, card in ipairs(context.scoring_hand) do
-    if PB_UTIL.is_rank(card, "Jack") then
-      G.GAME.paperback.find_jimbo_unlock = true
-    end
   end
 end

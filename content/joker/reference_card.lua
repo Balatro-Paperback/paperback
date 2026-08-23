@@ -105,7 +105,7 @@ SMODS.Joker {
 
 -- Update global information for Reference Card.
 -- See solar_system.lua
-function PB_UTIL.calculate_highest_shared_played(card)
+function PB_UTIL.calculate_highest_shared_played()
   local old = G.GAME.paperback.reference_card_ct
   local hands = G.GAME.hands
 
