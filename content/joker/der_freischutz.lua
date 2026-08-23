@@ -41,7 +41,7 @@ SMODS.Joker {
   end,
 
   check_for_unlock = function (self, args)
-    return G.GAME.paperback.destroyed_faces >= 7
+    return (G.GAME.paperback.destroyed_cards.ranks["face"] or 0) >= 7
   end,
 
   calculate = function(self, card, context)

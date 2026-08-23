@@ -49,7 +49,7 @@ SMODS.Joker {
   end,
 
   check_for_unlock = function(self, args)
-    if G.GAME.paperback.destroyed_glass >= 3 then
+    if (G.GAME.paperback.destroyed_cards.enhancements["m_glass"] or 0) >= 3 then
       return true
     end
   end,

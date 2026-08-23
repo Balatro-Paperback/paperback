@@ -27,7 +27,7 @@ SMODS.Joker {
   unlocked = false,
 
   check_for_unlock = function (self, args)
-    return args.type == 'paperback_destroyed_mult'
+    return (G.GAME.paperback.destroyed_cards.enhancements["m_mult"] or false)
   end,
 
   loc_vars = function(self, info_queue, card)

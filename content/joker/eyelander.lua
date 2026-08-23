@@ -39,7 +39,8 @@ SMODS.Joker {
   end,
 
   check_for_unlock = function(self, args)
-    return G.GAME.paperback.destroyed_jacks + G.GAME.paperback.destroyed_kings >= 9
+    return (G.GAME.paperback.destroyed_cards.ranks["Jack"] or 0) 
+    + (G.GAME.paperback.destroyed_cards.ranks["King"] or 0) >= 9
   end,
 
   -- Dear Jimbo in heaven, when will this joker stop being problematic

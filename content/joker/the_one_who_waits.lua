@@ -38,7 +38,7 @@ SMODS.Joker {
   end,
 
   check_for_unlock = function(self, args)
-    if G.GAME.paperback.destroyed_crowns >= 1 then
+    if (G.GAME.paperback.destroyed_cards.suits["paperback_Crowns"] or 0) >= 1 then
       return true
     end
   end,

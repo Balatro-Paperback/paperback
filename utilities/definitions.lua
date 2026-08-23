@@ -13,63 +13,37 @@ SMODS.current_mod.calculate = function(self, context)
   -- Count the amount of removed playing cards
   if context.remove_playing_cards then
     for _, v in ipairs(context.removed or {}) do
-      G.GAME.paperback.destroyed_cards = G.GAME.paperback.destroyed_cards + 1
-      G.GAME.paperback.round.destroyed_cards_this_round = G.GAME.paperback.round.destroyed_cards_this_round + 1
+      local destroyed = G.GAME.paperback.destroyed_cards
 
-      -- Counting destroyed ranks
-      if PB_UTIL.is_rank(v, "King") then
-        G.GAME.paperback.destroyed_kings = G.GAME.paperback.destroyed_kings + 1
-      end
-      if PB_UTIL.is_rank(v, "Jack") then
-        G.GAME.paperback.destroyed_jacks = G.GAME.paperback.destroyed_jacks + 1
-      end
-      
-      -- Count the amount of destroyed glass cards
-      if SMODS.has_enhancement(v, 'm_glass') then
-        G.GAME.paperback.destroyed_glass = G.GAME.paperback.destroyed_glass + 1
-      end
+			destroyed["cards"] = destroyed["cards"] + 1
+			G.GAME.paperback.round.destroyed_cards_this_round = G.GAME.paperback.round.destroyed_cards_this_round + 1
 
-      -- Count the amount of destroyed ceramic cards
-      if SMODS.has_enhancement(v, 'm_paperback_ceramic') then
-        G.GAME.paperback.destroyed_ceramic = G.GAME.paperback.destroyed_ceramic + 1
-      end
+			local rank_obj = not v or SMODS.has_no_rank(v) and nil or PB_UTIL.get_rank_from_id(v:get_id())
+			local rank = rank_obj and rank_obj.key or "rankless"
+			destroyed.ranks[rank] = (destroyed.ranks[rank] or 0) + 1
+			if v:is_face() then destroyed.ranks["face"] = (destroyed.ranks["face"] or 0) + 1 end
 
-      -- Count the amount of destroyed face cards
-      if v:is_face() then
-        G.GAME.paperback.destroyed_faces = G.GAME.paperback.destroyed_faces + 1
-      end
 
-      -- Count the amount of destroyed dark suits
-      if PB_UTIL.is_suit(v, 'dark', false, true) then
-        G.GAME.paperback.destroyed_dark_suits = G.GAME.paperback.destroyed_dark_suits + 1
-      end
+			local enhancements = SMODS.get_enhancements(v) or {}
+			for k, _ in pairs(enhancements) do
+				destroyed.enhancements[k] = (destroyed.enhancements[k] or 0) + 1
+			end
 
-      -- Count the amount of destroyed light suits
-      if PB_UTIL.is_suit(v, 'light', false, true) then
-        G.GAME.paperback.destroyed_light_suits = G.GAME.paperback.destroyed_light_suits + 1
-      end
-
-      -- Count the amount of destroyed crowns
-      if v:is_suit('paperback_Crowns') then
-        G.GAME.paperback.destroyed_crowns = G.GAME.paperback.destroyed_crowns + 1
-      end
-
-      -- Count the amount of destroyed stars
-      if v:is_suit('paperback_Stars') then
-        G.GAME.paperback.destroyed_stars = G.GAME.paperback.destroyed_stars + 1
-      end
-
-      -- Power Surge unlock
-      if PB_UTIL.is_rank(v, 7) and SMODS.has_enhancement(v, 'm_steel') then
-        check_for_unlock({ type = 'paperback_destroyed_steel_7' })
-      end
-
-      -- The Mind Electric unlock
-      if SMODS.has_enhancement(v, 'm_mult') then
-        check_for_unlock({ type = 'paperback_destroyed_mult' })
-      end
+			if not SMODS.has_no_suit(v) then
+				for k, _ in pairs(SMODS.Suits or {}) do
+					if v.base.suit == k then
+						destroyed.suits[k] = (destroyed.suits[k] or 0) + 1
+						if PB_UTIL.is_suit(v, 'light') then
+							destroyed.suits["light"] = (destroyed.suits["light"] or 0) + 1
+						elseif PB_UTIL.is_suit(v, 'dark') then
+							destroyed.suits["dark"] = (destroyed.suits["dark"] or 0) + 1
+						end
+					end
+				end
+			else
+				destroyed.suits["suitless"] = (destroyed.suits["suitless"] or 0) + 1
+			end
     end
-    check_for_unlock({ type = 'paperback_removed_playing_cards' })
   end
 
   if context.end_of_round then

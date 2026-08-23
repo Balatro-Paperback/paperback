@@ -32,16 +32,18 @@ function Game.init_game_object(self)
     ceramic_inc = 0,
     bandaged_inc = 0,
     stained_inc = 0,
-    destroyed_dark_suits = 0,
-    destroyed_light_suits = 0,
-    destroyed_crowns = 0,
-    destroyed_stars = 0,
-    destroyed_cards = 0,
-    destroyed_glass = 0,
-    destroyed_ceramic = 0,
-    destroyed_faces = 0,
-    destroyed_kings = 0,
-    destroyed_jacks = 0,
+    destroyed_cards = {
+      ["cards"] = 0,
+      suits = {
+        -- stores ['dark'], ['light'], ['suitless'], and suit keys (ex: ['Hearts'], ['Spades'], ['paperback_Crowns'])
+      },
+      ranks = {
+        -- stores ['face'], ['rankless'], and rank keys (ex: ['King'], ['10'], ['paperback_Apostle'])
+      },
+      enhancements = {
+        -- stores enhancements (ex: ['m_glass'], ['m_paperback_ceramic'])
+      }
+    },
     tags_redeemed_this_run = 0,
     last_tarot_energized = false,
     ranks_scored_this_ante = {},

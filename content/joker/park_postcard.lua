@@ -33,7 +33,7 @@ SMODS.Joker {
 
   check_for_unlock = function (self, args)
     if args.type == 'win' then
-      return G.GAME.paperback.cards_added_to_deck == 0 and G.GAME.paperback.destroyed_cards == 0
+      return G.GAME.paperback.cards_added_to_deck == 0 and G.GAME.paperback.destroyed_cards["cards"] == 0
     end
   end,
 

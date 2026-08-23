@@ -42,16 +42,16 @@ SMODS.Joker {
     return {
       vars = {
         card.ability.extra.a_mult,
-        G.GAME.paperback.destroyed_dark_suits * card.ability.extra.a_mult
+        (G.GAME.paperback.destroyed_cards.suits["dark"] or 0) * card.ability.extra.a_mult
       }
     }
   end,
 
   calculate = function(self, card, context)
     if context.individual and context.cardarea == G.play then
-      if PB_UTIL.is_suit(context.other_card, 'light') and (G.GAME.paperback.destroyed_dark_suits * card.ability.extra.a_mult ~= 0) then
+      if PB_UTIL.is_suit(context.other_card, 'light') and ((G.GAME.paperback.destroyed_cards.suits["dark"] or 0) * card.ability.extra.a_mult ~= 0) then
         return {
-          mult = G.GAME.paperback.destroyed_dark_suits * card.ability.extra.a_mult
+          mult = (G.GAME.paperback.destroyed_cards.suits["dark"] or 0) * card.ability.extra.a_mult
         }
       end
     end
@@ -80,7 +80,7 @@ SMODS.Joker {
             count = count + JokerDisplay.calculate_card_triggers(scoring_card, scoring_hand)
           end
         end
-        card.joker_display_values.mult = G.GAME.paperback.destroyed_dark_suits * card.ability.extra.a_mult * count
+        card.joker_display_values.mult = (G.GAME.paperback.destroyed_cards.suits["dark"] or 0) * card.ability.extra.a_mult * count
       end,
     }
   end,

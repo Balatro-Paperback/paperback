@@ -24,7 +24,7 @@ SMODS.Joker {
   },
 
   check_for_unlock = function (self, args)
-    return G.GAME.paperback.destroyed_light_suits >= 1
+    return (G.GAME.paperback.destroyed_cards.suits["light"] or 0) >= 1
   end,
     
 

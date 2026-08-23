@@ -30,9 +30,7 @@ SMODS.Joker {
 
   check_for_unlock = function(self, args)
     if args.type == 'paperback_removed_playing_cards' then
-      if G.GAME.paperback.destroyed_cards >= 47 then
-        return true
-      end
+      return G.GAME.paperback.destroyed_cards["cards"] >= 47
     end
   end,
 

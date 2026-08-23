@@ -30,7 +30,7 @@ SMODS.Joker {
   },
 
   check_for_unlock = function (self, args)
-    return G.GAME.paperback.destroyed_ceramic >= 5
+    return (G.GAME.paperback.destroyed_cards.enhancements["m_paperback_ceramic"] or 0) >= 5
   end,
 
   locked_loc_vars = function (self, info_queue, card)
