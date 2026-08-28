@@ -4724,6 +4724,120 @@ return {
           "TBD"
         }
       }
+    },
+    texture_packs = {
+      texpack_paperback_spectrans = {
+        name = 'Paperback Spectrans',
+        text = {
+          "Paperback's {C:spectral}Spectral cards{}",
+          'with Trans flag colours'
+        },
+        localization = {
+          j_paperback_war_without_reason = {
+            unlock = {
+              "Use the {C:attention,E:1}#1#{}",
+              "{C:spectral,E:1}Spectrans{} card",
+            }
+          },
+          j_paperback_as_above_so_below = {
+            name = "As Above, So Below",
+            text = {
+              "Playing a {C:attention}5{}-card poker hand with an",
+              "{C:attention}Apostle{} creates a {C:purple}Tarot{} card,",
+              "if poker hand also contains a {C:attention}Straight{}",
+              "create a {C:spectral}Spectrans{} card instead",
+              "{C:inactive}(Must have room)"
+            },
+          },
+          j_paperback_oujia_board = {
+            text = {
+              "{C:spectral}Spectrans{} cards may appear",
+              "in the shop. Jokers are",
+              "{C:attention}shuffled{} before scoring",
+            },
+            unlock = {
+              "Use the {C:attention,E:1}#1#{}",
+              "{C:spectral,E:1}Spectrans{} card",
+            }
+          },
+          j_paperback_planchette = {
+            text = {
+              "This Joker gains {X:mult,C:white}X#1#{} Mult",
+              "when a {C:spectral}Spectrans{} card is used",
+              "{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult)",
+            },
+            unlock = {
+              "Use {C:attention,E:1}#1#{}",
+              "{C:spectral,E:1}Spectrans{} cards",
+              "in one run"
+            }
+          },
+          j_paperback_touch_tone_joker = {
+            text = {
+              "When opening an {C:tarot}Arcana{},",
+              "{C:planet}Celestial{} or {C:spectral}Spectrans{} pack,",
+              "{C:attention}draw{} the {C:attention}first card{} in it",
+              "to your consumables",
+              "{C:inactive}(Must have room)"
+            }
+          },
+          j_paperback_thornring = {
+            text = {
+              { "When a {C:attention}#1#{} is played,",
+                "destroy the played hand and",
+                "create a random {C:spectral}Spectrans{} card",
+                "{C:inactive}(Must have room)",
+              },
+              { "{C:red}* #2# left.{}" }
+            },
+          },
+          j_paperback_ghost_cola = {
+            text = {
+              "Sell this card to create a {C:attention}#1#{}",
+              "and a random {C:spectral}Spectrans{} card",
+              "{C:inactive}(Must have room)"
+            },
+          },
+          j_paperback_first_contact = {
+            text = {
+              "Create a random {C:spectral}Spectrans{} card",
+              "for every {C:attention}#1#{C:inactive} [#2#]{} scored {C:paperback_dark_suit}Dark Suits",
+              "{C:inactive}(Must have room)",
+            },
+            unlock = {
+              "Use {C:attention,E:1}#1#{}",
+              "{C:spectral,E:1}Spectrans{} cards",
+              "in one run"
+            }
+          },
+          j_paperback_emf_reader = {
+            text = {
+              "If {C:attention}first hand{} of round",
+              "contains a {C:attention}#1#{}, destroy",
+              "played cards and create",
+              "a random {C:spectral}Spectrans{} card"
+            }
+          },
+          j_paperback_sinister_minds = {
+            name = "Sinister Minds",
+            text = {
+              "Retrigger all scored cards {C:attention}#1#{} time#2#",
+              "if played hand was a {C:attention}#7#",
+              "Increases by {C:attention}#3#{} when",
+              "using {C:attention}#4#{} {C:spectral}Spectrans{} card#6#",
+              "{C:inactive}(Currently {C:attention}#8#{C:inactive} Spectrans card#6# left)"
+            }
+          },
+        }
+      },
+      texpack_paperback_spectralsbian = {
+        name = 'Paperback Spectralsbian',
+        text = {
+          "Paperback's {C:spectral}Spectral cards{}",
+          'with Lesbian flag colours'
+        },
+        localization = {}
+      }
     }
   },
   misc = {

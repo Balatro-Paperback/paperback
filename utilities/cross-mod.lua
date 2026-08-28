@@ -297,3 +297,100 @@ for mod, jokers in pairs(PB_UTIL.ENABLED_CROSS_MOD_JOKERS) do
     end
   end
 end
+
+-- Load Malverk textures
+if next(SMODS.find_mod('malverk')) then
+  Malverk.badges.ego_gift = function(self, card, badges)
+      badges[#badges + 1] = create_badge(localize('k_paperback_ego_gift'), G.C.PAPERBACK_EGO_GIFT_RED,
+        G.C.PAPERBACK_EGO_GIFT_YELLOW, 1.2)
+  end
+  if next(SMODS.find_mod('TSpectrals')) then
+    AltTexture {
+      key = 'spectral_atlas',
+      set = 'Spectral',
+      path = 'malverk/Trans-Spectrals.png',
+      keys = {
+        'c_paperback_apostle_of_cups',
+        'c_paperback_apostle_of_wands',
+        'c_paperback_apostle_of_swords',
+        'c_paperback_apostle_of_pentacles',
+      },
+      display_pos = 'c_paperback_apostle_of_cups',
+      loc_txt = {
+        name = "Apostles",
+      },
+      localization = {
+        c_paperback_apostle_of_cups = { badge = 'spectrans_card'},
+        c_paperback_apostle_of_wands = { badge = 'spectrans_card'},
+        c_paperback_apostle_of_swords = { badge = 'spectrans_card'},
+        c_paperback_apostle_of_pentacles = { badge = 'spectrans_card'},
+      },
+    }
+    AltTexture {
+      key = 'ego_gift_atlas',
+      set = 'Spectral',
+      path = 'malverk/Trans-EGOGifts.png',
+      keys = {
+        'c_paperback_golden_bough',
+      },
+      soul_keys = {
+        'c_paperback_golden_bough',
+      },
+      loc_txt = {
+        name = 'Golden Bough',
+      },
+      localization = {
+        c_paperback_golden_bough = { badge = 'ego_gift'},
+      },
+    }
+    TexturePack {
+      key = 'spectrans',
+      textures = {
+        'paperback_spectral_atlas',
+        'paperback_ego_gift_atlas'
+      },
+      localization = true
+    }
+  elseif next(SMODS.find_mod('LeSpectrals')) then
+    AltTexture {
+      key = 'spectral_atlas',
+      set = 'Spectral',
+      path = 'malverk/Lesbian-Spectrals.png',
+      keys = {
+        'c_paperback_apostle_of_cups',
+        'c_paperback_apostle_of_wands',
+        'c_paperback_apostle_of_swords',
+        'c_paperback_apostle_of_pentacles',
+      },
+      display_pos = 'c_paperback_apostle_of_cups',
+      loc_txt = {
+        name = "Apostles",
+      },
+    }
+    AltTexture {
+      key = 'ego_gift_atlas',
+      set = 'Spectral',
+      path = 'malverk/Lesbian-EGOGifts.png',
+      keys = {
+        'c_paperback_golden_bough',
+      },
+      soul_keys = {
+        'c_paperback_golden_bough',
+      },
+      loc_txt = {
+        name = 'Golden Bough',
+      },
+      localization = {
+        c_paperback_golden_bough = { badge = 'ego_gift'},
+      },
+    }
+    TexturePack {
+      key = 'spectralsbian',
+      textures = {
+        'paperback_spectral_atlas',
+        'paperback_ego_gift_atlas'
+      },
+      localization = true
+    }
+  end
+end
