@@ -43,12 +43,7 @@ end
 ---@param str string
 ---@return boolean
 function PB_UTIL.is_paperclip(str)
-  for _, v in ipairs(PB_UTIL.Paperclips) do
-    if v == str then
-      return true
-    end
-  end
-  return false
+  return PB_UTIL.config.paperclips_enabled and PB_UTIL.Paperclips_keys[str] == true
 end
 
 ---Checks if a card has a paperclip. If found, the first value returned is the key.
@@ -498,31 +493,25 @@ end
 ---@param card table
 ---@param after function?
 function PB_UTIL.destroy_joker(card, after)
-  G.E_MANAGER:add_event(Event({
+  G.E_MANAGER:add_event(Event {
     func = function()
-      play_sound('tarot1')
-      card.T.r = -0.2
-      card:juice_up(0.3, 0.4)
-      card.states.drag.is = true
-      card.children.center.pinch.x = true
-      G.E_MANAGER:add_event(Event({
+      SMODS.destroy_cards(card, { immediate = true, pinch_anim = true })
+
+      G.E_MANAGER:add_event(Event {
         trigger = 'after',
         delay = 0.3,
         blockable = false,
         func = function()
-          G.jokers:remove_card(card)
-          card:remove()
-
           if after and type(after) == "function" then
             after()
           end
-
           return true
         end
-      }))
+      })
+
       return true
     end
-  }))
+  })
 end
 
 ---This function is basically a copy of how the base game does the flipping animation
@@ -997,7 +986,12 @@ function PB_UTIL.panorama_logic(self, card, context)
       local xMult = card.ability.extra.xMult
       -- Upgrade the xMult if not blueprint
       if not context.blueprint then
-        card.ability.extra.xMult = card.ability.extra.xMult + card.ability.extra.xMult_gain
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'xMult',
+          scalar_value = 'xMult_gain',
+          no_message = true
+        })
       end
 
       return {
@@ -1290,8 +1284,24 @@ end
 ---@return number
 function PB_UTIL.count_destroyed_things(context)
   if context.remove_playing_cards then return #context.removed end
-  if context.paperback and context.paperback.destroying_non_playing_card then return 1 end
+  if context.joker_type_destroyed then return 1 end
   return 0
+end
+
+--- Returns whether a joker was destroyed in `context`.
+--- If `exclude_card` is specified, it does not take said card into consideration.
+--- If `exclude_addons` is specified, it does not take cards that have the paperback `addon` flag into consideration.
+---@param context CalcContext
+---@param exclude_card Card | nil
+---@param exclude_addons boolean | nil
+---@return boolean
+function PB_UTIL.is_joker_destroyed(context, exclude_card, exclude_addons)
+  if context.joker_type_destroyed and context.card.ability.set == "Joker" then
+    if exclude_card and context.card == exclude_card then return false end
+    if exclude_addons and (context.card.config.center.paperback or {}).addon then return false end
+    return true
+  end
+  return false
 end
 
 -- Returns true if a jimbocards is at 0 hands left
@@ -1400,4 +1410,79 @@ function PB_UTIL.count_entries(table)
   local count = 0
   for _ in pairs(table) do count = count + 1 end
   return count
+end
+
+--- Get a list of all non-rankless enhancement keys (based on logic from spectrals)
+function PB_UTIL.get_ranked_enhancements()
+  local cen_pool = {}
+  for i, key in ipairs(get_current_pool('Enhanced')) do
+    if key ~= "UNAVAILABLE" and key ~= 'm_stone' and not G.P_CENTERS[key].overrides_base_rank then
+      cen_pool[#cen_pool + 1] = key
+    end
+  end
+  return cen_pool
+end
+
+--- Calls set cost on every shop card to refresh pricing
+function PB_UTIL.refresh_shop_cost()
+  G.E_MANAGER:add_event(Event({
+    func = function()
+      for k, v in pairs(G.I.CARD) do
+        if v.set_cost then v:set_cost() end
+      end
+      return true
+    end
+  }))
+end
+
+--- Tracks Minor Arcana usage for profile
+--- @param val number
+function PB_UTIL.minor_arcana_profile_usage(val)
+  val = val or 1
+  G.PROFILES[G.SETTINGS.profile].career_stats.paperback_minor_arcana_used = (G.PROFILES[G.SETTINGS.profile].career_stats.paperback_minor_arcana_used or 0) + val
+  if G.PROFILES[G.SETTINGS.profile].career_stats.paperback_minor_arcana_used then
+    check_for_unlock({type = 'paperback_use_minor_arcana', minor_arcana_total = G.PROFILES[G.SETTINGS.profile].career_stats.paperback_minor_arcana_used})
+  end
+end
+--- Choose a new item from a list
+--- @param current_item (string|nil)
+--- @param list (table)
+--- @param seed (string)
+--- @return (string)
+function PB_UTIL.choose_new_item(current_item, list, seed)
+  local new_list = {}
+  for _, item in ipairs(list) do
+    if item ~= current_item then
+      table.insert(new_list, item)
+    end
+  end
+  return pseudorandom_element(new_list, seed)
+end
+
+--- Whether any of the listed hands has been played at least once
+--- @param hands string|string[]
+--- @return boolean
+function PB_UTIL.any_hand_played(hands)
+  if type(hands) == "string" then hands = { hands } end
+
+  for k, v in pairs(G.GAME.hands) do
+    for _, hand in ipairs(hands) do
+      if string.find(k, hand, nil, true) and v.played > 0 then
+        return true
+      end
+    end
+  end
+
+  return false
+end
+
+--- Whether there is at least one ego gift in the consumable area
+--- @return boolean
+function PB_UTIL.has_ego_gift()
+  for _, v in ipairs((G.consumeables or {}).cards or {}) do
+    if PB_UTIL.is_ego_gift(v) then
+      return true
+    end
+  end
+  return false
 end

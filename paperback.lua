@@ -14,6 +14,11 @@ SMODS.load_file("utilities/cross-mod.lua")()
 -- Load the atlases
 SMODS.load_file("content/atlas.lua")()
 
+-- Load Attributes (doesn't use individual files)
+for _, key in ipairs(PB_UTIL.ENABLED_ATTRIBUTES) do
+  SMODS.Attribute { key = key }
+end
+
 -- Load Jokers
 PB_UTIL.register_items(PB_UTIL.ENABLED_JOKERS, "content/joker")
 
@@ -70,7 +75,7 @@ if PB_UTIL.config.ego_gifts_enabled then
     secondary_colour = G.C.PAPERBACK_EGO_GIFT_RED, -- Color of the collection button and badge
     shop_rate = 0,                                 -- These will not appear in the shop
     default = 'c_paperback_dark_vestige',          -- Card to spawn if pool is empty
-    collection_rows = { 6, 6 },
+    collection_rows = { 4, 4, 4 },
   }
 
   -- Register the sprite for undiscovered E.G.O Gifts

@@ -1,5 +1,8 @@
 SMODS.Joker {
   key = "clothespin",
+  attributes = {
+    'paperclip'
+  },
   rarity = 1,
   pos = { x = 9, y = 9 },
   atlas = "jokers_atlas",

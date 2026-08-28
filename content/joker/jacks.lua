@@ -7,6 +7,14 @@ SMODS.Joker {
       rank = "Jack"
     }
   },
+  attributes = {
+    'mult',
+    'scaling',
+    'discard',
+    'rank',
+    'jack',
+    'red'
+  },
   rarity = 1,
   pos = { x = 24, y = 8 },
   atlas = "jokers_atlas",
@@ -34,12 +42,13 @@ SMODS.Joker {
         mult = card.ability.extra.mult
       }
     end
-    if not context.blueprint and context.discard and PB_UTIL.is_rank(context.other_card, card.ability.extra.rank) then
-      card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.change
-      return {
-        message = localize('k_upgrade_ex'),
-        colour = G.C.ORANGE
-      }
+    if not context.blueprint and context.discard and PB_UTIL.is_rank(context.other_card, card.ability.extra.rank) and not context.other_card.debuff then
+      SMODS.scale_card(card, {
+        ref_table = card.ability.extra,
+        ref_value = 'mult',
+        scalar_value = 'change'
+      })
+      return nil, true
     end
   end
 }

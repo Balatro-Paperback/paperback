@@ -6,6 +6,10 @@ SMODS.Joker {
       enhancement = 'm_steel'
     }
   },
+  attributes = {
+    'generation',
+    'enhancements'
+  },
   rarity = 2,
   pos = { x = 10, y = 2 },
   atlas = "jokers_atlas",

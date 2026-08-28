@@ -9,6 +9,15 @@ SMODS.Joker {
       tarot_odds = 6
     }
   },
+  attributes = {
+    'xmult',
+    'scaling',
+    'generation',
+    'tarot',
+    'suit',
+    'crowns',
+    'chance'
+  },
   rarity = 3,
   pos = { x = 14, y = 6 },
   atlas = "jokers_atlas",
@@ -16,6 +25,7 @@ SMODS.Joker {
   blueprint_compat = true,
   eternal_compat = true,
   perishable_compat = false,
+  unlocked = false,
   paperback = {
     requires_custom_suits = true
   },
@@ -25,6 +35,12 @@ SMODS.Joker {
 
   in_pool = function(self, args)
     return PB_UTIL.spectrum_played() or PB_UTIL.has_suit_in_deck('paperback_Crowns', true)
+  end,
+
+  check_for_unlock = function(self, args)
+    if G.GAME.paperback.destroyed_crowns >= 1 then
+      return true
+    end
   end,
 
   loc_vars = function(self, info_queue, card)
@@ -60,16 +76,14 @@ SMODS.Joker {
         local effects
 
         if not context.blueprint and PB_UTIL.chance(card, "the_one_who_waits_upgrade", nil, card.ability.extra.upgrade_odds) then
-          card.ability.extra.x_mult = card.ability.extra.x_mult + card.ability.extra.x_mult_mod
-
-          effects = {
-            message = localize {
-              type = 'variable',
-              key = 'a_xmult',
-              vars = { card.ability.extra.x_mult }
-            },
-            colour = G.C.MULT
-          }
+          SMODS.scale_card(card, {
+            ref_table = card.ability.extra,
+            ref_value = 'x_mult',
+            scalar_value = 'x_mult_mod',
+            message_key = 'a_xmult',
+            message_colour = G.C.MULT
+          })
+          return nil, true
         end
 
         if PB_UTIL.chance(card, "the_one_who_waits_tarot", nil, card.ability.extra.tarot_odds) then

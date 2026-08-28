@@ -16,6 +16,13 @@ SMODS.Joker {
       xmult_mod = 0.5
     }
   },
+  attributes = {
+    'xmult',
+    'scaling',
+    'ego_gift',
+    'red',
+    'boss_blind'
+  },
   unlocked = false,
 
   paperback_credit = {
@@ -29,9 +36,7 @@ SMODS.Joker {
   end,
 
   in_pool = function(self, args)
-    for _, v in ipairs(G.consumeables or {}) do
-      if PB_UTIL.is_ego_gift(v) then return true end
-    end
+    return PB_UTIL.has_ego_gift()
   end,
 
   loc_vars = function(self, info_queue, card)
@@ -47,15 +52,14 @@ SMODS.Joker {
   calculate = function(self, card, context)
     -- Upgrade when a sin is activated
     if context.paperback and context.paperback.sold_ego_gift then
-      card.ability.extra.xmult = card.ability.extra.xmult + card.ability.extra.xmult_mod
-      return {
-        message = localize {
-          type = 'variable',
-          key = 'a_xmult',
-          vars = { card.ability.extra.xmult }
-        },
-        colour = G.C.RED
-      }
+      SMODS.scale_card(card, {
+        ref_table = card.ability.extra,
+        ref_value = 'xmult',
+        scalar_value = 'xmult_mod',
+        message_key = 'a_xmult',
+        message_colour = G.C.MULT
+      })
+      return nil, true
     end
 
     if context.end_of_round and context.cardarea == G.jokers and G.GAME.blind.boss then

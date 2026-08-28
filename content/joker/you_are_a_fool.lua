@@ -5,11 +5,15 @@ SMODS.Joker {
       faces = 3
     }
   },
+  attributes = {
+    'modify_card',
+    'face'
+  },
   rarity = 3,
   pos = { x = 9, y = 6 },
   atlas = "jokers_atlas",
   cost = 8,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = false,
   eternal_compat = false,
@@ -18,6 +22,15 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'srockw' }
   },
+
+  check_for_unlock = function(self, args)
+    if args.type == 'modify_deck' and next(G.playing_cards) then
+      for k, v in pairs(G.playing_cards) do
+        if not v:is_face() then return false end
+      end
+      return true
+    end
+  end,
 
   loc_vars = function(self, info_queue, card)
     return {

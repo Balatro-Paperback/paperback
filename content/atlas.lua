@@ -160,11 +160,3 @@ SMODS.Atlas {
   px = 71,
   py = 95
 }
-
--- Registers the mod icon
-SMODS.Atlas { -- modicon
-  key = 'modicon',
-  px = 32,
-  py = 32,
-  path = 'modicon.png'
-}

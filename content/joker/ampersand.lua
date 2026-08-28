@@ -6,6 +6,12 @@ SMODS.Joker {
       is_white = true,
     }
   },
+  attributes = {
+    'retrigger',
+    'dark',
+    'light',
+    'music'
+  },
   rarity = 1,
   pos = { x = 23, y = 6 },
   atlas = "jokers_atlas",
@@ -16,6 +22,9 @@ SMODS.Joker {
   eternal_compat = true,
   perishable_compat = true,
 
+  pools = {
+    Music = true
+  },
   paperback_credit = {
     coder = { 'dowfrin' }
   },

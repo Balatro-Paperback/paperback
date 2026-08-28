@@ -7,6 +7,14 @@ SMODS.Joker {
       ["9"] = 2
     }
   },
+  attributes = {
+    'retrigger',
+    'rank',
+    'ace',
+    'nine',
+    'seven',
+    'music'
+  },
   pools = {
     Music = true
   },

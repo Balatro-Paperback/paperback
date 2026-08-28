@@ -17,6 +17,7 @@ SMODS.Sticker {
 }
 
 -- Hook end_round to destroy Jokers and Consumables with this sticker
+-- See hooks.lua for the usage of `paperback_no_destroy_calc`
 local end_round_ref = end_round
 function end_round()
   local to_destroy = {}
@@ -24,6 +25,7 @@ function end_round()
   -- Destroy jokers
   for _, v in ipairs(G.jokers and G.jokers.cards or {}) do
     if v.ability.paperback_temporary then
+      v.paperback_no_destroy_calc = true
       to_destroy[#to_destroy + 1] = v
     end
   end
@@ -31,6 +33,7 @@ function end_round()
   -- Destroy consumables
   for _, v in ipairs(G.consumeables and G.consumeables.cards or {}) do
     if v.ability.paperback_temporary then
+      v.paperback_no_destroy_calc = true
       to_destroy[#to_destroy + 1] = v
     end
   end
@@ -38,14 +41,13 @@ function end_round()
   -- Destroy playing cards
   for _, v in ipairs(G.playing_cards or {}) do
     if v.ability.paperback_temporary then
+      v.paperback_no_destroy_calc = true
       to_destroy[#to_destroy + 1] = v
     end
   end
 
   if #to_destroy > 0 then
-    G.GAME.paperback.destroy_no_calc = true
     SMODS.destroy_cards(to_destroy)
-    G.GAME.paperback.destroy_no_calc = nil
   end
 
   return end_round_ref()

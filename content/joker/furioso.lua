@@ -7,6 +7,13 @@ SMODS.Joker {
       ranks = {},
     }
   },
+  attributes = {
+    'xmult',
+    'scaling',
+    'reset',
+    'rank',
+    'boss_blind'
+  },
   rarity = 2,
   pos = { x = 2, y = 0 },
   atlas = "jokers_atlas",
@@ -65,11 +72,15 @@ SMODS.Joker {
         local rank = not SMODS.has_no_rank(context.other_card) and context.other_card:get_id()
 
         if rank and not card.ability.extra.ranks[rank] then
-          card.ability.extra.x_mult = card.ability.extra.x_mult + card.ability.extra.x_mult_mod
+          SMODS.scale_card(card, {
+            ref_table = card.ability.extra,
+            ref_value = 'x_mult',
+            scalar_value = 'x_mult_mod',
+            no_message = true
+          })
           card.ability.extra.ranks[rank] = context.other_card.base.value
           -- recalc ranks_sorted
           card.ability.extra.ranks_sorted = nil
-
           return {
             extra = { focus = card, message = localize('k_upgrade_ex'), colour = G.C.MULT },
             card = card,

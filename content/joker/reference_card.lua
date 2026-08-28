@@ -6,11 +6,16 @@ SMODS.Joker {
       x_mult_mod = 2
     }
   },
+  attributes = {
+    'xmult',
+    'scaling',
+    'hand_type'
+  },
   rarity = 2,
   pos = { x = 3, y = 2 },
   atlas = "jokers_atlas",
   cost = 6,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -27,6 +32,15 @@ SMODS.Joker {
       end
     }
   },
+
+  check_for_unlock = function(self, args)
+    for _, hand in ipairs(PB_UTIL.base_poker_hands) do
+      if G.GAME.hands[hand].played < 1 then
+        return false
+      end
+    end
+    return true
+  end,
 
   paperback_credit = {
     coder = { 'oppositewolf' }

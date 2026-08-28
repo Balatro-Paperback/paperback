@@ -1,11 +1,18 @@
 SMODS.Joker {
   key = 'ghost_cola',
   config = {},
+  attributes = {
+    'generation',
+    'tag',
+    'negative',
+    'spectral',
+    'on_sell'
+  },
   rarity = 2,
   pos = { x = 5, y = 1 },
   atlas = 'jokers_atlas',
   cost = 6,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = false,
   eternal_compat = false,
@@ -26,7 +33,25 @@ SMODS.Joker {
     return {
       vars = {
         localize { type = 'name_text', set = 'Tag', key = 'tag_negative', nodes = {} },
-        localize ('k_spectral')
+        localize('k_spectral')
+      }
+    }
+  end,
+
+  check_for_unlock = function(self, args)
+    if args.type == 'paperback_sold_diet_cola' then
+      return true
+    end
+  end,
+
+  locked_loc_vars = function(self, info_queue, card)
+    local other_name = localize('k_unknown')
+    if G.P_CENTERS['j_diet_cola'].unlocked then
+      other_name = localize { type = 'name_text', set = 'Joker', key = 'j_diet_cola' }
+    end
+    return {
+      vars = {
+        other_name
       }
     }
   end,
@@ -65,6 +90,7 @@ function Card:calculate_joker(context)
     if context.selling_self then
       if self.ability.name == 'Diet Cola' then
         G.GAME.pool_flags.ghost_cola_can_spawn = true
+        check_for_unlock({type = 'paperback_sold_diet_cola'})
       end
     end
   end

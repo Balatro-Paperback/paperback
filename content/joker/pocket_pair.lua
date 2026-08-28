@@ -6,6 +6,10 @@ SMODS.Joker {
       money = 3
     }
   },
+  attributes = {
+    'economy',
+    'hand_type'
+  },
   rarity = 1,
   pos = { x = 0, y = 8 },
   atlas = 'jokers_atlas',

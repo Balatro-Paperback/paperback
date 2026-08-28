@@ -5,6 +5,14 @@ SMODS.Joker {
       xmult = 4
     }
   },
+  attributes = {
+    'xmult',
+    'suit',
+    'spades',
+    'hearts',
+    'clubs',
+    'diamonds'
+  },
   rarity = 3,
   pos = { x = 17, y = 8 },
   atlas = 'jokers_atlas',

@@ -5,11 +5,7 @@ SMODS.Blind {
   },
 
   in_pool = function(self)
-    if G.GAME.bosses_used.bl_paperback_sharp == 0 then
-      return true
-    end
-
-    return false
+    return G.GAME.bosses_used.bl_paperback_sharp == 0
   end,
 
   boss_colour = HEX('4680B8'),

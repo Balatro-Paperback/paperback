@@ -7,11 +7,18 @@ SMODS.Joker {
       is_white = true
     }
   },
+  attributes = {
+    'xmult',
+    'scaling',
+    'suit',
+    'dark',
+    'light'
+  },
   rarity = 3,
   pos = { x = 3, y = 1 },
   atlas = "jokers_atlas",
   cost = 8,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -34,9 +41,23 @@ SMODS.Joker {
     }
   end,
 
-  -- check_for_unlock = function(self, args)
-  --       Not implementable atm without custom args :(
-  -- end,
+  check_for_unlock = function(self, args)
+    if G.playing_cards then
+      for k, v in pairs(G.playing_cards) do
+        if v.paperback_num_times_played and v.paperback_num_times_played >= 8 then
+          return true
+        end
+      end
+    end
+  end,
+
+  locked_loc_vars = function(self, info_queue, card)
+    return {
+      vars = {
+        8
+      }
+    }
+  end,
 
   calculate = function(self, card, context)
     if context.before and not context.blueprint then
@@ -60,7 +81,6 @@ SMODS.Joker {
 
       if suits.dark + suits.light + suits.wild >= 2 then
         local BGcolour
-        card.ability.extra.x_mult = card.ability.extra.x_mult + card.ability.extra.x_mult_mod
         if card.ability.extra.is_white then
           BGcolour = G.C.BLACK
           card.ability.extra.is_white = false
@@ -68,14 +88,14 @@ SMODS.Joker {
           BGcolour = G.C.PAPERBACK_SOLEMN_WHITE
           card.ability.extra.is_white = true
         end
-        return {
-          message = localize {
-            type = 'variable',
-            key = 'a_xmult',
-            vars = { card.ability.extra.x_mult }
-          },
-          colour = BGcolour
-        }
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'x_mult',
+          scalar_value = 'x_mult_mod',
+          message_key = 'a_xmult',
+          message_colour = BGcolour
+        })
+        return nil, true
       end
     end
 

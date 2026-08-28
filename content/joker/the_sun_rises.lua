@@ -7,11 +7,18 @@ SMODS.Joker {
       chip_inc_per_light = 1,
     }
   },
+  attributes = {
+    'chips',
+    'scaling',
+    'suit',
+    'light',
+    'red'
+  },
   rarity = 3,
   pos = { x = 22, y = 1 },
   atlas = 'jokers_atlas',
   cost = 8,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -21,6 +28,18 @@ SMODS.Joker {
     artist = { 'dylan_hall' },
     coder = { 'ejwu' }
   },
+
+  check_for_unlock = function (self, args)
+    if G.GAME.consumeable_usage then
+      if G.GAME.consumeable_usage.c_sun and G.GAME.consumeable_usage.c_sun.count >= 3 then
+        return true
+      end
+    end
+  end,
+
+  locked_loc_vars = function (self, info_queue, card)
+    return { vars = { 3 }}
+  end,
 
   loc_vars = function(self, info_queue, card)
     info_queue[#info_queue + 1] = PB_UTIL.suit_tooltip('light')
@@ -36,19 +55,25 @@ SMODS.Joker {
 
   calculate = function(self, card, context)
     if context.modify_hand then
-      hand_chips = card.ability.extra.set_base_chips
-      update_hand_text({ sound = 'chips2', modded = true }, { chips = hand_chips, mult = mult })
-      return
+      SMODS.Scoring_Parameters.chips.current = card.ability.extra.set_base_chips
+      update_hand_text(
+        { sound = 'chips2', modded = true },
+        { chips = card.ability.extra.set_base_chips }
+      )
     end
 
-    if context.individual and context.cardarea == G.play
-    and PB_UTIL.is_suit(context.other_card, 'light') then
-      local chips = card.ability.extra.chips
+    if context.individual and context.cardarea == G.play and PB_UTIL.is_suit(context.other_card, 'light') then
       if not context.blueprint then
-        card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chip_inc_per_light
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'chips',
+          scalar_value = 'chip_inc_per_light',
+          no_message = true
+        })
       end
+
       return {
-        chips = chips
+        chips = card.ability.extra.chips
       }
     end
   end,

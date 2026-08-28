@@ -7,11 +7,16 @@ SMODS.Joker {
       drank_after = 5
     }
   },
+  attributes = {
+    'xmult',
+    'enhancements',
+    'food'
+  },
   rarity = 2,
   pos = { x = 18, y = 9 },
   atlas = "jokers_atlas",
   cost = 6,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = false,
@@ -39,6 +44,25 @@ SMODS.Joker {
         card.ability.extra.drank_after,
         card.ability.extra.drank_after == 1 and "" or "s",
         card.ability.extra.drank_after == 1 and "is" or "are",
+      }
+    }
+  end,
+
+  check_for_unlock = function(self, args)
+    if G.GAME.paperback.destroyed_glass >= 3 then
+      return true
+    end
+  end,
+
+  locked_loc_vars = function(self, info_queue, card)
+    return {
+      vars = {
+        3,
+        localize {
+          type = 'name_text',
+          set = 'Enhanced',
+          key = card.ability.extra.enhancement
+        },
       }
     }
   end,

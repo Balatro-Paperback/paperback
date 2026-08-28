@@ -6,7 +6,7 @@ if PB_UTIL.config.minor_arcana_enabled then
     },
     atlas = 'ego_gift_atlas',
     pos = { x = 4, y = 0 },
-    soul_pos = { x = 4, y = 3 },
+    soul_pos = { x = 4, y = 4 },
 
     ego_loc_vars = function(self, info_queue, card)
       return {

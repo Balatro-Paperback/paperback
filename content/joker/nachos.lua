@@ -6,11 +6,17 @@ SMODS.Joker {
       reduction_amount = 0.05,
     }
   },
+  attributes = {
+    'xchips',
+    'scaling',
+    'discard',
+    'food'
+  },
   rarity = 1,
   pos = { x = 9, y = 1 },
   atlas = 'jokers_atlas',
   cost = 6,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = false,
@@ -18,6 +24,9 @@ SMODS.Joker {
   pools = {
     Food = true
   },
+  check_for_unlock = function(self, args)
+    return args.type == 'round_win' and G.GAME.current_round.discards_left == G.GAME.round_resets.discards and G.GAME.blind.boss
+  end,
 
   paperback_credit = {
     coder = { 'oppositewolf' },
@@ -47,11 +56,8 @@ SMODS.Joker {
 
     -- Penalize discarding cards only when the current mult is higher than 1
     if context.discard and not context.blueprint and card.ability.extra.X_chips > 1 then
-      -- Reduce the xChips value
-      card.ability.extra.X_chips = card.ability.extra.X_chips - card.ability.extra.reduction_amount
-
       -- Destroy Nachos if the current value is <= 1
-      if card.ability.extra.X_chips <= 1 then
+      if card.ability.extra.X_chips - card.ability.extra.reduction_amount <= 1 then
         PB_UTIL.destroy_joker(card)
 
         return {
@@ -60,16 +66,16 @@ SMODS.Joker {
           card = card
         }
       else
-        return {
-          delay = 0.2,
-          message = localize {
-            type = 'variable',
-            key = 'a_xchips_minus',
-            vars = { card.ability.extra.reduction_amount }
-          },
-          colour = G.C.CHIPS,
-          card = card
-        }
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'X_chips',
+          scalar_value = 'reduction_amount',
+          operation = '-',
+          message_colour = G.C.CHIPS,
+          message_key = 'a_xchips_minus',
+          message_delay = 0.2
+        })
+        return nil, true
       end
     end
   end,

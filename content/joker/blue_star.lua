@@ -13,6 +13,13 @@ SMODS.Joker {
       }
     }
   },
+  attributes = {
+    'xchips',
+    'scaling',
+    'suit',
+    'stars',
+    'clubs'
+  },
   rarity = 3,
   pos = { x = 11, y = 5 },
   atlas = "jokers_atlas",

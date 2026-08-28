@@ -6,6 +6,12 @@ SMODS.Joker {
       x_mult = 1,
     }
   },
+  attributes = {
+    'xmult',
+    'scaling',
+    'destroy_card',
+    'red'
+  },
   rarity = 4,
   pos = { x = 20, y = 2 },
   soul_pos = { x = 21, y = 2 },
@@ -22,6 +28,7 @@ SMODS.Joker {
     'j_paperback_off_epsilon',
   },
   paperback_secret_unlock = true,
+  paperback_nine_of_cups_rarity_override = 3,
 
   paperback_credit = {
     artist = { 'dylan_hall' },
@@ -97,17 +104,15 @@ SMODS.Joker {
       end
     end
 
-    if not context.blueprint and context.paperback and context.paperback.destroyed_joker and
-    not (card == context.paperback.destroyed_joker) then
-      card.ability.extra.x_mult = card.ability.extra.x_mult + card.ability.extra.a_xmult
-      return {
-        message = localize {
-          type = 'variable',
-          key = 'a_xmult',
-          vars = { card.ability.extra.a_xmult }
-        },
-        colour = G.C.MULT
-      }
+    if PB_UTIL.is_joker_destroyed(context, card) and not context.blueprint then
+      SMODS.scale_card(card, {
+        ref_table = card.ability.extra,
+        ref_value = 'x_mult',
+        scalar_value = 'a_xmult',
+        message_key = 'a_xmult',
+        message_colour = G.C.MULT
+      })
+      return nil, true
     end
 
     if context.joker_main then

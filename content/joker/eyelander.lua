@@ -7,6 +7,12 @@ SMODS.Joker {
       trigerred = false
     }
   },
+  attributes = {
+    'destroy_card',
+    'face',
+    'negative',
+    'on_sell'
+  },
   rarity = 3,
   pos = { x = 10, y = 0 },
   atlas = 'jokers_atlas',

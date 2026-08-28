@@ -10,6 +10,11 @@ SMODS.Joker {
       sell_value = 0
     }
   },
+  attributes = {
+    'generation',
+    'joker',
+    'music'
+  },
   pools = {
     Music = true
   },

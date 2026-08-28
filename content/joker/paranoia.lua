@@ -5,11 +5,19 @@ SMODS.Joker {
       a_mult = 2
     }
   },
+  attributes = {
+    'mult',
+    'scaling',
+    'suit',
+    'light',
+    'dark',
+    'red'
+  },
   rarity = 3,
   pos = { x = 6, y = 3 },
   atlas = 'jokers_atlas',
   cost = 8,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -18,6 +26,14 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'srockw' }
   },
+  check_for_unlock = function(self, args)
+    if args.type == 'modify_deck' and next(G.playing_cards) then
+      for k, v in pairs(G.playing_cards) do
+        if not PB_UTIL.is_suit(v, 'light') then return false end
+      end
+      return true
+    end
+  end,
 
   loc_vars = function(self, info_queue, card)
     info_queue[#info_queue + 1] = PB_UTIL.suit_tooltip('light')
@@ -69,16 +85,3 @@ SMODS.Joker {
     }
   end,
 }
-
-local calc_context_ref = SMODS.calculate_context
-function SMODS.calculate_context(context, return_table)
-  if context.remove_playing_cards then
-    for _, v in ipairs(context.removed or {}) do
-      if PB_UTIL.is_suit(v, 'dark', false, true) then
-        G.GAME.paperback.destroyed_dark_suits = G.GAME.paperback.destroyed_dark_suits + 1
-      end
-    end
-  end
-
-  return calc_context_ref(context, return_table)
-end

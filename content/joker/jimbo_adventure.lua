@@ -1,5 +1,10 @@
 SMODS.Joker {
   key = "jimbo_adventure",
+  attributes = {
+    'generation',
+    'tag',
+    'skip'
+  },
   rarity = 1,
   pos = { x = 1, y = 5 },
   atlas = 'jokers_atlas',

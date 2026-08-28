@@ -6,11 +6,17 @@ SMODS.Joker {
       increment = 2,
     }
   },
+  attributes = {
+    'mult',
+    'scaling',
+    'planet',
+    'space'
+  },
   rarity = 1,
   pos = { x = 11, y = 1 },
   atlas = "jokers_atlas",
   cost = 3,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -28,12 +34,26 @@ SMODS.Joker {
     }
   end,
 
+  locked_loc_vars = function (self, info_queue, card)
+    return {vars = {3, localize("Clubs", 'suits_singular')}}
+  end,
+
+  check_for_unlock = function (self, args)
+    if args.type == 'paperback_suit_flushes' then
+      if G.GAME.paperback.played_flushes['Clubs'] and G.GAME.paperback.played_flushes['Clubs'] >= 3 then
+        return true
+      end
+    end
+  end,
+
   calculate = function(self, card, context)
     if context.using_consumeable and context.consumeable.ability.set == "Planet" then
-      card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.increment
-      return {
-        message = localize('k_upgrade_ex')
-      }
+      SMODS.scale_card(card, {
+        ref_table = card.ability.extra,
+        ref_value = 'mult',
+        scalar_value = 'increment'
+      })
+      return nil, true
     end
 
     if context.joker_main then

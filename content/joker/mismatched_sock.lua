@@ -6,11 +6,18 @@ SMODS.Joker {
       a_xmult = 0.1,
     }
   },
+  attributes = {
+    'xmult',
+    'scaling',
+    'discard',
+    'hand_type',
+    'reset'
+  },
   rarity = 2,
   pos = { x = 6, y = 1 },
   atlas = 'jokers_atlas',
   cost = 6,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -29,15 +36,27 @@ SMODS.Joker {
     }
   end,
 
+  locked_loc_vars = function(self, info_queue, card)
+    return { vars = { localize('Pair', 'poker_hands') } }
+  end,
+  check_for_unlock = function(self, args)
+    if args.type == 'win_no_hand' then
+      if not G.GAME.paperback.played_pair_this_run then
+        return true
+      end
+    end
+  end,
+
   calculate = function(self, card, context)
     -- Upgrade x mult if discard contains only one card
     if not context.blueprint and context.discard then
       if #context.full_hand == 1 then
-        card.ability.extra.x_mult = card.ability.extra.x_mult + card.ability.extra.a_xmult
-        return {
-          message = localize('k_upgrade_ex'),
-          colour = G.C.ORANGE
-        }
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'x_mult',
+          scalar_value = 'a_xmult'
+        })
+        return nil, true
       end
     end
 

@@ -11,11 +11,18 @@ SMODS.Joker {
       current = 0,
     },
   },
+  attributes = {
+    'rank',
+    'seven',
+    'destroy_card',
+    'full_deck',
+    'secret'
+  },
   rarity = 2,
   pos = { x = 14, y = 4 },
   atlas = "jokers_atlas",
   cost = 6,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -27,6 +34,14 @@ SMODS.Joker {
 
   loc_vars = function(self, info_queue, card)
     return { vars = { math.min(card.ability.extra.current, card.ability.extra.max), card.ability.extra.max } }
+  end,
+
+  locked_loc_vars = function (self, info_queue, card)
+    return { vars = { 7 }}
+  end,
+
+  check_for_unlock = function (self, args)
+    return G.GAME.paperback.destroyed_faces >= 7
   end,
 
   calculate = function(self, card, context)

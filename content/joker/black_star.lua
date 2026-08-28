@@ -5,6 +5,12 @@ SMODS.Joker {
       suit_conv = 'paperback_Stars'
     }
   },
+  attributes = {
+    'modify_card',
+    'suit',
+    'dark',
+    'stars'
+  },
   rarity = 3,
   pos = { x = 14, y = 3 },
   atlas = "jokers_atlas",

@@ -7,11 +7,18 @@ if PB_UTIL.config.minor_arcana_enabled then
         minor_arcana_odds = 4
       }
     },
+    attributes = {
+      'generation',
+      'tarot',
+      'minor_arcana',
+      'hand_type',
+      'chance'
+    },
     rarity = 2,
     pos = { x = 5, y = 4 },
     atlas = 'jokers_atlas',
     cost = 6,
-    unlocked = true,
+    unlocked = false,
     discovered = false,
     blueprint_compat = true,
     eternal_compat = true,
@@ -20,6 +27,14 @@ if PB_UTIL.config.minor_arcana_enabled then
     paperback_credit = {
       coder = { 'srockw' }
     },
+
+    check_for_unlock = function (self, args)
+      return G.GAME.hands["Three of a Kind"].level >= 4
+    end,
+
+    locked_loc_vars = function (self, info_queue, card)
+      return { vars = { 3 }}
+    end,
 
     loc_vars = function(self, info_queue, card)
       local n1, d1 = PB_UTIL.chance_vars(card, nil, nil, card.ability.extra.tarot_odds)
@@ -83,7 +98,7 @@ else
     pos = { x = 5, y = 4 },
     atlas = 'jokers_atlas',
     cost = 6,
-    unlocked = true,
+    unlocked = false,
     discovered = false,
     blueprint_compat = true,
     eternal_compat = true,
@@ -93,6 +108,14 @@ else
     paperback_credit = {
       coder = { 'srockw' }
     },
+
+    check_for_unlock = function (self, args)
+      return SMODS.PokerHands["Three of a Kind"].level >= 4
+    end,
+
+    locked_loc_vars = function (self, info_queue, card)
+      return { vars = { 3 }}
+    end,
 
     loc_vars = function(self, info_queue, card)
       local n1, d1 = PB_UTIL.chance_vars(card, nil, nil, card.ability.extra.planet_odds)

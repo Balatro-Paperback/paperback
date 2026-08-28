@@ -6,6 +6,10 @@ SMODS.Joker {
       chips = 0
     }
   },
+  attributes = {
+    'chips',
+    'scaling'
+  },
   rarity = 4,
   pos = { x = 21, y = 8 },
   soul_pos = { x = 22, y = 8 },
@@ -32,7 +36,7 @@ SMODS.Joker {
   end,
 
   locked_loc_vars = function(self, info_queue, card)
-    return { vars = { G.localization.descriptions.Joker.j_paperback_off_switch.name } }
+    return { vars = { G.localization.descriptions.Joker.j_paperback_the_batter.name } }
   end,
 
   loc_vars = function(self, info_queue, card)
@@ -46,19 +50,15 @@ SMODS.Joker {
 
 
   calculate = function(self, card, context)
-    if not context.blueprint
-    and context.paperback and context.paperback.destroyed_joker and not (card == context.paperback.destroyed_joker) and not (context.paperback.destroyed_joker.config.center.paperback and context.paperback.destroyed_joker.config.center.paperback.addon)
-    then
-      card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chips_mod
-
-      return {
-        message = localize {
-          type = 'variable',
-          key = 'a_chips',
-          vars = { card.ability.extra.chips_mod }
-        },
-        colour = G.C.CHIPS
-      }
+    if PB_UTIL.is_joker_destroyed(context, card, true) and not context.blueprint then
+      SMODS.scale_card(card, {
+        ref_table = card.ability.extra,
+        ref_value = 'chips',
+        scalar_value = 'chips_mod',
+        message_key = 'a_chips',
+        message_colour = G.C.CHIPS
+      })
+      return nil, true
     end
 
     if context.joker_main then

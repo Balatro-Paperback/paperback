@@ -5,6 +5,9 @@ SMODS.Joker {
       num_slots = 1
     }
   },
+  attributes = {
+    'passive'
+  },
   rarity = 2,
   pos = { x = 14, y = 10 },
   atlas = "jokers_atlas",

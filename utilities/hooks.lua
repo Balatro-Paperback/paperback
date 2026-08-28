@@ -16,14 +16,22 @@ function Game.init_game_object(self)
     reference_card_ct = 0,
 
     round = {
-      scored_clips = 0
+      scored_clips = 0,
+      scored_face_cards = 0,
+      destroyed_cards_this_round = 0,
     },
     ceramic_inc = 0,
     bandaged_inc = 0,
     stained_inc = 0,
     destroyed_dark_suits = 0,
+    destroyed_light_suits = 0,
+    destroyed_crowns = 0,
+    destroyed_stars = 0,
     destroyed_cards = 0,
-    destroyed_cards_this_round = 0,
+    destroyed_glass = 0,
+    destroyed_faces = 0,
+    destroyed_card_this_run = false,
+    tags_redeemed_this_run = 0,
     last_tarot_energized = false,
     ranks_scored_this_ante = {},
     last_scored_suit = 'Spades',
@@ -36,10 +44,15 @@ function Game.init_game_object(self)
     arcana_used = {},
     sold_ego_gifts = {},
     finished_antes = {},
-    find_jimbo_unlock = false,
     max_consumeables = 0,
     jester_destroying_cards = false,
     coin_collection_adding_money = false,
+    find_jimbo_unlock = false,
+    jokers_owned_this_run = {},
+    played_pair_this_run = false,
+    only_pairs_this_run = true,
+    discarded_this_ante = false,
+    played_flushes = {},
 
     permabonus_odds = 0,
 
@@ -172,33 +185,6 @@ function Tag.yep(self, message, _colour, func)
   return yep_ref(self, message, _colour, func)
 end
 
--- Add new context that happens after destroying things
-local remove_ref = Card.remove
-function Card.remove(self)
-  -- Check that the card being removed is owned by the player and that it's not being sold/used
-  if not self.playing_card and self.added_to_deck
-  and not (self.paperback_sell_flag or self.paperback_use_flag) then
-    if self.ability.set == 'Joker' then
-      SMODS.calculate_context({
-        paperback = {
-          destroying_joker = true,
-          destroying_non_playing_card = true,
-          destroyed_joker = self,
-          destroyed_card = self
-        }
-      })
-    else
-      SMODS.calculate_context({
-        paperback = {
-          destroying_non_playing_card = true,
-          destroyed_card = self
-        }
-      })
-    end
-  end
-  return remove_ref(self)
-end
-
 -- Add new context that happens when pressing the cash out button
 local cash_out_ref = G.FUNCS.cash_out
 G.FUNCS.cash_out = function(e)
@@ -276,8 +262,7 @@ function SMODS.calculate_main_scoring(context, scoring_hand)
   if context.cardarea == G.play or context.cardarea == 'unscored' then
     SMODS.calculate_context {
       paperback = {
-        nichola = true -- Name can be changed later
-        -- the context is "after played cards score", a better name probably exists
+        before_joker_effects = true
       },
       full_hand = G.play.cards,
       scoring_hand = context.scoring_hand,
@@ -387,6 +372,7 @@ G.FUNCS.toggle_shop = function(e)
 end
 
 -- if a special clip is copied, replace it with a random non-special clip
+-- also stop HATRED's marked cards from copying the mark
 local copy_card_ref = copy_card
 copy_card = function(other, new_card, card_scale, playing_card, strip_edition)
   local card = copy_card_ref(other, new_card, card_scale, playing_card, strip_edition)
@@ -394,6 +380,10 @@ copy_card = function(other, new_card, card_scale, playing_card, strip_edition)
 
   if clip and not G.SETTINGS.paused and PB_UTIL.is_special_clip(clip) then
     PB_UTIL.set_paperclip(card, PB_UTIL.poll_paperclip('plat_copy', false))
+  end
+
+  if card.ability.paperback_hatred_mark then
+    card.ability.paperback_hatred_mark = nil
   end
 
   return card
@@ -466,4 +456,98 @@ function SMODS.calculate_individual_effect(effect, scored_card, key, amount, fro
     })
   end
   return calculate_individual_effect_ref(effect, scored_card, key, amount, from_edition)
+end
+
+-- Removes flagged cards from destruction calculation
+local calculate_context_ref = SMODS.calculate_context
+function SMODS.calculate_context(context, return_table, no_resolve)
+  -- Remove non playing cards
+  if context.joker_type_destroyed and context.card.paperback_no_destroy_calc then
+    return not return_table and {}
+  end
+
+  -- Remove playing cards
+  if context.remove_playing_cards then
+    local calc_cards = {}
+    for _, card in ipairs(context.removed) do
+      if not card.paperback_no_destroy_calc then
+        table.insert(calc_cards, card)
+      end
+    end
+
+    -- Cancel the context call if there are no removed cards
+    if #calc_cards <= 0 then
+      return not return_table and {}
+    end
+
+    context.removed = calc_cards
+  end
+
+  return calculate_context_ref(context, return_table, no_resolve)
+end
+
+-- Keeps track of Jokers obtained this run
+local add_to_deck_ref = Card.add_to_deck
+function Card:add_to_deck(from_debuff)
+  add_to_deck_ref(self, from_debuff)
+  if self.ability.set == 'Joker' then
+    if not G.GAME.paperback.jokers_owned_this_run[self.config.center.key] then
+      G.GAME.paperback.jokers_owned_this_run[self.config.center.key] = 1
+    else
+      G.GAME.paperback.jokers_owned_this_run[self.config.center.key] = 1 + G.GAME.paperback.jokers_owned_this_run[self.config.center.key]
+    end
+  end
+end
+-- When setting sprites, add undersoul if
+-- Field is present
+local set_sprites_ref = Card.set_sprites
+function Card.set_sprites(self, center, front)
+  if self.config.center.paperback and self.config.center.paperback.undersoul_pos and G.P_CENTERS[self.config.center.key].discovered then
+    self.children.under_sprite = SMODS.create_sprite(self.T.x, self.T.y, self.T.w, self.T.h,
+      G.ASSET_ATLAS["paperback_jokers_atlas"], self.config.center.paperback.undersoul_pos)
+    self.children.under_sprite.states.hover = self.states.hover
+    self.children.under_sprite.states.click = self.states.click
+    self.children.under_sprite.states.drag = self.states.drag
+    self.children.under_sprite.states.collide.can = false
+    self.children.under_sprite:set_role({ major = self, role_type = 'Glued', draw_major = self })
+  end
+  set_sprites_ref(self, center, front)
+end
+
+SMODS.DrawStep {
+  key = 'undersoul',
+  order = -11,
+  func = function(self)
+    if self.children.under_sprite then
+      local scale_mod = 0.07 + 0.02 * math.sin(1.8 * G.TIMERS.REAL) +
+          0.00 * math.sin((G.TIMERS.REAL - math.floor(G.TIMERS.REAL)) * math.pi * 14) *
+          (1 - (G.TIMERS.REAL - math.floor(G.TIMERS.REAL))) ^ 3
+      local rotate_mod = 0.05 * math.sin(1.219 * G.TIMERS.REAL) +
+          0.00 * math.sin((G.TIMERS.REAL) * math.pi * 5) * (1 - (G.TIMERS.REAL - math.floor(G.TIMERS.REAL))) ^ 2
+
+      self.children.under_sprite:draw_shader('dissolve', 0, nil, nil, self.children.center, scale_mod, rotate_mod, nil,
+        0.1 + 0.03 * math.sin(1.8 * G.TIMERS.REAL), nil, 0.6)
+      self.children.under_sprite:draw_shader('dissolve', nil, nil, nil, self.children.center, scale_mod, rotate_mod)
+      if self.edition then
+        local edition = G.P_CENTERS[self.edition.key]
+        if edition.apply_to_float and self.children.under_sprite then
+          self.children.under_sprite:draw_shader(edition.shader, nil, nil, nil, self.children.center, scale_mod,
+            rotate_mod)
+        end
+      end
+    end
+  end,
+  conditions = { vortex = false, facing = 'front' },
+}
+SMODS.draw_ignore_keys.under_sprite = true -- needed so smods doesn't auto-draw it
+
+-- Meow
+local click_ref = Card.click
+function Card:click()
+  if self.config.center_key == 'j_paperback_pink_joker' then
+    play_sound("paperback_mario-paint-meow", (80 + math.random(40)) / 100)
+  end
+  if click_ref then
+    click_ref(self)
+  end
 end

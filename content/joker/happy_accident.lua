@@ -6,6 +6,10 @@ SMODS.Joker {
       enhancement = 'm_paperback_antique',
     }
   },
+  attributes = {
+    'xchips',
+    'enhancements'
+  },
   pos = { x = 21, y = 0 },
   atlas = 'jokers_atlas',
   cost = 7,

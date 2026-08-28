@@ -5,11 +5,17 @@ SMODS.Joker {
       x_mult = 4,
     }
   },
+  attributes = {
+    'xmult',
+    'destroy_card',
+    'food',
+    'red'
+  },
   rarity = 3,
   pos = { x = 0, y = 7 },
   atlas = 'jokers_atlas',
   cost = 8,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -25,6 +31,16 @@ SMODS.Joker {
     return {
       vars = { card.ability.extra.x_mult }
     }
+  end,
+
+  locked_loc_vars = function(self, info_queue, card)
+    return {
+      vars = { 1 }
+    }
+  end,
+
+  check_for_unlock = function(self, args)
+    return args.type == 'round_win' and G.GAME.current_round.hands_played == 1 and G.GAME.blind.boss and G.GAME.blind.config.blind.boss.showdown
   end,
 
   calculate = function(self, card, context)

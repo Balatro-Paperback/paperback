@@ -6,12 +6,14 @@ PB_UTIL.EGO_Gift {
   },
   atlas = 'ego_gift_atlas',
   pos = { x = 5, y = 1 },
-  soul_pos = { x = 5, y = 4 },
+  soul_pos = { x = 5, y = 5 },
 
   ego_loc_vars = function(self, info_queue, card)
-    return { vars = {
-      card.ability.bonus
-    } }
+    return {
+      vars = {
+        card.ability.bonus
+      }
+    }
   end,
 
   ego_add = function(self, card, from_debuff)

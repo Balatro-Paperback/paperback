@@ -29,7 +29,7 @@ return {
           "and a {C:paperback_minor_arcana,T:c_paperback_nine_of_cups}#2#"
         },
         unlock = {
-          "Discover {C:attention}#1#{}",
+          "Discover {C:attention,E:1}#1#{}",
           "{C:paperback_minor_arcana,E:1}Minor Arcana{} cards"
         },
       },
@@ -38,7 +38,7 @@ return {
         text = {
           "Start run with a {C:paperback_temporary}temporary",
           "{C:paperback_minor_arcana,T:c_paperback_apostle_of_wands}#1#",
-          "{C:attention}#2#{} Joker slot"
+          "Run starts on the {C:attention}Big Blind"
         },
         unlock = {
           "Win a run with any",
@@ -241,6 +241,10 @@ return {
           "{C:purple}Balance{} {C:attention}#1#%{} of {C:chips}Chips{} and {C:mult}Mult",
           "Reduces by {C:attention}#2#%{} if a hand's {C:attention{}final{}",
           "{C:mult}Mult{} ends up {C:attention}greater{} than its {C:chips}Chips"
+        },
+        unlock = {
+          "Win a run with",
+          "{C:attention,E:1}#1#{}"
         }
       },
       j_paperback_nichola = {
@@ -294,8 +298,8 @@ return {
           "{C:inactive}(Currently {C:money}$#3#{C:inactive})",
         },
         unlock = {
-          "Have {C:attention}#1#{} or more {C:attention}Gold{}",
-          "{C:attention}Aces{} in your deck",
+          "Have {C:attention,E:1}#1#{} or more {C:attention,E:1}Gold{}",
+          "{C:attention,E:1}Aces{} in your deck",
         }
       },
       j_paperback_pear = {
@@ -306,7 +310,13 @@ return {
           "this Joker loses {C:chips}-#3#{} Chips.",
           "Eaten if Chips fall below 0",
           "{C:inactive}(Currently {C:chips}+#4#{C:inactive} Chips)"
-        }
+        },
+        unlock = {
+          "Win a run",
+          "playing only",
+          "hands that",
+          "contain a {E:1,C:attention}#1#",
+        },
       },
       j_paperback_teapot = {
         name = "Teapot",
@@ -324,6 +334,10 @@ return {
           "{C:inactive}(Currently {X:mult,C:white}X#8#{C:inactive} Mult)",
           "{C:green}#5# in #6#{} chance to create a {C:tarot}#7#{} Tarot",
           "{C:inactive}(Must have room)",
+        },
+        unlock = {
+          "Destroy a",
+          "{C:paperback_crowns,E:1}Crown{} Card"
         }
       },
       j_paperback_blood_rain = {
@@ -334,12 +348,25 @@ return {
           "instead of giving {C:chips}Chips"
         }
       },
+      j_paperback_war_without_reason = {
+        name = "War Without Reason",
+        text = {
+          "When {C:attention}first hand{} is drawn,",
+          "destroy Joker to the right",
+          "and add a random {C:attention}seal",
+          "to a card {C:attention}held in hand{}",
+        }
+      },
       j_paperback_pinot_noir = {
         name = "Pinot Noir",
         text = {
           "The next {C:attention}#1#{} times a",
           "{C:attention}#2#{} triggers, it",
           "gives {C:mult}+#3#{} more permanent Mult"
+        },
+        unlock = {
+          "Have a card with",
+          "{C:attention, E:1}+#1# Extra Mult"
         }
       },
       j_paperback_jestosterone = {
@@ -386,6 +413,11 @@ return {
           "each card {C:attention}held in hand{} has a",
           "{C:green}#1# in #2#{} chance to get a random {C:attention}enhancement{}",
           "and a {C:green}#1# in #3#{} chance to get a random {C:attention}seal{}"
+        },
+        unlock = {
+          "Have a playing card",
+          "with an {C:attention,E:1}enhancement{}, {C:attention,E:1}seal{},",
+          "{C:attention,E:1}edition{}, and {C:attention,E:1}paperclip"
         }
       },
       j_paperback_one_sin_and_hundreds_of_good_deeds = {
@@ -512,6 +544,7 @@ return {
           "Scored {V:1}#1#{} have a",
           "{C:green}#2# in #3#{} chance to create",
           "a {C:dark_edition}Negative {C:attention}Tag{}",
+          "{s:0.9,C:inactive}Once per round{}"
         }
       },
       j_paperback_shooting_star = {
@@ -579,7 +612,7 @@ return {
           "create a random {C:attention}Tag{}",
         },
         unlock = {
-          "Have {C:attention}#1#{} Aces",
+          "Have {C:attention,E:1}#1#{} Aces",
           "in your deck",
         }
       },
@@ -609,8 +642,8 @@ return {
           "{C:green}+#1#{} to all {C:green}listed probabilites{}",
         },
         unlock = {
-          "Have {C:attention}#1#{}",
-          "for {C:attention}#2#{} round",
+          "Have {C:attention,E:1}#1#{}",
+          "for {C:attention,E:1}#2#{} round",
         }
       },
       j_paperback_hamsa_r_collection = {
@@ -620,8 +653,8 @@ return {
           "{C:green}+#1#{} to all {C:green}listed probabilites{}",
         },
         unlock = {
-          "Have {C:attention}#1#{}",
-          "for {C:attention}#2#{} round",
+          "Have {C:attention,E:1}#1#{}",
+          "for {C:attention,E:1}#2#{} round",
         }
       },
       j_paperback_nazar = {
@@ -638,15 +671,15 @@ return {
         }
       },
       j_paperback_oujia_board = {
-        name = "Oujia Board",
+        name = "Ouija Board",
         text = {
           "{C:spectral}Spectral{} cards may appear",
           "in the shop. Jokers are",
           "{C:attention}shuffled{} before scoring",
         },
         unlock = {
-          "Use the {C:attention}Oujia{}",
-          "{C:spectral}Spectral{} card",
+          "Use the {C:attention,E:1}Ouija{}",
+          "{C:spectral,E:1}Spectral{} card",
         }
       },
       j_paperback_planchette = {
@@ -657,7 +690,7 @@ return {
           "{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult)",
         },
         unlock = {
-          "Use {C:attention}#1# {C:spectral}Spectral",
+          "Use {C:attention,E:1}#1# {C:spectral,E:1}Spectral",
           "cards in one run",
         }
       },
@@ -669,6 +702,32 @@ return {
           "{s:0.8}Poker hand changes every round",
           "{C:inactive}(Currently {V:1}#2#{C:inactive})",
         },
+      },
+      j_paperback_frutiger_aero = {
+        name = "Frutiger Aero",
+        text = {
+          "{C:chips}#1#{} Chips,",
+          "loses {C:chips}#2#{} Chips",
+          "per {C:money}${} spent",
+        },
+        unlock = {
+          "Win a run without",
+          "any rare Jokers"
+        },
+      },
+      j_paperback_pink_joker = {
+        name = "Pink Joker",
+        text = {
+          "While a {C:attention}Stained Card{} is held,",
+          "cards have a {C:green}#1#{} in {C:green}#2#{} chance",
+          "to permanently gain {C:money}+$#3#{} when scored",
+          "if they do not already have it",
+        },
+        unlock = {
+          "Have at least",
+          "{C:attention}#1# Stained Cards{}",
+          "in your deck",
+        }
       },
       j_paperback_ultra_rare = {
         name = "Ultra Rare",
@@ -715,6 +774,16 @@ return {
           "This Joker gains {X:mult,C:white}X#1#{} Mult",
           "for every {C:attention}#2#{C:inactive} [#3#]{} scored {C:hearts}#5#{} cards",
           "{C:inactive}(Currently {X:mult,C:white}X#4#{C:inactive} Mult)",
+        },
+      },
+      j_paperback_donor_card = {
+        name = "Donor Card",
+        text = {
+          { "This Joker gains {C:mult}+#1#{} Mult for",
+            "every scored {C:hearts}Heart{} card",
+            "{C:inactive}(Currently {C:mult}+#3#{C:inactive} Mult){}" },
+          { "Scored {C:hearts}Hearts{} lose {C:chips}#2#{} Chips",
+            "and are {C:attention}destroyed{} upon reaching {C:attention}0{}" },
         },
       },
       j_paperback_the_normal_joker = {
@@ -800,6 +869,10 @@ return {
           "When a {C:attention}Planet{} card is used,",
           "this Joker gains {C:mult}+#1#{} Mult",
           "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)"
+        },
+        unlock = {
+          "Play {C:attention,E:1}#1# #2#",
+          "Flushes in one run"
         }
       },
       j_paperback_boundary_of_death = {
@@ -808,7 +881,11 @@ return {
           "{C:attention}#1#s{} have a",
           "{C:green}#2# in #3#{} chance to",
           "give {C:red}+#4#{} additional Mult"
-        }
+        },
+        unlock = {
+          "Play a",
+          "{C:attention,E:1}Mult 4",
+        },
       },
       j_paperback_festive_joker = {
         name = "Festive Joker",
@@ -866,7 +943,11 @@ return {
           "{C:green}#2# in #3#{} chance to",
           "consume on {C:red}discard",
           "{C:inactive}(Currently {C:chips}+#4#{C:inactive} Chips)"
-        }
+        },
+        unlock = {
+          "Clear an Ante",
+          "without {C:attention,E:1}discarding"
+        },
       },
       j_paperback_you_are_a_fool = {
         name = "You Are a Fool!",
@@ -876,6 +957,10 @@ return {
           "{C:attention}all{} cards {C:attention}held in hand{} to",
           "the {C:attention}leftmost{} scored card",
           "{S:1.1,C:red,E:2}self-destructs",
+        },
+        unlock = {
+          "Have a deck containing {C:attention}only{}",
+          "{C:attention}face cards{}"
         }
       },
       j_paperback_kintsugi_joker = {
@@ -970,6 +1055,11 @@ return {
           "{C:planet}Planet{} cards have",
           "a {C:green}#1# in #2#{} chance",
           "to level up {C:attention}again",
+        },
+        unlock = {
+          "Play a {C:attention,E:1}poker hand{}",
+          "{C:attention,E:1}#1#{} times in",
+          "one run"
         }
       },
       j_paperback_sake_cup = {
@@ -997,6 +1087,14 @@ return {
           "{S:1.1,C:red,E:2}self-destructs",
         }
       },
+      j_paperback_red_key = {
+        name = "Red Key",
+        text = {
+          "When {C:attention}Blind{} is selected, create",
+          "a {C:paperback_temporary}temporary{} {C:red}Ultra Secret{} Joker",
+          "When sold, remove {C:paperback_temporary}temporary{} from {C:attention}all{} Jokers"
+        }
+      },
       j_paperback_book_of_vengeance = {
         name = "Book of Vengeance",
         text = {
@@ -1021,6 +1119,11 @@ return {
           "Skipping a {C:attention}Blind{} or defeating",
           "a {C:attention}Boss Blind{} gives",
           "an {C:money}Angel Investment Tag"
+        },
+        unlock = {
+          "Earn {C:attention,E:1}$#1#{} dollars",
+          "of interest",
+          "in one round"
         }
       },
       j_paperback_der_freischutz = {
@@ -1030,6 +1133,10 @@ return {
           "destroy the {C:attention}lowest{} chip-value",
           "{C:attention}non-7{} in your full deck",
           "{C:inactive}Avoid the Seventh Bullet... #1#/#2#{}",
+        },
+        unlock = {
+          "Destroy {C:attention,E:1}#1#{} face cards",
+          "in a run"
         }
       },
       j_paperback_marble_soda = {
@@ -1039,6 +1146,11 @@ return {
           "give {X:mult,C:white}X#2#{} Mult",
           "Drank after {C:attention}#3#{} playing",
           "card#4# #5# {C:attention}destroyed{}"
+        },
+        unlock = {
+          "Destroy {C:attention,E:1}#1#{}",
+          "{C:attention,E:1}#2#s{}",
+          "in a run"
         }
       },
       j_paperback_vacation_juice = {
@@ -1051,7 +1163,7 @@ return {
         },
         unlock = {
           "Win a run with",
-          "{C:attention}#1#{}"
+          "{C:attention,E:1}#1#{}"
         }
       },
       j_paperback_black_forest_cake = {
@@ -1062,6 +1174,12 @@ return {
           "{C:red,E:1}Self-destructs{} if any",
           "card or Joker is {C:attention}destroyed{}",
           "{C:inactive}(Currently {C:mult}+#1#{C:inactive} Mult)"
+        },
+        unlock = {
+          "Have the only",
+          "{C:attention,E:1}Face Cards{}",
+          "in your deck",
+          "be {C:attention,E:1}#1#s{}"
         }
       },
       j_paperback_ice_cube = {
@@ -1082,6 +1200,11 @@ return {
           "cards earn {C:money}$#1#{}, {C:attention}doubled{} if",
           "the card has a {C:attention}seal",
           "{C:attention}Consumed{} in {C:attention}#2#{} rounds"
+        },
+        unlock = {
+          "Score a {C:attention,E:1}King",
+          "or {C:attention,E:1}Queen{} with",
+          "a {C:attention,E:1}Seal"
         }
       },
       j_paperback_pocket_pair = {
@@ -1128,6 +1251,19 @@ return {
         },
         unlock = {
           "{E:1,s:1.3}?????",
+        }
+      },
+      j_paperback_redscreen = {
+        name = "Redscreen",
+        text = {
+          "{X:mult,C:white}+X#1#{} Mult for each {C:paperback_light_suit}light suit{}",
+          "and {X:mult,C:white}-X#1#{} Mult for each {C:paperback_dark_suit}dark suit{}",
+          "in your full deck",
+          "{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult){}",
+        },
+        unlock = {
+          "Have a deck containing {C:attention,E:1}only{}",
+          "{C:paperback_light_suit,E:1}light suits{}"
         }
       },
       j_paperback_telamon = {
@@ -1237,7 +1373,11 @@ return {
           "Destroy a random {C:attention}Joker{}",
           "if played hand is not",
           "the {C:attention}first hand{} of round"
-        }
+        },
+        unlock = {
+          "Defeat a Finisher",
+          "Blind in {E:1,C:attention,E:1}#1# hand",
+        },
       },
       j_paperback_find_jimbo = {
         name = "Find Jimbo",
@@ -1308,6 +1448,10 @@ return {
           "{C:attention}Tags{} earn {C:money}$#1#{} when activated",
           "Consumed in {C:attention}#2#{} round#3#",
           "{C:inactive}(Resets when a {C:attention}Tag{C:inactive} is acquired)"
+        },
+        unlock = {
+          "Activate {E:1,C:attention}#1#{} tags",
+          "in one run",
         }
       },
       j_paperback_coffee = {
@@ -1317,6 +1461,10 @@ return {
           "increases by {C:attention}#2#{} when {C:attention}Blind{} is skipped.",
           "{C:green}#3# in #4#{} chance this card is consumed when",
           "{C:attention}Small Blind{} or {C:attention}Big Blind{} is selected",
+        },
+        unlock = {
+          "Skip {E:1,C:attention}#1#{} blinds",
+          "in one run"
         }
       },
       j_paperback_basic_energy = {
@@ -1326,6 +1474,10 @@ return {
           "{C:green}#1# in #2#{} chance to make a copy",
           "{C:inactive}(Cannot make copy of a copy)",
           "{C:inactive}(Must have room)"
+        },
+        unlock = {
+          "Acquire a",
+          "{C:dark_edition,E:1}Negative {C:attention,E:1}Consumable",
         }
       },
       j_paperback_big_misser = {
@@ -1348,7 +1500,8 @@ return {
           "the rightmost {C:paperback_ego_gift}E.G.O Gift{}",
         },
         unlock = {
-          "Sell an {C:paperback_ego_gift,E:1}E.G.O Gift{}"
+          "Sell an",
+          "{C:paperback_ego_gift,E:1}E.G.O Gift{}"
         }
       },
       j_paperback_the_strongest = {
@@ -1362,7 +1515,8 @@ return {
           "{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult)"
         },
         unlock = {
-          "Sell an {C:paperback_ego_gift,E:1}E.G.O Gift{}"
+          "Sell an",
+          "{C:paperback_ego_gift,E:1}E.G.O Gift{}"
         }
       },
       j_paperback_freezer = {
@@ -1372,7 +1526,7 @@ return {
           "after defeating a {C:attention}Boss Blind{}",
         },
         unlock = {
-          "Own a {C:dark_edition}Negative{}",
+          "Own a {C:dark_edition,E:1}Negative{}",
           "{C:attention,E:1}Food Joker"
         }
       },
@@ -1457,6 +1611,11 @@ return {
           "Scored {C:attention}5s{} and {C:attention}8s{} give",
           "{C:mult}+#1#{} Mult and {C:chips}+#2#{} Chips",
         },
+        unlock = {
+          "Use {C:attention,E:1}The Moon{}",
+          "tarot {C:attention,E:1}#1#{} times",
+          "in one run"
+        }
       },
       j_paperback_moribund = {
         name = "Moribund",
@@ -1467,6 +1626,28 @@ return {
           "{C:attention}Blind{} is not cleared",
           "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)",
         },
+      },
+      j_paperback_thornring = {
+        name = "ThornRing",
+        text = {
+          { "When a {C:attention}#1#{} is played,",
+            "destroy the played hand and",
+            "create a random {C:spectral}Spectral{} card",
+            "{C:inactive}(Must have room)",
+          },
+          { "{C:red}* #2# left.{}" }
+        },
+        unlock = {
+          "Have a deck",
+          "of only {C:hearts}Hearts{}"
+        }
+      },
+      j_paperback_thornring_weird = {
+        name = "ThornRing",
+        text = {
+          { "Played {V:1}#1#{} are {C:attention}destroyed{}" },
+          { "{E:1}T H A N K  Y O U{}" }
+        }
       },
       j_paperback_crispy_taco = {
         name = "Crispy Taco",
@@ -1507,6 +1688,11 @@ return {
           "a playing card. Loses {X:mult,C:white}X#1#{} Mult",
           "when a playing card is {C:attention}destroyed{}",
           "{C:inactive}(Currently {X:mult,C:white}X#2#{} {C:inactive}Mult)",
+        },
+        unlock = {
+          "Win a run",
+          "without {E:1,C:attention}destroying",
+          "a playing card",
         },
       },
       j_paperback_charred_marshmallow = {
@@ -1594,6 +1780,10 @@ return {
           "and a random {C:spectral}#2#{} card",
           "{C:inactive}(Must have room)"
         },
+        unlock = {
+          "Sell a",
+          "{C:attention,E:1}#1#{}"
+        }
       },
       j_paperback_river = {
         name = "River",
@@ -1612,6 +1802,11 @@ return {
           "{C:paperback_dark_suit}dark{} and {C:paperback_light_suit}light suits{}",
           "{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult)",
         },
+        unlock = {
+          "Score a card",
+          "{C:attention,E:1}#1#{} times in",
+          "one run"
+        },
       },
       j_paperback_hole_in_one = {
         name = "Hole in One",
@@ -1629,8 +1824,15 @@ return {
           "This Joker gains {X:mult,C:white}X#1#",
           "Mult if discard contains",
           "exactly {C:attention}one{} card",
-          "Resets if played hand contains a {C:attention}Pair{}",
+          "Resets if played hand",
+          "contains a {C:attention}Pair{}",
           "{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult)",
+        },
+        unlock = {
+          "Win a run",
+          "without playing",
+          "a hand that",
+          "contains a {E:1,C:attention}#1#",
         },
       },
       j_paperback_wild_plus_four = {
@@ -1638,7 +1840,11 @@ return {
         text = {
           "{C:attention}+#1#{} hand size",
           "{C:blue}#2#{} Hand"
-        }
+        },
+        unlock = {
+          "Play a",
+          "{C:attention,E:1}Wild 4",
+        },
       },
       j_paperback_quick_fix = {
         name = "Quick Fix",
@@ -1649,9 +1855,10 @@ return {
           "at end of round...",
         },
         unlock = {
-          "Have a hand",
-          "size of {C:attention,E:1}#1#",
-          "or more cards"
+          "Increase hand",
+          "size by {C:attention,E:1}#1#",
+          "or more cards",
+          "during a run"
         }
       },
       j_paperback_skydiver = {
@@ -1671,6 +1878,10 @@ return {
           "for every {C:attention}#2#{} held in hand",
           "at {C:attention}end of round{}",
           "{C:inactive}(Currently {C:chips}+#3#{C:inactive} chips)"
+        },
+        unlock = {
+          "Convert a {C:attention,E:1}face card{}",
+          "into a {C:attention,E:1}#1#{}"
         }
       },
       j_paperback_blue_bonnets = {
@@ -1704,6 +1915,10 @@ return {
           "loses {X:chips,C:white}X#2#{} Chips",
           "per {C:attention}card{} discarded",
         },
+        unlock = {
+          "Defeat a Boss Blind",
+          "without using any {E:1,C:attention,E:1}discards",
+        },
       },
       j_paperback_trans_flag = {
         name = "Trans Flag",
@@ -1729,9 +1944,8 @@ return {
       j_paperback_pride_flag_no_spectrums = {
         name = "Pride Flag",
         text = {
-          "Gains {C:mult}+#1#{} Mult if scored hand",
-          "contains {C:attention}three{} unique suits",
-          "{C:inactive}(Currently {C:mult}+#2#{} {C:inactive}Mult)",
+          "{C:chips}+#1#{} Chips per {C:attention}unqiue{}",
+          "suit in poker hand"
         },
         unlock = {
           "Play a hand scoring {C:attention,E:1}#1#{} suits",
@@ -1776,6 +1990,11 @@ return {
           "at end of round",
           "{C:inactive}(Currently {C:mult}+#3# {C:inactive}Mult){}",
         },
+        unlock = {
+          "Have a card with",
+          "{C:money,E:1}$#1#{} or more",
+          "of sell value"
+        }
       },
       j_paperback_greeting_card = {
         name = "Greeting Card",
@@ -1792,6 +2011,11 @@ return {
           "or trigger its {C:attention}ability{}",
           "{C:inactive}(Currently {}{X:red,C:white}X#2#{}{C:inactive} Mult){}",
         },
+        unlock = {
+          "Disable the",
+          "{C:attention,E:1}Crimson Heart",
+          "Boss Blind"
+        }
       },
       j_paperback_subterfuge = {
         name = "Subterfuge",
@@ -1813,6 +2037,10 @@ return {
           "{C:green}#3# in #4#{} chance to create a random {C:purple}Tarot{} card",
           "{C:inactive}(Must have room)"
         },
+        unlock = {
+          "Upgrade {C:attention,E:1}Three of a Kind",
+          "by {C:attention,E:1}#1#{} levels"
+        }
       },
       j_paperback_triple_moon_goddess_minor_arcana = {
         name = "Triple Moon Goddess",
@@ -1822,6 +2050,10 @@ return {
           "{C:green}#3# in #4#{} chance to create a random {C:paperback_minor_arcana}Minor Arcana{} card",
           "{C:inactive}(Must have room)"
         },
+        unlock = {
+          "Upgrade {C:attention,E:1}Three of a Kind",
+          "by {C:attention,E:1}#1#{} levels"
+        }
       },
       j_paperback_derecho = {
         name = "Derecho",
@@ -1838,6 +2070,11 @@ return {
           "Scored {C:paperback_light_suit}light suits{} give {C:chips}+#2#{} Chips",
           "and increase Chips given by {C:chips}+#3#{}",
         },
+        unlock = {
+          "Use {C:attention,E:1}The Sun{}",
+          "tarot {C:attention,E:1}#1#{} times",
+          "in one run"
+        }
       },
       j_paperback_jestrica = {
         name = "Jestrica",
@@ -1876,6 +2113,15 @@ return {
           "{C:inactive}(Currently {X:chips,C:white}X#1#{C:inactive} Chips)",
         },
       },
+      j_paperback_the_girl_from_024 = {
+        name = "The Girl From 024",
+        text = {
+          "This Joker gains {X:mult,C:white}X#1#{} Mult",
+          "for every {C:attention}Queen held in hand{}",
+          "at the end of round",
+          "{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult)",
+        },
+      },
       j_paperback_solar_system = {
         name = "Solar System",
         text = {
@@ -1885,7 +2131,7 @@ return {
           "{C:inactive}(Currently {X:mult,C:white}X#2#{} {C:inactive}Mult)",
         },
         unlock = {
-          "Use {C:attention,E:1}#1#{} different {C:planet}#2#{}",
+          "Use {C:attention,E:1}#1#{} different {C:planet,E:1}#2#{}",
           "cards in a run"
         }
       },
@@ -1895,6 +2141,11 @@ return {
           "Gives {X:mult,C:white}X#1#{} Mult for every time {C:attention}all{} 9",
           "base {C:attention}poker hands{} have been played",
           "{C:inactive}(Currently {X:mult,C:white}X#2#{} {C:inactive}Mult)",
+        },
+        unlock = {
+          "Play every base",
+          "{C:attention,E:1}poker hand{}",
+          "in one run",
         },
       },
       j_paperback_dreamsicle = {
@@ -1937,6 +2188,10 @@ return {
           "The next {C:attention}#1#{} scored {V:1}#2#{} permanently gain",
           "{X:mult,C:white}X#3#{} Mult when scored",
         },
+        unlock = {
+          "Play {C:attention,E:1}#1# #2#",
+          "Flushes in one run"
+        }
       },
       j_paperback_stout = {
         name = "Stout",
@@ -1944,6 +2199,10 @@ return {
           "The next {C:attention}#1#{} scored {V:1}#2#{} permanently gain",
           "{C:chips}+#3#{} Chips when scored",
         },
+        unlock = {
+          "Play {C:attention,E:1}#1# #2#",
+          "Flushes in one run"
+        }
       },
       j_paperback_aperol = {
         name = "Aperol",
@@ -1951,6 +2210,10 @@ return {
           "The next {C:attention}#1#{} scored {V:1}#2#{} permanently gain",
           "{C:money}$#3#{} when scored",
         },
+        unlock = {
+          "Play {C:attention,E:1}#1# #2#",
+          "Flushes in one run"
+        }
       },
       j_paperback_blue_curacao = {
         name = "Blue Curaçao",
@@ -1958,6 +2221,10 @@ return {
           "The next {C:attention}#1#{} scored {V:1}#2#{} permanently gain",
           "{C:mult}+#3#{} Mult when scored",
         },
+        unlock = {
+          "Play {C:attention,E:1}#1# #2#",
+          "Flushes in one run"
+        }
       },
       j_paperback_nigori = {
         name = "Nigori",
@@ -1965,6 +2232,10 @@ return {
           "The next {C:attention}#1#{} scored {V:1}#2#{} permanently gain",
           "{X:chips,C:white}X#3#{} chips when scored",
         },
+        unlock = {
+          "Play {C:attention,E:1}#1# #2#",
+          "Flushes in one run"
+        }
       },
       j_paperback_lager = {
         name = "Lager",
@@ -1972,6 +2243,10 @@ return {
           "The next {C:attention}#1#{} scored {V:1}#2#{} permanently gain",
           "{C:green}+#3#{} odds when scored",
         },
+        unlock = {
+          "Play {C:attention,E:1}#1# #2#",
+          "Flushes in one run"
+        }
       },
       j_paperback_paranoia = {
         name = "Paranoia",
@@ -1981,6 +2256,19 @@ return {
           "card {C:attention}destroyed{} this run",
           "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)"
         },
+        unlock = {
+          "Have a deck containing {C:attention}only{}",
+          "{C:paperback_light_suit}light suits{}"
+        }
+      },
+      j_paperback_hatred = {
+        name = "HATRED",
+        text = {
+          "At the start of every hand {C:red,E:1,7}mark{} a random",
+          "card {C:attention}held in hand{}",
+          "{C:red,E:1,7}Marked{} cards give {X:mult,C:white}X#1#{} Mult when scored",
+          "and are destroyed if not scored"
+        },
       },
       j_paperback_unholy_alliance = {
         name = "Unholy Alliance",
@@ -1989,6 +2277,22 @@ return {
           "when a card or Joker is {C:attention}destroyed{}",
           "{C:inactive}(Currently {C:chips}+#2#{C:inactive} Chips)",
         },
+        unlock = {
+          "Lose a run with",
+          "{C:attention,E:1}#1#{}",
+          "at {C:mult,E:1}+#2#{} Mult or more",
+        }
+      },
+      j_paperback_blazing_trails = {
+        name = "Blazing Trails",
+        text = {
+          "If discard has exactly {C:attention}#1#{} cards,",
+          "destroy the {C:attention}rightmost{} card"
+        },
+        unlock = {
+          "Destroy a",
+          "{C:paperback_stars,E:1}Star{} Card"
+        }
       },
       j_paperback_summoning_circle = {
         name = "Summoning Circle",
@@ -2026,7 +2330,8 @@ return {
           "{C:inactive}(Currently the next {C:attention}#4#{C:inactive} hands)"
         },
         unlock = {
-          "Play a hand scoring {C:attention,E:1}#1#{} suits"
+          "Play a hand",
+          "scoring {C:attention,E:1}#1#{} suits"
         }
       },
       j_paperback_giga_size = {
@@ -2056,6 +2361,9 @@ return {
           "attempt to destroy leftmost destructible Joker",
           "and gain {X:mult,C:white}X#1#{} Mult if successful",
           "{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult)",
+        },
+        unlock = {
+          "{E:1,s:1.3}?????",
         }
       },
       j_paperback_off_alpha = {
@@ -2065,6 +2373,9 @@ return {
           "Joker {C:attention}destroyed",
           "{C:inactive}(Currently {C:chips}+#2# {C:inactive}Chips)",
         },
+        unlock = {
+          "{E:1,s:1.3}?????",
+        }
       },
       j_paperback_off_omega = {
         name = "Omega",
@@ -2073,12 +2384,25 @@ return {
           "Joker {C:attention}destroyed",
           "{C:inactive}(Currently {C:mult}+#2# {C:inactive}Mult)",
         },
+        unlock = {
+          "{E:1,s:1.3}?????",
+        }
       },
       j_paperback_off_epsilon = {
         name = "Epsilon",
         text = {
           "Earns {C:gold}$#1#{} for each",
           "Joker {C:attention}destroyed",
+        },
+        unlock = {
+          "{E:1,s:1.3}?????",
+        }
+      },
+      j_paperback_superjoker = {
+        name = "SUPERJOKER",
+        text = {
+          "RETRIGGER {C:attention}ALL{} CARDS IN {C:attention}FIRST HAND",
+          "GIVES {X:mult,C:white}X#1#{} MULT ON SUBSEQUENTLY PLAYED HANDS",
         },
       },
       j_paperback_photocopy = {
@@ -2136,8 +2460,8 @@ return {
         },
         unlock = {
           "Win a run with",
-          "{C:attention}#1#{} on at least",
-          "{V:1}#2#{} difficulty",
+          "{C:attention,E:1}#1#{} on at least",
+          "{V:1,E:1}#2#{} difficulty",
         }
       },
       j_paperback_in_case_i_make_it = {
@@ -2201,6 +2525,26 @@ return {
           "Spend {C:money,E:1}$50{} in one shop"
         }
       },
+      j_paperback_membership_card = {
+        name = "Membership Card",
+        text = {
+          "All cards and packs in shop are {C:attention}#1#%{} off",
+        },
+      },
+      j_paperback_normalJKR = {
+        name = "normalJKR",
+        text = {
+          "The first card in shop",
+          "you buy is {C:attention}free{}"
+        },
+      },
+      j_paperback_normalJKR_alt = {
+        name = "jimbo_follower_c",
+        text = {
+          "The first card in shop",
+          "you buy is {C:attention}2G{}"
+        },
+      },
       j_paperback_cakepop = {
         name = "Cakepop",
         text = {
@@ -2215,7 +2559,11 @@ return {
           "Scored {C:spades}#3#{} and {C:clubs}#4#",
           "have a {C:green}#1# in #2#{} chance",
           "to become {C:dark_edition}Polychrome"
-        }
+        },
+        unlock = {
+          "Acquire a {C:attention,E:1}Polychrome",
+          "King or Jack",
+        },
       },
       j_paperback_meeple = {
         name = "Meeple",
@@ -2224,7 +2572,12 @@ return {
           "a scoring {C:attention}face{} card,",
           "{C:green}#1# in #2#{} chance to gain",
           "{C:mult}+#3#{} discard this round",
-        }
+        },
+        unlock = {
+          "Score {C:attention,E:1}#1#{}",
+          "Face Cards in",
+          "{C:attention,E:1}one round",
+        },
       },
       j_paperback_apple = {
         name = "Apple",
@@ -2364,6 +2717,11 @@ return {
           "{C:paperback_minor_arcana}#3#{} card used",
           "{C:inactive}(Currently {X:chips,C:white}X#2#{C:inactive} Chips)",
         },
+        unlock = {
+          "Use a total of {C:attention,E:1}#1#",
+          "{C:paperback_minor_arcana,E:1}Minor Arcana{} cards",
+          "{C:inactive}(#2#)",
+        },
       },
       j_paperback_punch_card = {
         name = "Punch Card",
@@ -2372,6 +2730,11 @@ return {
           "sell this card for",
           "{C:attention}#3#{} Ante",
           "{C:inactive}(Currently {C:attention}#2#{C:inactive}/#1#)",
+        },
+        unlock = {
+          "Obtain {C:attention,E:1}#1#",
+          "{C:attention,E:1}#2#{} times",
+          "{C:inactive}(#3#)",
         },
       },
       j_paperback_eyelander = {
@@ -2391,6 +2754,14 @@ return {
           "{C:attention}#2#{} {C:inactive}(#3#){} skipped Blinds",
           "{C:inactive}(Only counts skips in new antes,{}",
           "{C:inactive}currently {V:1}#4#{C:inactive})",
+        }
+      },
+      j_paperback_hotel_guest = {
+        name = "Hotel Guest",
+        text = {
+          "Gives {X:mult,C:white}X#1#{} for each",
+          "{C:attention}Queen{} held in hand",
+          "{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult){}",
         }
       },
       j_paperback_freight = {
@@ -2499,7 +2870,7 @@ return {
         text = {
           "After defeating a {C:attention}Boss Blind",
           "this Joker {C:red,E:1}self-destructs{}",
-          "and gain {C:money}$#1#{}"
+          "and gives {C:money}$#1#{} after {C:attention}cashing out{}"
         }
       },
       j_paperback_mind_electric = {
@@ -2674,6 +3045,251 @@ return {
           "give {C:mult}+#1#{} Mult for each",
           "scored {C:paperback_light_suit}light suit{} this round",
           "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)"
+        },
+        unlock = {
+          "Have a deck containing {C:attention}only{}",
+          "{C:paperback_light_suit}light suits{}"
+        }
+      },
+      j_paperback_shabu_shabu = {
+        name = "Shabu Shabu",
+        text = {
+          "{C:attention}+#1#{} Joker slots",
+          "Reduces by {C:attention}#2#{}",
+          "After clearing {C:attention}Boss Blind{}"
+        },
+        unlock = {
+          "Have {C:attention,E:1}#1# Food{}",
+          "{C:attention,E:1}Jokers{} at once"
+        }
+      },
+      j_paperback_takoyaki = {
+        name = "Takoyaki",
+        text = {
+          "Scored {C:attention}#1#{}s give {C:money}#2#G{}",
+          "{C:green}#3# in #4#{} chance to eat",
+          "This Joker when scored"
+        },
+        unlock = {
+          "Have no {C:attention,E:1}8s{}",
+          "in your deck"
+        }
+      },
+      j_paperback_bamboo_stick = {
+        name = "Bamboo Stick",
+        text = {
+          "{X:mult,C:white}X#1#{} Mult if you have",
+          "another {C:attention}\"Stick\"{} Joker",
+          "{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult)",
+        },
+      },
+      j_paperback_shugi_bukuro = {
+        name = "Shūgi Bukuro",
+        text = {
+          "Earn {C:money}$#1#{} when a Blind is skipped",
+          "Increases by {C:money}$#2#{} each time",
+        },
+      },
+      j_paperback_freedom_of_choice = {
+        name = "Freedom of Choice",
+        text = {
+          "If played hand contains a",
+          "{C:attention}#1#{}, scored cards",
+          "permanently gain {X:mult,C:white}X#2#{} Mult",
+        }
+      },
+      j_paperback_magic_mushroom = {
+        name = "Magic Mushroom",
+        text = {
+          "{X:mult,C:white}X#1#{} Mult",
+          "Loses {X:mult,C:white}X#2#{} Mult for every hand played",
+          "Resets after clearing a Blind",
+          "{C:inactive}(Cannot exceed {X:mult,C:white}X#1#{C:inactive} Mult)"
+        }
+      },
+      j_paperback_bergentrucking = {
+        name = "Bergentrücking",
+        text = {
+          "Scored {C:paperback_crowns}#1#{} gain {X:mult,C:white}X#2#{} Mult",
+          "if scored hand contains a {C:hearts}#3#{}",
+          "and scored {C:hearts}#4#{} are {C:attention}destroyed"
+        }
+      },
+      j_paperback_technology = {
+        name = "Technology",
+        text = {
+          "This Joker gives {X:mult,C:white}X#1#{} Mult for each",
+          "played and scored {C:attention}#2#{} this round",
+          "{C:inactive}(Currently {X:mult,C:white}X#3#{C:inactive} Mult){}"
+        }
+      },
+      j_paperback_doppler_radar = {
+        name = "Doppler Radar",
+        text = {
+          "Create a random {C:planet}#1#{} card",
+          "for each empty {C:attention}consumable{} slot",
+          "upon clearing a blind"
+        }
+      },
+      j_paperback_cardboard_box = {
+        name = "Cardboard Box",
+        text = {
+          "If the first played hand of round",
+          "contains a scoring queen",
+          "add {C:money}$#1#{} of {C:attention}sell value",
+          "to every {C:attention}Joker{}",
+          "Increases by {C:money}$#2#{} when",
+          "a {C:attention}Food Joker{} is destroyed"
+        }
+      },
+      j_paperback_malibu = {
+        name = "Malibu",
+        text = {
+          "This {C:attention}Joker{} gives {C:chips}Chips{} equal to",
+          "{C:attenttion}#1#{} times the {C:attenttion}lowest{} Chip value",
+          "card in scored hand"
+        },
+      },
+      j_paperback_spirit_box = {
+        name = "Spirit Box",
+        text = {
+          "Create a random {C:attention}Tag{} if",
+          "{C:attention}played hand{} contains a {C:attention}#1#{}.",
+          "{C:inactive}(Once per round)",
+          "{s:0.75}poker hand changes at end of round"
+        }
+      },
+      j_paperback_seven_stars = {
+        name = "Seven Stars",
+        text = {
+          "Retrigger all scored {C:paperback_stars}#1#{}"
+        }
+      },
+      j_paperback_lone_digger = {
+        name = "Lone Digger",
+        text = {
+          "If {C:attention}scored hand{} has only",
+          "one face card, {C:attention}retrigger{} it",
+          "for each scored card"
+        }
+      },
+      j_paperback_sinister_minds = {
+        name = "Sinister Minds",
+        text = {
+          "Retrigger all scored cards {C:attention}#1#{} time#2#",
+          "if played hand was a {C:attention}#7#",
+          "Increases by {C:attention}#3#{} when",
+          "using {C:attention}#4#{} {C:spectral}#5#{} card#6#",
+          "{C:inactive}(Currently {C:attention}#8#{C:inactive} #5# card#6# left)"
+        }
+      },
+      j_paperback_joker_jacks = {
+        name = "Joker Jacks",
+        text = {
+          "Scored {C:attention}#2#{} give {C:money}$#1#",
+          "Decreases by {C:money}$#3#",
+          "Create a {C:attention}prize{}",
+          "after being consumed",
+          "{C:inactive}(Must have room)"
+        }
+      },
+      j_paperback_ponzu = {
+        name = "Ponzu",
+        text = {
+          "{V:1}#4#{} held in hand have a ",
+          "{C:green}#1# in #2#{} chance to give {C:money}$#3#",
+          "{C:red,E:1}Consumed{} if not triggered",
+          "{s:0.8}suit changes at end of round"
+        }
+      },
+      j_paperback_sacred_heart = {
+        name = "Sacred Heart",
+        text = {
+          "If played hand is a {C:attention}#1#",
+          "Give the {C:attention}first{} scored card",
+          "a {C:red,E:1}permament retrigger{}",
+          "destroy all other scored cards"
+        }
+      },
+      j_paperback_royalty_free = {
+        name = "Royalty Free",
+        text = {
+          "The first scored",
+          "{C:attention}non-face{} card each round",
+          "permanently gains {C:chips}+#1#{} Chips"
+        }
+      },
+      j_paperback_whitebeard = {
+        name = "Whitebeard",
+        text = {
+          "During a {C:attention}Boss Blind{}",
+          "scored cards give {X:red,C:white}X#1#{} Mult",
+          "The last played hand",
+          "is {C:attention}destroyed{} after scoring"
+        }
+      },
+      j_paperback_mezzetino = {
+        name = "Mezzetino",
+        text = {
+          "{C:mult}Discards{} give {C:money}$#1#{}",
+          "and destroy a {C:attention}random{} card",
+          "at end of round"
+        }
+      },
+      j_paperback_twenty_first_century = {
+        name = "21{s:0.8}st{} Century Joker",
+        text = {
+          "When {C:attention}Big Blind{} or {C:attention}Boss Blind{}",
+          "is cleared, {C:attention}destroy{} Joker to the left",
+          "and create a {C:attention}new{} Joker",
+          "of equal or higher rarity",
+          "{C:inactive}(Cannot upgrade to Legendary Jokers)"
+        }
+      },
+      j_paperback_buckshot = {
+        name = "Buckshot",
+        text = {
+          "If played hand",
+          "contains a {C:attention}Two Pair",
+          "{C:attention}destroy{} all cards of a",
+          "{C:attention}random rank{} in",
+          "scoring hand and earn",
+          "{C:money}$#1#{} for each card"
+        }
+      },
+      j_paperback_arayashiki = {
+        name = "Arayashiki",
+        text = {
+          "Upon clearing a blind",
+          "{C:paperback_ego_gift}E.G.O Gifts{} have a",
+          "{C:green}#1# in #2#{} chance to create",
+          "a {C:dark_edition}negative{} {C:paperback_minor_arcana}#3#{}",
+          "If none exist"
+        }
+      },
+      j_paperback_man = {
+        name = "Man",
+        text = {
+          "Every played",
+          "{C:paperback_dark_suit}Dark Suit{C:attention} card",
+          "permanently",
+          "gains {C:mult}+#1#{} Mult",
+          "when scored"
+        },
+        unlock = {
+          "Acquire {C:Attention}#1#{}",
+          "{C:Attention}#2#{} times",
+          "{C:inactive}(#3#)"
+        }
+      },
+      j_paperback_i_wish_that_i_could_fall = {
+        name = "I Wish That I Could Fall",
+        text = {
+          "When a card is scored, this",
+          "Joker decreases the card's",
+          "{C:attention}rank{} and gains {C:chips}+#1#{} Chips",
+          "{C:inactive}(2 -> Ace -> King){}",
+          "{C:inactive}(Currently {C:chips}+#2#{C:inactive} Chips){}"
         }
       },
       -- Cross-Mod jokers start here
@@ -3153,7 +3769,8 @@ return {
       c_paperback_knight_of_pentacles = {
         name = "Knight of Pentacles",
         text = {
-          "Reset {C:green}Reroll{} cost to {C:money}$#1#{}"
+          "Reset {C:green}Reroll{} cost to {C:money}$#1#{}",
+          "{C:inactive}(Currently {C:money}$#2#{C:inactive})"
         }
       },
       c_paperback_queen_of_pentacles = {
@@ -3202,6 +3819,14 @@ return {
           "{C:attention}hand{} of round",
         }
       },
+      c_paperback_red_tassel = {
+        name = "Red Tassel",
+        text = {
+          "The card with the lowest",
+          "rank in {C:attention}scoring hand",
+          "permanently gains {C:mult}+#1#{} Mult"
+        }
+      },
       c_paperback_coffee_and_cranes = {
         name = "Coffee and Cranes",
         text = {
@@ -3221,6 +3846,15 @@ return {
         text = {
           "If {C:attention}first hand{} of round",
           "is a {C:attention}single{} card, destroy it",
+        }
+      },
+      c_paperback_tango_marinade = {
+        name = "Tango Marinade",
+        text = {
+          "If played hand contains",
+          "a {C:attention}#1#",
+          "retrigger the first {C:attention}#2#",
+          "cards used in scoring"
         }
       },
       c_paperback_downpour = {
@@ -3245,6 +3879,15 @@ return {
           "every time a {C:attention}played hand",
           "does not defeat the {C:attention}Blind",
           "{C:inactive}(Currently {C:chips}+#2#{C:inactive} Chips)",
+        }
+      },
+      c_paperback_canned_ice_cream = {
+        name = "Canned Ice Cream",
+        text = {
+          "When a card is {C:attention}destroyed",
+          "this EGO Gift gains",
+          "half its {C:chips}chips",
+          "{C:inactive}(Currently {C:chips}+#1#{C:inactive} Chips)"
         }
       },
       c_paperback_thrill = {
@@ -3277,6 +3920,14 @@ return {
         text = {
           "{C:attention}Enhanced{} cards give {C:mult}+Mult{}",
           "equal to their {C:attention}rank{} when scored",
+        }
+      },
+      c_paperback_hardwood_liquor_cup = {
+        name = "Hardwood Liquor Cup",
+        text = {
+          "The {C:attention}first{} scored card on the",
+          "{C:attention}last{} hand of round permanently gains",
+          "{C:chips}+#1#{} Chips, {C:mult}+#2#{} Mult, {C:money}+$#3#{} or {X:mult,C:white}X#4#{} Mult"
         }
       },
       c_paperback_pendant_of_nostalgia_minor_arcana = {
@@ -3312,6 +3963,13 @@ return {
           "{C:green}#1# in #2#{} chance to {C:red}self-destruct{} after"
         }
       },
+      c_paperback_snuffed_candlestick = {
+        name = "Snuffed Candlestick",
+        text = {
+          "Earn {C:money}$#1#{} for each played hand",
+          "after the first each round"
+        }
+      },
       c_paperback_nebulizer = {
         name = "Nebulizer",
         text = {
@@ -3335,6 +3993,15 @@ return {
           "{C:inactive}(Currently {C:red}+#3#{C:inactive} discards)"
         }
       },
+      c_paperback_vestiges_of_the_king = {
+        name = "Vestiges Of The King",
+        text = {
+          "If discard contains",
+          "exactly {C:attention}one{} card",
+          "Enhance it with a random",
+          "{C:paperback_minor_arcana}Minor Arcana{} enhancement"
+        }
+      },
       c_paperback_lightning_rod = {
         name = "Lightning Rod",
         text = {
@@ -3347,7 +4014,7 @@ return {
         name = "Chalice of Trickle Down",
         text = {
           "During {C:attention}Boss Blinds{}, gives",
-          "{C:money}money{} equal to lowest rank",
+          "{C:money}money{} equal to half lowest rank",
           "in {C:attention}scoring hand"
         }
       },
@@ -3358,6 +4025,15 @@ return {
           "creates a {C:attention}Energized copy{}"
         }
       },
+      c_paperback_prestige_card = {
+        name = "Prestige Card",
+        text = {
+          "Purchases in the shop",
+          "have a {C:green}#1# in #2#{} chance to",
+          "make a random tag",
+          "{C:inactive}(Once per shop)"
+        }
+      }
     },
     Voucher = {
       v_paperback_celtic_cross = {
@@ -3376,7 +4052,9 @@ return {
           "appear in the {C:money}Shop"
         },
         unlock = {
-          "Use {C:attention,E:1}#1#{} {C:paperback_minor_arcana,E:1}Minor Arcana{} in one Run"
+          "Use at least",
+          "{C:attention}#1#{} {C:paperback_minor_arcana}Minor Arcana{}",
+          "in one Run"
         }
       },
       v_paperback_second_trumpet = {
@@ -3393,7 +4071,9 @@ return {
           "{C:attention}disables{} the current {C:attention}Boss Blind"
         },
         unlock = {
-          "Sell {C:attention,E:1}#1#{} {C:paperback_ego_gift,E:1}E.G.O Gifts{} in one Run"
+          "Sell at least",
+          "{C:attention}#1#{} {C:paperback_ego_gift}E.G.O Gifts{}",
+          "in one Run"
         }
       },
     },
@@ -3649,11 +4329,25 @@ return {
           "Activate {C:attention,E:1}#1#{}'s ability",
         }
       },
+      paperback_upgrade_locked = {
+        name = "Locked",
+        text = {
+          "{E:1,s:1.3}?????"
+        }
+      },
       paperback_illusion_clips = {
         name = "Added Functionality",
         text = {
           "{C:attention}Playing cards{} may also",
           "have a {C:attention}Paperclip{}"
+        }
+      },
+      paperback_omen_globe_minor_arcana = {
+        name = "Added Functionality",
+        text = {
+          "{C:spectral}Spectral{} cards may",
+          "also appear in",
+          "{C:paperback_minor_arcana}Minor Arcana Packs",
         }
       },
 
@@ -3969,7 +4663,7 @@ return {
         text = {
           "Start run with a {C:paperback_temporary}temporary",
           "{C:paperback_minor_arcana,T:c_paperback_apostle_of_wands}#1#",
-          "{C:attention}#2#{} Joker slot"
+          "Run starts on the {C:attention}Big Blind"
         }
       },
       sleeve_paperback_dreamer_buff = {
@@ -4155,6 +4849,14 @@ return {
       paperback_one_shift_more_false = "Beat!",
       paperback_warning_ex = "Warning!",
       paperback_watch_ex = "Watch!",
+      paperback_red_ex = "Ultra Secret!",
+      paperback_superhot_true = "SUPER",
+      paperback_superhot_false = "HOT",
+      paperback_goner_ex = "Goner!",
+      paperback_hatred_death_ex = "DREAD",
+      paperback_whitebeard_death_ex = "Quake!",
+      paperback_proceed_ex = "Proceed",
+      paperback_fall_ex = "Fall!",
 
       paperback_ui_requires_restart = "Requires Restart",
       paperback_ui_no_requires_restart = "Doesn't Require Restart",
@@ -4245,6 +4947,7 @@ return {
       paperback_code_credit = 'Code by ',
       paperback_music_credit = 'Composed by ',
       paperback_and_spacer = ' and ',
+      paperback_comma_spacer = ', ',
 
       -- Developers
       paperback_dev_dowfrin = 'Dowfrin',
@@ -4276,6 +4979,8 @@ return {
       paperback_a_plus_cards = "+#1# #2#s",
       paperback_a_plus_tags = "+#1# Tags",
       paperback_a_dollars = "$#1#",
+      paperback_a_dollars_minus = "-$#1#",
+      paperback_a_odds = "+#1# Odds",
 
       paperback_a_plus_consumable_slot = "+#1# Consumable Slots",
       paperback_a_minus_consumable_slot = "-#1# Consumable Slots",

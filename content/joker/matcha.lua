@@ -7,11 +7,18 @@ SMODS.Joker {
       chips = 0
     }
   },
+  attributes = {
+    'chips',
+    'scaling',
+    'chance',
+    'discard',
+    'food'
+  },
   rarity = 1,
   pos = { x = 10, y = 5 },
   atlas = "jokers_atlas",
   cost = 3,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = false,
@@ -37,15 +44,21 @@ SMODS.Joker {
     }
   end,
 
+  check_for_unlock = function(self, args)
+    if args.type == 'paperback_no_ante_discard' then
+      return true
+    end
+  end,
+
   calculate = function(self, card, context)
     if not context.blueprint and context.individual and context.cardarea == G.play then
-      card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.a_chips
-
-      return {
-        message = localize('k_upgrade_ex'),
-        colour = G.C.CHIPS,
-        card = card
-      }
+      SMODS.scale_card(card, {
+        ref_table = card.ability.extra,
+        ref_value = 'chips',
+        scalar_value = 'a_chips',
+        message_colour = G.C.CHIPS
+      })
+      return nil, true
     end
 
     if not context.blueprint and context.pre_discard and not context.hook then

@@ -5,6 +5,10 @@ SMODS.Joker {
       hand = 'Flush'
     }
   },
+  attributes = {
+    'modify_card',
+    'hand_type'
+  },
   rarity = 2,
   pos = { x = 11, y = 6 },
   atlas = "jokers_atlas",

@@ -7,6 +7,10 @@ SMODS.Joker {
       dollars = 2
     }
   },
+  attributes = {
+    'economy',
+    'hand_type'
+  },
   atlas = "jokers_atlas",
   rarity = 1,
   blueprint_compat = false,

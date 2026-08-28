@@ -1,5 +1,10 @@
 SMODS.Joker {
   key = 'mandela_effect',
+  attributes = {
+    'modify_card',
+    'enhancements',
+    'face',
+  },
   rarity = 1,
   pos = { x = 20, y = 8 },
   atlas = 'jokers_atlas',
@@ -29,6 +34,7 @@ SMODS.Joker {
       if not first_face.debuff then
         local enhancement = SMODS.poll_enhancement {
           key = 'mandela_effect_enh',
+          options = PB_UTIL.get_ranked_enhancements(),
           guaranteed = true
         }
         first_face:set_ability(enhancement, nil, true)

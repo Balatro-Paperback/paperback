@@ -5,6 +5,12 @@ SMODS.Joker {
       xMult = 1.5
     }
   },
+  attributes = {
+    'xmult',
+    'destroy_card',
+    'rank',
+    'apostle'
+  },
   rarity = 4,
   pos = { x = 8, y = 3 },
   soul_pos = { x = 9, y = 3 },

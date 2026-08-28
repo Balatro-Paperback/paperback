@@ -6,6 +6,14 @@ SMODS.Joker {
       a_mult = 1,
     }
   },
+  attributes = {
+    'mult',
+    'scaling',
+    'face',
+    'rankless',
+    'music',
+    'red'
+  },
   rarity = 3,
   pos = { x = 22, y = 2 },
   atlas = 'jokers_atlas',
@@ -46,15 +54,19 @@ SMODS.Joker {
     -- Upgrade this Joker for every scored rankless card
     if not context.blueprint and context.individual and context.cardarea == G.play then
       if SMODS.has_no_rank(context.other_card) then
-        card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.a_mult
-
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'mult',
+          scalar_value = 'a_mult',
+          no_message = true
+        })
         return {
           message = localize {
             type = 'variable',
             key = 'a_mult',
             vars = { card.ability.extra.mult },
-            colour = G.C.MULT,
           },
+          colour = G.C.MULT,
           message_card = card
         }
       end

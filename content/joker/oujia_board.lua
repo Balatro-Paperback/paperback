@@ -1,6 +1,10 @@
 SMODS.Joker {
   key = "oujia_board",
   config = { extra = { allow_soul = false } },
+  attributes = {
+    'generation',
+    'spectral'
+  },
   rarity = 3,
   pos = { x = 24, y = 10 },
   atlas = "jokers_atlas",

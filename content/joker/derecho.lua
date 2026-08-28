@@ -6,6 +6,12 @@ SMODS.Joker {
       x_mult = 1
     }
   },
+  attributes = {
+    'xmult',
+    'scaling',
+    'suit',
+    'dark'
+  },
   rarity = 2,
   pos = { x = 0, y = 1 },
   atlas = 'jokers_atlas',
@@ -38,13 +44,13 @@ SMODS.Joker {
         bad_suit = bad_suit or PB_UTIL.is_non_suit(v, 'dark')
       end
       if not bad_suit then
-        card.ability.extra.x_mult = card.ability.extra.x_mult + card.ability.extra.x_mult_mod
-
-        return {
-          message = localize('k_upgrade_ex'),
-          colour = G.C.MULT,
-          card = card
-        }
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'x_mult',
+          scalar_value = 'x_mult_mod',
+          message_colour = G.C.MULT
+        })
+        return nil, true
       end
     end
 

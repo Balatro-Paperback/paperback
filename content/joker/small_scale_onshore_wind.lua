@@ -7,6 +7,12 @@ SMODS.Joker {
       card_req = 5
     }
   },
+  attributes = {
+    'mult',
+    'scaling',
+    'reset',
+    'discard'
+  },
   rarity = 1,
   pos = { x = 16, y = 1 },
   atlas = 'jokers_atlas',
@@ -30,11 +36,12 @@ SMODS.Joker {
   calculate = function(self, card, context)
     if context.pre_discard and not context.hook and not context.blueprint_card then
       if #context.full_hand == card.ability.extra.card_req then
-        card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.bonus
-        return {
-          message = localize('k_upgrade_ex'),
-          colour = G.C.ORANGE
-        }
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'mult',
+          scalar_value = 'bonus'
+        })
+        return nil, true
       else
         card.ability.extra.mult = 0
         return {

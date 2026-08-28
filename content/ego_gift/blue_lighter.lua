@@ -7,13 +7,15 @@ PB_UTIL.EGO_Gift {
   },
   atlas = 'ego_gift_atlas',
   pos = { x = 4, y = 1 },
-  soul_pos = { x = 4, y = 4 },
+  soul_pos = { x = 4, y = 5 },
 
   ego_loc_vars = function(self, info_queue, card)
-    return { vars = {
-      card.ability.a_xmult,
-      card.ability.xmult
-    } }
+    return {
+      vars = {
+        card.ability.a_xmult,
+        card.ability.xmult
+      }
+    }
   end,
 
   ego_gift_calc = function(self, card, context)

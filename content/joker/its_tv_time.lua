@@ -15,6 +15,11 @@ SMODS.Joker {
       suit = 'paperback_Stars'
     }
   },
+  attributes = {
+    'chips',
+    'suit',
+    'stars'
+  },
   blueprint_compat = true,
   eternal_compat = true,
   perishable_compat = true,

@@ -48,6 +48,7 @@ local function should_draw_indicator(card, key)
       and type(card.ability[key]) == "number"
       and card.ability[key] > 0
       and card.area and card.area.config.type ~= 'deck'
+      and card.facing == 'front'
 end
 
 local function draw_single_indicator(card, sprite, x_offset, y_offset)

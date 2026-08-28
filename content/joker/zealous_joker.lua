@@ -5,6 +5,10 @@ if PB_UTIL.should_load_spectrum_items() then
       t_mult = 10,
       type = 'paperback_Spectrum'
     },
+    attributes = {
+      'mult',
+      'hand_type'
+    },
     rarity = 1,
     pos = { x = 19, y = 0 },
     atlas = "jokers_atlas",

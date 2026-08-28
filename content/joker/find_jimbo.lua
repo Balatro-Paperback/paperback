@@ -7,6 +7,11 @@ SMODS.Joker {
       suit = 'Spades'
     }
   },
+  attributes = {
+    'economy',
+    'rank',
+    'suit'
+  },
   rarity = 1,
   pos = { x = 1, y = 7 },
   atlas = "jokers_atlas",
@@ -19,16 +24,10 @@ SMODS.Joker {
   },
 
   check_for_unlock = function(self, args)
-    if args.type == 'hand' and args.handname == 'High Card' then
-      for _, c in pairs(args.scoring_hand) do
-        if PB_UTIL.is_rank(c, 'Jack') then
-          G.GAME.paperback.find_jimbo_unlock = true
-          break
-        end
-      end
+    if args.type == 'round_win' then
+      return G.GAME.last_hand_played == 'High Card' and G.GAME.paperback.find_jimbo_unlock
     end
-
-    return args.type == 'round_win' and G.GAME.paperback.find_jimbo_unlock
+    return false
   end,
 
   locked_loc_vars = function(self, info_queue, card)
@@ -125,5 +124,16 @@ function PB_UTIL.reset_find_jimbo(card)
     local selected_card = pseudorandom_element(valid_cards, pseudoseed('find_jimbo'))
     card.ability.extra.rank = selected_card.base.value
     card.ability.extra.suit = selected_card.base.suit
+  end
+end
+
+local calculate_main_scoring_ref = SMODS.calculate_main_scoring
+function SMODS.calculate_main_scoring(context, scoring_hand)
+  G.GAME.paperback.find_jimbo_unlock = false
+  calculate_main_scoring_ref(context, scoring_hand)
+  for _, card in ipairs(context.scoring_hand) do
+    if PB_UTIL.is_rank(card, "Jack") then
+      G.GAME.paperback.find_jimbo_unlock = true
+    end
   end
 end

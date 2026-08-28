@@ -6,6 +6,11 @@ SMODS.Joker {
       mult = 0
     }
   },
+  attributes = {
+    'mult',
+    'scaling',
+    'red'
+  },
   rarity = 1,
   pos = { x = 5, y = 0 },
   atlas = 'jokers_atlas',
@@ -31,8 +36,10 @@ SMODS.Joker {
   end,
 
   check_for_unlock = function(self, args)
-    if G.GAME.paperback.destroyed_cards >= 20 then
-      return true
+    if args.type == 'paperback_removed_playing_cards' then
+      if G.GAME.paperback.destroyed_cards >= 20 then
+        return true
+      end
     end
   end,
 
@@ -44,21 +51,25 @@ SMODS.Joker {
 
   calculate = function(self, card, context)
     local count = PB_UTIL.count_destroyed_things(context)
-    -- Gains mult when any cards are destroyed. Each card destroyed provides the specified mult_mod
-    if not context.blueprint and count > 0
-    -- Make sure that this joker isn't being removed
-    and not (context.paperback and context.paperback.destroyed_joker and card == context.paperback.destroyed_joker)
-    then
-      card.ability.extra.mult = card.ability.extra.mult + count * card.ability.extra.mult_mod
-
-      return {
-        message = localize {
-          type = 'variable',
-          key = 'a_mult',
-          vars = { count * card.ability.extra.mult_mod }
-        },
-        colour = G.C.MULT
-      }
+    -- Gains mult when any cards are destroyed, making sure that this joker isn't the one being destroyed
+    if not context.blueprint and count > 0 and not (context.joker_type_destroyed and context.card == card) then
+      SMODS.scale_card(card, {
+        ref_table = card.ability.extra,
+        ref_value = 'mult',
+        scalar_value = 'mult_mod',
+        operation = function(ref_table, ref_value, initial, scaling)
+          ref_table[ref_value] = initial + scaling * count
+        end,
+        scaling_message = {
+          message = localize {
+            type = 'variable',
+            key = 'a_mult',
+            vars = { count * card.ability.extra.mult_mod }
+          },
+          colour = G.C.MULT
+        }
+      })
+      return nil, true
     end
 
     -- Gives the mult when scoring
@@ -66,6 +77,11 @@ SMODS.Joker {
       return {
         mult = card.ability.extra.mult
       }
+    end
+
+    -- Unlocking Unholy Alliance
+    if context.end_of_round and context.game_over and context.main_eval and card.ability.extra.mult >= 15 then
+      check_for_unlock({ type = 'paperback_sacrificial_lamb_loss' })
     end
   end,
 
@@ -79,14 +95,3 @@ SMODS.Joker {
     }
   end,
 }
-
-local calc_context_ref = SMODS.calculate_context
-function SMODS.calculate_context(context, return_table)
-  if context.remove_playing_cards then
-    for _, v in ipairs(context.removed or {}) do
-      G.GAME.paperback.destroyed_cards = G.GAME.paperback.destroyed_cards + 1
-    end
-  end
-
-  return calc_context_ref(context, return_table)
-end

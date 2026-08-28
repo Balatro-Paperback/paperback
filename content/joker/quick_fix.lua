@@ -6,6 +6,11 @@ SMODS.Joker {
       odds = 4
     }
   },
+  attributes = {
+    'hand_size',
+    'chance',
+    'secret'
+  },
   rarity = 1,
   pos = { x = 6, y = 0 },
   atlas = 'jokers_atlas',
@@ -27,12 +32,12 @@ SMODS.Joker {
   end,
 
   check_for_unlock = function(self, args)
-    return args.type == 'min_hand_size' and G.hand and G.hand.config.card_limit >= 10
+    return args.type == 'min_hand_size' and G.hand and (G.hand.config.card_limit >= (G.GAME.starting_params.hand_size + 2))
   end,
 
   locked_loc_vars = function(self, info_queue, card)
     return {
-      vars = { 10 }
+      vars = { 2 }
     }
   end,
 

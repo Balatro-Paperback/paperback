@@ -6,6 +6,13 @@ SMODS.Joker {
       extra_mult = 1
     }
   },
+  attributes = {
+    'mult',
+    'modify_card',
+    'perma_bonus',
+    'enhancements',
+    'food'
+  },
   rarity = 1,
   pos = { x = 18, y = 1 },
   atlas = "jokers_atlas",
@@ -14,6 +21,7 @@ SMODS.Joker {
   eternal_compat = false,
   perishable_compat = true,
   enhancement_gate = 'm_paperback_stained',
+  unlocked = false,
   pools = {
     Food = true
   },
@@ -24,6 +32,18 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'srockw' }
   },
+
+  locked_loc_vars = function(self, info_queue, card)
+    return { vars = { 10 } }
+  end,
+
+  check_for_unlock = function(self, args)
+    for _, v in ipairs(G.playing_cards or {}) do
+      if v.ability.perma_mult >= 10 then
+        return true
+      end
+    end
+  end,
 
   loc_vars = function(self, info_queue, card)
     info_queue[#info_queue + 1] = G.P_CENTERS.m_paperback_stained

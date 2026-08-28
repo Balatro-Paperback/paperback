@@ -6,6 +6,11 @@ SMODS.Joker {
       card_modifiers_required = 7,
     }
   },
+  attributes = {
+    'xmult',
+    'enhancements',
+    'full_deck'
+  },
   rarity = 3,
   pos = { x = 5, y = 5 },
   atlas = "jokers_atlas",

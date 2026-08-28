@@ -6,6 +6,15 @@ SMODS.Joker {
       rank = "9",
     }
   },
+  attributes = {
+    'generation',
+    'planet',
+    'hand_type',
+    'rank',
+    'nine',
+    'chance',
+    'red'
+  },
   rarity = 3,
   pos = { x = 6, y = 9 },
   atlas = 'jokers_atlas',

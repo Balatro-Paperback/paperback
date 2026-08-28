@@ -9,6 +9,12 @@ SMODS.Joker {
   pools = {
     Music = true
   },
+  attributes = {
+    'destroy_card',
+    'face',
+    'hands',
+    'secret'
+  },
   rarity = 2,
   pos = { x = 3, y = 7 },
   atlas = 'jokers_atlas',

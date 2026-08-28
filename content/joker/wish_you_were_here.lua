@@ -6,11 +6,16 @@ SMODS.Joker {
       mult_mod = 2
     }
   },
+  attributes = {
+    'mult',
+    'sell_value',
+    'scaling'
+  },
   rarity = 2,
   pos = { x = 4, y = 0 },
   atlas = "jokers_atlas",
   cost = 6,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -31,6 +36,20 @@ SMODS.Joker {
     }
   end,
 
+  check_for_unlock = function(self, args)
+    if args.type == 'paperback_wywh_sell_value' then
+      return true
+    end
+  end,
+
+  locked_loc_vars = function(self, info_queue, back)
+      return {
+        vars = {
+          50
+        }
+      }
+    end,
+
   calculate = function(self, card, context)
     if context.joker_main then
       local mult = card.ability.extra.mult_mod * card.sell_cost
@@ -42,12 +61,18 @@ SMODS.Joker {
 
     -- Increase the sell value at end of round
     if context.end_of_round and not context.blueprint and context.main_eval then
-      PB_UTIL.modify_sell_value(card, 1)
-
-      return {
-        message = localize('k_val_up'),
-        colour = G.C.MONEY
-      }
+      SMODS.scale_card(card, {
+        ref_table = card.ability,
+        ref_value = 'extra_value',
+        scalar_table = card.ability.extra,
+        scalar_value = 'sv_gain',
+        scaling_message = {
+          message = localize('k_val_up'),
+          colour = G.C.MONEY
+        }
+      })
+      card:set_cost()
+      return nil, true
     end
   end,
 
@@ -71,3 +96,10 @@ SMODS.Joker {
     }
   end,
 }
+local set_sell_value_ref = Card.set_sell_value
+function Card:set_sell_value()
+  set_sell_value_ref(self)
+  if self.sell_cost >= 50 then
+    check_for_unlock({ type = 'paperback_wywh_sell_value' })
+  end
+end

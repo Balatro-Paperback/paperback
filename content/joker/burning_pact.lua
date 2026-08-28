@@ -7,6 +7,9 @@ SMODS.Joker {
       active = false
     }
   },
+  attributes = {
+    'discard'
+  },
   rarity = 2,
   pos = { x = 10, y = 3 },
   atlas = "jokers_atlas",

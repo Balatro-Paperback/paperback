@@ -5,6 +5,10 @@ SMODS.Joker {
       a_xMult = 0.1,
     },
   },
+  attributes = {
+    'xmult',
+    'full_deck'
+  },
   pools = {
     Music = true
   },

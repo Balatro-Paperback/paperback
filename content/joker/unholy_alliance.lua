@@ -7,11 +7,16 @@ SMODS.Joker {
       revive_treshold = 666
     }
   },
+  attributes = {
+    'chips',
+    'scaling',
+    'secret'
+  },
   rarity = 1,
   pos = { x = 6, y = 4 },
   atlas = 'jokers_atlas',
   cost = 6,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -31,23 +36,46 @@ SMODS.Joker {
     }
   end,
 
+  check_for_unlock = function(self, args)
+    if args.type == 'paperback_sacrificial_lamb_loss' then
+      return true
+    end
+  end,
+
+  locked_loc_vars = function(self, info_queue, card)
+    local other_name = localize('k_unknown')
+    if G.P_CENTERS['j_paperback_sacrificial_lamb'].unlocked then
+      other_name = localize { type = 'name_text', set = 'Joker', key = 'j_paperback_sacrificial_lamb' }
+    end
+    return {
+      vars = {
+        other_name, 15
+      }
+    }
+  end,
+
   calculate = function(self, card, context)
     local count = PB_UTIL.count_destroyed_things(context)
-    -- Gains chips when any cards are destroyed. Each card destroyed provides the specified chip_mod
-    if not context.blueprint and count > 0
-    -- Make sure that this joker isn't being removed
-    and not (context.paperback and context.paperback.destroyed_joker and card == context.paperback.destroyed_joker)
-    then
-      card.ability.extra.chips = card.ability.extra.chips + count * card.ability.extra.a_chips
+    -- Gains chips when any cards are destroyed, making sure that this joker isn't the one being destroyed
+    if not context.blueprint and count > 0 and not (context.joker_type_destroyed and context.card == card) then
+      SMODS.scale_card(card, {
+        ref_table = card.ability.extra,
+        ref_value = 'chips',
+        scalar_value = 'a_chips',
+        operation = function(ref_table, ref_value, initial, scaling)
+          ref_table[ref_value] = initial + scaling * count
+        end,
+        scaling_message = {
+          message = localize {
+            type = 'variable',
+            key = 'a_chips',
+            vars = { count * card.ability.extra.a_chips }
+          },
+          colour = G.C.CHIPS
+        }
+      })
 
-      return {
-        message = localize {
-          type = 'variable',
-          key = 'a_chips',
-          vars = { count * card.ability.extra.a_chips }
-        },
-        colour = G.C.CHIPS
-      }
+      return nil, true
     end
 
     -- Gives the chips when scoring

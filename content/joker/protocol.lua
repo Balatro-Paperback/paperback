@@ -1,5 +1,8 @@
 SMODS.Joker {
   key = 'protocol',
+  attributes = {
+    'passive'
+  },
   rarity = 1,
   pos = { x = 12, y = 6 },
   atlas = 'jokers_atlas',

@@ -1,5 +1,9 @@
 SMODS.Joker {
   key = 'subterfuge',
+  attributes = {
+    'destroy_cards',
+    'hands'
+  },
   rarity = 3,
   pos = { x = 3, y = 5 },
   pools = {
@@ -19,14 +23,16 @@ SMODS.Joker {
   },
 
   check_for_unlock = function(self, args)
-    if G.GAME.paperback.destroyed_cards_this_round >= 6 then
-      return true
+    if args.type == 'paperback_removed_playing_cards' then
+      if G.GAME.paperback.round.destroyed_cards_this_round >= 5 then
+        return true
+      end
     end
   end,
 
   locked_loc_vars = function(self, info_queue, card)
     return {
-      vars = { 6 }
+      vars = { 5 }
     }
   end,
 
@@ -49,17 +55,3 @@ SMODS.Joker {
     end
   end
 }
-
-local calc_context_ref = SMODS.calculate_context
-function SMODS.calculate_context(context, return_table)
-  if context.remove_playing_cards then
-    for _, v in ipairs(context.removed or {}) do
-      G.GAME.paperback.destroyed_cards_this_round = G.GAME.paperback.destroyed_cards_this_round + 1
-    end
-  end
-  if context.end_of_round then
-    G.GAME.paperback.destroyed_cards_this_round = 0
-  end
-
-  return calc_context_ref(context, return_table)
-end

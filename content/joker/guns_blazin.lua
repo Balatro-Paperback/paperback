@@ -6,6 +6,11 @@ SMODS.Joker { -- Guns Blazin'
       rank = "Ace"
     }
   },
+  attributes = {
+    'xmult',
+    'rank',
+    'ace'
+  },
   pos = {
     x = 15,
     y = 4

@@ -6,6 +6,12 @@ SMODS.Joker {
       mult = 46
     }
   },
+  attributes = {
+    'mult',
+    'chance',
+    'enhancements',
+    'red'
+  },
   rarity = 2,
   pos = { x = 11, y = 2 },
   atlas = "jokers_atlas",
@@ -17,6 +23,18 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'srockw' }
   },
+  unlocked = false,
+
+  check_for_unlock = function(self, args)
+    if args.type == 'hand_contents' then
+      for j = 1, #args.cards do
+        if SMODS.has_enhancement(args.cards[j], 'm_mult') and args.cards[j]:get_id() == 4 then
+          return true
+        end
+      end
+    end
+    return false
+  end,
 
   loc_vars = function(self, info_queue, card)
     info_queue[#info_queue + 1] = G.P_CENTERS.m_mult

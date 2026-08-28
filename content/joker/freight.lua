@@ -7,6 +7,13 @@ SMODS.Joker {
       per_dollar = 2,
     }
   },
+  attributes = {
+    'economy',
+    'sell_value',
+    'on_sell',
+    'discard',
+    'boss_blind'
+  },
   rarity = 2,
   pos = { x = 19, y = 6 },
   atlas = 'jokers_atlas',
@@ -38,12 +45,18 @@ SMODS.Joker {
 
   calculate = function(self, card, context)
     if context.end_of_round and G.GAME.blind.boss and context.main_eval and not context.blueprint then
-      card.ability.extra_value = (card.ability.extra_value or 0) + card.ability.extra.gain
+      SMODS.scale_card(card, {
+        ref_table = card.ability,
+        ref_value = 'extra_value',
+        scalar_table = card.ability.extra,
+        scalar_value = 'gain',
+        scaling_message = {
+          message = localize('k_val_up'),
+          colour = G.C.MONEY
+        }
+      })
       card:set_cost()
-      return {
-        message = localize('k_val_up'),
-        colour = G.C.MONEY
-      }
+      return nil, true
     end
     if context.selling_self and not context.blueprint then
       local discards = card.ability.extra.discards * math.floor(card.sell_cost / card.ability.extra.per_dollar)

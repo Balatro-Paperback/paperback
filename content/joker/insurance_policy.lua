@@ -7,6 +7,12 @@ SMODS.Joker {
       rank_ceo = "King"
     }
   },
+  attributes = {
+    'mult',
+    'rank',
+    'king',
+    'jack'
+  },
   rarity = 2,
   pos = { x = 19, y = 7 },
   atlas = "jokers_atlas",
