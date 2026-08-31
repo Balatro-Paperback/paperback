@@ -78,8 +78,8 @@ SMODS.Joker {
           scalar_value = 'increase',
           scalar_factor = inc,
           operation = function(ref_table, ref_value, initial, scaling)
-            ref_table[ref_value] = initial + scaling
-            G.GAME.paperback.ceramic_inc = G.GAME.paperback.ceramic_inc + scaling
+            ref_table[ref_value] = math.min(initial + scaling, card.ability.extra.max)
+            G.GAME.paperback.ceramic_inc = G.GAME.paperback.ceramic_inc + (ref_table[ref_value] - initial) -- only increase by how much it changed
           end
         })
         return nil, true
