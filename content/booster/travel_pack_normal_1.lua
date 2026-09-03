@@ -6,6 +6,6 @@ PB_UTIL.TicketPack {
     extra = 2,
     choose = 1
   },
-  weight = 1,
+  weight = 0,
   cost = 5,
 }
