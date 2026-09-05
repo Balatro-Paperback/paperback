@@ -595,3 +595,17 @@ function Card:click()
     click_ref(self)
   end
 end
+
+local set_edition_ref = Card.set_edition
+function Card:set_edition(edition, immediate, silent, delay)
+  if edition and (type(edition) == 'string') and G.jokers and PB_UTIL.find(G.jokers.cards, self) then
+    SMODS.calculate_context({
+      paperback = {
+        changing_edition = true,
+        edition = edition,
+        edition_card = self
+      }
+    })
+  end
+  set_edition_ref(self, edition, immediate, silent, delay)
+end

@@ -1,6 +1,7 @@
 PB_UTIL.ENABLED_TICKETS = {
   "the_pyramids",
-  "eiffel_tower"
+  "eiffel_tower",
+  "todai_ji",
 }
 
 PB_UTIL.ENABLED_TICKET_BOOSTERS = {
@@ -21,7 +22,7 @@ if PB_UTIL.config.tickets_enabled then
   PB_UTIL.Ticket = SMODS.Consumable:extend {
     set = "paperback_ticket_to_ride",
     config = { extra = {} },
-
+    pos = { 6, 0 },
     -- Tickets should override this to define the atlas positions for each stage besides the first one
     stages = {
       { x = 6, y = 0 },

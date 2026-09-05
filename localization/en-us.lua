@@ -4902,7 +4902,33 @@ return {
             "{C:inactive}(Currently #8#/#7#)"
           }
         }
-      }
+      },
+      c_paperback_todai_ji = {
+        name = "Todai-Ji",
+        obfuscated_names = {
+          "????????",
+          "??da???i",
+          "T?da?-Ji"
+        },
+        text = {
+          {
+            -- SMODS doesnt have a color for blind_size, the perma_x_blind_size uses a black background so despite this doing nothing i'll keep it for clarity
+            "{X:blind_size,C:white}X#1#{} Blind size during",
+            "{C:attention}Boss Blinds{}"
+          },
+          {
+            "Play {C:inactive}[#2#]{} and discard {C:inactive}[#3#]{} {C:attention}#4#{} times"
+          },
+          {
+            "Play a hand with {C:attention}#5#{} {C:attention}#6#{}",
+            "or {C:attention}#7#{} {C:attention}#8#s{}"
+          },
+          {
+            "Acquire two {C:green}Uncommon{} or {C:red}Rare{} Jokers",
+            "with any {C:attention}Edition excluding {C:dark_edition}Negatives{}"
+          },
+        }
+      },
     },
     Voucher = {
       v_paperback_celtic_cross = {
