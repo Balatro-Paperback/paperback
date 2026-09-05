@@ -153,7 +153,7 @@ SMODS.current_mod.calculate = function(self, context)
       G.GAME.paperback.free_purchases - #SMODS.find_card("j_paperback_normalJKR", false))
   end
 
-  if context.starting_shop then
+  if PB_UTIL.config.tickets_enabled and context.starting_shop then
     if G.GAME.paperback.allow_travel_pack and (pseudorandom('paperback_ticket_pack') <= ((100 ^ (G.GAME.round_resets.ante / 4)) / 100)) then
       local p = SMODS.add_booster_to_shop('p_paperback_' ..
         pseudorandom_element(PB_UTIL.ENABLED_TICKET_BOOSTERS, 'paperback_ticket_pack'))
@@ -218,7 +218,7 @@ SMODS.current_mod.reset_game_globals = function(run_start)
     }))
     G.GAME.paperback.banned_run_keys = {}
     G.GAME.paperback.free_purchases = 0
-    G.GAME.paperback.allow_travel_pack = true
+    G.GAME.paperback.allow_travel_pack = PB_UTIL.config.tickets_enabled
   end
 end
 
