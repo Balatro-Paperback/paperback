@@ -97,7 +97,6 @@ PB_UTIL.Ticket {
     -- Stage 3
     if context.card_added or (context.paperback and context.paperback.changing_edition and (context.paperback.edition ~= 'e_negative')) then
       local count = 0
-      print(context.paperback)
       for k, v in ipairs(G.jokers.cards or {}) do
         if (v.config.center.rarity == card.ability.extra.rarities[1]) or (v.config.center.rarity == card.ability.extra.rarities[2]) then
           if v.edition and not v.edition.negative then
