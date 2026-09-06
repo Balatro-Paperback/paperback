@@ -531,3 +531,13 @@ PB_UTIL.ENABLED_ATTRIBUTES = {
   'red',          -- it's red
   'stick'         -- it's stick
 }
+
+PB_UTIL.ENABLED_SLEEVES = {
+  'paper',
+  'proud',
+  'silver',
+  'dreamer',
+  'antique',
+  'passionate',
+  -- 'shimmering',
+}

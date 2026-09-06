@@ -198,6 +198,7 @@ function G.FUNCS.paperback_unlock_all(e)
   local keys = PB_UTIL.ENABLED_JOKERS
   local vouchers = PB_UTIL.ENABLED_VOUCHERS
   local decks = PB_UTIL.ENABLED_DECKS
+  local sleeves = PB_UTIL.ENABLED_SLEEVES
 
   for _, key in ipairs(keys) do
     local card = G.P_CENTERS["j_paperback_" .. key]
@@ -219,6 +220,16 @@ function G.FUNCS.paperback_unlock_all(e)
       card.unlocked = true
       card.discovered = true
       table.sort(G.P_CENTER_POOLS["Back"], function (a, b) return (a.order - (a.unlocked and 100 or 0)) < (b.order - (b.unlocked and 100 or 0)) end)
+    end
+  end
+
+  if next(SMODS.find_mod('CardSleeves')) then
+    for _, sleeve in ipairs(sleeves) do
+      local card = G.P_CENTERS["sleeve_paperback_" .. sleeve]
+      if card and card.unlocked == false and (card.unlock_condition or card.check_for_unlock) then
+        card.unlocked = true
+        card.discovered = true
+      end
     end
   end
   warning_text.config.colour = G.C.CLEAR
@@ -254,6 +265,7 @@ function G.FUNCS.paperback_lock_all(e)
   local keys = PB_UTIL.ENABLED_JOKERS
   local vouchers = PB_UTIL.ENABLED_VOUCHERS
   local decks = PB_UTIL.ENABLED_DECKS
+  local sleeves = PB_UTIL.ENABLED_SLEEVES
 
   local relocked = {}
   local function relock_card(card)
@@ -279,6 +291,13 @@ function G.FUNCS.paperback_lock_all(e)
     local card = G.P_CENTERS["b_paperback_" .. deck]
     -- Paper deck was having problems being relocked, skip it
     if card ~= G.P_CENTERS["b_paperback_paper"] then
+      relock_card(card)
+    end
+  end
+
+  if next(SMODS.find_mod('CardSleeves')) then
+    for _, sleeve in ipairs(sleeves) do
+      local card = G.P_CENTERS["sleeve_paperback_" .. sleeve]
       relock_card(card)
     end
   end

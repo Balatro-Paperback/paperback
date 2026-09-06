@@ -41,16 +41,6 @@ if next(SMODS.find_mod('CardSleeves')) then
     py = 95
   }
 
-  local sleeves = {
-    'paper',
-    'proud',
-    'silver',
-    'dreamer',
-    'antique',
-    'passionate',
-    -- 'shimmering',
-  }
-
   PB_UTIL.Sleeve = CardSleeves.Sleeve:extend {
     is_buffed = function(self)
       return self.get_current_deck_key() == self.deck_buff
@@ -67,7 +57,7 @@ if next(SMODS.find_mod('CardSleeves')) then
     end
   }
 
-  PB_UTIL.register_items(sleeves, "content/cardsleeves")
+  PB_UTIL.register_items(PB_UTIL.ENABLED_SLEEVES, "content/cardsleeves")
 end
 
 -- JokerDisplay hook to calculate retriggers from Paperback features
