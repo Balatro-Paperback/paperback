@@ -2708,7 +2708,9 @@ return {
         name = "Cross",
         text = {
           "Playing cards, Jokers, and",
-          "Consumables {C:attention}cannot{} be destroyed"
+          "Consumables {C:attention}cannot{} be {C:red}destroyed",
+          "{C:inactive}(Does not prevent {C:money}selling",
+          "{C:inactive}or {S:1.1,C:red,E:2}self-destruction{C:inactive})"
         },
         unlock = {
           "Acquire an {C:attention,E:1}Apostle{}"
