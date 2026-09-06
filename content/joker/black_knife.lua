@@ -14,7 +14,7 @@ SMODS.Joker {
     'chance'
   },
   rarity = 3,
-  pos = { x = 18, y = 13 },
+  pos = { x = 8, y = 13 },
   atlas = "jokers_atlas",
   cost = 9,
   unlocked = false,
@@ -41,7 +41,7 @@ SMODS.Joker {
   end,
 
   check_for_unlock = function(self, args)
-    return args.type == "played_stars" and args.value >= 100
+    return args.type == "paperback_played_stars" and args.total >= 100
   end,
 
   calculate = function(self, card, context)
@@ -79,10 +79,12 @@ SMODS.Joker {
 
             local joker_to_destroy = pseudorandom_element(possible_jokers, pseudoseed('paperback_SWOON'))
 
-            if joker_to_destroy then 
-                PB_UTIL.destroy_joker(joker_to_destroy) 
+            if joker_to_destroy then
+                PB_UTIL.destroy_joker(joker_to_destroy)
                 SMODS.calculate_effect {
                     message = localize('paperback_swoon_ex'),
+                    colour = G.C.PAPERBACK_DARK_SUIT,
+                    card = card,
                 }
             end
         end

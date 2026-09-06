@@ -1494,15 +1494,15 @@ end
 --- Sets and increments a career stat by either the amount specified, or by 1. Checks for unlock by default
 --- @param key string 
 --- @param amount integer?
---- @param check_for_unlock boolean?
-function PB_UTIL.increment_career_stat(key, amount, check_for_unlock)
+--- @param unlock boolean?
+function PB_UTIL.increment_career_stat(key, amount, unlock)
   amount = amount or 1
-  check_for_unlock = check_for_unlock or true
+  unlock = unlock or true
   local profile = G.PROFILES[G.SETTINGS.profile]
   local career_stats = profile and profile.career_stats
   local current = career_stats and career_stats["paperback_"..key] or 0
   career_stats["paperback_"..key] = current + amount
-  if check_for_unlock then
+  if unlock then
     check_for_unlock({type = "paperback_"..key, total = career_stats["paperback_"..key]})
   end
 end
@@ -1510,13 +1510,13 @@ end
 --- Sets a career stat to a specific value, for use with non number career stats. Checks for unlock by default
 --- @param key string 
 --- @param value any
---- @param check_for_unlock boolean?
-function PB_UTIL.set_career_stat(key, value, check_for_unlock)
-  check_for_unlock = check_for_unlock or true
+--- @param unlock boolean?
+function PB_UTIL.set_career_stat(key, value, unlock)
+  unlock = unlock or true
   local profile = G.PROFILES[G.SETTINGS.profile]
   local career_stats = profile and profile.career_stats
   career_stats["paperback_"..key] = value
-  if check_for_unlock then
+  if unlock then
     check_for_unlock({type = "paperback_"..key, value = career_stats["paperback_"..key]})
   end
 end

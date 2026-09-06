@@ -2704,6 +2704,16 @@ return {
           "scoring {C:attention,E:1}#1#{} suits"
         }
       },
+      j_paperback_cross = {
+        name = "Cross",
+        text = {
+          "Playing cards, Jokers, and",
+          "Consumables {C:attention}cannot{} be destroyed"
+        },
+        unlock = {
+          "Acquire an {C:attention,E:1}Apostle{}"
+        }
+      },
       j_paperback_prince_of_darkness = {
         name = "Prince of Darkness",
         text = {
@@ -3650,17 +3660,17 @@ return {
       j_paperback_black_knife = {
         name = "Black Knife",
         text = {
-          "Create a random",
-          "{C:dark_edition}Negative{C:attention} Joker{}",
-          "for every {C:attention}#1#{C:inactive} [#2#]{} scored {C:paperback_light_suit}Light Suits"
-        },
-        {
-          "Scored {C:paperback_light_suit}Light Suits{} have a",
-          "{C:green}#3#{} in {C:green}#4#{} chance to",
-          "{C:attention}destroy{} random Joker"
+          {
+          "Create a random {C:dark_edition}Negative{C:attention} Joker{}",
+          "for every {C:attention}#1#{C:inactive} [#2#]{} destroyed {C:paperback_light_suit}light suits" },
+          {
+            "Scored {C:paperback_light_suit}light suits{} have a",
+            "{C:green}#3#{} in {C:green}#4#{} chance to",
+            "{C:attention}destroy{} random Joker"
+          },
         },
         unlock = {
-          "Score {C:attention,E:1}#1# {C:paperback_Stars}Stars",
+          "Score {C:attention,E:1}#1# {C:paperback_stars}Stars",
           "{C:inactive}(#2#)",
         }
       },
@@ -5685,6 +5695,7 @@ return {
       paperback_whitebeard_death_ex = "Quake!",
       paperback_proceed_ex = "Proceed",
       paperback_fall_ex = "Fall!",
+      paperback_prevented_ex = "Prevented!",
       paperback_swoon_ex = "SWOON",
 
       paperback_ui_requires_restart = "Requires Restart",
