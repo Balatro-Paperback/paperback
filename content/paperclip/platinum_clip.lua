@@ -10,22 +10,31 @@ PB_UTIL.Paperclip {
   shiny = true,
   special = true,
 
+  config = {
+    triggered_clips = {}
+  },
+
   calculate = function(self, card, context)
     if context.main_scoring and context.cardarea == G.play then
       return {
         func = function()
-          for i, v in ipairs(G.hand.cards) do
-            local other_clip = not v.debuff and PB_UTIL.has_paperclip(v)
-            if other_clip then
-              local ctx = context
-              local effect = PB_UTIL.platinum_effects[other_clip](v, ctx)
-              if effect then
-                SMODS.calculate_effect(effect, v)
-                -- count as scored clip for consistency
-                G.GAME.paperback.round.scored_clips = G.GAME.paperback.round.scored_clips + 1
+          for _, area in ipairs {G.play.cards, G.hand.cards} do
+            for i, v in ipairs(area) do
+              local other_clip = not v.debuff and PB_UTIL.has_paperclip(v)
+              if other_clip and not card.ability.paperback_platinum_clip.triggered_clips[other_clip] then
+                card.ability.paperback_platinum_clip.triggered_clips[other_clip] = true
+                local ctx = context
+                local effect = PB_UTIL.platinum_effects[other_clip](v, ctx)
+                if effect then
+                  SMODS.calculate_effect(effect, v)
+                  -- count as scored clip for consistency
+                  G.GAME.paperback.round.scored_clips = G.GAME.paperback.round.scored_clips + 1
+                end
               end
             end
           end
+
+          card.ability.paperback_platinum_clip.triggered_clips = {}
         end
       }
     end

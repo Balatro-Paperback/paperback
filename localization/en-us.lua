@@ -5242,8 +5242,8 @@ return {
         name = "Platinum Clip",
         text = {
           "When {C:attention}scored{}, force-trigger",
-          "all non-{C:paperback_platinum}Platinum{} {C:attention}Clips{}",
-          "held in hand"
+          "each unique non-{C:paperback_platinum}Platinum{} {C:attention}Clip{}",
+          "played or held in hand"
         }
       },
       -- E.G.O Gift Sins
