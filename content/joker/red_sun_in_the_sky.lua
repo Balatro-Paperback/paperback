@@ -22,7 +22,7 @@ SMODS.Joker {
   blueprint_compat = true,
   eternal_compat = true,
   perishable_compat = true,
-  paperback = {
+  paperback_credit = {
     coder = { 'thermo' }
   },
 
