@@ -2043,6 +2043,13 @@ return {
           "{C:attention,E:1}Wild Queen",
         },
       },
+      j_paperback_degenerate_joker = {
+        name = "Degenerate Joker",
+        text = {
+          "Played {C:attention}#1#s{} turn",
+          "into the card to the {C:attention}right{}"
+        }
+      },
       j_paperback_stamp = {
         name = "Stamp",
         text = {
