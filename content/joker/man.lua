@@ -38,9 +38,7 @@ SMODS.Joker {
   end,
 
   check_for_unlock = function(self, args)
-    if args.type == 'paperback_obtain_egg' and args.egg_total >= 3 then
-      return true
-    end
+    return args.type == 'paperback_egg_taken' and args.total >= 5
   end,
 
   locked_loc_vars = function(self, info_queue, card)
@@ -50,7 +48,7 @@ SMODS.Joker {
     end
     return {
       vars = {
-        other_name, 5, G.PROFILES[G.SETTINGS.profile].career_stats.paperback_egg_taken or 0
+        other_name, 5, PB_UTIL.get_career_stat("egg_taken", 0)
       }
     }
   end,
@@ -72,11 +70,6 @@ local add_to_deck_ref = Card.add_to_deck
 function Card:add_to_deck(from_debuff)
   add_to_deck_ref(self, from_debuff)
   if self.ability.set == 'Joker' and self.config.center.key == 'j_egg' then
-    G.PROFILES[G.SETTINGS.profile].career_stats.paperback_egg_taken = (G.PROFILES[G.SETTINGS.profile].career_stats.paperback_egg_taken or 0) +
-    1
-    if G.PROFILES[G.SETTINGS.profile].career_stats.paperback_egg_taken >= 3 then
-      check_for_unlock({ type = 'paperback_obtain_egg', egg_total = G.PROFILES[G.SETTINGS.profile].career_stats
-      .paperback_egg_taken })
-    end
+    PB_UTIL.increment_career_stat("egg_taken")
   end
 end

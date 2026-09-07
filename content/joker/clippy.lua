@@ -23,12 +23,12 @@ SMODS.Joker {
   -- Temporary solution to track paperclip discovery for Clippy
   -- until paperclips are converted to smods generic card modifier
   check_for_unlock = function (self, args)
-    local tbl = G.PROFILES[G.SETTINGS.profile].career_stats.paperback_temp_paperclip_discovery
+    local tbl = PB_UTIL.get_career_stat("temp_paperclip_discovery", {})
     return tbl and PB_UTIL.count_entries(tbl) >= 10
   end,
 
   locked_loc_vars = function (self, info_queue, card)
-    local tbl = G.PROFILES[G.SETTINGS.profile].career_stats.paperback_temp_paperclip_discovery
+    local tbl = PB_UTIL.get_career_stat("temp_paperclip_discovery", {})
     return { vars = { PB_UTIL.count_entries(tbl), 10 }}
   end,
 

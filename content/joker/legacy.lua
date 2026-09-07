@@ -29,6 +29,8 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'srockw' },
   },
+  -- dummy unlock condition for the unlock all button
+  check_for_unlock = function(self, args) return false end,
 
   loc_vars = function(self, info_queue, card)
     return {

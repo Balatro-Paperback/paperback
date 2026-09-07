@@ -35,6 +35,8 @@ SMODS.Joker {
       }
     }
   end,
+  -- dummy unlock condition for the unlock all button
+  check_for_unlock = function(self, args) return false end,
 
   loc_vars = function(self, info_queue, card)
     local xMult = PB_UTIL.calculate_stick_xMult(card)

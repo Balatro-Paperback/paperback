@@ -49,10 +49,10 @@ SMODS.Joker {
 
   locked_loc_vars = function(self, info_queue, card)
     return { vars = { 20, 
-    G.PROFILES[G.SETTINGS.profile].career_stats.paperback_blind_skips and G.PROFILES[G.SETTINGS.profile].career_stats.paperback_blind_skips or 0 } }
+    PB_UTIL.get_career_stat("skip_blind", 0) } }
   end,
   check_for_unlock = function(self, args)
-    return args.type == 'paperback_skip_blind' and G.PROFILES[G.SETTINGS.profile].career_stats.paperback_blind_skips >= 20
+    return args.type == 'paperback_skip_blind' and PB_UTIL.get_career_stat("skip_blind", 0) >= 20
   end,
 
   calculate = function(self, card, context)

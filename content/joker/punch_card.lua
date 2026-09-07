@@ -31,10 +31,8 @@ SMODS.Joker {
     }
   end,
 
-  check_for_unlock = function(self, args) 
-    if args.type == 'paperback_obtain_ice_cream' and args.ice_cream_total >= 3 then
-      return true
-    end
+  check_for_unlock = function(self, args)
+    return args.type == 'paperback_ice_cream_taken' and args.total >= 3
   end,
 
   locked_loc_vars = function(self, info_queue, card)
@@ -44,7 +42,7 @@ SMODS.Joker {
     end
     return {
       vars = {
-        other_name, 3, G.PROFILES[G.SETTINGS.profile].career_stats.paperback_ice_cream_taken or 0
+        other_name, 3, PB_UTIL.get_career_stat("ice_cream_taken", 0)
       }
     }
   end,
@@ -75,9 +73,6 @@ local add_to_deck_ref = Card.add_to_deck
 function Card:add_to_deck(from_debuff)
   add_to_deck_ref(self, from_debuff)
   if self.ability.set == 'Joker' and self.config.center.key == 'j_ice_cream' then
-    G.PROFILES[G.SETTINGS.profile].career_stats.paperback_ice_cream_taken = (G.PROFILES[G.SETTINGS.profile].career_stats.paperback_ice_cream_taken or 0) + 1
-    if G.PROFILES[G.SETTINGS.profile].career_stats.paperback_ice_cream_taken >= 3 then
-      check_for_unlock({type = 'paperback_obtain_ice_cream', ice_cream_total = G.PROFILES[G.SETTINGS.profile].career_stats.paperback_ice_cream_taken})
-    end
+    PB_UTIL.increment_career_stat("ice_cream_taken")
   end
 end

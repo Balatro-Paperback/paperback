@@ -16,6 +16,8 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'srockw' }
   },
+  -- dummy unlock condition for the unlock all button
+  check_for_unlock = function(self, args) return false end,
 
   calculate = function(self, card, context)
     if context.buying_card and context.card.ability.set == "Voucher" and not context.blueprint then

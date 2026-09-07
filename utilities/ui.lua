@@ -133,9 +133,195 @@ SMODS.current_mod.config_tab = function()
             }
           }
         }
-      }
+      },
+      {
+        n = G.UIT.R,
+        config = { align = 'cm' },
+        nodes = {
+          {
+            n = G.UIT.C,
+            nodes = {
+              UIBox_button({
+                  label = { localize('paperback_ui_unlock_cards') },
+                  button = 'paperback_unlock_all'
+              })
+            }
+          },
+          {
+            n = G.UIT.B,
+            config = { w = 0.5, h = 0.4 }
+          },
+          {
+            n = G.UIT.C,
+            nodes = {
+              UIBox_button({
+                  label = { localize('paperback_ui_lock_cards') },
+                  button = 'paperback_lock_all'
+              }),
+            }
+          },
+        }
+      },
+      {n=G.UIT.R, config={align = "cm", padding = 0}, nodes={
+        {n=G.UIT.T, config={id = 'warning_text', text = localize('ph_click_confirm'), scale = 0.4, colour = G.C.CLEAR}}
+      }}
     }
   }
+end
+
+function G.FUNCS.paperback_unlock_all(e)
+  if not e then return end
+
+  local warning_text = e.UIBox:get_UIE_by_ID('warning_text')
+
+  if warning_text and warning_text.config.colour ~= G.C.WHITE then
+    warning_text:juice_up()
+    warning_text.config.colour = G.C.WHITE
+    warning_text.config.shadow = true
+    e.config.disable_button = true
+
+    G.E_MANAGER:add_event(Event({
+      trigger = 'after',
+      delay = 0.35,
+      blockable = false,
+      blocking = false,
+      func = function()
+        e.config.disable_button = nil
+        return true
+      end
+    }))
+
+    play_sound('tarot2', 1, 0.4)
+    return
+  end
+
+  local keys = PB_UTIL.ENABLED_JOKERS
+  local vouchers = PB_UTIL.ENABLED_VOUCHERS
+  local decks = PB_UTIL.ENABLED_DECKS
+  local sleeves = PB_UTIL.ENABLED_SLEEVES
+
+  for _, key in ipairs(keys) do
+    local card = G.P_CENTERS["j_paperback_" .. key]
+    if card and card.unlocked == false and (card.unlock_condition or card.check_for_unlock) then
+      card.unlocked = true
+    end
+  end
+
+  for _, voucher in ipairs(vouchers) do
+    local card = G.P_CENTERS["v_paperback_" .. voucher]
+    if card and card.unlocked == false and (card.unlock_condition or card.check_for_unlock) then
+      card.unlocked = true
+    end
+  end
+
+  for _, deck in ipairs(decks) do
+    local card = G.P_CENTERS["b_paperback_" .. deck]
+    if card and card.unlocked == false and (card.unlock_condition or card.check_for_unlock) then
+      card.unlocked = true
+      card.discovered = true
+      table.sort(G.P_CENTER_POOLS["Back"], function (a, b) return (a.order - (a.unlocked and 100 or 0)) < (b.order - (b.unlocked and 100 or 0)) end)
+    end
+  end
+
+  if next(SMODS.find_mod('CardSleeves')) then
+    for _, sleeve in ipairs(sleeves) do
+      local card = G.P_CENTERS["sleeve_paperback_" .. sleeve]
+      if card and card.unlocked == false and (card.unlock_condition or card.check_for_unlock) then
+        card.unlocked = true
+        card.discovered = true
+      end
+    end
+  end
+  warning_text.config.colour = G.C.CLEAR
+  G:save_progress()
+end
+
+function G.FUNCS.paperback_lock_all(e)
+  if not e then return end
+
+  local warning_text = e.UIBox:get_UIE_by_ID('warning_text')
+
+  if warning_text and warning_text.config.colour ~= G.C.WHITE then
+    warning_text:juice_up()
+    warning_text.config.colour = G.C.WHITE
+    warning_text.config.shadow = true
+    e.config.disable_button = true
+
+    G.E_MANAGER:add_event(Event({
+      trigger = 'after',
+      delay = 0.35,
+      blockable = false,
+      blocking = false,
+      func = function()
+        e.config.disable_button = nil
+        return true
+      end
+    }))
+
+    play_sound('tarot2', 1, 0.4)
+    return
+  end
+
+  local keys = PB_UTIL.ENABLED_JOKERS
+  local vouchers = PB_UTIL.ENABLED_VOUCHERS
+  local decks = PB_UTIL.ENABLED_DECKS
+  local sleeves = PB_UTIL.ENABLED_SLEEVES
+
+  local relocked = {}
+  local function relock_card(card)
+    if card and card.unlocked == true and (card.unlock_condition or card.check_for_unlock) then
+      card.unlocked = false
+      card.discovered = false
+      relocked[card.key] = true
+      table.insert(G.P_LOCKED, card)
+    end
+  end
+
+  for _, key in ipairs(keys) do
+    local card = G.P_CENTERS["j_paperback_" .. key]
+    relock_card(card)
+  end
+
+  for _, voucher in ipairs(vouchers) do
+    local card = G.P_CENTERS["v_paperback_" .. voucher]
+    relock_card(card)
+  end
+
+  for _, deck in ipairs(decks) do
+    local card = G.P_CENTERS["b_paperback_" .. deck]
+    -- Paper deck was having problems being relocked, skip it
+    if card ~= G.P_CENTERS["b_paperback_paper"] then
+      relock_card(card)
+    end
+  end
+
+  if next(SMODS.find_mod('CardSleeves')) then
+    for _, sleeve in ipairs(sleeves) do
+      local card = G.P_CENTERS["sleeve_paperback_" .. sleeve]
+      relock_card(card)
+    end
+  end
+
+  table.sort(G.P_LOCKED, function (a, b) return a.order and b.order and a.order < b.order end)
+  table.sort(G.P_CENTER_POOLS["Back"], function (a, b) return (a.order - (a.unlocked and 100 or 0)) < (b.order - (b.unlocked and 100 or 0)) end)
+
+  for stat in pairs(G.PROFILES[G.SETTINGS.profile].career_stats) do
+    if string.sub(stat, 1, 10) == "paperback_" then
+      PB_UTIL.set_career_stat(string.sub(stat, 11), nil, false)
+    end
+  end
+
+  local meta_path = G.SETTINGS.profile .. '/meta.jkr'
+  local meta = STR_UNPACK(get_compressed(meta_path) or 'return {}')
+  meta.unlocked = meta.unlocked or {}
+  meta.discovered = meta.discovered or {}
+  for key in pairs(relocked) do
+    meta.unlocked[key] = nil
+    meta.discovered[key] = nil
+  end
+  compress_and_save(meta_path, STR_PACK(meta))
+
+  warning_text.config.colour = G.C.CLEAR
 end
 
 -- Create Credits tab in our mod UI

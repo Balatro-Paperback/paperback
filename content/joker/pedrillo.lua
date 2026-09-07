@@ -29,6 +29,8 @@ SMODS.Joker {
     coder = { 'dowfrin' },
     artist = { 'nevernamed' }
   },
+  -- dummy unlock condition for the unlock all button
+  check_for_unlock = function(self, args) return false end,
 
   calculate = function(self, card, context)
     if context.individual and context.cardarea == G.play then

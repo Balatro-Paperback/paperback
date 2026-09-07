@@ -2710,6 +2710,31 @@ return {
           "Eat {C:attention,E:1}#1#{}",
         }
       },
+      j_paperback_toppins = {
+        name = "Toppins",
+        text = {
+          "Cards give {C:mult}+#1#{} Mult when scored.",
+          "Increases by {C:mult}+#2#{} Mult for each",
+          "previously scored card",
+          "{C:inactive}(Resets after each hand played)",
+        },
+        unlock = {
+          "Play a hand",
+          "scoring {C:attention,E:1}#1#{} suits"
+        }
+      },
+      j_paperback_cross = {
+        name = "Cross",
+        text = {
+          "Playing cards, Jokers, and",
+          "Consumables {C:attention}cannot{} be {C:red}destroyed",
+          "{C:inactive}(Does not prevent {C:money}selling",
+          "{C:inactive}or {S:1.1,C:red,E:2}self-destruction{C:inactive})"
+        },
+        unlock = {
+          "Acquire an {C:attention,E:1}Apostle{}"
+        }
+      },
       j_paperback_prince_of_darkness = {
         name = "Prince of Darkness",
         text = {
@@ -3662,6 +3687,23 @@ return {
           "without playing",
           "a {E:1,C:attention}Jack",
         },
+      },
+      j_paperback_black_knife = {
+        name = "Black Knife",
+        text = {
+          {
+          "Create a random {C:dark_edition}Negative{C:attention} Joker{}",
+          "for every {C:attention}#1#{C:inactive} [#2#]{} destroyed {C:paperback_light_suit}light suits" },
+          {
+            "Scored {C:paperback_light_suit}light suits{} have a",
+            "{C:green}#3#{} in {C:green}#4#{} chance to",
+            "{C:attention}destroy{} random Joker"
+          },
+        },
+        unlock = {
+          "Score {C:attention,E:1}#1# {C:paperback_stars}Stars",
+          "{C:inactive}(#2#)",
+        }
       },
       j_paperback_red_sun_in_the_sky = {
         name = "Red Sun in the Sky",
@@ -5742,6 +5784,8 @@ return {
       paperback_whitebeard_death_ex = "Quake!",
       paperback_proceed_ex = "Proceed",
       paperback_fall_ex = "Fall!",
+      paperback_prevented_ex = "Prevented!",
+      paperback_swoon_ex = "SWOON",
 
       paperback_ui_requires_restart = "Requires Restart",
       paperback_ui_no_requires_restart = "Doesn't Require Restart",
@@ -5755,6 +5799,8 @@ return {
       paperback_ui_enable_vouchers = "Enable Vouchers",
       paperback_ui_enable_tags = "Enable Tags",
       paperback_ui_enable_ranks = "Enable Ranks",
+      paperback_ui_lock_cards = "Lock All Items",
+      paperback_ui_unlock_cards = "Unlock All Items",
       paperback_ui_developers = "Developers",
       paperback_ui_artists = "Artists",
       paperback_ui_localization = "Localization",

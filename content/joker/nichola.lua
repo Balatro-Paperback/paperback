@@ -16,6 +16,8 @@ SMODS.Joker {
     coder = { 'srockw' },
     artist = { 'nevernamed' }
   },
+  -- dummy unlock condition for the unlock all button
+  check_for_unlock = function(self, args) return false end,
 
   -- Also see SMODS.calculate_main_scoring hook
   calculate = function(self, card, context)

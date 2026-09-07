@@ -42,10 +42,10 @@ SMODS.Joker {
 
   locked_loc_vars = function(self, info_queue, card)
     return { vars = { 50, 
-    G.PROFILES[G.SETTINGS.profile].career_stats.paperback_minor_arcana_used and G.PROFILES[G.SETTINGS.profile].career_stats.paperback_minor_arcana_used or 0 } }
+    PB_UTIL.get_career_stat("minor_arcana_used", 0) } }
   end,
   check_for_unlock = function(self, args)
-    return args.type == 'paperback_use_minor_arcana' and G.PROFILES[G.SETTINGS.profile].career_stats.paperback_minor_arcana_used >= 50
+    return args.type == 'paperback_minor_arcana_used' and args.total >= 50
   end,
 
   calculate = function(self, card, context)

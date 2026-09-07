@@ -108,7 +108,9 @@ function PB_UTIL.set_paperclip(card, key)
       -- Temporary solution to track paperclip discovery for Clippy
       -- until paperclips are converted to smods generic card modifier
       if k and k ~= "paperback_platinum_clip" then
-        G.PROFILES[G.SETTINGS.profile].career_stats.paperback_temp_paperclip_discovery[k] = true
+        local temp_table = PB_UTIL.get_career_stat("temp_paperclip_discovery", {})
+        temp_table[k] = true
+        PB_UTIL.set_career_stat("temp_paperclip_discovery", temp_table)
       end
     end
   end
@@ -1476,4 +1478,44 @@ function PB_UTIL.has_ego_gift()
     end
   end
   return false
+end
+
+--- Sets and increments a career stat by either the amount specified, or by 1. Checks for unlock by default
+--- @param key string 
+--- @param amount integer?
+--- @param unlock boolean?
+function PB_UTIL.increment_career_stat(key, amount, unlock)
+  amount = amount or 1
+  unlock = unlock or true
+  local profile = G.PROFILES[G.SETTINGS.profile]
+  local career_stats = profile and profile.career_stats
+  local current = career_stats and career_stats["paperback_"..key] or 0
+  career_stats["paperback_"..key] = current + amount
+  if unlock then
+    check_for_unlock({type = "paperback_"..key, total = career_stats["paperback_"..key]})
+  end
+end
+
+--- Sets a career stat to a specific value, for use with non number career stats. Checks for unlock by default
+--- @param key string 
+--- @param value any
+--- @param unlock boolean?
+function PB_UTIL.set_career_stat(key, value, unlock)
+  unlock = unlock or true
+  local profile = G.PROFILES[G.SETTINGS.profile]
+  local career_stats = profile and profile.career_stats
+  career_stats["paperback_"..key] = value
+  if unlock then
+    check_for_unlock({type = "paperback_"..key, value = career_stats["paperback_"..key]})
+  end
+end
+
+--- Safe get for a career stat
+--- @param key string 
+--- @param default any
+--- @return any
+function PB_UTIL.get_career_stat(key, default)
+  local profile = G.PROFILES[G.SETTINGS.profile]
+  local career_stats = profile and profile.career_stats
+  return career_stats and career_stats["paperback_"..key] or default
 end

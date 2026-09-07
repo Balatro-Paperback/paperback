@@ -81,6 +81,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "skydiver",
   "surfer",
   "apple",
+  "toppins",
   "freezer",
   "joker_cookie",
   "double_dutchman",
@@ -132,6 +133,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "blue_marble",
   "triple_moon_goddess",
   "sacred_heart",
+  "cross",
   "as_above_so_below",
   "one_sin_and_hundreds_of_good_deeds",
   "plague_doctor",
@@ -158,6 +160,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "doppler_radar",
   "satellite_array",
   "first_contact",
+  "black_knife",
   "aurora_borealis",
   "grand_strategy",
   "moving_out",
@@ -524,4 +527,14 @@ PB_UTIL.ENABLED_ATTRIBUTES = {
   'secret',       -- has a secret trigger
   'red',          -- it's red
   'stick'         -- it's stick
+}
+
+PB_UTIL.ENABLED_SLEEVES = {
+  'paper',
+  'proud',
+  'silver',
+  'dreamer',
+  'antique',
+  'passionate',
+  -- 'shimmering',
 }

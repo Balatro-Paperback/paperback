@@ -3,7 +3,7 @@ local paperback_calculate_ref = SMODS.current_mod.calculate
 SMODS.current_mod.calculate = function(self, context)
 	paperback_calculate_ref(self, context)
 
-	if context.remove_playing_cards then
+	if context.remove_playing_cards and not next(SMODS.find_card('j_paperback_cross')) then
 		for _, v in ipairs(context.removed or {}) do
 			-- Power Surge unlock
 			if PB_UTIL.is_rank(v, 7) and SMODS.has_enhancement(v, 'm_steel') then
@@ -100,6 +100,10 @@ SMODS.current_mod.calculate = function(self, context)
       end
       if v:is_suit_shade('light') then
         light_count = light_count + 1
+      end
+      -- Black Knife unlock
+      if v:is_suit('paperback_Stars') then
+        PB_UTIL.increment_career_stat("played_stars")
       end
       -- Rosary Beads, Technology unlock
       if not (v:is_suit('Hearts') or SMODS.has_any_suit(v)) then
@@ -253,14 +257,12 @@ SMODS.current_mod.calculate = function(self, context)
 	if context.using_consumeable then
 		-- track minor arcana usage across runs
     if context.consumeable.config.center.set == "paperback_minor_arcana" then
-      G.PROFILES[G.SETTINGS.profile].career_stats.paperback_minor_arcana_used = (G.PROFILES[G.SETTINGS.profile].career_stats.paperback_minor_arcana_used or 0) + 1
-			check_for_unlock({type = 'paperback_use_minor_arcana', minor_arcana_total = G.PROFILES[G.SETTINGS.profile].career_stats.paperback_minor_arcana_used})
+      PB_UTIL.increment_career_stat("minor_arcana_used")
     end
 	end
 
 	if context.skip_blind then
-		G.PROFILES[G.SETTINGS.profile].career_stats.paperback_blind_skips = (G.PROFILES[G.SETTINGS.profile].career_stats.paperback_blind_skips or 0) + 1
-		check_for_unlock({type = 'paperback_skip_blind', blind_skips_total = G.PROFILES[G.SETTINGS.profile].career_stats.paperback_blind_skips})
+		PB_UTIL.increment_career_stat("skip_blind")
 	end
 
 	if context.after then

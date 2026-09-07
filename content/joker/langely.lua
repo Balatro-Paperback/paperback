@@ -18,6 +18,8 @@ SMODS.Joker {
     coder = { 'srockw' },
     artist = { 'nevernamed' }
   },
+  -- dummy unlock condition for the unlock all button
+  check_for_unlock = function(self, args) return false end,
 
   calculate = function(self, card, context)
     if context.end_of_round and context.main_eval and (G.GAME.blind.boss or G.GAME.blind:get_type() == "Big") then

@@ -34,6 +34,8 @@ SMODS.Joker {
     artist = { 'dylan_hall' },
     coder = { 'dowfrin' }
   },
+  -- dummy unlock condition for the unlock all button
+  check_for_unlock = function(self, args) return false end,
 
   in_pool = function(self, args)
     return false

@@ -64,3 +64,24 @@ SMODS.Joker {
     end
   end
 }
+
+-- Keep track of G.GAME.paperback.this_shop_dollars_spent
+-- Redoing this a bit more accurately than Bunco
+local inc_career_stat_ref = inc_career_stat
+function inc_career_stat(stat, mod)
+  if stat == 'c_shop_dollars_spent' then
+    if to_big(mod) > to_big(0) then
+      G.GAME.paperback.this_shop_dollars_spent = (G.GAME.paperback.this_shop_dollars_spent or 0) + mod
+      check_for_unlock({ type = 'spend_in_one_shop', spent = G.GAME.paperback.this_shop_dollars_spent })
+    end
+  end
+  return inc_career_stat_ref(stat, mod)
+end
+
+local toggle_shop_ref = G.FUNCS.toggle_shop
+G.FUNCS.toggle_shop = function(e)
+  toggle_shop_ref(e)
+  if G.shop then
+    G.GAME.paperback.this_shop_dollars_spent = nil
+  end
+end
