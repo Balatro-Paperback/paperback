@@ -11,7 +11,7 @@ SMODS.current_mod.optional_features = {
 -- Global mod calculate
 SMODS.current_mod.calculate = function(self, context)
   -- Count the amount of removed playing cards
-  if context.remove_playing_cards then
+  if context.remove_playing_cards and not next(SMODS.find_card('j_paperback_cross')) then
     for _, v in ipairs(context.removed or {}) do
       local destroyed = G.GAME.paperback.destroyed_cards
 

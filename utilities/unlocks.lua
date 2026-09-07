@@ -3,7 +3,7 @@ local paperback_calculate_ref = SMODS.current_mod.calculate
 SMODS.current_mod.calculate = function(self, context)
 	paperback_calculate_ref(self, context)
 
-	if context.remove_playing_cards then
+	if context.remove_playing_cards and not next(SMODS.find_card('j_paperback_cross')) then
 		for _, v in ipairs(context.removed or {}) do
 			-- Power Surge unlock
 			if PB_UTIL.is_rank(v, 7) and SMODS.has_enhancement(v, 'm_steel') then

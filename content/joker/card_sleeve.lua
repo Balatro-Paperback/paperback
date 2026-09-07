@@ -19,7 +19,8 @@ SMODS.Joker {
   check_for_unlock = function(self, args)
     if G.jokers then
       for _, v in ipairs(G.jokers.cards) do
-        if SMODS.is_eternal(v) then
+        -- check for the sticker instead of SMODS.is_eternal, due to Cross setting everything as eternal
+        if v.ability.eternal then
           return true
         end
       end
