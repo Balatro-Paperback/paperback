@@ -68,29 +68,25 @@ SMODS.Joker {
     end
 
     if context.after and not context.blueprint then
-        for _, v in ipairs(context.scoring_hand) do
+      for _, v in ipairs(context.scoring_hand) do
         if PB_UTIL.is_suit(v, 'light') and PB_UTIL.chance(card, "paperback_SWOON") then
           local possible_jokers = {}
             for _, j in ipairs(G.jokers.cards) do
-                if j ~= card and not SMODS.is_eternal(j, card) and not j.getting_sliced then
-                    possible_jokers[#possible_jokers + 1] = j
-                end
+              if j ~= card and not SMODS.is_eternal(j, card) and not j.getting_sliced then possible_jokers[#possible_jokers + 1] = j end
             end
 
             local joker_to_destroy = pseudorandom_element(possible_jokers, pseudoseed('paperback_SWOON'))
 
             if joker_to_destroy then
-                PB_UTIL.destroy_joker(joker_to_destroy)
-                SMODS.calculate_effect {
-                    message = localize('paperback_swoon_ex'),
-                    colour = G.C.PAPERBACK_DARK_SUIT,
-                    card = card,
-                }
+              PB_UTIL.destroy_joker(joker_to_destroy)
+              SMODS.calculate_effect {
+                message = localize('paperback_swoon_ex'),
+                colour = G.C.PAPERBACK_DARK_SUIT,
+                card = card,
+              }
             end
         end
       end
     end
-  end,
-
-  
+  end
 }

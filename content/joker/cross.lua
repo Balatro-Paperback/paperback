@@ -138,19 +138,5 @@ function SMODS.calculate_context(context, return_table, no_resolve)
     return ret
   end
 
-  -- glass joker why are you like this
-  if context.using_consumeable and context.consumeable
-  and context.consumeable.ability.name == 'The Hanged Man'
-  and next(SMODS.find_card('j_paperback_cross')) then
-    local highlighted = G.hand.highlighted
-    for _, card in ipairs(highlighted or {}) do
-      card.paperback_cross_prevented = true
-    end
-    G.hand.highlighted = {}
-    local ret = calculate_context_ref(context, return_table, no_resolve)
-    G.hand.highlighted = highlighted
-    return ret
-  end
-
   return calculate_context_ref(context, return_table, no_resolve)
 end
