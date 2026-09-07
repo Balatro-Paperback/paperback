@@ -181,6 +181,10 @@ SMODS.current_mod.calculate = function(self, context)
     if not next(context.poker_hands['Straight']) then
       G.GAME.paperback.round.played_only_straights = false
     end
+    -- Nazca Lines unlock
+    if (PB_UTIL.get_unique_suits(context.scoring_hand) == 1) and context.scoring_name == 'Four of a Kind' then
+      check_for_unlock({ type = 'paperback_4oak_1_suit' })
+    end
 
     -- checks if played hand contains a flush for the suit drink's unlock
     if next(context.poker_hands['Flush']) then

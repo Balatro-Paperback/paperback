@@ -4008,6 +4008,61 @@ return {
           "{C:inactive}(Currently {C:chips}+#2#{C:inactive} Chips){}"
         }
       },
+      j_paperback_shinzaemon = {
+        name = "Shinzaemon",
+        text = {
+          "If scored hand",
+          "contains {C:attention}#1#{} cards",
+          "the {C:attention}#1#th{} card",
+          "permanently gains {X:mult,C:white}X#2#{} Mult"
+        },
+        unlock = {
+          "{E:1,s:1.3}?????",
+        }
+      },
+      j_paperback_stardrop = {
+        name = "Stardrop",
+        text = {
+          "Scored {V:1}#2#{}",
+          "{C:purple}Balance{} {C:attention}#1#%{} of",
+          "{C:chips}Chips{} and {C:mult}Mult"
+        },
+        unlock = {
+          "Have a deck consisting of",
+          "only {C:paperback_stars,E:1}Stars{}"
+        }
+      },
+      j_paperback_moneyback = {
+        name = "Moneyback",
+        text = {
+          "Every {C:money}$#1#{C:inactive} [#2#]{} spent",
+          "earns {C:money}$#3#{}"
+        },
+        unlock = {
+          "Spend {C:money}$100",
+          "In a shop"
+        }
+      },
+      j_paperback_nazca_lines = {
+        name = "Nazca Lines",
+        text = {
+          "Scored cards earn {C:money}$#1#",
+          "for {C:attention}each{} adjacent",
+          "{C:attention}debuffed{} or {C:attention}unscored{} card"
+        },
+        unlock = {
+          "Play a Four of a Kind",
+          "All of the same suit"
+        }
+      },
+      j_paperback_grimoire = {
+        name = "Grimoire",
+        text = {
+          "{C:money}Shops{} after the {C:attention}Big Blind",
+          "start with an additional",
+          "{C:paperback_ego_gift}E.G.O Gift Extraction Pack{}"
+        }
+      },
       -- Cross-Mod jokers start here
       j_paperback_moon_waltz = {
         name = "Moon Waltz",

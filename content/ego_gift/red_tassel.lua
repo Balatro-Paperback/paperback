@@ -27,12 +27,20 @@ PB_UTIL.EGO_Gift {
 
       for _, c in ipairs(context.scoring_hand) do
         if not SMODS.has_no_rank(c) then
-          if next(cards) and cards[1]:get_id() > c:get_id() then
-            cards = {}
+          if next(cards) then
+            local rank_a, rank_b = cards[1]:get_id(), c:get_id()
+            if rank_a > rank_b then
+              cards = {}
+            elseif rank_a == rank_b then
+              table.insert(cards, c)
+              goto continue
+            else
+              goto continue
+            end
           end
-
           table.insert(cards, c)
         end
+        ::continue::
       end
 
       if not next(cards) then

@@ -54,7 +54,7 @@ SMODS.Joker {
     if context.before and card.ability.extra.active then
       for _, v in ipairs(context.scoring_hand) do
         if not v:is_face(false) then
-          v.ability.perma_bonus = (v.ability.perma_bonus or 0) + 1
+          v.ability.perma_bonus = (v.ability.perma_bonus or 0) + card.ability.extra.perma_bonus
           if not context.blueprint_card then
             card.ability.extra.active = false
           end
