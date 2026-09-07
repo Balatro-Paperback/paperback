@@ -53,7 +53,7 @@ SMODS.Joker {
     if context.before and context.main_eval and not context.blueprint then
       local bad_suit = false
       for _, v in ipairs(context.scoring_hand) do
-        bad_suit = bad_suit or PB_UTIL.is_non_suit(v, 'dark')
+        bad_suit = bad_suit or PB_UTIL.is_non_suit(v, 'dark', true)
       end
       if not bad_suit then
         SMODS.scale_card(card, {

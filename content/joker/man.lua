@@ -56,7 +56,7 @@ SMODS.Joker {
   end,
 
   calculate = function(self, card, context)
-    if context.individual and context.cardarea == G.play and PB_UTIL.is_suit(context.other_card, 'dark', false) then
+    if context.individual and context.cardarea == G.play and context.other_card:is_suit_shade('dark') then
       context.other_card.ability.perma_mult = (
         context.other_card.ability.perma_mult or 0
       ) + card.ability.extra.perma_mult

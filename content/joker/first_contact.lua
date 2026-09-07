@@ -52,7 +52,7 @@ SMODS.Joker {
   end,
 
   calculate = function(self, card, context)
-    if context.individual and context.cardarea == G.play and PB_UTIL.is_suit(context.other_card, 'dark') then
+    if context.individual and context.cardarea == G.play and context.other_card:is_suit_shade('dark') then
       if G.GAME.paperback.first_contact_count % card.ability.extra.required <= 0 then
         if PB_UTIL.try_spawn_card { set = 'Spectral' } then
           return {

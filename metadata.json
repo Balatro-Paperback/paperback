@@ -8,5 +8,5 @@
   "badge_colour": "8b61ad",
   "version": "0.8.1~BETA",
   "icon_path": "modicon.png",
-  "dependencies": ["Steamodded (>=1.0.0~BETA-1531zeebee)", "Lovely (>=0.9.0)"]
+  "dependencies": ["Steamodded (>=1.1814.0)", "Lovely (>=0.9.0)"]
 }

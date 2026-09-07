@@ -35,7 +35,7 @@ function Game.init_game_object(self)
     destroyed_cards = {
       ["cards"] = 0,
       suits = {
-        -- stores ['dark'], ['light'], ['suitless'], and suit keys (ex: ['Hearts'], ['Spades'], ['paperback_Crowns'])
+        -- stores ['suitless'], suit shades (ex: ['light'], ['dark']), and suit keys (ex: ['Hearts'], ['Spades'], ['paperback_Crowns'])
       },
       ranks = {
         -- stores ['face'], ['rankless'], and rank keys (ex: ['King'], ['10'], ['paperback_Apostle'])

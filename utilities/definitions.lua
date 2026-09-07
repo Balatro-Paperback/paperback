@@ -30,14 +30,10 @@ SMODS.current_mod.calculate = function(self, context)
 			end
 
 			if not SMODS.has_no_suit(v) then
-				for k, _ in pairs(SMODS.Suits or {}) do
+				for k, i in pairs(SMODS.Suits or {}) do
 					if v.base.suit == k then
 						destroyed.suits[k] = (destroyed.suits[k] or 0) + 1
-						if PB_UTIL.is_suit(v, 'light') then
-							destroyed.suits["light"] = (destroyed.suits["light"] or 0) + 1
-						elseif PB_UTIL.is_suit(v, 'dark') then
-							destroyed.suits["dark"] = (destroyed.suits["dark"] or 0) + 1
-						end
+            destroyed.suits[i.shade] = (destroyed.suits[i.shade] or 0) + 1
 					end
 				end
 			else

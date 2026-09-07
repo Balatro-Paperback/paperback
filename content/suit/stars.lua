@@ -1,6 +1,7 @@
 SMODS.Suit {
   key = 'Stars',
   card_key = 'STARS',
+  shade = "light",
 
   lc_atlas = 'suits_lc',
   lc_ui_atlas = 'suits_ui_lc',

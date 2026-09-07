@@ -11,8 +11,13 @@ end
 if next(SMODS.find_mod('Bunco')) then
   local prefix = SMODS.find_mod('Bunco')[1].prefix or "bunc"
 
-  table.insert(PB_UTIL.light_suits, prefix .. '_Fleurons')
-  table.insert(PB_UTIL.dark_suits, prefix .. '_Halberds')
+  --Adding shades to the Bunco suits via take_ownership until they add their own shades
+  SMODS.Suit:take_ownership(prefix .. '_Fleurons', {
+    shade = 'light'
+  }, true)
+  SMODS.Suit:take_ownership(prefix .. '_Halberds', {
+    shade = 'dark'
+  }, true)
 end
 
 if next(SMODS.find_mod('partner')) then

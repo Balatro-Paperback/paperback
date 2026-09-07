@@ -89,16 +89,16 @@ SMODS.current_mod.calculate = function(self, context)
       if v:is_face() then
         G.GAME.paperback.round.scored_face_cards = G.GAME.paperback.round.scored_face_cards + 1
       end
-      if not PB_UTIL.is_suit(v, 'dark', false, true) then
-        G.GAME.paperback.hand_only_scored_dark = false
-      end
-      if not PB_UTIL.is_suit(v, 'light', false, true) then
+      if PB_UTIL.is_non_suit(v, 'light', true, true, true) then
         G.GAME.paperback.hand_only_scored_light = false
       end
-      if PB_UTIL.is_suit(v, 'dark', false, true) then
+      if PB_UTIL.is_non_suit(v, 'dark', true, true, true) then
+        G.GAME.paperback.hand_only_scored_dark = false
+      end
+      if v:is_suit_shade('dark') then
         dark_count = dark_count + 1
       end
-      if PB_UTIL.is_suit(v, 'light', false, true) then
+      if v:is_suit_shade('light') then
         light_count = light_count + 1
       end
       -- Rosary Beads, Technology unlock

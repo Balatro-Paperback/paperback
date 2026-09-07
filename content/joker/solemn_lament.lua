@@ -68,8 +68,8 @@ SMODS.Joker {
       }
 
       for _, v in ipairs(context.scoring_hand) do
-        local is_dark = PB_UTIL.is_suit(v, 'dark', false, true)
-        local is_light = PB_UTIL.is_suit(v, 'light', false, true)
+        local is_dark = v:is_suit_shade('dark')
+        local is_light = v:is_suit_shade('light')
         if is_dark and is_light then
           suits.wild = suits.wild + 1
         elseif is_dark then

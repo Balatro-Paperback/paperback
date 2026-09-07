@@ -785,21 +785,6 @@ function PB_UTIL.compare_ranks(rank1, rank2, allow_equal)
   return comp(r1.sort_nominal, r2.sort_nominal)
 end
 
----Used to check whether a card is a light or dark suit
----@param card table
----@param type 'light' | 'dark'
----@param bypass_debuff boolean?
----@param flush_calc boolean? Usually use this instead of bypass_debuff for Jokers:
---- debuffed wild cards are considered their original suit only
----@return boolean
-function PB_UTIL.is_suit(card, type, bypass_debuff, flush_calc)
-  assert(type == 'light' or type == 'dark')
-  for _, v in ipairs(type == 'light' and PB_UTIL.light_suits or PB_UTIL.dark_suits) do
-    if card:is_suit(v, bypass_debuff, flush_calc) then return true end
-  end
-  return false
-end
-
 --- PB_UTIL.is_non_suit(card, X) checks if `card` specifically can only be a non-X suit.
 --- Usually used to check for a negative effect happening, like
 --- in Derecho: if the hand contains a non-dark -> no upgrade.
@@ -815,16 +800,20 @@ end
 ---
 ---@param card table
 ---@param type 'string' 'light', 'dark', or a suit key
+---@param is_shade boolean?
 ---@param bypass_debuff boolean?
 ---@param flush_calc boolean? Usually use this instead of bypass_debuff for Jokers:
 --- debuffed wild cards are considered their original suit only
 ---@return boolean
-function PB_UTIL.is_non_suit(card, type, bypass_debuff, flush_calc)
-  local suit_arr = (
-    type == 'light' and PB_UTIL.light_suits
-    or type == 'dark' and PB_UTIL.dark_suits
-    or { type }
-  )
+function PB_UTIL.is_non_suit(card, type, is_shade, bypass_debuff, flush_calc)
+  local suit_arr = {}
+  if is_shade then
+    for i, v in pairs(SMODS.Suits) do
+      if type == v.shade then suit_arr[#suit_arr+1] = i end
+    end
+  else 
+    suit_arr[#suit_arr+1] = type
+  end
   for _, v in ipairs(suit_arr) do
     if card:is_suit(v, bypass_debuff, flush_calc) then return false end
   end

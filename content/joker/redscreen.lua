@@ -46,7 +46,7 @@ SMODS.Joker {
   check_for_unlock = function(self, args)
     if args.type == 'modify_deck' and next(G.playing_cards) then
       for k, v in pairs(G.playing_cards) do
-        if not PB_UTIL.is_suit(v, 'light') then return false end
+        if PB_UTIL.is_non_suit(v, 'light', true) then return false end
       end
       return true
     end
@@ -81,8 +81,8 @@ function PB_UTIL.count_reds()
   local red_tally = 0
   if G.playing_cards then
     for k, v in pairs(G.playing_cards) do
-      if PB_UTIL.is_suit(v, 'light', true) then red_tally = red_tally + 1 end
-      if PB_UTIL.is_suit(v, 'dark', true) and not SMODS.has_any_suit(v) then red_tally = red_tally - 1 end
+      if v:is_suit_shade('light', true) then red_tally = red_tally + 1 end
+      if v:is_suit_shade('dark', true) and not SMODS.has_any_suit(v) then red_tally = red_tally - 1 end
     end
   end
   return math.max(red_tally, -10)

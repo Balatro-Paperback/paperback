@@ -52,7 +52,7 @@ SMODS.Joker {
       local cards = {}
 
       for _, v in ipairs(context.scoring_hand) do
-        if PB_UTIL.is_suit(v, 'light') then
+        if v:is_suit_shade('light') then
           cards[#cards + 1] = v
         end
       end

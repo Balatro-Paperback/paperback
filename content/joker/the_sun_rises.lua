@@ -62,7 +62,7 @@ SMODS.Joker {
       )
     end
 
-    if context.individual and context.cardarea == G.play and PB_UTIL.is_suit(context.other_card, 'light') then
+    if context.individual and context.cardarea == G.play and context.other_card:is_suit_shade('light') then
       if not context.blueprint then
         SMODS.scale_card(card, {
           ref_table = card.ability.extra,
@@ -99,7 +99,7 @@ SMODS.Joker {
         local count = 0
         local _, _, scoring_hand = JokerDisplay.evaluate_hand()
         for _, scoring_card in pairs(scoring_hand) do
-          if PB_UTIL.is_suit(scoring_card, 'light') then
+          if scoring_card:is_suit_shade('light') then
             count = count +
                 JokerDisplay.calculate_card_triggers(scoring_card, scoring_hand)
           end

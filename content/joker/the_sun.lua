@@ -42,7 +42,7 @@ SMODS.Joker {
       local bad_suit = false
       -- Check for no scoring dark suit
       for _, v in ipairs(context.scoring_hand) do
-        bad_suit = bad_suit or PB_UTIL.is_non_suit(v, 'light')
+        bad_suit = bad_suit or PB_UTIL.is_non_suit(v, 'light', true)
       end
       if not bad_suit then
         SMODS.scale_card(card, {
@@ -57,7 +57,7 @@ SMODS.Joker {
 
     if context.individual and context.cardarea == G.play and not context.blueprint then
       if card.ability.extra.mult > 0 then
-        if PB_UTIL.is_non_suit(context.other_card, 'light') then
+        if PB_UTIL.is_non_suit(context.other_card, 'light', true) then
           SMODS.scale_card(card, {
             ref_table = card.ability.extra,
             ref_value = 'mult',

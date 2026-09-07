@@ -75,7 +75,7 @@ SMODS.Joker {
       local suitable_cards = 0
 
       for _, v in ipairs(context.scoring_hand) do
-        if PB_UTIL.is_suit(v, 'light') then
+        if v:is_suit_shade('light') then
           suitable_cards = suitable_cards + 1
         end
       end
@@ -111,7 +111,7 @@ SMODS.Joker {
         local count = 0
         local _, _, scoring_hand = JokerDisplay.evaluate_hand()
         for _, scoring_card in pairs(scoring_hand) do
-          if PB_UTIL.is_suit(scoring_card, 'light') then
+          if scoring_card:is_suit_shade('light')then
             count = count + 1
           end
         end

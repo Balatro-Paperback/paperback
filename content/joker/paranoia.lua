@@ -29,7 +29,7 @@ SMODS.Joker {
   check_for_unlock = function(self, args)
     if args.type == 'modify_deck' and next(G.playing_cards) then
       for k, v in pairs(G.playing_cards) do
-        if not PB_UTIL.is_suit(v, 'light') then return false end
+        if PB_UTIL.is_non_suit(v, 'light', true) then return false end
       end
       return true
     end
@@ -49,7 +49,7 @@ SMODS.Joker {
 
   calculate = function(self, card, context)
     if context.individual and context.cardarea == G.play then
-      if PB_UTIL.is_suit(context.other_card, 'light') and ((G.GAME.paperback.destroyed_cards.suits["dark"] or 0) * card.ability.extra.a_mult ~= 0) then
+      if context.other_card:is_suit_shade('light') and ((G.GAME.paperback.destroyed_cards.suits["dark"] or 0) * card.ability.extra.a_mult ~= 0) then
         return {
           mult = (G.GAME.paperback.destroyed_cards.suits["dark"] or 0) * card.ability.extra.a_mult
         }
@@ -76,7 +76,7 @@ SMODS.Joker {
         local count = 0
         local _, _, scoring_hand = JokerDisplay.evaluate_hand()
         for _, scoring_card in pairs(scoring_hand) do
-          if PB_UTIL.is_suit(scoring_card, 'light') then
+          if scoring_card:is_suit_shade('light') then
             count = count + JokerDisplay.calculate_card_triggers(scoring_card, scoring_hand)
           end
         end

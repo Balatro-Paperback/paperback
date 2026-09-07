@@ -29,7 +29,7 @@ SMODS.Joker {
   check_for_unlock = function(self, args)
     if args.type == 'modify_deck' and next(G.playing_cards) then
       for k, v in pairs(G.playing_cards) do
-        if not PB_UTIL.is_suit(v, 'light') then return false end
+        if PB_UTIL.is_non_suit(v, 'light', true) then return false end
       end
       return true
     end
@@ -47,7 +47,7 @@ SMODS.Joker {
 
   calculate = function(self, card, context)
     if context.individual and context.cardarea == G.play then
-      if PB_UTIL.is_suit(context.other_card, 'light') then
+      if context.other_card:is_suit_shade('light') then
         SMODS.scale_card(card, {
           ref_table = card.ability.extra,
           ref_value = 'mult',

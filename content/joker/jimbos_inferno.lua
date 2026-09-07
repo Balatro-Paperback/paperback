@@ -38,7 +38,7 @@ SMODS.Joker {
     local dark = 0
     if G.hand then
       for k, v in pairs(G.hand.cards) do
-        if PB_UTIL.is_suit(v, 'dark', false, true) and not v.highlighted then dark = dark + 1 end
+        if v:is_suit_shade('dark') and not v.highlighted then dark = dark + 1 end
       end
     end
 
@@ -52,11 +52,11 @@ SMODS.Joker {
 
   calculate = function(self, card, context)
     if context.individual and context.cardarea == G.play then
-      if context.other_card and PB_UTIL.is_suit(context.other_card, 'dark') then
+      if context.other_card and context.other_card:is_suit_shade('dark') then
         local dark = 0
 
         for k, v in pairs(G.hand.cards) do
-          if PB_UTIL.is_suit(v, 'dark', false, true) and not v.highlighted then dark = dark + 1 end
+          if v:is_suit_shade('dark')and not v.highlighted then dark = dark + 1 end
         end
 
         return {
