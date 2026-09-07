@@ -1,3 +1,13 @@
+SMODS.Sound {
+  key = 'ominous',
+  path = 'ominous.ogg',
+}
+
+SMODS.Sound {
+  key = 'ominous_hell',
+  path = 'ominous_hell.ogg',
+}
+
 SMODS.Joker {
   key = "thornring",
   config = {
@@ -62,13 +72,15 @@ SMODS.Joker {
   end,
 
   calculate = function(self, card, context)
-    if not context.blueprint and context.destroy_card and (context.cardarea == G.play or context.cardarea == 'unscored') and ((context.scoring_name == card.ability.extra.current) or (not next(card.ability.extra.remaining) and context.destroy_card:is_suit(card.ability.extra.suit))) then
+    if not context.blueprint and context.destroy_card and (context.cardarea == G.play or context.cardarea == 'unscored') 
+    and ((context.scoring_name == card.ability.extra.current) 
+    or (not next(card.ability.extra.remaining) and context.destroy_card:is_suit(card.ability.extra.suit))) then
       if context.destroy_card == context.full_hand[#context.full_hand] then
         if card.ability.extra.current then
           PB_UTIL.thornring_proceed(card)
           PB_UTIL.try_spawn_card { set = 'Spectral' }
         end
-
+        play_sound("paperback_ominous", 1, 1.5)
         return {
           remove = true,
           message = localize(card.ability.extra.current and 'paperback_proceed_ex' or 'paperback_destroyed_ex'),
