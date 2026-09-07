@@ -48,14 +48,20 @@ SMODS.Joker {
 
   calculate = function(self, card, context)
     if context.before then
-      PB_UTIL.use_consumable_animation(card, context.full_hand, function()
-        for i, v in ipairs(context.full_hand) do
-          if context.full_hand[i + 1] and SMODS.has_enhancement(v, card.ability.extra.enhancement) then
-            SMODS.copy_card(context.full_hand[i + 1], { new_card = v })
-            v:juice_up()
+      local copied = nil
+      for i, v in ipairs(context.full_hand) do
+        if context.full_hand[i + 1] and SMODS.has_enhancement(v, card.ability.extra.enhancement) then copied = true end
+      end
+      if copied then
+        PB_UTIL.use_consumable_animation(card, context.full_hand, function()
+          for i, v in ipairs(context.full_hand) do
+            if context.full_hand[i + 1] and SMODS.has_enhancement(v, card.ability.extra.enhancement) then
+              SMODS.copy_card(context.full_hand[i + 1], { new_card = v })
+              v:juice_up()
+            end
           end
-        end
-      end)
+        end)
+      end
     end
   end,
 }
