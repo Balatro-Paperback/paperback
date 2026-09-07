@@ -27,15 +27,23 @@ SMODS.Joker {
     coder = { 'thermo' }
   },
   unlocked = false,
-  locked_loc_vars = function (self, info_queue, card)
+
+  locked_loc_vars = function(self, info_queue, card)
     return {
       vars = {
-        localize { type = 'name_text', set = 'paperback_minor_arcana', key = 'c_paperback_nine_of_swords' }, 5
+        localize {
+          type = 'name_text',
+          set = 'paperback_minor_arcana',
+          key = 'c_paperback_nine_of_swords'
+        },
+        5
       }
     }
   end,
-  check_for_unlock = function (self, args)
-    return G.GAME.consumeable_usage.c_paperback_nine_of_swords and G.GAME.consumeable_usage.c_paperback_nine_of_swords.count >= 5
+
+  check_for_unlock = function(self, args)
+    return G.GAME.consumeable_usage.c_paperback_nine_of_swords and
+        G.GAME.consumeable_usage.c_paperback_nine_of_swords.count >= 5
   end,
 
   in_pool = function(self, args)
@@ -43,7 +51,9 @@ SMODS.Joker {
   end,
 
   loc_vars = function(self, info_queue, card)
+    info_queue[#info_queue + 1] = G.P_CENTERS[card.ability.extra.ma_card]
     local numerator, denominator = PB_UTIL.chance_vars(card)
+
     return {
       vars = {
         numerator,
