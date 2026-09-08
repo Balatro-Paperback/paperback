@@ -23,11 +23,11 @@ local j = SMODS.Joker {
   paperback_credit = {
     coder = { 'dowfrin' },
   },
-  paperback = {
-    undersoul_pos = { x = 25, y = 11 },
-  },
+  -- paperback = {
+  --   undersoul_pos = { x = 25, y = 11 },
+  -- },
 
-  check_for_unlock = function (self, args)
+  check_for_unlock = function(self, args)
     for _, v in ipairs(G.playing_cards or {}) do
       if PB_UTIL.is_rank(v, 12) and SMODS.has_enhancement(v, 'm_steel') then
         return true
