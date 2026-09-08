@@ -27,51 +27,23 @@ SMODS.Enhancement {
 
   calculate = function(self, card, context)
     if context.cardarea == G.play and context.main_scoring then
-      local has_blood_rain = next(SMODS.find_card('j_paperback_blood_rain'))
-
-      -- code partially borrowed from SMODS.score_card
       for i, held_card in ipairs(G.hand.cards) do
-        local reps = { 1 }
-        local j = 1
-        while j <= #reps do
-          held_card.repetition_trigger = j > 1 and j - 1
-          percent = (i - 0.999) / (#G.hand.cards - 0.998) + (j - 1) * 0.1
-          if reps[j] ~= 1 then
-            local _, eff = next(reps[j])
-            SMODS.calculate_effect(eff, eff.card)
-            percent = percent + 0.08
-          end
-
-          if held_card.debuff then
-            G.GAME.blind.triggered = true
-            G.E_MANAGER:add_event(Event {
-              trigger = "immediate",
-              func = function()
-                SMODS.juice_up_blind(); return true
-              end
-            })
-            card_eval_status_text(held_card, "debuff")
-          else
-            local ctx = { paperback = { soaked = true }, cardarea = G.hand }
-            local effects = { eval_card(held_card, ctx) }
-            ctx.individual = true
-            ctx.other_card = held_card
-            SMODS.calculate_card_areas("jokers", ctx, effects)
-            SMODS.calculate_card_areas("individual", ctx, effects)
-
-            local flags = SMODS.trigger_effects(effects, held_card)
-
-            ctx.individual = nil
-            ctx.repetition = true
-            ctx.card_effects = effects
-
-            if reps[j] == 1 then
-              SMODS.calculate_repetitions(held_card, ctx, reps)
+        if held_card.debuff then
+          G.GAME.blind.triggered = true
+          G.E_MANAGER:add_event(Event {
+            trigger = "immediate",
+            func = function()
+              SMODS.juice_up_blind(); return true
             end
-          end
-          j = j + ((flags and flags.calculated) and 1 or #reps)
+          })
+          card_eval_status_text(held_card, "debuff")
+        else
+          local soaked_ctx = { paperback = { soaked = true }, cardarea = G.hand }
+          -- Works with hooks.lua: SMODS.calculate_card_areas
+          -- to score only `held_card`
+          -- without Joker-on-card or any secondary effects
+          SMODS.score_card(held_card, soaked_ctx)
         end
-        held_card.repetition_trigger = nil
       end
     end
 

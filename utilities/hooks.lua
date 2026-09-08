@@ -167,9 +167,34 @@ function Card.draw(self, layer)
   return ret
 end
 
+-- Soaked card context (scoring held-in-hand chips) shouldn't trigger joker-on-card effects.
+-- (It shouldn't trigger any effects other than the card itself)
+-- See SMODS.score_card() for when this is important
+local calculate_card_areas_ref = SMODS.calculate_card_areas
+function SMODS.calculate_card_areas(_type, context, return_table, args)
+  if context.paperback and context.paperback.soaked
+  and not context.repetition and not context.repetition_only then
+    return {}
+  end
+  return calculate_card_areas_ref(_type, context, return_table, args)
+end
+
 -- multiple things to do here
 local eval_card_ref = eval_card
 function eval_card(card, context)
+  -- trigger chips (or mult) from Soaked Cards scoring
+  -- Completely replaces the behavior of eval_card()
+  if context.paperback and context.paperback.soaked
+  and not context.repetition and not context.repetition_only then
+    local ret = {}
+    if next(SMODS.find_card("j_paperback_blood_rain")) and not SMODS.has_no_rank(card) then
+      ret.playing_card = { mult = card.base.nominal }
+    else
+      ret.playing_card = { chips = card:get_chip_bonus() }
+    end
+    return ret, {}
+  end
+
   local ret, ret2 = eval_card_ref(card, context)
 
   -- Count scored Clips each round
@@ -191,15 +216,6 @@ function eval_card(card, context)
           })
         end
       end
-    end
-  end
-
-  -- trigger chips (or mult) from Soaked Cards scoring
-  if context.paperback and context.paperback.soaked and not (context.repetition_only or card.area ~= G.hand) then
-    if next(SMODS.find_card("j_paperback_blood_rain")) then
-      ret.playing_card = { mult = card.base.nominal }
-    else
-      ret.playing_card = { chips = card:get_chip_bonus() }
     end
   end
 
