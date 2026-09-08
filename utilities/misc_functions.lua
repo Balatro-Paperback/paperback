@@ -811,10 +811,10 @@ function PB_UTIL.is_non_suit(card, type, is_shade, bypass_debuff, flush_calc)
   local suit_arr = {}
   if is_shade then
     for i, v in pairs(SMODS.Suits) do
-      if type == v.shade then suit_arr[#suit_arr+1] = i end
+      if type == v.shade then suit_arr[#suit_arr + 1] = i end
     end
-  else 
-    suit_arr[#suit_arr+1] = type
+  else
+    suit_arr[#suit_arr + 1] = type
   end
   for _, v in ipairs(suit_arr) do
     if card:is_suit(v, bypass_debuff, flush_calc) then return false end
@@ -1481,41 +1481,39 @@ function PB_UTIL.has_ego_gift()
 end
 
 --- Sets and increments a career stat by either the amount specified, or by 1. Checks for unlock by default
---- @param key string 
+--- @param key string
 --- @param amount integer?
---- @param unlock boolean?
-function PB_UTIL.increment_career_stat(key, amount, unlock)
+--- @param skip_unlock boolean?
+function PB_UTIL.increment_career_stat(key, amount, skip_unlock)
   amount = amount or 1
-  unlock = unlock or true
   local profile = G.PROFILES[G.SETTINGS.profile]
   local career_stats = profile and profile.career_stats
-  local current = career_stats and career_stats["paperback_"..key] or 0
-  career_stats["paperback_"..key] = current + amount
-  if unlock then
-    check_for_unlock({type = "paperback_"..key, total = career_stats["paperback_"..key]})
+  local current = career_stats and career_stats["paperback_" .. key] or 0
+  career_stats["paperback_" .. key] = current + amount
+  if not skip_unlock then
+    check_for_unlock({ type = "paperback_" .. key, total = career_stats["paperback_" .. key] })
   end
 end
 
 --- Sets a career stat to a specific value, for use with non number career stats. Checks for unlock by default
---- @param key string 
+--- @param key string
 --- @param value any
---- @param unlock boolean?
-function PB_UTIL.set_career_stat(key, value, unlock)
-  unlock = unlock or true
+--- @param skip_unlock boolean?
+function PB_UTIL.set_career_stat(key, value, skip_unlock)
   local profile = G.PROFILES[G.SETTINGS.profile]
   local career_stats = profile and profile.career_stats
-  career_stats["paperback_"..key] = value
-  if unlock then
-    check_for_unlock({type = "paperback_"..key, value = career_stats["paperback_"..key]})
+  career_stats["paperback_" .. key] = value
+  if not skip_unlock then
+    check_for_unlock({ type = "paperback_" .. key, value = career_stats["paperback_" .. key] })
   end
 end
 
 --- Safe get for a career stat
---- @param key string 
+--- @param key string
 --- @param default any
 --- @return any
 function PB_UTIL.get_career_stat(key, default)
   local profile = G.PROFILES[G.SETTINGS.profile]
   local career_stats = profile and profile.career_stats
-  return career_stats and career_stats["paperback_"..key] or default
+  return career_stats and career_stats["paperback_" .. key] or default
 end

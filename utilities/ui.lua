@@ -142,8 +142,8 @@ SMODS.current_mod.config_tab = function()
             n = G.UIT.C,
             nodes = {
               UIBox_button({
-                  label = { localize('paperback_ui_unlock_cards') },
-                  button = 'paperback_unlock_all'
+                label = { localize('paperback_ui_unlock_cards') },
+                button = 'paperback_unlock_all'
               })
             }
           },
@@ -155,16 +155,20 @@ SMODS.current_mod.config_tab = function()
             n = G.UIT.C,
             nodes = {
               UIBox_button({
-                  label = { localize('paperback_ui_lock_cards') },
-                  button = 'paperback_lock_all'
+                label = { localize('paperback_ui_lock_cards') },
+                button = 'paperback_lock_all'
               }),
             }
           },
         }
       },
-      {n=G.UIT.R, config={align = "cm", padding = 0}, nodes={
-        {n=G.UIT.T, config={id = 'warning_text', text = localize('ph_click_confirm'), scale = 0.4, colour = G.C.CLEAR}}
-      }}
+      {
+        n = G.UIT.R,
+        config = { align = "cm", padding = 0 },
+        nodes = {
+          { n = G.UIT.T, config = { id = 'warning_text', text = localize('ph_click_confirm'), scale = 0.4, colour = G.C.CLEAR } }
+        }
+      }
     }
   }
 end
@@ -219,7 +223,9 @@ function G.FUNCS.paperback_unlock_all(e)
     if card and card.unlocked == false and (card.unlock_condition or card.check_for_unlock) then
       card.unlocked = true
       card.discovered = true
-      table.sort(G.P_CENTER_POOLS["Back"], function (a, b) return (a.order - (a.unlocked and 100 or 0)) < (b.order - (b.unlocked and 100 or 0)) end)
+      table.sort(G.P_CENTER_POOLS["Back"], function(a, b)
+        return (a.order - (a.unlocked and 100 or 0)) < (b.order - (b.unlocked and 100 or 0))
+      end)
     end
   end
 
@@ -302,12 +308,14 @@ function G.FUNCS.paperback_lock_all(e)
     end
   end
 
-  table.sort(G.P_LOCKED, function (a, b) return a.order and b.order and a.order < b.order end)
-  table.sort(G.P_CENTER_POOLS["Back"], function (a, b) return (a.order - (a.unlocked and 100 or 0)) < (b.order - (b.unlocked and 100 or 0)) end)
+  table.sort(G.P_LOCKED, function(a, b) return a.order and b.order and a.order < b.order end)
+  table.sort(G.P_CENTER_POOLS["Back"], function(a, b)
+    return (a.order - (a.unlocked and 100 or 0)) < (b.order - (b.unlocked and 100 or 0))
+  end)
 
   for stat in pairs(G.PROFILES[G.SETTINGS.profile].career_stats) do
     if string.sub(stat, 1, 10) == "paperback_" then
-      PB_UTIL.set_career_stat(string.sub(stat, 11), nil, false)
+      PB_UTIL.set_career_stat(string.sub(stat, 11), nil, true)
     end
   end
 
@@ -510,7 +518,7 @@ end
 function PB_UTIL.suit_tooltip(type)
   local suits = {}
   for i, v in pairs(SMODS.Suits) do
-    if type == v.shade then suits[#suits+1] = i end
+    if type == v.shade then suits[#suits + 1] = i end
   end
 
   local key = 'paperback_' .. type .. '_suits'
