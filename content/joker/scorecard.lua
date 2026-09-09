@@ -22,8 +22,8 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'dowfrin' }
   },
-  check_for_unlock = function(self, args) -- equivalent to `unlock_condition = { type = 'ante_up', ante = 4 }`
-    return args.type == 'ante_up' and args.ante == 9
+  check_for_unlock = function(self, args)
+    return args.type == 'ante_up' and args.ante == 10
   end,
 
   loc_vars = function(self, info_queue, card)
