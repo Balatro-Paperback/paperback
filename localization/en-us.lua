@@ -398,7 +398,7 @@ return {
         },
         unlock = {
           "Have a card with",
-          "{C:mult,E:1}+#1# {C:attention,E:1}Extra Mult"
+          "{C:mult,E:1}+#1# {C:attention,E:1}extra Mult"
         }
       },
       j_paperback_jestosterone = {
@@ -1058,7 +1058,7 @@ return {
           "{C:inactive}(Currently {C:money}$#3#{C:inactive})"
         },
         unlock = {
-          "Gain {C:money,E:1}$#1#{}",
+          "Earn {C:money,E:1}$#1#{}",
           "in one ante"
         }
       },
@@ -2048,7 +2048,10 @@ return {
         text = {
           "Played {C:attention}#1#s{} turn",
           "into the card to the {C:attention}right{}"
-        }
+        },
+        unlock = {
+          "Make a {C:attention,E:1}Wild Card{}",
+        },
       },
       j_paperback_stamp = {
         name = "Stamp",
@@ -3382,7 +3385,7 @@ return {
         },
         unlock = {
           "Win a run with one hand",
-          "played {C:attention,E:1}#1#{} or more times",
+          "played {C:attention,E:1}#1#+{} more times",
           "than the {C:attention,E:1}next{} lowest",
           "most played hand"
         }
@@ -4082,7 +4085,7 @@ return {
         },
         unlock = {
           "Spend {C:money}$100",
-          "In a shop"
+          "in a shop"
         }
       },
       j_paperback_nazca_lines = {
@@ -4093,8 +4096,8 @@ return {
           "{C:attention}debuffed{} or {C:attention}unscored{} card"
         },
         unlock = {
-          "Play a Four of a Kind",
-          "All of the same suit"
+          "Play a {C:attention, E:1}Four of a Kind{}",
+          "all of the same suit"
         }
       },
       j_paperback_grimoire = {
