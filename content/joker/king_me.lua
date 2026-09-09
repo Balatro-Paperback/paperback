@@ -7,6 +7,7 @@ SMODS.Joker {
     }
   },
   attributes = {
+    'red',
     'modify_card',
     'suit',
     'crowns'
@@ -29,7 +30,7 @@ SMODS.Joker {
   check_for_unlock = function(self, args)
     if G.GAME.round >= 1 then
       for _, v in ipairs(G.playing_cards or {}) do
-        if v.base.suit == ("paperback_Crowns") and PB_UTIL.is_rank(v, 'King') then 
+        if v.base.suit == ("paperback_Crowns") and PB_UTIL.is_rank(v, 'King') then
           return true
         end
       end

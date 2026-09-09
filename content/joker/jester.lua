@@ -1,6 +1,7 @@
 SMODS.Joker {
   key = "jester",
   attributes = {
+    'red',
     'destroy_card'
   },
   rarity = 2,
@@ -15,7 +16,7 @@ SMODS.Joker {
   },
   unlocked = false,
 
-  check_for_unlock = function (self, args)
+  check_for_unlock = function(self, args)
     for _, v in ipairs(G.playing_cards or {}) do
       if PB_UTIL.is_rank(v, "Jack") and SMODS.has_enhancement(v, 'm_mult') then
         return true

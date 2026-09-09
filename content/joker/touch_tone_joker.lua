@@ -11,6 +11,7 @@ SMODS.Joker {
     }
   },
   attributes = {
+    'red',
     'tarot',
     'planet',
     'spectral',
@@ -44,7 +45,7 @@ SMODS.Joker {
           count = count + 1
         end
       end
-      return count == count2 
+      return count == count2
     end
   end,
 

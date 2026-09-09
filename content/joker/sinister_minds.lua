@@ -14,7 +14,8 @@ SMODS.Joker {
     'retrigger',
     'spectral',
     'hand_type',
-    'music'
+    'music',
+    'red'
   },
   pools = {
     Music = true

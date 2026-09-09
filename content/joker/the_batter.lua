@@ -8,6 +8,7 @@ SMODS.Joker {
     },
   },
   attributes = {
+    'red',
     'destroy_card',
     'rank',
     'three',

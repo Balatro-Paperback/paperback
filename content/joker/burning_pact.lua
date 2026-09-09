@@ -8,6 +8,7 @@ SMODS.Joker {
     }
   },
   attributes = {
+    'red',
     'discard'
   },
   rarity = 2,
@@ -23,8 +24,8 @@ SMODS.Joker {
   unlocked = false,
 
   check_for_unlock = function(self, args)
-    return args.type == 'round_win' and G.GAME.blind.boss 
-    and G.GAME.blind.name == 'The Serpent' and not G.GAME.blind.disabled
+    return args.type == 'round_win' and G.GAME.blind.boss
+        and G.GAME.blind.name == 'The Serpent' and not G.GAME.blind.disabled
   end,
 
   loc_vars = function(self, info_queue, card)

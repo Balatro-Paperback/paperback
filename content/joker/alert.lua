@@ -10,6 +10,7 @@ SMODS.Joker {
     Music = true
   },
   attributes = {
+    'red',
     'destroy_card',
     'face',
     'hands',
@@ -38,8 +39,8 @@ SMODS.Joker {
     }
   end,
 
-  locked_loc_vars = function (self, info_queue, card)
-    return { vars = { 5 }}
+  locked_loc_vars = function(self, info_queue, card)
+    return { vars = { 5 } }
   end,
 
   check_for_unlock = function(self, args)

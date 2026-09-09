@@ -7,6 +7,7 @@ SMODS.Joker {
     }
   },
   attributes = {
+    'red',
     'xmult',
     'scaling',
     'hand_type'
@@ -23,11 +24,11 @@ SMODS.Joker {
   },
   unlocked = false,
 
-  locked_loc_vars = function (self, info_queue, card)
-    return {vars = { 9 }}
+  locked_loc_vars = function(self, info_queue, card)
+    return { vars = { 9 } }
   end,
 
-  check_for_unlock = function (self, args)
+  check_for_unlock = function(self, args)
     local hands = PB_UTIL.get_most_played_hands()
     local count = 0
     for _, v in pairs(hands) do

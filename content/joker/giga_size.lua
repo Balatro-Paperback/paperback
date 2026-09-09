@@ -1,6 +1,7 @@
 SMODS.Joker {
   key = 'giga_size',
   attributes = {
+    'red',
     'xmult',
     'hands',
     'reset'
@@ -34,7 +35,7 @@ SMODS.Joker {
   end,
 
   check_for_unlock = function(self, args)
-    return G.GAME.current_round.hands_left and G.GAME.current_round.hands_left  >= 10
+    return G.GAME.current_round.hands_left and G.GAME.current_round.hands_left >= 10
   end,
 
   calculate = function(self, card, context)

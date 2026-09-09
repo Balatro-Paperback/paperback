@@ -10,6 +10,7 @@ SMODS.Joker {
     }
   },
   attributes = {
+    'red',
     'xmult',
     'scaling',
     'generation',

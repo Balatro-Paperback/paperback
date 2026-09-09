@@ -7,6 +7,7 @@ SMODS.Joker {
     }
   },
   attributes = {
+    'red',
     'generation',
     'minor_arcana',
     'consumable',
@@ -41,7 +42,7 @@ SMODS.Joker {
     return count >= 3
   end,
 
-  locked_loc_vars = function (self, info_queue, card)
+  locked_loc_vars = function(self, info_queue, card)
     return {
       vars = {
         3

@@ -6,6 +6,7 @@ local j = SMODS.Joker {
     }
   },
   attributes = {
+    'red',
     'xmult',
     'rank',
     'queen',

@@ -6,6 +6,7 @@ SMODS.Joker {
     }
   },
   attributes = {
+    'red',
     'economy',
     'enhancements',
     'full_deck'
@@ -28,11 +29,11 @@ SMODS.Joker {
 
   enhancement_gate = 'm_paperback_sleeved',
 
-  locked_loc_vars = function (self, info_queue, card)
-    return { vars = { 100 }}
+  locked_loc_vars = function(self, info_queue, card)
+    return { vars = { 100 } }
   end,
 
-  check_for_unlock = function (self, args)
+  check_for_unlock = function(self, args)
     return G.GAME.paperback.money_gained_this_ante >= 100
   end,
 

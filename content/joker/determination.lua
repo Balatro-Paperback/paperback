@@ -6,6 +6,7 @@ SMODS.Joker {
     }
   },
   attributes = {
+    'red',
     'prevents_death',
     'ante',
     'hand_size'

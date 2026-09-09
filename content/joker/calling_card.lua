@@ -7,6 +7,7 @@ SMODS.Joker {
     }
   },
   attributes = {
+    'red',
     'xmult',
     'scaling',
     'boss_blind'
@@ -105,8 +106,8 @@ SMODS.Joker {
 -- for calling card
 local disable_ref = Blind.disable
 function Blind:disable()
-	local ret = disable_ref(self)
-	if G.GAME.blind.name == 'Crimson Heart' then 
+  local ret = disable_ref(self)
+  if G.GAME.blind.name == 'Crimson Heart' then
     check_for_unlock({ type = 'paperback_disable_crimson_heart' })
   end
   return ret

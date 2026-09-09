@@ -6,6 +6,7 @@ SMODS.Joker {
     }
   },
   attributes = {
+    'red',
     'chance',
     'generation',
     'consumable',
