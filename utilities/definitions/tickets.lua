@@ -163,7 +163,8 @@ if PB_UTIL.config.tickets_enabled then
 
     -- Tickets should define a `ticket_loc_vars` rather than override this
     loc_vars = function(self, info_queue, card)
-      local vars = self.ticket_loc_vars and self:ticket_loc_vars(info_queue, card) or {}
+      local focused_box = card.paperback_multi_box_focus or 1
+      local vars = self.ticket_loc_vars and self:ticket_loc_vars(info_queue, card, focused_box) or {}
       vars.box_ends = {}
 
       for i, completed in ipairs(card.ability.extra.ticket.completed) do

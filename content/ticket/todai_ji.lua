@@ -24,10 +24,11 @@ PB_UTIL.Ticket {
     }
   },
 
-  ticket_loc_vars = function(self, info_queue, card)
-    info_queue[#info_queue + 1] = G.P_CENTERS[card.ability.extra.enhancements[1]]
-    info_queue[#info_queue + 1] = G.P_CENTERS[card.ability.extra.enhancements[2]]
-    info_queue[#info_queue + 1] = G.P_CENTERS[card.ability.extra.edition]
+  ticket_loc_vars = function(self, info_queue, card, focused_box)
+    if focused_box == 2 then
+      info_queue[#info_queue + 1] = G.P_CENTERS[card.ability.extra.enhancements[1]]
+      info_queue[#info_queue + 1] = G.P_CENTERS[card.ability.extra.enhancements[2]]
+    end
 
     return {
       vars = {
