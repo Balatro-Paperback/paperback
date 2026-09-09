@@ -2,6 +2,7 @@ PB_UTIL.ENABLED_TICKETS = {
   "the_pyramids",
   "eiffel_tower",
   "todai_ji",
+  "palacio_de_bellas_artes",
 }
 
 PB_UTIL.ENABLED_TICKET_BOOSTERS = {
@@ -89,6 +90,20 @@ if PB_UTIL.config.tickets_enabled then
             instant = true
           }, card)
         end
+
+        if self.ticket_complete_all then
+          local all_complete = true
+          for _, v in ipairs(card.ability.extra.ticket.completed) do
+            if not v then
+              all_complete = false
+              break
+            end
+          end
+
+          if all_complete then
+            self:ticket_complete_all(card)
+          end
+        end
       end
 
       if immediate then
@@ -148,7 +163,7 @@ if PB_UTIL.config.tickets_enabled then
 
     -- Tickets should define a `ticket_loc_vars` rather than override this
     loc_vars = function(self, info_queue, card)
-      local vars = self.ticket_loc_vars and self:ticket_loc_vars(info_queue, card)
+      local vars = self.ticket_loc_vars and self:ticket_loc_vars(info_queue, card) or {}
       vars.box_ends = {}
 
       for i, completed in ipairs(card.ability.extra.ticket.completed) do

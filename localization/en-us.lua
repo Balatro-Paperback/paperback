@@ -3695,8 +3695,8 @@ return {
         name = "Black Knife",
         text = {
           {
-          "Create a random {C:dark_edition}Negative{C:attention} Joker{}",
-          "for every {C:attention}#1#{C:inactive} [#2#]{} destroyed {C:paperback_light_suit}light suits" },
+            "Create a random {C:dark_edition}Negative{C:attention} Joker{}",
+            "for every {C:attention}#1#{C:inactive} [#2#]{} destroyed {C:paperback_light_suit}light suits" },
           {
             "Scored {C:paperback_light_suit}light suits{} have a",
             "{C:green}#3#{} in {C:green}#4#{} chance to",
@@ -4929,6 +4929,32 @@ return {
           },
         }
       },
+      c_paperback_palacio_de_bellas_artes = {
+        name = "Palacio de Bellas Artes",
+        obfuscated_names = {
+          "??????? ?? ?????? ?????",
+          "?????io ?? ?el??? ??te?",
+          "Pa??cio d? Bel??s ??tes"
+        },
+        text = {
+          {
+            "{C:attention}+#1#{} Joker slot"
+          },
+          {
+            "Beat a {C:attention}Boss Blind{} while having a",
+            "{C:red}Rare{}, {C:green}Uncommon{} and {C:blue}Common{} Joker"
+          },
+          {
+            "Score {C:attention}#2# #3#s{}",
+            "{C:inactive}(Currently #4#/#2#)"
+          },
+          {
+            "Have {C:attention}#5#{} or more {C:attention}Vouchers{} and",
+            "purchase a {C:attention}Voucher since pick-up",
+            "{C:inactive}(Currently #6#/#5#)"
+          }
+        }
+      }
     },
     Voucher = {
       v_paperback_celtic_cross = {

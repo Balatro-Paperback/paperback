@@ -1536,3 +1536,15 @@ function PB_UTIL.get_profile_value(key, default)
   profile.paperback = profile.paperback or {}
   return profile.paperback[key] or default
 end
+
+--- Returns the amount of vouchers used in the current run
+--- @return integer
+function PB_UTIL.get_vouchers_used()
+  local vouchers_owned = 0
+  for _, used in pairs(G.GAME.used_vouchers or {}) do
+    if used then
+      vouchers_owned = vouchers_owned + 1
+    end
+  end
+  return vouchers_owned
+end
