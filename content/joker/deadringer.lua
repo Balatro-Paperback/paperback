@@ -65,9 +65,13 @@ SMODS.Joker {
 
   calculate = function(self, card, context)
     if context.cardarea == G.play and context.repetition and not SMODS.has_no_rank(context.other_card) then
-      return {
-        repetitions = card.ability.extra[context.other_card.base.value]
-      }
+      local reps = card.ability.extra[context.other_card.base.value]
+
+      if reps then
+        return {
+          repetitions = reps
+        }
+      end
     end
   end,
 
