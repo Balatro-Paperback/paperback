@@ -25,7 +25,7 @@ SMODS.Joker {
     Food = true
   },
 
-  paperback = {
+  paperback_credit = {
     coder = { 'thermo' }
   },
 
