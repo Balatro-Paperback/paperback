@@ -12,7 +12,6 @@ PB_UTIL.Ticket {
       required = 7,
       count = { hands = 0, discards = 0 },
 
-
       enhancements = { 'm_steel', 'm_gold' },
       rank = "Jack",
       enhanced_jacks = 4,
