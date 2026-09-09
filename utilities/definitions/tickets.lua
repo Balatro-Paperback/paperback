@@ -210,6 +210,8 @@ if PB_UTIL.config.tickets_enabled then
 
     -- Show the stage cycling tooltip
     set_badges = function(self, card, badges)
+      if not card.config.center.discovered then return end
+
       table.insert(badges, 1, {
         n = G.UIT.R,
         config = { align = 'cm', padding = 0.03 },
