@@ -3695,8 +3695,8 @@ return {
         name = "Black Knife",
         text = {
           {
-          "Create a random {C:dark_edition}Negative{C:attention} Joker{}",
-          "for every {C:attention}#1#{C:inactive} [#2#]{} destroyed {C:paperback_light_suit}light suits" },
+            "Create a random {C:dark_edition}Negative{C:attention} Joker{}",
+            "for every {C:attention}#1#{C:inactive} [#2#]{} destroyed {C:paperback_light_suit}light suits" },
           {
             "Scored {C:paperback_light_suit}light suits{} have a",
             "{C:green}#3#{} in {C:green}#4#{} chance to",
@@ -3766,6 +3766,16 @@ return {
           "Activate {E:1,C:attention}#1#{} tags",
           "in one run",
         }
+      },
+      j_paperback_nigiri = {
+        name = "Nigiri",
+        text = {
+          "This Joker gains {C:attention}1/#2#th{} of the",
+          "{C:rank}rank{} of discarded cards as {C:white,X:red}XMult{},",
+          "{C:red}self-destructs{} if a {C:}Face card{} scores,",
+          "resets when {C:attention}Boss Blind{} is defeated",
+          "{C:inactive}(Currently {C:white,X:red}X#1#{C:inactive} Mult){}",
+        },
       },
       j_paperback_freedom_of_choice = {
         name = "Freedom of Choice",

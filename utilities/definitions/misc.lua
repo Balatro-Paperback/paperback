@@ -89,6 +89,7 @@ PB_UTIL.ENABLED_JOKERS = {
   "crispy_taco",
   "soft_taco",
   "shabu_shabu",
+  "nigiri",
   "watermelon",
   "joker_jacks",
   "complete_breakfast",
