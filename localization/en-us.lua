@@ -3926,6 +3926,18 @@ return {
           "of {C:attention,E:1}Jacks"
         }
       },
+      j_paperback_naturalist = {
+        name = "Naturalist",
+        text = {
+          "This Joker gains {C:white,X:red}X#1#{} Mult",
+          "when a {C:paperback_ticket}Ticket{} stage is {C:attention}completed{}",
+          "{C:inactive}(Currently {C:white,X:mult}X#2#{C:inactive} Mult)",
+        },
+        unlock = {
+          "Discover every",
+          "{C:attention}Ticket{}"
+        }
+      },
       j_paperback_ponzu = {
         name = "Ponzu",
         text = {

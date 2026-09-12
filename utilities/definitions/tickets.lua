@@ -91,6 +91,15 @@ if PB_UTIL.config.tickets_enabled then
           }, card)
         end
 
+        SMODS.calculate_context({
+          paperback = {
+            ticket_progress = true,
+            stage = card.ability.extra.ticket.stage,
+            completed = PB_UTIL.find(card.ability.extra.ticket.completed, false) and true or false
+          },
+          card = card
+        })
+
         if self.ticket_complete_all then
           local all_complete = true
           for _, v in ipairs(card.ability.extra.ticket.completed) do
