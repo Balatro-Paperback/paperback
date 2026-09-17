@@ -4,6 +4,7 @@ if PB_UTIL.config.enhancements_enabled then
     atlas = 'decks_atlas',
     pos = { x = 8, y = 0 },
     unlocked = false,
+
     locked_loc_vars = function(self, info_queue, card)
       return {
         vars = {
@@ -12,9 +13,11 @@ if PB_UTIL.config.enhancements_enabled then
         }
       }
     end,
+
     check_for_unlock = function(self, args)
       return args.type == "paperback_cards_destroyed" and args.total >= 100
     end,
+
     apply = function(self, back)
       G.E_MANAGER:add_event(Event({
         func = function()
@@ -25,6 +28,7 @@ if PB_UTIL.config.enhancements_enabled then
         end
       }))
     end,
+
     calculate = function(self, back, context)
       if context.setting_blind then
         G.E_MANAGER:add_event(Event({

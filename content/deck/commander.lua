@@ -3,15 +3,18 @@ SMODS.Back {
   atlas = 'decks_atlas',
   pos = { x = 0, y = 1 },
   unlocked = false,
+  paperback_credit = { coder = { 'thermo' } },
+
   check_for_unlock = function(self, args)
     if args.type == 'modify_deck' then
       return G.playing_cards and #G.playing_cards >= 100
     end
   end,
+
   locked_loc_vars = function(self, info_queue, card)
     return { vars = { 100 } }
   end,
-  paperback_credit = { coder = { 'thermo' } },
+
   calculate = function(self, back, context)
     if context.retrigger_joker_check and PB_UTIL.is_card(context.other_card) then
       if next(G.jokers.cards) and context.other_card == G.jokers.cards[1] then

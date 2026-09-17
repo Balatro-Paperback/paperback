@@ -92,9 +92,9 @@ return {
         text = {
           "The {C:attention}leftmost Joker{}",
           "triggers {C:attention}twice{} if possible",
-	        "Jokers {C:attention}cannot{} be moved",
-	        "while in a {C:attention}blind"
-	      },
+          "Jokers {C:attention}cannot{} be moved",
+          "while in a {C:attention}blind"
+        },
         unlock = {
           "Have a deck with at least 100 cards"
         }
