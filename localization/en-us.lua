@@ -87,6 +87,29 @@ return {
           "{C:paperback_ego_gift}E.G.O Gifts{}"
         },
       },
+      b_paperback_commander = {
+        name = "Commander's Deck",
+        text = {
+          "The {C:attention}leftmost Joker{}",
+          "triggers {C:attention}twice{} if possible",
+	        "Jokers {C:attention}cannot{} be moved",
+	        "while in a {C:attention}blind"
+	      },
+        unlock = {
+          "Have a deck with at least 100 cards"
+        }
+      },
+      b_paperback_potters = {
+        name = "Potter's Deck",
+        text = {
+          "All cards start as {C:attention}Ceramic{}",
+          "{C:Money}Money{} is set to {C:red}0",
+          "upon {C:attention}entering{} a Blind"
+        },
+        unlock = {
+          "Destroy #1# {C:inactive}[#2#]{} Cards"
+        }
+      },
     },
     Blind = {
       bl_paperback_quarter = {

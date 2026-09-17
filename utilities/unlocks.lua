@@ -11,6 +11,7 @@ SMODS.current_mod.calculate = function(self, context)
 			end
 		end
 		check_for_unlock({ type = 'paperback_removed_playing_cards' })
+    PB_UTIL.increment_career_stat("cards_destroyed", #context.removed or 0)
 	end
 
 	if context.end_of_round then
