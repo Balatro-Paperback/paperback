@@ -138,6 +138,7 @@ function Back.apply_to_run(arg_56_0)
   G.GAME.pool_flags.paperback_alert_can_spawn = true
   G.GAME.pool_flags.paperback_legacy_can_spawn = false
   G.GAME.pool_flags.plague_doctor_can_spawn = true
+  G.GAME.pool_flags.takoyaki_can_spawn = true
 
   G.P_CENTERS['j_diet_cola']['no_pool_flag'] = 'ghost_cola_can_spawn'
 end
@@ -537,10 +538,12 @@ function Card:add_to_deck(from_debuff)
     if not G.GAME.paperback.jokers_owned_this_run[self.config.center.key] then
       G.GAME.paperback.jokers_owned_this_run[self.config.center.key] = 1
     else
-      G.GAME.paperback.jokers_owned_this_run[self.config.center.key] = 1 + G.GAME.paperback.jokers_owned_this_run[self.config.center.key]
+      G.GAME.paperback.jokers_owned_this_run[self.config.center.key] = 1 +
+          G.GAME.paperback.jokers_owned_this_run[self.config.center.key]
     end
   end
 end
+
 -- When setting sprites, add undersoul if
 -- Field is present
 local set_sprites_ref = Card.set_sprites

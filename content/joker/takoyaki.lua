@@ -49,7 +49,7 @@ SMODS.Joker {
   check_for_unlock = function(self, args)
     if G.GAME.round >= 1 then
       for _, v in ipairs(G.playing_cards or {}) do
-        if PB_UTIL.is_rank(v, 8) then 
+        if PB_UTIL.is_rank(v, 8) then
           return false
         end
       end
@@ -74,7 +74,7 @@ SMODS.Joker {
     if context.after and card.ability.extra.eaten then
       PB_UTIL.destroy_joker(card, function()
         -- Remove this joker from the pool
-        G.GAME.pool_flags[card.config.center.original_key .. "_can_spawn"] = false
+        G.GAME.pool_flags[self.yes_pool_flag] = false
 
         -- Create Popsicle Stick
         SMODS.add_card {
