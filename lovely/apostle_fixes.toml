@@ -1,0 +1,52 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 0
+
+[[patches]]
+[patches.pattern]
+target = '=[SMODS _ "src/overrides.lua"]'
+pattern = "local function next_ranks(key, start)"
+position = "at"
+match_indent = true
+payload = '''
+local function next_ranks(key, start, from_apostle)
+'''
+
+[[patches]]
+[patches.pattern]
+target = '=[SMODS _ "src/overrides.lua"]'
+pattern = "if not start and not wrap and rank.straight_edge then return ret end"
+position = "at"
+match_indent = true
+payload = '''
+if not start and not wrap and rank.straight_edge and not from_apostle then
+  for _, v in ipairs(rank.next) do
+    if v == 'paperback_Apostle' then
+      ret[#ret + 1] = v
+    end
+  end
+  return ret
+end
+if not start and not wrap and key == 'paperback_Apostle' then return ret end
+'''
+
+[[patches]]
+[patches.pattern]
+target = '=[SMODS _ "src/overrides.lua"]'
+pattern = "if skip and (wrap or not SMODS.Ranks[v].straight_edge) then"
+position = "at"
+match_indent = true
+payload = '''
+if skip and (wrap or (not from_apostle and not SMODS.Ranks[v].straight_edge) or v ~= 'paperback_Apostle') then
+'''
+
+[[patches]]
+[patches.pattern]
+target = '=[SMODS _ "src/overrides.lua"]'
+pattern = "for _,l in ipairs(next_ranks(tuple[i-1], i == 2)) do"
+position = "at"
+match_indent = true
+payload = '''
+for _,l in ipairs(next_ranks(tuple[i-1], i == 2, tuple[1] == 'paperback_Apostle')) do
+'''
