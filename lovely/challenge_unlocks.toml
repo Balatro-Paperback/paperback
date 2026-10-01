@@ -6,7 +6,7 @@ priority = 0
 [[patches]]
 [patches.pattern]
 target = "functions/common_events.lua"
-pattern = 'if not SMODS.config.seeded_unlocks and (G.GAME.seeded or G.GAME.challenge) then return end'
+pattern = 'if not SMODS.config.seeded_unlocks and (G.GAME.seeded or'
 position = "before"
 match_indent = true
 payload = "if not (card or {}).paperback_challenge_unlock then"
