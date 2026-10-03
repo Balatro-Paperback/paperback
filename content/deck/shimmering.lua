@@ -28,6 +28,11 @@ if PB_UTIL.config.ego_gifts_enabled then
         return G.PROFILES[G.SETTINGS.profile].paperback_sold_ego_gifts >= 10
       end
     end,
+
+    apply = function(self, back)
+      G.GAME.paperback.shimmering_ego_deck = true
+    end,
+
     -- Utility function to recalculate consumable slot bonus
     paperback_shimmering_update = function(self)
       local sins = {}

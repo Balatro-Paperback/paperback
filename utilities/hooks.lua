@@ -597,3 +597,16 @@ function Card:click()
     click_ref(self)
   end
 end
+
+-- Shimmering Deck guarantees an EGO pack in shop 1
+local get_pack_ref = get_pack
+function get_pack(_key, _type)
+  if not G.GAME.first_shop_buffoon then return get_pack_ref(_key, _type) end
+  local ret = get_pack_ref(_key, _type)
+
+  if G.GAME.paperback and G.GAME.paperback.shimmering_ego_deck and not G.GAME.banned_keys["p_paperback_ego_gift_normal_1"] then
+    G.GAME.paperback.shimmering_ego_deck = false
+    return G.P_CENTERS["p_paperback_ego_gift_normal_1"]
+  end
+  return ret
+end
