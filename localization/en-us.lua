@@ -2589,8 +2589,8 @@ return {
       j_paperback_grenadine = {
         name = "Grenadine",
         text = {
-          "The next {C:attention}#1#{} scored {V:1}#2#{} permanently gain",
-          "{X:mult,C:white}X#3#{} Mult when scored",
+          "The next {C:attention}#1#{} played and scored {V:1}#2#{}",
+          "permanently gain {X:mult,C:white}X#3#{} Mult when scored",
         },
         unlock = {
           "Play {C:attention,E:1}#1# {C:hearts,E:1}#2#",
@@ -2600,8 +2600,8 @@ return {
       j_paperback_stout = {
         name = "Stout",
         text = {
-          "The next {C:attention}#1#{} scored {V:1}#2#{} permanently gain",
-          "{C:chips}+#3#{} Chips when scored",
+          "The next {C:attention}#1#{} played and scored {V:1}#2#{}",
+          "permanently gain {C:chips}+#3#{} Chips when scored",
         },
         unlock = {
           "Play {C:attention,E:1}#1# {C:spades,E:1}#2#",
@@ -2611,8 +2611,8 @@ return {
       j_paperback_aperol = {
         name = "Aperol",
         text = {
-          "The next {C:attention}#1#{} scored {V:1}#2#{} permanently gain",
-          "{C:money}$#3#{} when scored",
+          "The next {C:attention}#1#{} played and scored {V:1}#2#{}",
+          "permanently gain {C:money}$#3#{} when scored",
         },
         unlock = {
           "Play {C:attention,E:1}#1# {C:diamonds,E:1}#2#",
@@ -2622,8 +2622,8 @@ return {
       j_paperback_blue_curacao = {
         name = "Blue Curaçao",
         text = {
-          "The next {C:attention}#1#{} scored {V:1}#2#{} permanently gain",
-          "{C:mult}+#3#{} Mult when scored",
+          "The next {C:attention}#1#{} played and scored {V:1}#2#{}",
+          "permanently gain {C:mult}+#3#{} Mult when scored",
         },
         unlock = {
           "Play {C:attention,E:1}#1# {C:clubs,E:1}#2#",
@@ -2633,8 +2633,8 @@ return {
       j_paperback_nigori = {
         name = "Nigori",
         text = {
-          "The next {C:attention}#1#{} scored {V:1}#2#{} permanently gain",
-          "{X:chips,C:white}X#3#{} chips when scored",
+          "The next {C:attention}#1#{} played and scored {V:1}#2#{}",
+          "permanently gain {X:chips,C:white}X#3#{} Chips when scored",
         },
         unlock = {
           "Play {C:attention,E:1}#1# {C:paperback_stars,E:1}#2#",
@@ -2644,8 +2644,8 @@ return {
       j_paperback_lager = {
         name = "Lager",
         text = {
-          "The next {C:attention}#1#{} scored {V:1}#2#{} permanently gain",
-          "{C:green}+#3#{} odds when scored",
+          "The next {C:attention}#1#{} played and scored {V:1}#2#{}",
+          "permanently gain {C:green}+#3#{} odds when scored",
         },
         unlock = {
           "Play {C:attention,E:1}#1# {C:paperback_crowns,E:1}#2#",
