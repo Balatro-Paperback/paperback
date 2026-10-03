@@ -452,8 +452,8 @@ return {
       j_paperback_pedrillo = {
         name = "Pedrillo",
         text = {
-          "Scored {C:attention}Queens{}",
-          "create a {C:planet}Planet{} card",
+          "First scored {C:attention}Queen{}",
+          "creates a {C:planet}Planet{} card",
           "for played {C:attention}poker hand",
           "{C:inactive}(Must have room)"
         },
