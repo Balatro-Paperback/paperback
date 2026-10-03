@@ -491,6 +491,7 @@ PB_UTIL.ENABLED_DECKS = {
   'shimmering',
   'commander',
   'potters',
+  'enchained',
 }
 
 PB_UTIL.ENABLED_CHALLENGES = {

@@ -110,6 +110,14 @@ return {
           "Destroy #1# {C:inactive}[#2#]{} Cards"
         }
       },
+      b_paperback_enchained = {
+        name = "Enchained Deck",
+        text = {
+          "Only a random {C:attention}25%{}",
+          "of all {C:attention}Jokers{} can",
+          "appear in this run"
+        }
+      },
     },
     Blind = {
       bl_paperback_quarter = {
