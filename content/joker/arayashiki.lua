@@ -72,7 +72,7 @@ SMODS.Joker {
       local scoring_ego
       if next(SMODS.find_card("c_paperback_nine_of_swords")) then
         for _, v in ipairs(G.consumeables.cards or {}) do
-          if v.center.key == "c_paperback_nine_of_swords" and v.edition and v.edition.negative then
+          if v.config.center.key == "c_paperback_nine_of_swords" and v.edition and v.edition.negative then
             return nil, true
           end
         end
