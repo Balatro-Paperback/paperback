@@ -116,6 +116,9 @@ return {
           "Only a random {C:attention}25%{}",
           "of all {C:attention}Jokers{} can",
           "appear in this run"
+        },
+        unlock = {
+          "Unlock {C:attention}all{} Jokers"
         }
       },
     },

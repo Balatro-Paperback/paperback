@@ -3,6 +3,8 @@ SMODS.Back {
   atlas = 'decks_atlas',
   pos = { x = 7, y = 0 },
 
+  unlocked = false,
+
   apply = function(self, back)
     local jokers = {}
     local rarities = { 0, 0, 0, 0 }
@@ -32,3 +34,25 @@ SMODS.Back {
     end
   end
 }
+
+-- check for if all jokers are unlocked
+local unlock_card_ref = unlock_card
+unlock_card = function(card)
+  unlock_card_ref(card)
+  local unlock_enchained = true
+  for i, v in ipairs(G.P_CENTER_POOLS.Joker) do
+    if not v.unlocked then
+      unlock_enchained = false
+      break
+    end
+  end
+
+  if unlock_enchained then
+    for i, v in ipairs(G.P_LOCKED) do
+      if v.key == "b_paperback_enchained" then
+        unlock_card_ref(v)
+        break
+      end
+    end
+  end
+end
