@@ -41,6 +41,17 @@ SMODS.current_mod.calculate = function(self, context)
 			end
     end
   end
+  if context.remove_playing_cards then
+    -- Handle money from destroying sleeved cards
+    local sleeved_money = 0
+    for _, v in ipairs(context.removed or {}) do
+      if SMODS.has_enhancement(v, "m_paperback_sleeved") then
+        sleeved_money = sleeved_money + v.ability.extra.money
+      end
+    end
+
+    if sleeved_money ~= 0 then ease_dollars(sleeved_money) end
+  end
 
   if context.before then
     -- green clip: gain mult for every other played and scored clip
