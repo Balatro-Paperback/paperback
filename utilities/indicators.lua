@@ -7,6 +7,12 @@ local indicators = {
     { key = "perma_p_dollars", pos = { x = 4, y = 0 } },
     { key = "perma_paperback_plus_odds", pos = { x = 5, y = 0 } },
     { key = "perma_repetitions", pos = { x = 6, y = 0 } },
+    -- { key = "perma_balance", pos = { x = 7, y = 0 } },
+    { key = "perma_score", pos = { x = 8, y = 0 } },
+    { key = "perma_x_score", pos = { x = 9, y = 0 } },
+    { key = "perma_blind_size", pos = { x = 10, y = 0 } },
+    { key = "perma_x_blind_size", pos = { x = 11, y = 0 } },
+
   },
   pins = {
     { key = "perma_h_mult", pos = { x = 0, y = 1 } },
@@ -16,6 +22,11 @@ local indicators = {
     { key = "perma_h_dollars", pos = { x = 4, y = 1 } },
     { key = "perma_paperback_h_plus_odds", pos = { x = 5, y = 1 } },
     -- { key = "perma_h_repetitions", pos = { x = 6, y = 1 } },
+    -- { key = "perma_h_balance", pos = { x = 7, y = 1 } },
+    { key = "perma_h_score", pos = { x = 8, y = 1 } },
+    { key = "perma_h_x_score", pos = { x = 9, y = 1 } },
+    { key = "perma_h_blind_size", pos = { x = 10, y = 1 } },
+    { key = "perma_h_x_blind_size", pos = { x = 11, y = 1 } },
   }
 }
 
@@ -46,18 +57,18 @@ local GAP = 1
 local function should_draw_indicator(card, key)
   return card and card.ability
       and type(card.ability[key]) == "number"
-      and card.ability[key] > 0
+      and card.ability[key] ~= 0
       and card.area and card.area.config.type ~= 'deck'
       and card.facing == 'front'
 end
 
-local function draw_single_indicator(card, sprite, x_offset, y_offset)
+local function draw_single_indicator(card, sprite, x_offset, y_offset, shader)
   x_offset = (card.T.w / 71) * (x_offset or 0) * card.T.scale
   y_offset = (card.T.h / 95) * (y_offset or 0) * card.T.scale
 
   sprite.role.draw_major = card
   sprite:draw_shader(
-    (card.greyed and 'played') or 'dissolve',
+    (card.greyed and 'played') or shader or 'dissolve',
     nil, nil, nil,
     card.children.center,
     nil, nil,
@@ -74,7 +85,8 @@ local function draw_indicators(indicators, card, x_offset, y_offset)
         card,
         v.sprite,
         x_offset,
-        y + (y_offset or 0)
+        y + (y_offset or 0),
+        string.find(v.key, "blind_size") and "paperback_blindcolor"
       )
 
       y = y + HEIGHT + GAP
@@ -99,5 +111,14 @@ SMODS.DrawStep {
     if PB_UTIL.config.upgrade_indicators and card and card.ability then
       draw_indicators(indicators.flags, card, FLAG_OFFSET_X)
     end
+  end
+}
+
+-- shader for blindsize indicators
+SMODS.Shader {
+  key = "blindcolor",
+  path = "blindcolor.fs",
+  send_vars = function(sprite, card)
+    return { blind_color = G.C.DYN_UI.DARK }
   end
 }
