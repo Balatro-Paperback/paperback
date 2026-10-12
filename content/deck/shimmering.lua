@@ -61,14 +61,21 @@ if PB_UTIL.config.ego_gifts_enabled then
     add_to_deck_ref(...)
     if G.GAME.selected_back_key and G.GAME.selected_back_key.key == 'b_paperback_shimmering' then
       G.GAME.selected_back_key:paperback_shimmering_update()
+    elseif G.GAME.selected_sleeve == 'sleeve_paperback_shimmering' then
+      local sleeve = CardSleeves.Sleeve:get_obj(G.GAME.selected_sleeve)
+      if sleeve then sleeve:paperback_shimmering_update() end
     end
   end
 
   local remove_from_deck_ref = Card.remove_from_deck
+  ---@diagnostic disable: duplicate-set-field
   function Card.remove_from_deck(...)
     remove_from_deck_ref(...)
     if G.GAME.selected_back_key and G.GAME.selected_back_key.key == 'b_paperback_shimmering' then
       G.GAME.selected_back_key:paperback_shimmering_update()
+    elseif G.GAME.selected_sleeve == 'sleeve_paperback_shimmering' then
+      local sleeve = CardSleeves.Sleeve:get_obj(G.GAME.selected_sleeve)
+      if sleeve then sleeve:paperback_shimmering_update() end
     end
   end
 end

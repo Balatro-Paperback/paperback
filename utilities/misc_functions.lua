@@ -1523,3 +1523,21 @@ function PB_UTIL.get_career_stat(key, default)
   local career_stats = profile and profile.career_stats
   return career_stats and career_stats["paperback_" .. key] or default
 end
+
+--- Register a condition for preventing dragging a card
+--- @param key string
+--- @param hook any
+function PB_UTIL.add_drag_condition(key, hook)
+  PB_UTIL.drag_conditions[key] = hook
+end
+
+PB_UTIL.drag_conditions = {}
+
+--- Whether dragging a card should be prevented, checking all conditions in PB_UTIL.drag_conditions
+--- @param card any
+function PB_UTIL.prevent_drag(card)
+  for _, hook in pairs(PB_UTIL.drag_conditions) do
+    if hook(card) == true then return true end
+  end
+  return false
+end

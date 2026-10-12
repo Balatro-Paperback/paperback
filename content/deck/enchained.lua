@@ -6,6 +6,14 @@ SMODS.Back {
   config = { vouchers = { "v_overstock_norm" } },
   unlocked = false,
 
+  loc_vars = function(self, info_queue, card)
+    return {
+      vars = {
+        localize { type = 'name_text', key = 'v_overstock_norm', set = 'Voucher' }
+      }
+    }
+  end,
+
   apply = function(self, back)
     local jokers = {}
     local rarities = { 0, 0, 0, 0 }

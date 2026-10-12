@@ -96,7 +96,8 @@ return {
           "while in a {C:attention}blind"
         },
         unlock = {
-          "Have a deck with at least 100 cards"
+          "Have a deck with",
+          "at least {C:attention}#1#{} cards"
         }
       },
       b_paperback_potters = {
@@ -107,7 +108,7 @@ return {
           "upon {C:attention}entering{} a Blind"
         },
         unlock = {
-          "Destroy #1# {C:inactive}[#2#]{} Cards"
+          "Destroy {C:attention}#1# {C:inactive}[#2#]{} Cards"
         }
       },
       b_paperback_enchained = {
@@ -116,10 +117,24 @@ return {
           "Only a random {C:attention}25%{}",
           "of all {C:attention}Jokers{} can",
           "appear in this run",
-          "Start run with {C:attention,T:v_overstock_norm}Overstock{}"
+          "Start run with {C:attention,T:v_overstock_norm}#1#{}"
         },
         unlock = {
           "Unlock {C:attention}all{} Jokers"
+        }
+      },
+      b_paperback_sudsy = {
+        name = "Sudsy Deck",
+        text = {
+          "After defeating each",
+          "{C:attention}Boss Blind{}, gain",
+          "{C:attention}#1#{} Joker Slot and",
+          "{C:attention}#2#{} Hand Size",
+          "{C:inactive,s:0.85}(Minimum of #3# Hand Size)"
+        },
+        unlock = {
+          "Win at least {C:attention}#1#{} decks on",
+          "{V:1}#2#{} difficulty",
         }
       },
     },
@@ -5583,9 +5598,78 @@ return {
       sleeve_paperback_shimmering_buff = {
         name = "Shimmering Sleeve",
         text = {
-          "TBD"
+          "{C:red}#2#{} Joker Slots",
+          "Selling an {C:paperback_ego_gift}E.G.O Gift",
+          "gives {C:attention}+#1#{} Joker Slots"
         }
-      }
+      },
+      sleeve_paperback_sudsy = {
+        name = "Sudsy Sleeve",
+        text = {
+          "After defeating each",
+          "{C:attention}Boss Blind{}, gain",
+          "{C:attention}#1#{} Joker Slot and",
+          "{C:attention}#2#{} Hand Size",
+          "{C:inactive,s:0.85}(Minimum of #3# Hand Size)"
+        },
+      },
+      sleeve_paperback_sudsy_buff = {
+        name = "Sudsy Sleeve",
+        text = {
+          "After defeating each",
+          "{C:attention}Boss Blind{}, gain a",
+          "{C:attention,T:tag_top_up}#1#"
+        },
+      },
+      sleeve_paperback_enchained = {
+        name = "Enchained Sleeve",
+        text = {
+          "Only a random {C:attention}25%{}",
+          "of all {C:attention}Jokers{} can",
+          "appear in this run",
+          "Start run with {C:attention,T:v_overstock_norm}#1#{}"
+        },
+      },
+      sleeve_paperback_enchained_buff = {
+        name = "Enchained Sleeve",
+        text = {
+          "Only a random {C:attention}25%{}",
+          "of all {C:attention}Consumables{} can",
+          "appear in this run",
+        },
+      },
+      sleeve_paperback_commander = {
+        name = "Commander's Sleeve",
+        text = {
+          "The {C:attention}leftmost Joker{}",
+          "triggers {C:attention}twice{} if possible",
+          "Jokers {C:attention}cannot{} be moved",
+          "while in a {C:attention}blind"
+        },
+      },
+      sleeve_paperback_commander_buff = {
+        name = "Commander's Sleeve",
+        text = {
+          "Trigger {C:attention}leftmost Joker{}",
+          "an {C:attention}additional time{}",
+        },
+      },
+      sleeve_paperback_potters = {
+        name = "Potter's Sleeve",
+        text = {
+          "All cards start as {C:attention}Ceramic{}",
+          "{C:Money}Money{} is set to {C:red}0",
+          "upon {C:attention}entering{} a Blind"
+        }
+      },
+      sleeve_paperback_potters_buff = {
+        name = "Potter's Sleeve",
+        text = {
+          "Start run with",
+          "{C:money,T:v_seed_money}#1#{} and",
+          "{C:money,T:v_money_tree}#2#{} vouchers"
+        },
+      },
     },
     texture_packs = {
       texpack_paperback_spectrans = {

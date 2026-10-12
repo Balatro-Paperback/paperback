@@ -610,3 +610,38 @@ function get_pack(_key, _type)
   end
   return ret
 end
+
+-- For controllers. Prevent drag initiation when PB_UTIL.prevent_drag returns true
+local cursor_press_ref = Controller.L_cursor_press
+function Controller:L_cursor_press(x, y)
+  local ret = cursor_press_ref(self, x, y)
+  local target = self.cursor_down.target
+  if target and target.is and type(target.is) == "function" and target:is(Card)
+  and target.states.drag.can and PB_UTIL.prevent_drag(target) then
+    -- Store the drag prevention state inside the card to be restored when the drag ends
+    self.paperback_prevented_drag = { card = target, can = target.states.drag.can }
+    target.states.drag.can = false
+  end
+  return ret
+end
+
+local cursor_release_ref = Controller.L_cursor_release
+function Controller:L_cursor_release(x, y)
+  local ret = cursor_release_ref(self, x, y)
+  local prevented_drag = self.paperback_prevented_drag
+  if prevented_drag then
+    prevented_drag.card.states.drag.can = prevented_drag.can
+    self.paperback_prevented_drag = nil
+  end
+  return ret
+end
+
+-- Blocks dragging cards if PB_UTIL.prevent_drag returns true
+local move_ref = Moveable.drag
+function Moveable.drag(self, offset)
+  local card = self
+  if card.is and type(card.is) == "function" and card:is(Card) and PB_UTIL.prevent_drag(card) then
+    return
+  end
+  return move_ref(self, offset)
+end

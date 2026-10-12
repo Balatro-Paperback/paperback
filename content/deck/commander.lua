@@ -24,12 +24,11 @@ SMODS.Back {
   end
 }
 
-local move_ref = Moveable.drag
-function Moveable.drag(self, offset)
-  if self.is and type(self.is) == "function" and self:is(Card) and self.ability.set == "Joker" then
-    if G and G.GAME and G.GAME.blind and G.GAME.blind.in_blind and G.GAME.selected_back.effect.center.key == "b_paperback_commander" then
-      return
-    end
+PB_UTIL.add_drag_condition("commander_deck", function(card)
+  if card.is and type(card.is) == "function" and card:is(Card) and card.ability and card.ability.set == "Joker"
+  and G and G.GAME and G.GAME.blind and G.GAME.blind.in_blind
+  and G.GAME.selected_back and G.GAME.selected_back.effect and G.GAME.selected_back.effect.center
+  and G.GAME.selected_back.effect.center.key == "b_paperback_commander" then
+    return true
   end
-  return move_ref(self, offset)
-end
+end)
