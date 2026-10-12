@@ -10,6 +10,14 @@ SMODS.Joker {
       }
     }
   },
+  attributes = {
+    'red',
+    'tarot',
+    'planet',
+    'spectral',
+    'consumable',
+    'booster'
+  },
   pools = {
     Music = true
   },
@@ -17,7 +25,7 @@ SMODS.Joker {
   pos = { x = 11, y = 9 },
   atlas = "jokers_atlas",
   cost = 8,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = false,
   eternal_compat = true,
@@ -26,6 +34,20 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'srockw' }
   },
+
+  check_for_unlock = function(self, args)
+    if G.P_CENTER_POOLS.Booster then
+      local count = 0
+      local count2 = 0
+      for k, v in pairs(G.P_CENTER_POOLS.Booster) do
+        count2 = count2 + 1
+        if v.discovered == true then
+          count = count + 1
+        end
+      end
+      return count == count2
+    end
+  end,
 
   calculate = function(self, card, context)
     if not context.blueprint and context.open_booster and card.ability.extra.packs[context.card.config.center.kind] then

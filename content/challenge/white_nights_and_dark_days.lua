@@ -1,4 +1,7 @@
 SMODS.Challenge {
+  unlocked = function (self)
+    return G.P_CENTERS['j_paperback_white_night'].unlocked
+  end,
   key = 'white_nights_and_dark_days',
   jokers = {
     {

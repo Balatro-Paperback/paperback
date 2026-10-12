@@ -1,5 +1,8 @@
 SMODS.Tag {
   key = 'divination',
+  attributes = {
+    'booster'
+  },
   atlas = 'tags_atlas',
   pos = { x = 2, y = 0 },
   discovered = false,

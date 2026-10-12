@@ -3,6 +3,10 @@ SMODS.Blind {
   boss = {
     min = 3
   },
+  attributes = {
+    'face_down',
+    'hands'
+  },
   mult = 2,
   boss_colour = HEX('D19EC3'),
   atlas = 'music_blinds_atlas',
@@ -28,6 +32,8 @@ SMODS.Blind {
   end,
 
   calculate = function(self, blind, context)
+    if blind.disabled then return end
+
     if context.after then
       for i, v in ipairs(context.full_hand) do
         if not v.ability.paperback_hold_returned then
@@ -35,6 +41,7 @@ SMODS.Blind {
         end
       end
     end
+
     if context.drawing_cards then
       local redraw = {}
       for _, v in ipairs(G.discard.cards) do
@@ -42,11 +49,13 @@ SMODS.Blind {
           redraw[#redraw + 1] = v
         end
       end
+
       for i, v in ipairs(redraw) do
         v.ability.paperback_hold_returning = nil
         v.ability.paperback_hold_returned = true
         draw_card(G.discard, G.hand, i * 100 / #redraw, "up", true, v)
       end
+
       if #redraw > 0 then
         return {
           modify = - #redraw

@@ -5,6 +5,10 @@ SMODS.Joker {
       a_xMult = 0.1,
     },
   },
+  attributes = {
+    'xmult',
+    'full_deck'
+  },
   pools = {
     Music = true
   },
@@ -22,7 +26,15 @@ SMODS.Joker {
   },
 
   check_for_unlock = function(self, args)
-    return args.type == 'win' and G.GAME.paperback.max_consumeables <= 0
+    return G.GAME.round >= 1 and G.playing_cards and #G.playing_cards <= 10
+  end,
+
+  locked_loc_vars = function(self, info_queue, card)
+    return {
+      vars = {
+        10
+      }
+    }
   end,
 
   loc_vars = function(self, info_queue, card)

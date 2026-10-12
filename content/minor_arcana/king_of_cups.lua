@@ -5,6 +5,10 @@ PB_UTIL.MinorArcana {
       money = 5,
     }
   },
+  attributes = {
+    'economy',
+    'full_deck'
+  },
   atlas = 'minor_arcana_atlas',
   pos = { x = 6, y = 1 },
   paperback_credit = {

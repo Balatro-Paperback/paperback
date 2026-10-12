@@ -1,3 +1,43 @@
+-- Credits in our mod UI
+PB_UTIL.credits = {
+  artists = {
+    color = G.C.MULT,
+    entries = {
+      'PaperMoon',
+      '「S_C_R_U_B_Y」',
+      'Firch',
+      'Fennex',
+      "MaveBoy",
+      'Dylan Hall',
+      "Ari",
+      "ThermoDyn",
+    }
+  },
+  developers = {
+    color = G.C.GREEN,
+    entries = {
+      'OppositeWolf770, srockw, Nether, B, ejwu2, metanite64, Dowfrin',
+      'InfinityPlus05, aliahmed2k03, ThermoDyn'
+    }
+  },
+  localization = {
+    color = G.C.FILTER,
+    entries = {
+      'pinkmaggit-hub & Riosodu (pt-BR)',
+      'mathieulievre (FR)',
+      'BurAndBY & Tauookie (RU)',
+      'Ethylene (zh_CN)',
+      'Marffe (es_ES & es_419)',
+    }
+  },
+  music = {
+    color = G.C.PURPLE,
+    entries = {
+      'Larantula'
+    }
+  }
+}
+
 -- By Eremel from Stocking Stuffer's PotatoPatch utils
 PB_UTIL.CREDITS = {}
 

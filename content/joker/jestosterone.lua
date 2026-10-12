@@ -6,6 +6,12 @@ SMODS.Joker {
       rank_to_turn_into = 'King'
     }
   },
+  attributes = {
+    'modify_card',
+    'rank',
+    'king',
+    'queen'
+  },
   rarity = 1,
   cost = 5,
   pos = { x = 17, y = 1 },

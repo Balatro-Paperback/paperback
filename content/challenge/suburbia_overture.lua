@@ -8,6 +8,9 @@ SMODS.Challenge {
       { id = "paperback_banned_non_common_jokers" }
     }
   },
+  unlocked = function (self)
+    return G.P_CENTERS["j_paperback_the_normal_joker"].unlocked
+  end,
 
   restrictions = {
     banned_cards = PB_UTIL.banned_challenge_centers {
@@ -26,7 +29,7 @@ SMODS.Challenge {
     G.E_MANAGER:add_event(Event {
       func = function()
         for k, v in pairs(G.P_CENTERS) do
-          if v.is_rarity and not v.is_rarity(1) then
+          if v.set == "Joker" and v.rarity ~= 1 then
             G.GAME.paperback.banned_run_keys[k] = true
           end
         end

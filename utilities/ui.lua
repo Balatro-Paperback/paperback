@@ -133,9 +133,203 @@ SMODS.current_mod.config_tab = function()
             }
           }
         }
+      },
+      {
+        n = G.UIT.R,
+        config = { align = 'cm' },
+        nodes = {
+          {
+            n = G.UIT.C,
+            nodes = {
+              UIBox_button({
+                label = { localize('paperback_ui_unlock_cards') },
+                button = 'paperback_unlock_all'
+              })
+            }
+          },
+          {
+            n = G.UIT.B,
+            config = { w = 0.5, h = 0.4 }
+          },
+          {
+            n = G.UIT.C,
+            nodes = {
+              UIBox_button({
+                label = { localize('paperback_ui_lock_cards') },
+                button = 'paperback_lock_all'
+              }),
+            }
+          },
+        }
+      },
+      {
+        n = G.UIT.R,
+        config = { align = "cm", padding = 0 },
+        nodes = {
+          { n = G.UIT.T, config = { id = 'warning_text', text = localize('ph_click_confirm'), scale = 0.4, colour = G.C.CLEAR } }
+        }
       }
     }
   }
+end
+
+function G.FUNCS.paperback_unlock_all(e)
+  if not e then return end
+
+  local warning_text = e.UIBox:get_UIE_by_ID('warning_text')
+
+  if warning_text and warning_text.config.colour ~= G.C.WHITE then
+    warning_text:juice_up()
+    warning_text.config.colour = G.C.WHITE
+    warning_text.config.shadow = true
+    e.config.disable_button = true
+
+    G.E_MANAGER:add_event(Event({
+      trigger = 'after',
+      delay = 0.35,
+      blockable = false,
+      blocking = false,
+      func = function()
+        e.config.disable_button = nil
+        return true
+      end
+    }))
+
+    play_sound('tarot2', 1, 0.4)
+    return
+  end
+
+  local keys = PB_UTIL.ENABLED_JOKERS
+  local vouchers = PB_UTIL.ENABLED_VOUCHERS
+  local decks = PB_UTIL.ENABLED_DECKS
+  local sleeves = PB_UTIL.ENABLED_SLEEVES
+
+  for _, key in ipairs(keys) do
+    local card = G.P_CENTERS["j_paperback_" .. key]
+    if card and card.unlocked == false and (card.unlock_condition or card.check_for_unlock) then
+      card.unlocked = true
+    end
+  end
+
+  for _, voucher in ipairs(vouchers) do
+    local card = G.P_CENTERS["v_paperback_" .. voucher]
+    if card and card.unlocked == false and (card.unlock_condition or card.check_for_unlock) then
+      card.unlocked = true
+    end
+  end
+
+  for _, deck in ipairs(decks) do
+    local card = G.P_CENTERS["b_paperback_" .. deck]
+    if card and card.unlocked == false and (card.unlock_condition or card.check_for_unlock) then
+      card.unlocked = true
+      card.discovered = true
+      table.sort(G.P_CENTER_POOLS["Back"], function(a, b)
+        return (a.order - (a.unlocked and 100 or 0)) < (b.order - (b.unlocked and 100 or 0))
+      end)
+    end
+  end
+
+  if next(SMODS.find_mod('CardSleeves')) then
+    for _, sleeve in ipairs(sleeves) do
+      local card = G.P_CENTERS["sleeve_paperback_" .. sleeve]
+      if card and card.unlocked == false and (card.unlock_condition or card.check_for_unlock) then
+        card.unlocked = true
+        card.discovered = true
+      end
+    end
+  end
+  warning_text.config.colour = G.C.CLEAR
+  G:save_progress()
+end
+
+function G.FUNCS.paperback_lock_all(e)
+  if not e then return end
+
+  local warning_text = e.UIBox:get_UIE_by_ID('warning_text')
+
+  if warning_text and warning_text.config.colour ~= G.C.WHITE then
+    warning_text:juice_up()
+    warning_text.config.colour = G.C.WHITE
+    warning_text.config.shadow = true
+    e.config.disable_button = true
+
+    G.E_MANAGER:add_event(Event({
+      trigger = 'after',
+      delay = 0.35,
+      blockable = false,
+      blocking = false,
+      func = function()
+        e.config.disable_button = nil
+        return true
+      end
+    }))
+
+    play_sound('tarot2', 1, 0.4)
+    return
+  end
+
+  local keys = PB_UTIL.ENABLED_JOKERS
+  local vouchers = PB_UTIL.ENABLED_VOUCHERS
+  local decks = PB_UTIL.ENABLED_DECKS
+  local sleeves = PB_UTIL.ENABLED_SLEEVES
+
+  local relocked = {}
+  local function relock_card(card)
+    if card and card.unlocked == true and (card.unlock_condition or card.check_for_unlock) then
+      card.unlocked = false
+      card.discovered = false
+      relocked[card.key] = true
+      table.insert(G.P_LOCKED, card)
+    end
+  end
+
+  for _, key in ipairs(keys) do
+    local card = G.P_CENTERS["j_paperback_" .. key]
+    relock_card(card)
+  end
+
+  for _, voucher in ipairs(vouchers) do
+    local card = G.P_CENTERS["v_paperback_" .. voucher]
+    relock_card(card)
+  end
+
+  for _, deck in ipairs(decks) do
+    local card = G.P_CENTERS["b_paperback_" .. deck]
+    -- Paper deck was having problems being relocked, skip it
+    if card ~= G.P_CENTERS["b_paperback_paper"] then
+      relock_card(card)
+    end
+  end
+
+  if next(SMODS.find_mod('CardSleeves')) then
+    for _, sleeve in ipairs(sleeves) do
+      local card = G.P_CENTERS["sleeve_paperback_" .. sleeve]
+      relock_card(card)
+    end
+  end
+
+  table.sort(G.P_LOCKED, function(a, b) return a.order and b.order and a.order < b.order end)
+  table.sort(G.P_CENTER_POOLS["Back"], function(a, b)
+    return (a.order - (a.unlocked and 100 or 0)) < (b.order - (b.unlocked and 100 or 0))
+  end)
+
+  for stat in pairs(G.PROFILES[G.SETTINGS.profile].career_stats) do
+    if string.sub(stat, 1, 10) == "paperback_" then
+      PB_UTIL.set_career_stat(string.sub(stat, 11), nil, true)
+    end
+  end
+
+  local meta_path = G.SETTINGS.profile .. '/meta.jkr'
+  local meta = STR_UNPACK(get_compressed(meta_path) or 'return {}')
+  meta.unlocked = meta.unlocked or {}
+  meta.discovered = meta.discovered or {}
+  for key in pairs(relocked) do
+    meta.unlocked[key] = nil
+    meta.discovered[key] = nil
+  end
+  compress_and_save(meta_path, STR_PACK(meta))
+
+  warning_text.config.colour = G.C.CLEAR
 end
 
 -- Create Credits tab in our mod UI
@@ -319,57 +513,66 @@ if PB_UTIL.config.paperclips_enabled then
 end
 
 -- Returns a table that can be inserted into info_queue to show all suits of the provided type
---- @param type 'light' | 'dark'
+--- @param type string
 --- @return table
 function PB_UTIL.suit_tooltip(type)
-  local suits = type == 'light' and PB_UTIL.light_suits or PB_UTIL.dark_suits
+  local suits = {}
+  for i, v in pairs(SMODS.Suits) do
+    if type == v.shade then suits[#suits + 1] = i end
+  end
 
   local key = 'paperback_' .. type .. '_suits'
-  local colours = {}
+  if #suits <= 2 then
+    return {
+      set = 'Other',
+      key = key,
+      vars = { colours = {} }
+    }
+  end
 
   -- If any modded suits were loaded, we need to dynamically
   -- add them to the localization table
-  if #suits > 2 then
-    local text = {}
-    local line = ""
-    local text_parsed = {}
-
-    for i = 1, #suits do
-      local suit = suits[i]
-
-      -- Remove Bunco exotic suits if they are not revealed yet
-      if next(SMODS.find_mod("Bunco")) and not (G.GAME and G.GAME.Exotic) then
-        if suit == "bunc_Fleurons" or suit == "bunc_Halberds" then
-          suit = nil
-        end
-      end
-
-      if suit ~= nil then
-        colours[#colours + 1] = G.C.SUITS[suit] or G.C.IMPORTANT
-        line = line .. "{V:" .. i .. "}" .. localize(suit, 'suits_plural') .. "{}"
-
-        if i < #suits then
-          line = line .. ", "
-        end
-
-        if #line > 30 then
-          text[#text + 1] = line
-          line = ""
-        end
-      end
+  local visible_suits = {}
+  for _, suit in ipairs(suits) do
+    if not (
+      next(SMODS.find_mod("Bunco"))
+      and not (G.GAME and G.GAME.Exotic)
+      and (suit == "bunc_Fleurons" or suit == "bunc_Halberds")
+    ) then
+      visible_suits[#visible_suits + 1] = suit
     end
-
-    if #line > 0 then
-      text[#text + 1] = line
-    end
-
-    for _, v in ipairs(text) do
-      text_parsed[#text_parsed + 1] = loc_parse_string(v)
-    end
-
-    G.localization.descriptions.Other[key].text = text
-    G.localization.descriptions.Other[key].text_parsed = text_parsed
   end
+
+  local text = {}
+  local line = ""
+  local text_parsed = {}
+  local colours = {}
+
+  for visible_i, suit in ipairs(visible_suits) do
+    colours[#colours + 1] = G.C.SUITS[suit] or G.C.IMPORTANT
+
+    line = line .. "{V:" .. visible_i .. "}" .. localize(suit, 'suits_plural') .. "{}"
+
+    if visible_i < #visible_suits then
+      line = line .. ", "
+    end
+
+    if #line > 25 then
+      text[#text + 1] = line
+      line = ""
+    end
+  end
+
+  if #line > 0 then
+    text[#text + 1] = line
+  end
+
+  for _, v in ipairs(text) do
+    text_parsed[#text_parsed + 1] = loc_parse_string(v)
+  end
+
+  G.localization.descriptions.Other[key].text = text
+  G.localization.descriptions.Other[key].text_parsed = text_parsed
 
   return {
     set = 'Other',

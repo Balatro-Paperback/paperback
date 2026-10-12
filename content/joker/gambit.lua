@@ -7,6 +7,14 @@ SMODS.Joker {
       chip_mult = 2
     }
   },
+  attributes = {
+    'destroy_card',
+    'suit',
+    'crowns',
+    'chips',
+    'modify_card',
+    'perma_bonus'
+  },
   rarity = 2,
   pos = { x = 14, y = 0 },
   atlas = "jokers_atlas",
@@ -17,9 +25,20 @@ SMODS.Joker {
   paperback = {
     requires_crowns = true
   },
+  unlocked = false,
   paperback_credit = {
     coder = { 'srockw' },
   },
+
+  check_for_unlock = function(self, args)
+    if G.GAME.round >= 1 then
+      for _, v in ipairs(G.playing_cards or {}) do
+        if v.base.suit == ("paperback_Crowns") and PB_UTIL.is_rank(v, 'Queen') then 
+          return true
+        end
+      end
+    end
+  end,
 
   loc_vars = function(self, info_queue, card)
     return {

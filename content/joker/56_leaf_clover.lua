@@ -1,11 +1,19 @@
 SMODS.Joker {
   key = "56_leaf_clover",
   config = { extra = { active = false } },
+  attributes = {
+    'generation',
+    'tag',
+    'negative',
+    'suit',
+    'clubs',
+    'boss_blind'
+  },
   rarity = 2,
   pos = { x = 24, y = 3 },
   atlas = "jokers_atlas",
   cost = 6,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -14,6 +22,14 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'vitellary' }
   },
+
+  check_for_unlock = function (self, args)
+    return G.GAME.paperback.suits_scored_this_run['Clubs'] and G.GAME.paperback.suits_scored_this_run['Clubs'] >= 56
+  end,
+
+  locked_loc_vars = function (self, info_queue, card)
+    return {vars = {56, localize('Clubs', 'suits_plural'),}}
+  end,
 
   loc_vars = function(self, info_queue, card)
     info_queue[#info_queue + 1] = G.P_TAGS.tag_negative

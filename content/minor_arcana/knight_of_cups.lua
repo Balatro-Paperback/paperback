@@ -4,6 +4,10 @@ PB_UTIL.MinorArcana {
     min_highlighted = 2,
     max_highlighted = 2
   },
+  attributes = {
+    'modify_card',
+    'destroy_card'
+  },
   atlas = 'minor_arcana_atlas',
   pos = { x = 4, y = 1 },
   paperback_credit = {

@@ -9,6 +9,13 @@ SMODS.Joker {
       destroyed = 0,
     }
   },
+  attributes = {
+    'mult',
+    'scaling',
+    'rank',
+    'four',
+    'seven'
+  },
   rarity = 1,
   pos = { x = 14, y = 11 },
   atlas = "jokers_atlas",
@@ -19,6 +26,20 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'thermo' }
   },
+  unlocked = false,
+
+  check_for_unlock = function(self, args)
+    if args.type == 'paperback_removed_playing_cards' then
+      return G.GAME.paperback.destroyed_cards["cards"] >= 47
+    end
+  end,
+
+  locked_loc_vars = function(self, info_queue, card)
+    return {
+      vars = { 47 }
+    }
+  end,
+
 
   loc_vars = function(self, info_queue, card)
     return {
@@ -44,13 +65,14 @@ SMODS.Joker {
     if context.remove_playing_cards and not context.blueprint then
       local destroyed = card.ability.extra.destroyed + #context.removed
       card.ability.extra.destroyed = destroyed % card.ability.extra.destroy_req
-      local change = math.floor(destroyed / card.ability.extra.destroy_req) * card.ability.extra.change
-      card.ability.extra.mult = card.ability.extra.mult + change
-      if change > 0 then
-        return {
-          message = localize('k_upgrade_ex')
-        }
-      end
+      local change = math.floor(destroyed / card.ability.extra.destroy_req)
+      SMODS.scale_card(card, {
+        ref_table = card.ability.extra,
+        ref_value = 'mult',
+        scalar_value = 'change',
+        scalar_factor = change
+      })
+      return nil, true
     end
   end
 }

@@ -6,11 +6,16 @@ SMODS.Joker {
       xmult = 1,
     }
   },
+  attributes = {
+    'xmult',
+    'scaling',
+    'enhancements'
+  },
   rarity = 2,
   pos = { x = 17, y = 9 },
   atlas = "jokers_atlas",
   cost = 3,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -23,6 +28,14 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'dowfrin' }
   },
+
+  check_for_unlock = function(self, args)
+    return args.type == 'round_win' and G.GAME.paperback.round.played_only_straights and G.GAME.blind.boss
+  end,
+
+  locked_loc_vars = function (self, info_queue, card)
+    return { vars = { localize('Straight', 'poker_hands') }}
+  end,
 
   loc_vars = function(self, info_queue, card)
     info_queue[#info_queue + 1] = G.P_CENTERS.m_paperback_domino
@@ -42,17 +55,20 @@ SMODS.Joker {
 
   calculate = function(self, card, context)
     if context.before and not context.blueprint then
-      local upgraded
+      local upgrade = 0
       for _, v in ipairs(context.scoring_hand) do
         if SMODS.has_enhancement(v, 'm_paperback_domino') then
-          card.ability.extra.xmult = card.ability.extra.xmult + card.ability.extra.xmult_mod
-          upgraded = true
+          upgrade = upgrade + 1
         end
       end
-      if upgraded then
-        return {
-          message = localize('k_upgrade_ex'),
-        }
+      if upgrade > 0 then
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'xmult',
+          scalar_value = 'xmult_mod',
+          scalar_factor = upgrade
+        })
+        return nil, true
       end
     end
 

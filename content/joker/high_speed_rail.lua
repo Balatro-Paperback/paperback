@@ -5,6 +5,11 @@ SMODS.Joker {
       mult = 0
     }
   },
+  attributes = {
+    'mult',
+    'scaling',
+    'sell_value'
+  },
   rarity = 1,
   pos = { x = 15, y = 1 },
   atlas = "jokers_atlas",
@@ -12,6 +17,7 @@ SMODS.Joker {
   blueprint_compat = true,
   eternal_compat = true,
   perishable_compat = false,
+  unlocked = false,
 
   paperback_credit = {
     coder = { 'srockw' },
@@ -21,6 +27,24 @@ SMODS.Joker {
     return {
       vars = {
         card.ability.extra.mult
+      }
+    }
+  end,
+
+  check_for_unlock = function(self, args)
+    if args.type == 'paperback_ride_the_bus_scale' then
+      return true
+    end
+  end,
+
+  locked_loc_vars = function(self, info_queue, back)
+    local other_name = localize('k_unknown')
+    if G.P_CENTERS['j_ride_the_bus'].unlocked then
+      other_name = localize { type = 'name_text', set = 'Joker', key = 'j_ride_the_bus' }
+    end
+    return {
+      vars = {
+        other_name, 25
       }
     }
   end,
@@ -39,31 +63,32 @@ SMODS.Joker {
   calculate = function(self, card, context)
     if not context.blueprint and context.selling_card and context.card ~= card then
       if context.card.ability.set == 'Joker' and context.card.sell_cost ~= 0 then
-        card.ability.extra.mult = math.max(0, card.ability.extra.mult - context.card.sell_cost)
-
-        return {
-          message = localize {
-            type = 'variable',
-            key = 'a_mult_minus',
-            vars = { context.card.sell_cost }
-          },
-          colour = G.C.MULT
-        }
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'mult',
+          scalar_table = context.card,
+          scalar_value = 'sell_cost',
+          operation = function(ref_table, ref_value, initial, scaling)
+            ref_table[ref_value] = math.max(0, initial - scaling)
+          end,
+          message_key = 'a_mult_minus',
+          message_colour = G.C.MULT
+        })
+        return nil, true
       end
     end
 
     if not context.blueprint and context.buying_card and context.card ~= card then
       if context.card.ability.set == 'Joker' and context.card.cost ~= 0 then
-        card.ability.extra.mult = card.ability.extra.mult + context.card.cost
-
-        return {
-          message = localize {
-            type = 'variable',
-            key = 'a_mult',
-            vars = { context.card.cost }
-          },
-          colour = G.C.MULT
-        }
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'mult',
+          scalar_table = context.card,
+          scalar_value = 'cost',
+          message_key = 'a_mult',
+          message_colour = G.C.MULT
+        })
+        return nil, true
       end
     end
 
@@ -84,3 +109,11 @@ SMODS.Joker {
     }
   end,
 }
+
+local scale_card_ref = SMODS.scale_card
+function SMODS.scale_card(card, args)
+  scale_card_ref(card, args)
+  if card.config.center_key == "j_ride_the_bus" and card.ability.mult >= 25 then
+    check_for_unlock({ type = 'paperback_ride_the_bus_scale' })
+  end
+end

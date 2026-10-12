@@ -8,6 +8,12 @@ SMODS.Joker {
       scaling = 4
     }
   },
+  attributes = {
+    'chips',
+    'joker',
+    'sell_value',
+    'music'
+  },
   pools = {
     Music = true
   },
@@ -19,6 +25,25 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'dowfrin' },
   },
+  unlocked = false,
+
+  locked_loc_vars = function (self, info_queue, card)
+    return {
+      vars = {
+        localize { type = 'name_text', set = 'Tarot', key = 'c_hermit' },
+        localize { type = 'name_text', set = 'Tarot', key = 'c_temperance' }
+      }
+    }
+  end,
+
+  check_for_unlock = function(self, args)
+    if args.type == 'win' then
+      if G.GAME.consumeable_usage.c_hermit or G.GAME.consumeable_usage.c_temperance then
+        return false
+      end
+      return true
+    end
+  end,
 
   loc_vars = function(self, info_queue, card)
     local sell_cost = 0

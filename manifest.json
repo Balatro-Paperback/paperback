@@ -1,0 +1,10 @@
+{
+    "name": "Paperback",
+    "version_number": "0.9.0",
+    "website_url": "https://github.com/Balatro-Paperback/paperback",
+    "description": "A vanilla centered mod built upon expanding the base game with jokers and other additions",
+    "dependencies": [
+        "Steamodded-Steamodded-1.1814.0",
+        "Thunderstore-lovely-0.9.0"
+    ]
+}

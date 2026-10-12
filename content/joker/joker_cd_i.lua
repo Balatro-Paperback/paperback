@@ -6,11 +6,17 @@ SMODS.Joker {
       cards = 4,
     }
   },
+  attributes = {
+    'generation',
+    'planet',
+    'consumable',
+    'chance'
+  },
   rarity = 1,
   pos = { x = 10, y = 9 },
   atlas = "jokers_atlas",
   cost = 3,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -19,6 +25,20 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'srockw' },
   },
+
+  check_for_unlock = function(self, args)
+    if args.type == 'win_no_hand' then
+      return not G.GAME.paperback.played_5_card_hand 
+    end
+  end,
+
+  locked_loc_vars = function(self, info_queue, card)
+    return {
+      vars = {
+        5
+      }
+    }
+  end,
 
   loc_vars = function(self, info_queue, card)
     local numerator, denominator = PB_UTIL.chance_vars(card)

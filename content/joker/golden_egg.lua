@@ -1,5 +1,10 @@
 SMODS.Joker {
   key = 'golden_egg',
+  attributes = {
+    'economy',
+    'sell_value',
+    'hand_type'
+  },
   rarity = 3,
   pos = { x = 16, y = 8 },
   atlas = 'jokers_atlas',

@@ -5,6 +5,10 @@ SMODS.Joker {
       num_slots = 1
     }
   },
+  attributes = {
+    'passive',
+    'shop'
+  },
   rarity = 2,
   pos = { x = 14, y = 10 },
   atlas = "jokers_atlas",
@@ -18,18 +22,18 @@ SMODS.Joker {
   },
 
   locked_loc_vars = function(self, info_queue)
-    return { vars = { 20 } }
+    return { vars = { 4 } }
   end,
   check_for_unlock = function(self, args)
-    if G.P_CENTER_POOLS["Voucher"] then
-      local count = 0
-      for k, v in pairs(G.P_CENTER_POOLS["Voucher"]) do
-        if v.discovered == true then
+    local count = 0
+    if G.vouchers then
+      for _, v in ipairs(G.vouchers.cards or {}) do
+        if v.config.center.requires and type(v.config.center.requires) == "table" then
           count = count + 1
         end
       end
-      if count >= 20 then unlock_card(self) end
     end
+    return count >= 4
   end,
 
   loc_vars = function(self, info_queue, card)

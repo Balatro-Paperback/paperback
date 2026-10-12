@@ -3,6 +3,21 @@ SMODS.Blind {
   boss = {
     min = 3
   },
+  attributes = {
+    'face_down',
+    'chance',
+    'rank',
+    'two',
+    'three',
+    'four',
+    'five',
+    'six',
+    'seven',
+    'eight',
+    'nine',
+    'ten',
+    'ace' -- apparently
+  },
   mult = 1,
   boss_colour = HEX('90CDAF'),
   atlas = 'music_blinds_atlas',
@@ -43,7 +58,7 @@ SMODS.Blind {
   stay_flipped = function(self, area, card)
     if area == G.hand then
       if not card:is_face() and not SMODS.has_no_rank(card) and
-          PB_UTIL.chance(card, 'rest', self.chance_numerator, self.chance_denominator) then
+      PB_UTIL.chance(card, 'rest', self.chance_numerator, self.chance_denominator) then
         return true
       end
     end

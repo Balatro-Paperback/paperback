@@ -8,11 +8,17 @@ SMODS.Joker {
       money_odds = 2,
     }
   },
+  attributes = {
+    'retrigger',
+    'economy',
+    'chance',
+    'enhancements'
+  },
   rarity = 1,
   pos = { x = 5, y = 2 },
   atlas = "jokers_atlas",
   cost = 7,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -21,6 +27,31 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'oppositewolf' }
   },
+
+  check_for_unlock = function(self, args)
+    if args.type == 'hand' then
+      local one = false
+      local nine1 = false
+      local nine2 = false
+      local seven = false
+      for _, v in ipairs(args.scoring_hand) do
+        if PB_UTIL.is_rank(v, 'Ace') then
+          one = true
+        elseif PB_UTIL.is_rank(v, '9') then
+          if not nine1 then
+            nine1 = true
+          else
+            nine2 = true
+          end
+        elseif PB_UTIL.is_rank(v, '7') then
+          seven = true
+        end
+      end
+      if one and nine1 and nine2 and seven then
+        return true
+      end
+    end
+  end,
 
   loc_vars = function(self, info_queue, card)
     info_queue[#info_queue + 1] = G.P_CENTERS.m_wild

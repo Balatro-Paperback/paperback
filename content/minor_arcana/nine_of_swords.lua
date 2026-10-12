@@ -6,6 +6,10 @@ PB_UTIL.MinorArcana {
       money = 5,
     }
   },
+  attributes = {
+    'destroy_card',
+    'economy'
+  },
   atlas = 'minor_arcana_atlas',
   pos = { x = 1, y = 5 },
   paperback_credit = {

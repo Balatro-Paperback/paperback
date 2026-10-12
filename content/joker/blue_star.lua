@@ -13,6 +13,13 @@ SMODS.Joker {
       }
     }
   },
+  attributes = {
+    'xchips',
+    'scaling',
+    'suit',
+    'stars',
+    'clubs'
+  },
   rarity = 3,
   pos = { x = 11, y = 5 },
   atlas = "jokers_atlas",
@@ -26,6 +33,20 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'srockw' }
   },
+  unlocked = false,
+
+  check_for_unlock = function(self, args)
+    if G.GAME.round >= 1 then
+      local club = false
+      local star = false
+      for _, v in ipairs(G.playing_cards or {}) do
+        if v.base.suit == ('Clubs') then club = true 
+        elseif v.base.suit == ('paperback_Stars') then star = true 
+        else return false end
+      end
+      return club and star
+    end
+  end,
 
   loc_vars = function(self, info_queue, card)
     return {

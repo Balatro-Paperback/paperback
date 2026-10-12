@@ -8,6 +8,12 @@ SMODS.Joker {
       stick_key = 'j_paperback_rockin_stick'
     }
   },
+  attributes = {
+    'mult',
+    'suit',
+    'stars',
+    'chance'
+  },
   rarity = 1,
   pos = { x = 7, y = 8 },
   atlas = 'jokers_atlas',

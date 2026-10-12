@@ -5,17 +5,25 @@ SMODS.Joker {
       dollars = 1
     }
   },
+  attributes = {
+    'economy'
+  },
   rarity = 1,
   pos = { x = 7, y = 11 },
   atlas = "jokers_atlas",
   cost = 6,
-
+  unlocked = false,
   blueprint_compat = true,
   eternal_compat = true,
   perishable_compat = true,
   paperback_credit = {
     coder = { 'thermo' }
   },
+  unlock_condition = { type = 'money', extra = 99 },
+
+  locked_loc_vars = function (self, info_queue, card)
+    return {vars = { 99 }}
+  end,
 
   loc_vars = function(self, info_queue, card)
     return {

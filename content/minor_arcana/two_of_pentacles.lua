@@ -1,5 +1,8 @@
 PB_UTIL.MinorArcana {
   key = 'two_of_pentacles',
+  attributes = {
+    'joker'
+  },
   atlas = 'minor_arcana_atlas',
   pos = { x = 1, y = 6 },
   paperback_credit = {

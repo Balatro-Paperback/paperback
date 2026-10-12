@@ -1,5 +1,8 @@
 SMODS.Joker {
   key = "nichola",
+  attributes = {
+    'face'
+  },
   rarity = 4,
   pos = { x = 12, y = 4 },
   soul_pos = { x = 13, y = 4 },
@@ -13,10 +16,12 @@ SMODS.Joker {
     coder = { 'srockw' },
     artist = { 'nevernamed' }
   },
+  -- dummy unlock condition for the unlock all button
+  check_for_unlock = function(self, args) return false end,
 
   -- Also see SMODS.calculate_main_scoring hook
   calculate = function(self, card, context)
-    if context.paperback and context.paperback.nichola then
+    if context.paperback and context.paperback.before_joker_effects then
       local ctx = {
         cardarea = G.play,
         full_hand = G.play.cards,

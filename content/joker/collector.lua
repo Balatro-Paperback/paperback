@@ -5,11 +5,17 @@ SMODS.Joker {
       money = 1
     }
   },
+  attributes = {
+    'red',
+    'economy',
+    'enhancements',
+    'full_deck'
+  },
   rarity = 2,
   pos = { x = 21, y = 3 },
   atlas = "jokers_atlas",
   cost = 7,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = false,
   eternal_compat = true,
@@ -22,6 +28,14 @@ SMODS.Joker {
   },
 
   enhancement_gate = 'm_paperback_sleeved',
+
+  locked_loc_vars = function(self, info_queue, card)
+    return { vars = { 100 } }
+  end,
+
+  check_for_unlock = function(self, args)
+    return G.GAME.paperback.money_gained_this_ante >= 100
+  end,
 
   loc_vars = function(self, info_queue, card)
     info_queue[#info_queue + 1] = G.P_CENTERS.m_paperback_sleeved

@@ -6,6 +6,11 @@ SMODS.Joker {
       x_mult = 1,
     }
   },
+  attributes = {
+    'xmult',
+    'scaling',
+    'music'
+  },
   rarity = 3,
   pos = { x = 12, y = 9 },
   atlas = 'jokers_atlas',
@@ -13,7 +18,7 @@ SMODS.Joker {
     Music = true
   },
   cost = 7,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -33,13 +38,36 @@ SMODS.Joker {
     }
   end,
 
+  locked_loc_vars = function (self, info_queue, card)
+    local other_name = localize('k_unknown')
+    if G.P_CENTERS['j_bloodstone'].unlocked then
+      other_name = localize { type = 'name_text', set = 'Joker', key = 'j_bloodstone' }
+    end
+    return {
+      vars = {
+        other_name, 13
+      }
+    }
+  end,
+
+  check_for_unlock = function (self, args)
+    if args.type == 'paperback_bloodstone_triggers' then
+      return true
+    end
+  end,
+
   calculate = function(self, card, context)
     -- Gains x_mult when playing cards are destroyed. Each card destroyed provides the specified xmult_mod
     if not context.blueprint and context.remove_playing_cards and context.removed and #context.removed > 0 then
-      card.ability.extra.x_mult = card.ability.extra.x_mult + (#context.removed * card.ability.extra.a_xmult)
-
-      card_eval_status_text(card, 'extra', nil, nil, nil,
-        { message = localize { type = 'variable', key = 'a_xmult', vars = { card.ability.extra.x_mult } } })
+      local scale = #context.removed
+      SMODS.scale_card(card, {
+        ref_table = card.ability.extra,
+        ref_value = 'x_mult',
+        scalar_value = 'a_xmult',
+        scalar_factor = scale,
+        message_key = 'a_xmult'
+      })
+      return nil, true
     end
 
     -- Gives the x_mult when scoring

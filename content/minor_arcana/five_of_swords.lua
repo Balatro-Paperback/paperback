@@ -5,6 +5,12 @@ PB_UTIL.MinorArcana {
   config = {
     max_highlighted = 1,
   },
+  attributes = {
+    'modify_card',
+    'enhancements',
+    'seals',
+    'editions'
+  },
   paperback_credit = {
     coder = { 'srockw' }
   },
@@ -53,6 +59,7 @@ PB_UTIL.MinorArcana {
       elseif modifier == 'enhancement' then
         local enhancement = SMODS.poll_enhancement {
           key = 'five_of_swords_enhancement',
+          options = PB_UTIL.get_ranked_enhancements(),
           guaranteed = true
         }
 

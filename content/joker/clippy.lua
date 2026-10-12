@@ -1,11 +1,14 @@
 SMODS.Joker {
   key = "clippy",
+  attributes = {
+    'paperclip'
+  },
   rarity = 2,
   pos = { x = 15, y = 6 },
   soul_pos = { x = 16, y = 6 },
   atlas = "jokers_atlas",
   cost = 7,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -16,6 +19,18 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'dowfrin' },
   },
+
+  -- Temporary solution to track paperclip discovery for Clippy
+  -- until paperclips are converted to smods generic card modifier
+  check_for_unlock = function (self, args)
+    local tbl = PB_UTIL.get_career_stat("temp_paperclip_discovery", {})
+    return tbl and PB_UTIL.count_entries(tbl) >= 10
+  end,
+
+  locked_loc_vars = function (self, info_queue, card)
+    local tbl = PB_UTIL.get_career_stat("temp_paperclip_discovery", {})
+    return { vars = { PB_UTIL.count_entries(tbl), 10 }}
+  end,
 
   calculate = function(self, card, context)
     local unclipped = {}

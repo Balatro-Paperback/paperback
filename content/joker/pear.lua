@@ -7,11 +7,17 @@ SMODS.Joker {
       chip_loss = 10
     }
   },
+  attributes = {
+    'chips',
+    'scaling',
+    'hand_type',
+    'food'
+  },
   rarity = 1,
   pos = { x = 17, y = 4 },
   atlas = 'jokers_atlas',
   cost = 4,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = false,
@@ -20,10 +26,20 @@ SMODS.Joker {
     Food = true
   },
 
-
   paperback_credit = {
     coder = { 'metanite' }
   },
+
+  locked_loc_vars = function(self, info_queue, card)
+    return { vars = { localize('Pair', 'poker_hands') } }
+  end,
+  check_for_unlock = function(self, args)
+    if args.type == 'win_no_hand' then
+      if G.GAME.paperback.only_pairs_this_run then
+        return true
+      end
+    end
+  end,
 
   loc_vars = function(self, info_queue, card)
     return {
@@ -46,11 +62,13 @@ SMODS.Joker {
   calculate = function(self, card, context)
     if context.before and not context.blueprint then
       if next(context.poker_hands['Pair']) then
-        card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chip_gain
-        return {
-          message = localize('k_upgrade_ex'),
-          colour = G.C.CHIPS
-        }
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'chips',
+          scalar_value = 'chip_gain',
+          message_colour = G.C.CHIPS
+        })
+        return nil, true
       elseif card.ability.extra.chips < 10 then
         PB_UTIL.destroy_joker(card)
         return {
@@ -58,11 +76,15 @@ SMODS.Joker {
           colour = G.C.FILTER
         }
       else
-        card.ability.extra.chips = card.ability.extra.chips - card.ability.extra.chip_loss
-        return {
-          message = localize { type = 'variable', key = 'a_chips_minus', vars = { card.ability.extra.chip_loss } },
-          colour = G.C.CHIPS
-        }
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'chips',
+          scalar_value = 'chip_loss',
+          operation = '-',
+          message_key = 'a_chips_minus',
+          message_colour = G.C.CHIPS
+        })
+        return nil, true
       end
     end
 

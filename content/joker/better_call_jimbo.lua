@@ -6,17 +6,28 @@ SMODS.Joker {
       threshold = 4
     },
   },
+  attributes = {
+    'xmult',
+  },
   rarity = 3,
   pos = { x = 18, y = 5 },
   atlas = 'jokers_atlas',
   cost = 8,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
   paperback_credit = {
     coder = { 'dowfrin' }
   },
+
+  locked_loc_vars = function (self, info_queue, card)
+    return { vars = { 25 }}
+  end,
+
+  check_for_unlock = function (self, args)
+    return args.type == 'paperback_25_dollar_cashout'
+  end,
 
   loc_vars = function(self, info_queue, card)
     return {

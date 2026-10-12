@@ -5,8 +5,15 @@ SMODS.Joker {
       mult = 5,
       chips = 50,
       odds = 8,
-      chance_multiplier = 1
+      chance_multiplier = 1,
+      chance_inc = 1,
     }
+  },
+  attributes = {
+    'mult',
+    'chips',
+    'chance',
+    'food'
   },
   rarity = 1,
   pos = { x = 6, y = 5 },
@@ -23,17 +30,12 @@ SMODS.Joker {
   },
 
   check_for_unlock = function(self, args)
-    if args.type == 'modify_jokers' and G.jokers then
-      local count = 0
-      for _, joker in ipairs(G.jokers.cards) do
-        if joker.ability.set == 'Joker' and PB_UTIL.is_food(joker) then
-          count = count + 1
-        end
-      end
-      return count >= 3
+    if args.type == 'modify_jokers' and #PB_UTIL.get_owned_food() >= 3 then
+      return true
     end
   end,
-  locked_loc_vars = function(self, info_queue, center)
+
+  locked_loc_vars = function(self, info_queue, card)
     return {
       vars = { 3 }
     }
@@ -74,8 +76,12 @@ SMODS.Joker {
           colour = G.C.MULT
         }
       else
-        card.ability.extra.chance_multiplier = card.ability.extra.chance_multiplier + 1
-
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'chance_multiplier',
+          scalar_value = 'chance_inc',
+          no_message = true,
+        })
         return {
           message = localize('k_safe_ex'),
           colour = G.C.CHIPS,

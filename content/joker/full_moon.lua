@@ -5,11 +5,18 @@ SMODS.Joker {
       odds = 2
     }
   },
+  attributes = {
+    'planet',
+    'consumable',
+    'retrigger',
+    'chance',
+    'red'
+  },
   rarity = 2,
   pos = { x = 5, y = 9 },
   atlas = 'jokers_atlas',
   cost = 7,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -26,6 +33,16 @@ SMODS.Joker {
         denominator
       }
     }
+  end,
+
+  locked_loc_vars = function (self, info_queue, card)
+    return {vars = {9}}
+  end,
+
+  check_for_unlock = function (self, args)
+    if args.type == 'paperback_hand_played_full_moon' then
+      return true
+    end
   end,
 
   calculate = function(self, card, context)

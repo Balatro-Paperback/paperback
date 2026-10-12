@@ -5,11 +5,16 @@ SMODS.Joker {
       a_xchips = 0.2,
     }
   },
+  attributes = {
+    'xchips',
+    'joker_slot',
+    'joker'
+  },
   rarity = 2,
   pos = { x = 19, y = 4 },
   atlas = 'jokers_atlas',
   cost = 8,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -17,6 +22,20 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'dowfrin' },
   },
+
+  locked_loc_vars = function (self, info_queue, card)
+    return {vars = {10}}
+  end,
+
+  check_for_unlock = function (self, args)
+    if args.type == 'modify_jokers' and G.jokers then
+      local count = 0
+      for _, v in ipairs(G.jokers.cards) do
+        count = count + 1
+      end
+      return count >= 10
+    end
+  end,
 
   loc_vars = function(self, info_queue, card)
     local xchips

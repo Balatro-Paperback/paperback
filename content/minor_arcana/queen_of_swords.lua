@@ -3,6 +3,11 @@ PB_UTIL.MinorArcana {
   config = {
     targets = 3,
   },
+  attributes = {
+    'modify_card',
+    'suit',
+    'full_deck'
+  },
   atlas = 'minor_arcana_atlas',
   pos = { x = 5, y = 5 },
   paperback_credit = {
@@ -32,9 +37,13 @@ PB_UTIL.MinorArcana {
       end
     end
 
+    local shake_deck = false
     while #targets < card.ability.targets and #possible_targets > 0 do
       local target = pseudorandom_element(possible_targets, pseudoseed('queen_of_swords'))
       table.insert(targets, target)
+      if target.area == G.deck then
+        shake_deck = true
+      end
       -- Get rid of possible targets with the same suit as chosen `target`
       for i = #possible_targets, 1, -1 do
         if possible_targets[i].base.suit == target.base.suit then
@@ -45,8 +54,10 @@ PB_UTIL.MinorArcana {
 
     PB_UTIL.use_consumable_animation(card, G.hand.highlighted, function()
       for _, v in ipairs(targets) do
+        v:juice_up()
         assert(SMODS.change_base(v, ref))
       end
+      if shake_deck then G.deck.cards[1]:juice_up() end
     end)
   end
 }

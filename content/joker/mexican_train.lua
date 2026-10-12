@@ -5,6 +5,10 @@ SMODS.Joker {
       dollars = 1,
     }
   },
+  attributes = {
+    'economy',
+    'enhancements'
+  },
   rarity = 1,
   pos = { x = 17, y = 10 },
   atlas = "jokers_atlas",
@@ -16,10 +20,28 @@ SMODS.Joker {
   paperback = {
     requires_enhancements = true
   },
-
+  unlocked = false,
   paperback_credit = {
     coder = { 'dowfrin' },
   },
+
+  locked_loc_vars = function (self, info_queue, card)
+    return {vars = { 5, localize {
+          type = 'name_text',
+          set = 'Enhanced',
+          key = 'm_paperback_domino'
+        }, }}
+  end,
+
+  check_for_unlock = function (self, args)
+    local count = 0
+    for _, playing_card in ipairs(G.playing_cards or {}) do
+      if SMODS.has_enhancement(playing_card, 'm_paperback_domino') then count = count + 1 end
+      if count >= 5 then
+        return true
+      end
+    end
+  end,
 
   loc_vars = function(self, info_queue, card)
     info_queue[#info_queue + 1] = G.P_CENTERS.m_paperback_domino

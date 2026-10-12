@@ -6,6 +6,11 @@ SMODS.Joker {
       reduction = 10
     }
   },
+  attributes = {
+    'balance',
+    'scaling',
+    'food'
+  },
   rarity = 2,
   pos = { x = 16, y = 3 },
   atlas = "jokers_atlas",
@@ -13,6 +18,7 @@ SMODS.Joker {
   blueprint_compat = true,
   eternal_compat = false,
   perishable_compat = true,
+  unlocked = false,
   pools = {
     Food = true
   },
@@ -28,6 +34,22 @@ SMODS.Joker {
         card.ability.extra.reduction
       }
     }
+  end,
+
+  locked_loc_vars = function(self, info_queue, card)
+    local other_name = localize('k_unknown')
+    if G.P_CENTERS['b_plasma'].unlocked then
+      other_name = localize { type = 'name_text', set = 'Back', key = 'b_plasma' }
+    end
+
+    return {
+      vars = { other_name }
+    }
+  end,
+  check_for_unlock = function(self, args)
+    if args.type == 'win_deck' and (get_deck_win_stake('b_plasma') >= 1) then
+      return true
+    end
   end,
 
   calculate = function(self, card, context)

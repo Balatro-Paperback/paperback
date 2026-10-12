@@ -5,6 +5,10 @@ SMODS.Joker {
       hand = 'Flush'
     }
   },
+  attributes = {
+    'modify_card',
+    'hand_type'
+  },
   rarity = 2,
   pos = { x = 11, y = 6 },
   atlas = "jokers_atlas",
@@ -22,20 +26,10 @@ SMODS.Joker {
     coder = { 'srockw' }
   },
 
-  locked_loc_vars = function(self, info_queue, card)
-    return { vars = { 5 } }
-  end,
-  -- Just modified the vanilla unlock condition for the Flushed achievement
   check_for_unlock = function(self, args)
-    if args.type == 'hand' then
-      if args.scoring_hand then
-        local _w = 0
-        for k, v in ipairs(args.scoring_hand) do
-          if v.ability.name == 'Wild Card' then
-            _w = _w + 1
-          end
-        end
-        if _w == #args.scoring_hand then
+    if G.GAME.round >= 1 then
+      for _, v in ipairs(G.playing_cards or {}) do
+        if SMODS.has_enhancement(v, "m_glass") and (v.base.suit == ("paperback_Stars") or v.base.suit == ("paperback_Crowns")) then
           return true
         end
       end

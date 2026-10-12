@@ -7,11 +7,16 @@ SMODS.Joker {
       money = 5
     }
   },
+  attributes = {
+    'economy',
+    'tag',
+    'food'
+  },
   rarity = 1,
   pos = { x = 5, y = 6 },
   atlas = "jokers_atlas",
   cost = 4,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = false,
@@ -22,6 +27,20 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'srockw' },
   },
+
+  locked_loc_vars = function(self, info_queue, card)
+    return {
+      vars = {
+        10
+      }
+    }
+  end,
+
+  check_for_unlock = function(self, args)
+    if G.GAME.paperback.tags_redeemed_this_run >= 10 then
+      return true
+    end
+  end,
 
   loc_vars = function(self, info_queue, card)
     return {

@@ -6,6 +6,12 @@ SMODS.Joker {
       xm = 1
     }
   },
+  attributes = {
+    'red',
+    'xmult',
+    'scaling',
+    'hand_type'
+  },
   rarity = 3,
   pos = { x = 12, y = 7 },
   atlas = "jokers_atlas",
@@ -16,6 +22,20 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'thermo' }
   },
+  unlocked = false,
+
+  locked_loc_vars = function(self, info_queue, card)
+    return { vars = { 9 } }
+  end,
+
+  check_for_unlock = function(self, args)
+    local hands = PB_UTIL.get_most_played_hands()
+    local count = 0
+    for _, v in pairs(hands) do
+      if v.hand.played >= 1 then count = count + 1 end
+    end
+    return count >= 9
+  end,
 
   loc_vars = function(self, info_queue, card)
     return {
@@ -26,7 +46,7 @@ SMODS.Joker {
     }
   end,
 
-  add_to_deck =function (self, card, from_debuff)
+  add_to_deck = function(self, card, from_debuff)
     local total_hands = PB_UTIL.count_entries(G.GAME.hand_usage)
     card.ability.extra.xm = 1 + total_hands * card.ability.extra.change
   end,

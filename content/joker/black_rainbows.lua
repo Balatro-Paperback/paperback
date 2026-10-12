@@ -7,6 +7,14 @@ SMODS.Joker {
       suit2 = 'Clubs'
     }
   },
+  attributes = {
+    'editions',
+    'chance',
+    'suit',
+    'spades',
+    'clubs',
+    'music'
+  },
   pools = {
     Music = true
   },
@@ -14,7 +22,7 @@ SMODS.Joker {
   pos = { x = 7, y = 3 },
   atlas = 'jokers_atlas',
   cost = 8,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = false,
   eternal_compat = true,
@@ -35,6 +43,16 @@ SMODS.Joker {
         localize(card.ability.extra.suit2, 'suits_plural')
       }
     }
+  end,
+
+  check_for_unlock = function(self, args)
+    for _, v in ipairs(G.playing_cards or {}) do
+      if PB_UTIL.is_rank(v, 'King') or PB_UTIL.is_rank(v, 'Jack') then 
+        if v.edition and v.edition.key == "e_polychrome" then
+          return true
+        end
+      end
+    end
   end,
 
   calculate = function(self, card, context)

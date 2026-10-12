@@ -7,6 +7,9 @@ PB_UTIL.Paperclip {
     money = 1,
     every = 2
   },
+  attributes = {
+    'economy'
+  },
 
   loc_vars = function(self, info_queue, card)
     local clips = PB_UTIL.count_paperclips {

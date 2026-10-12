@@ -1,0 +1,19 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 0
+
+# Prevent drag with a controller (Thank you to N' and JoyousSpring)
+[[patches]]
+[patches.pattern]
+target = "engine/controller.lua"
+pattern = '''
+elseif input_type == 'press' and focused and focused.area and focused == self.dragging.target then
+'''
+position = 'before'
+match_indent = true
+payload = '''
+elseif input_type == 'press' and focused and focused.area and focused == self.dragging.target
+and PB_UTIL.prevent_drag(focused) then
+    ret = true
+'''

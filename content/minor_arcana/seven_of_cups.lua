@@ -3,6 +3,10 @@ PB_UTIL.MinorArcana {
   config = {
     max_highlighted = 2
   },
+  attributes = {
+    'modify_card',
+    'enhancements'
+  },
   atlas = 'minor_arcana_atlas',
   pos = { x = 6, y = 0 },
   paperback_credit = {
@@ -22,6 +26,7 @@ PB_UTIL.MinorArcana {
       for _, v in ipairs(G.hand.highlighted) do
         local enhancement = SMODS.poll_enhancement {
           type_key = 'seven_of_cups',
+          options = PB_UTIL.get_ranked_enhancements(),
           guaranteed = true
         }
 

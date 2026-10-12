@@ -7,10 +7,39 @@ SMODS.Joker {
   atlas = "jokers_atlas",
   perishable_compat = false,
   config = { extra = { chips_mod = 15, chips_rem = 5, chips = 0 } },
+  attributes = {
+    'chips',
+    'scaling',
+    'planet'
+  },
 
   paperback_credit = {
     coder = { 'thermo' }
   },
+  unlocked = false,
+
+  locked_loc_vars = function(self, info_queue, card)
+    local other_name = localize('k_unknown')
+    if G.P_CENTERS['v_observatory'].unlocked then
+      other_name = localize { type = 'name_text', set = 'Voucher', key = 'v_observatory' }
+    end
+    return {
+      vars = {
+        other_name
+      }
+    }
+  end,
+
+  check_for_unlock = function(self, args)
+    local count = 0
+    if G.vouchers then
+      for _, v in ipairs(G.vouchers.cards or {}) do
+        if v.config.center.key == 'v_observatory' then
+          return true
+        end
+      end
+    end
+  end,
 
   loc_vars = function(self, info_queue, card)
     return { vars = { card.ability.extra.chips_mod, card.ability.extra.chips_rem, card.ability.extra.chips, localize('k_planet') } }
@@ -22,17 +51,26 @@ SMODS.Joker {
       }
     end
     if context.after and card.ability.extra.chips > 0 and not context.blueprint then
-      card.ability.extra.chips = card.ability.extra.chips - card.ability.extra.chips_rem
-      return {
-        message = localize('paperback_downgrade_ex'),
-        colour = G.C.ORANGE
-      }
+      SMODS.scale_card(card, {
+        ref_table = card.ability.extra,
+        ref_value = 'chips',
+        scalar_value = 'chips_rem',
+        operation = '-',
+        scaling_message = {
+          message = localize('paperback_downgrade_ex'),
+          colour = G.C.ORANGE
+        }
+      })
+      return nil, true
     end
     if context.using_consumeable and not context.blueprint and context.consumeable.ability.set == 'Planet' then
-      card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chips_mod
-      return {
-        message = localize { type = 'variable', key = 'a_chips', vars = { card.ability.extra.chips } }
-      }
+      SMODS.scale_card(card, {
+        ref_table = card.ability.extra,
+        ref_value = 'chips',
+        scalar_value = 'chips_mod',
+        message_key = 'a_chips'
+      })
+      return nil, true
     end
   end,
 

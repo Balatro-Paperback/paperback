@@ -6,6 +6,13 @@ SMODS.Joker {
       x_mult = 1.5,
     }
   },
+  attributes = {
+    'xmult',
+    'scaling',
+    'planet',
+    'consumable',
+    'space'
+  },
   rarity = 2,
   pos = { x = 7, y = 0 },
   atlas = "jokers_atlas",
@@ -109,7 +116,7 @@ SMODS.Joker {
 -- If no Solar System is owned, we also call this function in
 -- mod-global calculate to keep it updated.
 -- That means this function is redundantly called in both places, which is awkward
-function PB_UTIL.update_solar_system(card)
+function PB_UTIL.update_solar_system()
   local old = G.GAME.paperback.solar_system_ct
   local hands = G.GAME.hands
 

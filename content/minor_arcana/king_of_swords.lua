@@ -1,5 +1,8 @@
 PB_UTIL.MinorArcana {
   key = 'king_of_swords',
+  attributes = {
+    'joker'
+  },
   atlas = 'minor_arcana_atlas',
   pos = { x = 6, y = 5 },
   paperback_credit = {
@@ -8,14 +11,14 @@ PB_UTIL.MinorArcana {
 
   -- Thanks mys. minty!
   loc_vars = function(self, info_queue, card)
-  local mod_key = self.key
-  if next(SMODS.find_mod("Bunco")) then
-    mod_key = mod_key .. "_bunc"
+    local mod_key = self.key
+    if next(SMODS.find_mod("Bunco")) then
+      mod_key = mod_key .. "_bunc"
     end
     return {
       key = mod_key
     }
-    end,
+  end,
 
   in_pool = function(self, args)
     return G.GAME.modifiers.enable_perishables_in_shop and G.GAME.modifiers.enable_rentals_in_shop

@@ -6,11 +6,16 @@ SMODS.Joker {
       odds = 2,
     }
   },
+  attributes = {
+    'discard',
+    'face',
+    'chance'
+  },
   rarity = 1,
   pos = { x = 8, y = 5 },
   atlas = 'jokers_atlas',
   cost = 6,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -30,6 +35,20 @@ SMODS.Joker {
         card.ability.extra.discards_given,
       }
     }
+  end,
+
+  locked_loc_vars = function(self, info_queue, card)
+    return {
+      vars = {
+        10
+      }
+    }
+  end,
+
+  check_for_unlock = function(self, args)
+    if G.GAME.paperback.round.scored_face_cards >= 10 then
+      return true
+    end
   end,
 
   calculate = function(self, card, context)

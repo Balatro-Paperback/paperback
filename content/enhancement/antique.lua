@@ -8,6 +8,10 @@ SMODS.Enhancement {
       xchips_mod = 0.1
     }
   },
+  attributes = {
+    'xchips',
+    'scaling'
+  },
 
   loc_vars = function(self, info_queue, card)
     return {

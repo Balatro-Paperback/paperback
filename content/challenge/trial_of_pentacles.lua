@@ -63,6 +63,9 @@ SMODS.Challenge {
       { id = "bl_final_leaf", type = "blind" }
     }
   },
+  unlocked = function (self)
+    return G.P_CENTERS['v_paperback_soothsay'].unlocked
+  end,
   deck = {
     type = "Challenge Deck",
     cards = (function()

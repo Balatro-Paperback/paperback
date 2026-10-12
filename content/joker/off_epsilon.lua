@@ -5,6 +5,9 @@ SMODS.Joker {
       dollars = 13
     }
   },
+  attributes = {
+    'economy'
+  },
   rarity = 4,
   pos = { x = 21, y = 9 },
   soul_pos = { x = 22, y = 8 },
@@ -30,9 +33,11 @@ SMODS.Joker {
   in_pool = function(self, args)
     return false
   end,
+  -- dummy unlock condition for the unlock all button
+  check_for_unlock = function(self, args) return false end,
 
   locked_loc_vars = function(self, info_queue, card)
-    return { vars = { G.localization.descriptions.Joker.j_paperback_off_switch.name } }
+    return { vars = { G.localization.descriptions.Joker.j_paperback_the_batter.name } }
   end,
 
   loc_vars = function(self, info_queue, card)
@@ -43,11 +48,8 @@ SMODS.Joker {
     }
   end,
 
-
   calculate = function(self, card, context)
-    if not context.blueprint
-    and context.paperback and context.paperback.destroyed_joker and not (card == context.paperback.destroyed_joker) and not (context.paperback.destroyed_joker.config.center.paperback and context.paperback.destroyed_joker.config.center.paperback.addon)
-    then
+    if PB_UTIL.is_joker_destroyed(context, card, true) and not context.blueprint then
       return {
         dollars = card.ability.extra.dollars,
       }

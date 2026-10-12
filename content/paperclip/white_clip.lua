@@ -8,6 +8,10 @@ PB_UTIL.Paperclip {
     chip_mod = 2,
     chips = 0
   },
+  attributes = {
+    'chips',
+    'scaling'
+  },
 
   loc_vars = function(self, info_queue, card)
     return {

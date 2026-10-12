@@ -21,16 +21,35 @@ SMODS.Joker {
       scaling = 0.02
     }
   },
+  attributes = {
+    'xchips',
+    'scaling',
+    'joker',
+    'music'
+  },
   pools = {
     Music = true
   },
   blueprint_compat = true,
   eternal_compat = true,
   perishable_compat = false,
+  unlocked = false,
 
   paperback_credit = {
     coder = { 'dowfrin' }
   },
+
+  locked_loc_vars = function(self, info_queue, card)
+    return {
+      vars = {
+        number_format(1000)
+      }
+    }
+  end,
+
+  check_for_unlock = function(self, args)
+    return args.type == 'paperback_hand_scored_1000_chips'
+  end,
 
   loc_vars = function(self, info_queue, card)
     return {
@@ -80,11 +99,12 @@ SMODS.Joker {
       end
 
       if (left_joker and context.other_card == left_joker) or (right_joker and context.other_card == right_joker) then
-        card.ability.extra.xchips = card.ability.extra.xchips + card.ability.extra.scaling
-        return {
-          message = localize('k_upgrade_ex'),
-          message_card = card
-        }
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'xchips',
+          scalar_value = 'scaling'
+        })
+        return nil, true
       end
     end
 

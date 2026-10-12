@@ -7,10 +7,24 @@ SMODS.Joker {
   atlas = "jokers_atlas",
   perishable_compat = false,
   config = { extra = { dollars = 25 } },
+  attributes = {
+    'mod_chance'
+  },
   paperback_credit = {
     artist = { 'thermo' },
     coder = { 'thermo' }
   },
+  unlocked = false,
+
+  locked_loc_vars = function (self, info_queue, card)
+    return { vars = { 30 }}
+  end,
+
+  check_for_unlock = function(self, args)
+    if args.type == 'win_no_hand' then
+      return G.GAME.paperback.highest_amount_of_money_had <= 30
+    end
+  end,
 
   loc_vars = function(self, info_queue, card)
     local n, d = PB_UTIL.chance_vars(nil, nil, 1, 3) -- example

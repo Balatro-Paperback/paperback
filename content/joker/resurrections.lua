@@ -7,6 +7,14 @@ SMODS.Joker {
       chance_mult = 1
     }
   },
+  attributes = {
+    'generation',
+    'joker',
+    'on_sell',
+    'negative',
+    'chance',
+    'music'
+  },
   pools = {
     Music = true
   },
@@ -14,7 +22,7 @@ SMODS.Joker {
   pos = { x = 0, y = 10 },
   atlas = 'jokers_atlas',
   cost = 8,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = false,
   eternal_compat = false,
@@ -35,6 +43,31 @@ SMODS.Joker {
         numerator / card.ability.extra.chance_mult
       }
     }
+  end,
+
+  check_for_unlock = function(self, args)
+    if args.type == 'modify_jokers' and G.jokers then
+      local seen = {}
+
+      for i, v in ipairs(G.jokers.cards) do
+        local key = v.config and v.config.center_key
+        if key then
+          local first_index = seen[key]
+
+          if first_index then
+            local first = G.jokers.cards[first_index]
+            local first_negative = first and first.edition and first.edition.key == 'e_negative'
+            local current_negative = v.edition and v.edition.key == 'e_negative'
+
+            if first_negative or current_negative then
+              return true
+            end
+          else
+            seen[key] = i
+          end
+        end
+      end
+    end
   end,
 
   calculate = function(self, card, context)

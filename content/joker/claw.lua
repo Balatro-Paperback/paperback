@@ -8,6 +8,13 @@ SMODS.Joker {
       starting_mult = 3
     }
   },
+  attributes = {
+    'mult',
+    'rank',
+    'three',
+    'scaling',
+    'reset'
+  },
   rarity = 1,
   pos = { x = 10, y = 1 },
   atlas = "jokers_atlas",
@@ -18,6 +25,15 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'srockw' },
   },
+  unlocked = false,
+
+  locked_loc_vars = function (self, info_queue, card)
+    return { vars = { 5 }}
+  end,
+  
+  check_for_unlock = function (self, args)
+    return G.GAME.paperback.round.ranks_scored and (G.GAME.paperback.round.ranks_scored[3] or 0) >= 5
+  end,
 
   loc_vars = function(self, info_queue, card)
     return {
@@ -36,7 +52,12 @@ SMODS.Joker {
         local mult = card.ability.extra.mult
 
         if not context.blueprint then
-          card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.mult_inc
+          SMODS.scale_card(card, {
+            ref_table = card.ability.extra,
+            ref_value = 'mult',
+            scalar_value = 'mult_inc',
+            no_message = true
+          })
         end
 
         return {
@@ -46,11 +67,12 @@ SMODS.Joker {
     end
 
     if context.end_of_round and not context.blueprint and context.main_eval then
-      card.ability.extra.mult = card.ability.extra.starting_mult
-
-      return {
-        message = localize('k_reset')
-      }
+      SMODS.reset_card(card, {
+        ref_table = card.ability.extra,
+        ref_value = 'mult',
+        reset_value = card.ability.extra.starting_mult
+      })
+      return nil, true
     end
   end,
 

@@ -36,12 +36,12 @@ Partner_API.Partner {
 
     if context.repetition and context.cardarea == G.play then
       for k, v in ipairs(context.full_hand) do
-        if PB_UTIL.is_suit(v, 'dark', false, true) then
+        if v:is_suit_shade('dark') then
           card.ability.extra.active = false
           break
         end
       end
-      if PB_UTIL.is_suit(context.other_card, 'light') and card.ability.extra.active then
+      if context.other_card:is_suit_shade('light') and card.ability.extra.active then
         -- TODO if first light suit is debuffed, show "Debuffed" instead
         card.ability.extra.active = false
         if next(SMODS.find_card("j_paperback_paranoia")) then

@@ -6,6 +6,9 @@ PB_UTIL.Paperclip {
   config = {
     mult_mod = 5
   },
+  attributes = {
+    'mult'
+  },
 
   loc_vars = function(self, info_queue, card)
     local clips = PB_UTIL.count_paperclips {

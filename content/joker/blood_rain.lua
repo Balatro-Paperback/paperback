@@ -1,5 +1,10 @@
 SMODS.Joker {
   key = "blood_rain",
+  attributes = {
+    'mult',
+    'enhancements',
+    'red'
+  },
   rarity = 3,
   pos = { x = 17, y = 6 },
   atlas = "jokers_atlas",

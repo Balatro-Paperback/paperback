@@ -43,12 +43,7 @@ end
 ---@param str string
 ---@return boolean
 function PB_UTIL.is_paperclip(str)
-  for _, v in ipairs(PB_UTIL.Paperclips) do
-    if v == str then
-      return true
-    end
-  end
-  return false
+  return PB_UTIL.config.paperclips_enabled and PB_UTIL.Paperclips_keys[str] == true
 end
 
 ---Checks if a card has a paperclip. If found, the first value returned is the key.
@@ -105,6 +100,19 @@ function PB_UTIL.set_paperclip(card, key)
   if card and PB_UTIL.is_paperclip(key) then
     PB_UTIL.remove_paperclip(card)
     SMODS.Stickers[key]:apply(card, true)
+
+    for _, v in ipairs(G.playing_cards or {}) do
+      local k, _ = PB_UTIL.has_paperclip(v)
+      if k then G.GAME.paperback.unique_clips_this_run[k] = true end
+
+      -- Temporary solution to track paperclip discovery for Clippy
+      -- until paperclips are converted to smods generic card modifier
+      if k and k ~= "paperback_platinum_clip" then
+        local temp_table = PB_UTIL.get_career_stat("temp_paperclip_discovery", {})
+        temp_table[k] = true
+        PB_UTIL.set_career_stat("temp_paperclip_discovery", temp_table)
+      end
+    end
   end
 end
 
@@ -168,7 +176,7 @@ end
 ---@param path string
 function PB_UTIL.register_items(items, path)
   for i = 1, #items do
-    SMODS.load_file(path .. "/" .. items[i] .. ".lua")()
+    assert(SMODS.load_file(path .. "/" .. items[i] .. ".lua"))()
   end
 end
 
@@ -498,31 +506,25 @@ end
 ---@param card table
 ---@param after function?
 function PB_UTIL.destroy_joker(card, after)
-  G.E_MANAGER:add_event(Event({
+  G.E_MANAGER:add_event(Event {
     func = function()
-      play_sound('tarot1')
-      card.T.r = -0.2
-      card:juice_up(0.3, 0.4)
-      card.states.drag.is = true
-      card.children.center.pinch.x = true
-      G.E_MANAGER:add_event(Event({
+      SMODS.destroy_cards(card, { immediate = true, pinch_anim = true })
+
+      G.E_MANAGER:add_event(Event {
         trigger = 'after',
         delay = 0.3,
         blockable = false,
         func = function()
-          G.jokers:remove_card(card)
-          card:remove()
-
           if after and type(after) == "function" then
             after()
           end
-
           return true
         end
-      }))
+      })
+
       return true
     end
-  }))
+  })
 end
 
 ---This function is basically a copy of how the base game does the flipping animation
@@ -785,21 +787,6 @@ function PB_UTIL.compare_ranks(rank1, rank2, allow_equal)
   return comp(r1.sort_nominal, r2.sort_nominal)
 end
 
----Used to check whether a card is a light or dark suit
----@param card table
----@param type 'light' | 'dark'
----@param bypass_debuff boolean?
----@param flush_calc boolean? Usually use this instead of bypass_debuff for Jokers:
---- debuffed wild cards are considered their original suit only
----@return boolean
-function PB_UTIL.is_suit(card, type, bypass_debuff, flush_calc)
-  assert(type == 'light' or type == 'dark')
-  for _, v in ipairs(type == 'light' and PB_UTIL.light_suits or PB_UTIL.dark_suits) do
-    if card:is_suit(v, bypass_debuff, flush_calc) then return true end
-  end
-  return false
-end
-
 --- PB_UTIL.is_non_suit(card, X) checks if `card` specifically can only be a non-X suit.
 --- Usually used to check for a negative effect happening, like
 --- in Derecho: if the hand contains a non-dark -> no upgrade.
@@ -815,16 +802,20 @@ end
 ---
 ---@param card table
 ---@param type 'string' 'light', 'dark', or a suit key
+---@param is_shade boolean?
 ---@param bypass_debuff boolean?
 ---@param flush_calc boolean? Usually use this instead of bypass_debuff for Jokers:
 --- debuffed wild cards are considered their original suit only
 ---@return boolean
-function PB_UTIL.is_non_suit(card, type, bypass_debuff, flush_calc)
-  local suit_arr = (
-    type == 'light' and PB_UTIL.light_suits
-    or type == 'dark' and PB_UTIL.dark_suits
-    or { type }
-  )
+function PB_UTIL.is_non_suit(card, type, is_shade, bypass_debuff, flush_calc)
+  local suit_arr = {}
+  if is_shade then
+    for i, v in pairs(SMODS.Suits) do
+      if type == v.shade then suit_arr[#suit_arr + 1] = i end
+    end
+  else
+    suit_arr[#suit_arr + 1] = type
+  end
   for _, v in ipairs(suit_arr) do
     if card:is_suit(v, bypass_debuff, flush_calc) then return false end
   end
@@ -997,7 +988,12 @@ function PB_UTIL.panorama_logic(self, card, context)
       local xMult = card.ability.extra.xMult
       -- Upgrade the xMult if not blueprint
       if not context.blueprint then
-        card.ability.extra.xMult = card.ability.extra.xMult + card.ability.extra.xMult_gain
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'xMult',
+          scalar_value = 'xMult_gain',
+          no_message = true
+        })
       end
 
       return {
@@ -1290,8 +1286,24 @@ end
 ---@return number
 function PB_UTIL.count_destroyed_things(context)
   if context.remove_playing_cards then return #context.removed end
-  if context.paperback and context.paperback.destroying_non_playing_card then return 1 end
+  if context.joker_type_destroyed then return 1 end
   return 0
+end
+
+--- Returns whether a joker was destroyed in `context`.
+--- If `exclude_card` is specified, it does not take said card into consideration.
+--- If `exclude_addons` is specified, it does not take cards that have the paperback `addon` flag into consideration.
+---@param context CalcContext
+---@param exclude_card Card | nil
+---@param exclude_addons boolean | nil
+---@return boolean
+function PB_UTIL.is_joker_destroyed(context, exclude_card, exclude_addons)
+  if context.joker_type_destroyed and context.card.ability.set == "Joker" then
+    if exclude_card and context.card == exclude_card then return false end
+    if exclude_addons and (context.card.config.center.paperback or {}).addon then return false end
+    return true
+  end
+  return false
 end
 
 -- Returns true if a jimbocards is at 0 hands left
@@ -1350,22 +1362,28 @@ end
 --- @param card (Card)
 --- @param context (CalcContext)
 function PB_UTIL.suit_drink_calculate(self, card, context)
-  if context.individual and context.cardarea == G.play then
-    if context.other_card:is_suit(card.ability.extra.suit) then
-      if card.ability.extra.remaining > 0 then
-        context.other_card.ability[card.ability.extra.upgrade] =
-            (context.other_card.ability[card.ability.extra.upgrade] or 1) + card.ability.extra.amount
+  if context.before then
+    local effects = {}
+    for i, v in ipairs(context.scoring_hand) do
+      if v:is_suit(card.ability.extra.suit) then
+        if card.ability.extra.remaining > 0 then
+          v.ability[card.ability.extra.upgrade] =
+              (v.ability[card.ability.extra.upgrade] or 1) + card.ability.extra.amount
 
-        if not context.blueprint then
-          card.ability.extra.remaining = card.ability.extra.remaining - 1
+          if not context.blueprint then
+            card.ability.extra.remaining = card.ability.extra.remaining - 1
+          end
+
+          effects[#effects + 1] = {
+            message = localize('k_upgrade_ex'),
+            message_card = v,
+            colour = G.C.SUITS[card.ability.extra.suit],
+          }
         end
-
-        return {
-          message = localize('k_upgrade_ex'),
-          colour = G.C.SUITS[card.ability.extra.suit],
-        }
       end
     end
+
+    if #effects > 0 then return SMODS.merge_effects(effects) end
   end
 
   if context.after and not context.blueprint and card.ability.extra.remaining == 0 then
@@ -1400,4 +1418,126 @@ function PB_UTIL.count_entries(table)
   local count = 0
   for _ in pairs(table) do count = count + 1 end
   return count
+end
+
+--- Get a list of all non-rankless enhancement keys (based on logic from spectrals)
+function PB_UTIL.get_ranked_enhancements()
+  local cen_pool = {}
+  for i, key in ipairs(get_current_pool('Enhanced')) do
+    if key ~= "UNAVAILABLE" and key ~= 'm_stone' and not G.P_CENTERS[key].overrides_base_rank then
+      cen_pool[#cen_pool + 1] = key
+    end
+  end
+  return cen_pool
+end
+
+--- Calls set cost on every shop card to refresh pricing
+function PB_UTIL.refresh_shop_cost()
+  G.E_MANAGER:add_event(Event({
+    func = function()
+      for k, v in pairs(G.I.CARD) do
+        if v.set_cost then v:set_cost() end
+      end
+      return true
+    end
+  }))
+end
+
+--- Choose a new item from a list
+--- @param current_item (string|nil)
+--- @param list (table)
+--- @param seed (string)
+--- @return (string)
+function PB_UTIL.choose_new_item(current_item, list, seed)
+  local new_list = {}
+  for _, item in ipairs(list) do
+    if item ~= current_item then
+      table.insert(new_list, item)
+    end
+  end
+  return pseudorandom_element(new_list, seed)
+end
+
+--- Whether any of the listed hands has been played at least once
+--- @param hands string|string[]
+--- @return boolean
+function PB_UTIL.any_hand_played(hands)
+  if type(hands) == "string" then hands = { hands } end
+
+  for k, v in pairs(G.GAME.hands) do
+    for _, hand in ipairs(hands) do
+      if string.find(k, hand, nil, true) and v.played > 0 then
+        return true
+      end
+    end
+  end
+
+  return false
+end
+
+--- Whether there is at least one ego gift in the consumable area
+--- @return boolean
+function PB_UTIL.has_ego_gift()
+  for _, v in ipairs((G.consumeables or {}).cards or {}) do
+    if PB_UTIL.is_ego_gift(v) then
+      return true
+    end
+  end
+  return false
+end
+
+--- Sets and increments a career stat by either the amount specified, or by 1. Checks for unlock by default
+--- @param key string
+--- @param amount integer?
+--- @param skip_unlock boolean?
+function PB_UTIL.increment_career_stat(key, amount, skip_unlock)
+  amount = amount or 1
+  local profile = G.PROFILES[G.SETTINGS.profile]
+  local career_stats = profile and profile.career_stats
+  local current = career_stats and career_stats["paperback_" .. key] or 0
+  career_stats["paperback_" .. key] = current + amount
+  if not skip_unlock then
+    check_for_unlock({ type = "paperback_" .. key, total = career_stats["paperback_" .. key] })
+  end
+end
+
+--- Sets a career stat to a specific value, for use with non number career stats. Checks for unlock by default
+--- @param key string
+--- @param value any
+--- @param skip_unlock boolean?
+function PB_UTIL.set_career_stat(key, value, skip_unlock)
+  local profile = G.PROFILES[G.SETTINGS.profile]
+  local career_stats = profile and profile.career_stats
+  career_stats["paperback_" .. key] = value
+  if not skip_unlock then
+    check_for_unlock({ type = "paperback_" .. key, value = career_stats["paperback_" .. key] })
+  end
+end
+
+--- Safe get for a career stat
+--- @param key string
+--- @param default any
+--- @return any
+function PB_UTIL.get_career_stat(key, default)
+  local profile = G.PROFILES[G.SETTINGS.profile]
+  local career_stats = profile and profile.career_stats
+  return career_stats and career_stats["paperback_" .. key] or default
+end
+
+--- Register a condition for preventing dragging a card
+--- @param key string
+--- @param hook any
+function PB_UTIL.add_drag_condition(key, hook)
+  PB_UTIL.drag_conditions[key] = hook
+end
+
+PB_UTIL.drag_conditions = {}
+
+--- Whether dragging a card should be prevented, checking all conditions in PB_UTIL.drag_conditions
+--- @param card any
+function PB_UTIL.prevent_drag(card)
+  for _, hook in pairs(PB_UTIL.drag_conditions) do
+    if hook(card) == true then return true end
+  end
+  return false
 end

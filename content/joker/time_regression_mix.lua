@@ -7,6 +7,11 @@ SMODS.Joker {
       suits = 4
     }
   },
+  attributes = {
+    'mult',
+    'scaling',
+    'suit'
+  },
   rarity = 1,
   pos = { x = 19, y = 10 },
   atlas = "jokers_atlas",
@@ -21,6 +26,16 @@ SMODS.Joker {
     coder = { 'dowfrin' }
   },
 
+  locked_loc_vars = function(self, info_queue, card)
+    return { vars = { 4 } }
+  end,
+
+  check_for_unlock = function(self, args)
+    if args.type == 'hand' then
+      return PB_UTIL.get_unique_suits(args.scoring_hand, nil, true) >= 4
+    end
+  end,
+
   loc_vars = function(self, info_queue, card)
     return {
       vars = {
@@ -34,15 +49,13 @@ SMODS.Joker {
   calculate = function(self, card, context)
     if context.before and not context.blueprint then
       if PB_UTIL.get_unique_suits(context.scoring_hand, false, true) >= card.ability.extra.suits then
-        card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.a_mult
-        return {
-          message = localize {
-            type = 'variable',
-            key = 'a_mult',
-            vars = { card.ability.extra.a_mult }
-          },
-          colour = G.C.FILTER
-        }
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'mult',
+          scalar_value = 'a_mult',
+          message_key = 'a_mult'
+        })
+        return nil, true
       end
     end
 

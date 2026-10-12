@@ -3,6 +3,11 @@ SMODS.Voucher {
   config = {
     a_slot = 1,
   },
+  attributes = {
+    'consumable_slot',
+    'ego_gift',
+    'consumable'
+  },
   atlas = 'vouchers_atlas',
   pos = { x = 2, y = 0 },
   unlocked = true,
@@ -52,6 +57,7 @@ function Card.add_to_deck(self, ...)
     SMODS.Centers['v_paperback_second_trumpet']:update_second_trumpet()
   end
 end
+
 local remove_from_deck_ref = Card.remove_from_deck
 function Card.remove_from_deck(self, ...)
   remove_from_deck_ref(self, ...)

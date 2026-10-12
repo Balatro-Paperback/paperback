@@ -1,11 +1,15 @@
 SMODS.Joker {
   key = 'a_balatro_movie',
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   config = {
     extra = {
       dollars = 2
     }
+  },
+  attributes = {
+    'economy',
+    'hand_type'
   },
   atlas = "jokers_atlas",
   rarity = 1,
@@ -17,6 +21,20 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'thermo' }
   },
+
+  locked_loc_vars = function (self, info_queue, card)
+    return {
+      vars = {
+        10
+      }
+    }
+  end,
+
+  check_for_unlock = function(self, args)
+    if args.type == 'win' then
+      return (PB_UTIL.get_most_played_hands()[1].hand.played - 10) >= PB_UTIL.get_most_played_hands()[2].hand.played
+    end
+  end,
 
   loc_vars = function(self, info_queue, card)
     local last_hand_played = card.ability.extra.last_hand_played

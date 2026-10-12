@@ -1,5 +1,9 @@
 SMODS.Joker {
   key = "forgery",
+  attributes = {
+    'copying',
+    'secret'
+  },
   rarity = 3,
   config = {
     extra = {

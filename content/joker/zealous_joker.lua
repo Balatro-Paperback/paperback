@@ -5,6 +5,10 @@ if PB_UTIL.should_load_spectrum_items() then
       t_mult = 10,
       type = 'paperback_Spectrum'
     },
+    attributes = {
+      'mult',
+      'hand_type'
+    },
     rarity = 1,
     pos = { x = 19, y = 0 },
     atlas = "jokers_atlas",
@@ -16,10 +20,14 @@ if PB_UTIL.should_load_spectrum_items() then
       requires_custom_suits = true,
       requires_spectrum_or_suit = true
     },
-
+    unlocked = false,
     paperback_credit = {
       coder = { 'srockw' }
     },
+
+    check_for_unlock = function(self, args)
+      return PB_UTIL.spectrum_played()
+    end,
 
     loc_vars = function(self, info_queue, card)
       return {

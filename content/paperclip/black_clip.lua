@@ -1,5 +1,8 @@
 PB_UTIL.Paperclip {
   key = 'black_clip',
+  attributes = {
+    'retrigger'
+  },
   atlas = 'paperclips_atlas',
   pos = { x = 1, y = 0 },
   badge_colour = G.C.PAPERBACK_BLACK,

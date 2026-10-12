@@ -1,11 +1,17 @@
 SMODS.Joker {
   key = "oujia_board",
   config = { extra = { allow_soul = false } },
+  attributes = {
+    'generation',
+    'spectral',
+    'consumable',
+    'shop'
+  },
   rarity = 3,
   pos = { x = 24, y = 10 },
   atlas = "jokers_atlas",
   cost = 8,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = false,
   eternal_compat = true,
@@ -15,6 +21,18 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'vitellary' }
   },
+
+  locked_loc_vars = function (self, info_queue, card)
+    return {
+      vars = {
+        localize { type = 'name_text', set = 'Spectral', key = 'c_ouija' }
+      }
+    }
+  end,
+
+  check_for_unlock = function(self, args)
+    return G.GAME and G.GAME.consumeable_usage.c_ouija
+  end,
 
   add_to_deck = function(self, card, from_debuff)
     G.GAME.spectral_rate = G.GAME.spectral_rate + 2 -- same rate as ghost deck

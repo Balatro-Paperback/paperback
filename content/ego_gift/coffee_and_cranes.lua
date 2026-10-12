@@ -4,14 +4,19 @@ PB_UTIL.EGO_Gift {
     sin = 'lust',
     dollars = 3,
   },
+  attributes = {
+    'economy',
+  },
 
   atlas = 'ego_gift_atlas',
   pos = { x = 1, y = 0 },
-  soul_pos = { x = 1, y = 3 },
+  soul_pos = { x = 1, y = 4 },
   ego_loc_vars = function(self, info_queue, card)
-    return { vars = {
-      card.ability.dollars
-    } }
+    return {
+      vars = {
+        card.ability.dollars
+      }
+    }
   end,
 
   calc_dollar_bonus = function(self, card)

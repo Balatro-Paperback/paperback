@@ -8,6 +8,11 @@ SMODS.Joker {
       modifier = 1
     }
   },
+  attributes = {
+    'hand_size',
+    'enhancements',
+    'full_deck'
+  },
   paperback_credit = {
     coder = { 'thermo' }
   },
@@ -18,6 +23,22 @@ SMODS.Joker {
   blueprint_compat = false,
   eternal_compat = true,
   perishable_compat = true,
+  enhancement_gate = "m_steel",
+  unlocked = false,
+
+  check_for_unlock = function(self, args)
+    local count = 0
+    for _, v in ipairs(G.playing_cards or {}) do
+      if SMODS.has_enhancement(v, 'm_steel') then
+        count = count + 1
+      end
+    end
+    return count >= 10
+  end,
+
+  locked_loc_vars = function(self, info_queue, card)
+    return { vars = { 10, localize { type = 'name_text', key = 'm_steel', set = 'Enhanced' } } }
+  end,
 
   update_hands = function(self, card)
     if G.playing_cards then
@@ -25,7 +46,8 @@ SMODS.Joker {
       for _, playing_card in ipairs(G.playing_cards) do
         if SMODS.has_enhancement(playing_card, 'm_steel') then steel_tally = steel_tally + 1 end
       end
-      local new_handsize = math.min(math.floor(steel_tally / card.ability.extra.divisor) * card.ability.extra.modifier, card.ability.extra.max)
+      local new_handsize = math.min(math.floor(steel_tally / card.ability.extra.divisor) * card.ability.extra.modifier,
+        card.ability.extra.max)
       if new_handsize > card.ability.extra.max then return end
       local change = new_handsize - card.ability.extra.hand_size
       if change ~= 0 then
@@ -67,13 +89,4 @@ SMODS.Joker {
       self:update_hands(card)
     end
   end,
-
-  in_pool = function(self, args) --equivalent to `enhancement_gate = 'm_steel'`
-    for _, playing_card in ipairs(G.playing_cards or {}) do
-      if SMODS.has_enhancement(playing_card, 'm_steel') then
-        return true
-      end
-    end
-    return false
-  end
 }

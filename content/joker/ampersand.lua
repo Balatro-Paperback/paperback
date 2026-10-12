@@ -6,16 +6,26 @@ SMODS.Joker {
       is_white = true,
     }
   },
+  attributes = {
+    'retrigger',
+    'dark',
+    'light',
+    'music',
+    'position'
+  },
   rarity = 1,
   pos = { x = 23, y = 6 },
   atlas = "jokers_atlas",
   cost = 3,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
   perishable_compat = true,
 
+  pools = {
+    Music = true
+  },
   paperback_credit = {
     coder = { 'dowfrin' }
   },
@@ -30,6 +40,13 @@ SMODS.Joker {
     }
   end,
 
+  locked_loc_vars = function(self, info_queue, card)
+    return { vars = { localize('Two Pair', 'poker_hands'), 2 } }
+  end,
+  check_for_unlock = function(self, args)
+    return args.type == 'paperback_two_pair_light_dark'
+  end,
+
   calculate = function(self, card, context)
     if context.cardarea == G.play and context.repetition then
       local cards = {
@@ -40,8 +57,8 @@ SMODS.Joker {
       local counter = 0
 
       for _, v in ipairs(context.scoring_hand) do
-        local is_dark = PB_UTIL.is_suit(v, 'dark', false, true)
-        local is_light = PB_UTIL.is_suit(v, 'light', false, true)
+        local is_dark = v:is_suit_shade('dark')
+        local is_light = v:is_suit_shade('light')
         if is_dark and is_light then
           cards.wild[#cards.wild + 1] = v
           counter = counter + 1

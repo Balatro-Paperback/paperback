@@ -5,6 +5,11 @@ SMODS.Joker {
       hands_played_this_ante = {},
     }
   },
+  attributes = {
+    'balance',
+    'hand_type',
+    'music'
+  },
   pools = {
     Music = true
   },

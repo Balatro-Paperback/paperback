@@ -5,11 +5,17 @@ SMODS.Joker {
       delta = -1,
     }
   },
+  attributes = {
+    'red',
+    'prevents_death',
+    'ante',
+    'hand_size'
+  },
   rarity = 3,
   pos = { x = 16, y = 9 },
   atlas = 'jokers_atlas',
   cost = 7,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = false,
   eternal_compat = false,
@@ -26,6 +32,12 @@ SMODS.Joker {
         card.ability.extra.delta,
       }
     }
+  end,
+
+  check_for_unlock = function(self, args)
+    if args.type == 'paperback_determination_oneshot' then
+      return true
+    end
   end,
 
   calculate = function(self, card, context)

@@ -6,6 +6,12 @@ SMODS.Joker {
       mult = 0,
     }
   },
+  attributes = {
+    'mult',
+    'scaling',
+    'hand_type',
+    'music'
+  },
   pools = {
     Music = true
   },
@@ -49,12 +55,13 @@ SMODS.Joker {
         return
       end
 
-      card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.a_mult
-      return {
-        message = localize('k_upgrade_ex'),
-        card = card,
-        colour = G.C.MULT,
-      }
+      SMODS.scale_card(card, {
+        ref_table = card.ability.extra,
+        ref_value = 'mult',
+        scalar_value = 'a_mult',
+        message_colour = G.C.MULT
+      })
+      return nil, true
     end
 
     if context.joker_main then

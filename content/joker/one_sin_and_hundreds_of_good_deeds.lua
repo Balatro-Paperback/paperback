@@ -11,6 +11,13 @@ SMODS.Joker {
       scaling = 1,
     }
   },
+  attributes = {
+    'mult',
+    'rank',
+    'three',
+    'rankless',
+    'red'
+  },
   unlocked = true,
   discovered = false,
   blueprint_compat = true,

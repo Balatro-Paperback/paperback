@@ -7,6 +7,11 @@ SMODS.Enhancement {
       mult_mod = 1,
     }
   },
+  attributes = {
+    'mult',
+    'modify_card',
+    'perma_bonus'
+  },
 
   loc_vars = function(self, info_queue, card)
     return {

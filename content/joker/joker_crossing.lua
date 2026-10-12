@@ -4,16 +4,42 @@ SMODS.Joker {
   pos = { x = 12, y = 8 },
   atlas = "jokers_atlas",
   cost = 8,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
   perishable_compat = true,
   config = { extra = { odds = 3 } },
+  attributes = {
+    'retrigger',
+    'enhancements',
+    'chance',
+    'red'
+  },
 
   paperback_credit = {
     coder = { 'dowfrin' },
   },
+  
+  check_for_unlock = function(self, args)
+    if args.type == 'hand_contents' then
+      local tally = 0
+      for i = 1, #args.cards do
+        if SMODS.has_enhancement(args.cards[i], "m_lucky") then
+            tally = tally + 1
+        end
+      end
+      return tally >= 5
+    end
+  end,
+
+  locked_loc_vars = function (self, info_queue, card)
+    return {
+      vars = {
+        5
+      }
+    }
+  end,
 
   loc_vars = function(self, info_queue, card)
     local numerator, denominator = PB_UTIL.chance_vars(card)

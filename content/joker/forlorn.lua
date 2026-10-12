@@ -5,11 +5,16 @@ SMODS.Joker {
       suit = 'Spades',
     }
   },
+  attributes = {
+    'destroy_card',
+    'suit',
+    'spades'
+  },
   rarity = 1,
   pos = { x = 16, y = 10 },
   atlas = "jokers_atlas",
   cost = 6,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -17,6 +22,14 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'dowfrin' },
   },
+
+  locked_loc_vars = function (self, info_queue, card)
+    return { vars = { 1 }}
+  end,
+
+  check_for_unlock = function (self, args)
+    return args.type == "paperback_lose_on_ante_1"
+  end,
 
   loc_vars = function(self, info_queue, card)
     return {

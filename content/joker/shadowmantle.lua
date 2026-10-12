@@ -3,8 +3,16 @@ SMODS.Joker {
   config = {
     extra = {
       odds = 15,
-      suit = 'paperback_Stars'
+      suit = 'paperback_Stars',
+      active = true
     }
+  },
+  attributes = {
+    'generation',
+    'tag',
+    'negative',
+    'suit',
+    'stars'
   },
   rarity = 3,
   pos = { x = 18, y = 6 },
@@ -16,10 +24,24 @@ SMODS.Joker {
   paperback = {
     requires_stars = true
   },
-
+  unlocked = false,
   paperback_credit = {
     coder = { 'dowfrin' }
   },
+
+  locked_loc_vars = function(self, info_queue, card)
+    return { vars = { 5 } }
+  end,
+  check_for_unlock = function(self, args)
+    if args.type == 'modify_jokers' and G.jokers then
+      local count = 0
+
+      for i, v in ipairs(G.jokers.cards) do
+        if v.edition and v.edition.key == 'e_negative' then count = count + 1 end
+      end
+      return count >= 5
+    end
+  end,
 
   in_pool = function(self, args)
     -- Only in pool if you have a Star or Wild in deck
@@ -43,15 +65,19 @@ SMODS.Joker {
   end,
 
   calculate = function(self, card, context)
-    if context.individual and context.cardarea == G.play and context.other_card:is_suit(card.ability.extra.suit) then
+    if card.ability.extra.active and context.individual and context.cardarea == G.play and context.other_card:is_suit(card.ability.extra.suit) then
       if PB_UTIL.chance(card, 'shadowmantle') then
         PB_UTIL.add_tag("tag_negative", true)
+	card.ability.extra.active = false
         return {
           message = localize('paperback_plus_tag'),
           colour = G.C.BLACK,
           message_card = context.blueprint_card or card
         }
       end
+    end
+    if not card.ability.extra.active and context.end_of_round and context.main_eval then
+      card.ability.extra.active = true
     end
   end
 }

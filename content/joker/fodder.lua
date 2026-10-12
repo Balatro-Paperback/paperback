@@ -1,5 +1,10 @@
 SMODS.Joker {
   key = "fodder",
+  attributes = {
+    'on_sell',
+    'ego_gift',
+    'consumable'
+  },
   rarity = 1,
   pos = { x = 12, y = 5 },
   atlas = "jokers_atlas",
@@ -21,9 +26,7 @@ SMODS.Joker {
   end,
 
   in_pool = function(self, args)
-    for _, v in ipairs(G.consumeables or {}) do
-      if PB_UTIL.is_ego_gift(v) then return true end
-    end
+    return PB_UTIL.has_ego_gift()
   end,
 
   loc_vars = function(self, info_queue, card)

@@ -69,6 +69,10 @@ SMODS.Challenge {
       return temp
     end)()
   },
+  unlocked = function (self)
+    return G.P_CENTERS['v_paperback_soothsay'].unlocked
+  end,
+
   calculate = function(self, context)
     if context.end_of_round and context.main_eval and context.beat_boss then
       G.jokers:change_size(1)

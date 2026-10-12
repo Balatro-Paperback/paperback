@@ -5,11 +5,15 @@ SMODS.Joker {
       xMult = 1.5
     }
   },
+  attributes = {
+    'xmult',
+    'stick'
+  },
   rarity = 1,
   pos = { x = 0, y = 9 },
   atlas = 'jokers_atlas',
   cost = 7,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -21,6 +25,20 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'srockw' }
   },
+  -- dummy unlock condition for the unlock all button
+  check_for_unlock = function(self, args) return false end,
+
+  locked_loc_vars = function(self, info_queue, card)
+    local other_name = localize('k_unknown')
+    if G.P_CENTERS['j_paperback_tanghulu'].unlocked then
+      other_name = localize { type = 'name_text', set = 'Joker', key = 'j_paperback_tanghulu' }
+    end
+    return {
+      vars = {
+        other_name
+      }
+    }
+  end,
 
   loc_vars = function(self, info_queue, card)
     local xMult = PB_UTIL.calculate_stick_xMult(card)

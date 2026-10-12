@@ -3,6 +3,10 @@ SMODS.Blind {
   boss = {
     min = 3
   },
+  attributes = {
+    'debuff',
+    'rank'
+  },
   mult = 2,
   boss_colour = HEX('B7C977'),
   atlas = 'music_blinds_atlas',

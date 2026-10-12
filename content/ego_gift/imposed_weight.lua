@@ -4,9 +4,13 @@ PB_UTIL.EGO_Gift {
     sin = 'wrath',
     a_rep = 1,
   },
+  attributes = {
+    'retrigger',
+    'joker_slot'
+  },
   atlas = 'ego_gift_atlas',
   pos = { x = 0, y = 0 },
-  soul_pos = { x = 0, y = 3 },
+  soul_pos = { x = 0, y = 4 },
 
   ego_gift_calc = function(self, card, context)
     if context.repetition and context.scoring_hand then

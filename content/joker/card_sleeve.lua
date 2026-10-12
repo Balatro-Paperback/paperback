@@ -1,5 +1,9 @@
 SMODS.Joker {
   key = "card_sleeve",
+  attributes = {
+    'joker',
+    'on_sell'
+  },
   rarity = 1,
   pos = { x = 18, y = 8 },
   atlas = "jokers_atlas",
@@ -7,9 +11,21 @@ SMODS.Joker {
   blueprint_compat = false,
   eternal_compat = false,
   perishable_compat = true,
+  unlocked = false,
   paperback_credit = {
     coder = { 'infinityplus' }
   },
+
+  check_for_unlock = function(self, args)
+    if G.jokers then
+      for _, v in ipairs(G.jokers.cards) do
+        -- check for the sticker instead of SMODS.is_eternal, due to Cross setting everything as eternal
+        if v.ability.eternal then
+          return true
+        end
+      end
+    end
+  end,
 
   loc_vars = function(self, info_queue, card)
     info_queue[#info_queue + 1] = { key = 'eternal', set = 'Other' }

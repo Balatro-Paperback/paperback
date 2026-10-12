@@ -14,6 +14,10 @@ SMODS.Edition {
   config = {
     amount = 1
   },
+  attributes = {
+    'hands',
+    'discard'
+  },
   sound = {
     sound = 'paperback_dichrome',
     per = 1,

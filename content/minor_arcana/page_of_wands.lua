@@ -4,6 +4,10 @@ PB_UTIL.MinorArcana {
     paperclip = 'paperback_orange_clip',
     max_highlighted = 3
   },
+  attributes = {
+    'modify_card',
+    'paperclip'
+  },
   atlas = 'minor_arcana_atlas',
   pos = { x = 3, y = 3 },
   paperback_credit = {

@@ -6,6 +6,11 @@ SMODS.Tag {
   config = {
     money = 25
   },
+  attributes = {
+    'economy',
+    'boss_blind',
+    'large_blind'
+  },
 
   in_pool = function(self, args)
     return false

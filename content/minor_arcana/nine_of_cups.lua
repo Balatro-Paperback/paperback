@@ -5,6 +5,12 @@ PB_UTIL.MinorArcana {
       max_jokers = 1
     }
   },
+  attributes = {
+    'destroy_card',
+    'generation',
+    'joker',
+    'rarity'
+  },
   atlas = 'minor_arcana_atlas',
   pos = { x = 1, y = 1 },
   paperback_credit = {
@@ -30,7 +36,13 @@ PB_UTIL.MinorArcana {
     local joker = G.jokers.highlighted[1]
     local rarity = joker.config.center.rarity
 
-    if type(rarity) == "number" then
+    if rarity == 3 then
+      check_for_unlock({ type = 'paperback_rare_nine_of_cups' })
+    end
+
+    if joker.config.center.paperback_nine_of_cups_rarity_override then
+      rarity = joker.config.center.paperback_nine_of_cups_rarity_override
+    elseif type(rarity) == "number" then
       if rarity < 3 then
         rarity = rarity + 1
       end
@@ -48,7 +60,8 @@ PB_UTIL.MinorArcana {
           SMODS.add_card {
             set = 'Joker',
             rarity = rarity,
-            edition = joker.edition
+            edition = joker.edition,
+            key_append = 'nine_of_cups_joker'
           }
         end)
 

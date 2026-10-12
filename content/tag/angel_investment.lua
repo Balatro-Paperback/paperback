@@ -5,9 +5,13 @@ SMODS.Tag {
     every = 5,
     max = 100,
   },
+  attributes = {
+    'economy'
+  },
   atlas = 'tags_atlas',
   pos = { x = 0, y = 0 },
   discovered = false,
+
   in_pool = function(self, args)
     return false
   end,

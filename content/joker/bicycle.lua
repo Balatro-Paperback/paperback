@@ -5,11 +5,16 @@ SMODS.Joker {
       x_mult = 1.5
     }
   },
+  attributes = {
+    'red',
+    'mult',
+    'enhancements'
+  },
   rarity = 2,
   pos = { x = 2, y = 2 },
   atlas = "jokers_atlas",
   cost = 6,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -19,6 +24,16 @@ SMODS.Joker {
   },
 
   enhancement_gate = "m_wild",
+
+  check_for_unlock = function(self, args)
+    if args.type == 'hand_contents' then
+      for j = 1, #args.cards do
+        if SMODS.has_enhancement(args.cards[j], 'm_wild') and PB_UTIL.is_rank(args.cards[j], 'Queen') then
+          return true
+        end
+      end
+    end
+  end,
 
   loc_vars = function(self, info_queue, card)
     info_queue[#info_queue + 1] = G.P_CENTERS.m_wild

@@ -15,17 +15,40 @@ SMODS.Joker {
       suit = 'paperback_Stars'
     }
   },
+  attributes = {
+    'chips',
+    'suit',
+    'stars'
+  },
   blueprint_compat = true,
   eternal_compat = true,
   perishable_compat = true,
   paperback = {
     requires_stars = true
   },
-
-
+  unlocked = false,
+  
   paperback_credit = {
     coder = { 'infinityplus' },
   },
+
+  check_for_unlock = function(self, args)
+    for _, v in ipairs(G.playing_cards or {}) do
+      if v.base.suit == ('paperback_Stars') and SMODS.has_enhancement(v, 'm_bonus') then
+        return true
+      end
+    end
+    return false
+  end,
+
+  locked_loc_vars = function(self, info_queue, card)
+    return {
+      vars = {
+        localize(card.ability.extra.suit, 'suits_singular'),
+        localize { type = 'name_text', key = 'm_bonus', set = 'Enhanced' },
+      }
+    }
+  end,
 
   loc_vars = function(self, info_queue, card)
     return {

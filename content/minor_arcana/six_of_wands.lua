@@ -4,6 +4,10 @@ PB_UTIL.MinorArcana {
     max_highlighted = 2,
     mod_conv = 'm_paperback_wrapped'
   },
+  attributes = {
+    'modify_card',
+    'enhancements'
+  },
   atlas = 'minor_arcana_atlas',
   pos = { x = 5, y = 2 },
   paperback_credit = {

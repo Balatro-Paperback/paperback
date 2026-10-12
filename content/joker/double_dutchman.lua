@@ -6,6 +6,13 @@ SMODS.Joker {
       hands_left = 5
     }
   },
+  attributes = {
+    'modify_card',
+    'enhancements',
+    'seals',
+    'chance',
+    'food'
+  },
   rarity = 3,
   pos = { x = 11, y = 3 },
   atlas = "jokers_atlas",
@@ -20,6 +27,7 @@ SMODS.Joker {
     coder = { 'srockw' },
     artist = { 'scruby' }
   },
+  unlocked = false,
 
   loc_vars = function(self, info_queue, card)
     local numerator, denominator = PB_UTIL.chance_vars(card)
@@ -35,12 +43,24 @@ SMODS.Joker {
     }
   end,
 
+  check_for_unlock = function(self, args)
+    for _, playing_card in ipairs(G.playing_cards or {}) do
+      if playing_card:get_seal() and 
+      playing_card.edition and
+      PB_UTIL.has_paperclip(playing_card) and
+      next(SMODS.get_enhancements(playing_card)) then
+        return true
+      end
+    end
+  end,
+
   calculate = function(self, card, context)
     if context.after and not context.blueprint then
       for _, v in ipairs(G.hand.cards) do
         if PB_UTIL.chance(card, 'dd_enhancement_roll') and v.ability.set ~= 'Enhanced' then
           local enhancement = SMODS.poll_enhancement {
             key = 'dd_enhancement',
+            options = PB_UTIL.get_ranked_enhancements(),
             guaranteed = true
           }
 

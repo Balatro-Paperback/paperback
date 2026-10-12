@@ -3,6 +3,9 @@ SMODS.Blind {
   boss = {
     min = 2
   },
+  attributes = {
+    'mod_chance'
+  },
   boss_colour = HEX('D1AB88'),
   atlas = 'music_blinds_atlas',
   pos = { y = 6 },

@@ -3,6 +3,10 @@ PB_UTIL.MinorArcana {
   config = {
     max_highlighted = 3,
   },
+  attributes = {
+    'modify_card',
+    'suit'
+  },
   atlas = 'minor_arcana_atlas',
   pos = { x = 1, y = 4 },
   paperback_credit = {

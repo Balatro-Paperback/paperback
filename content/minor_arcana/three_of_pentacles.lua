@@ -6,6 +6,10 @@ PB_UTIL.MinorArcana {
     min_highlighted = 3,
     max_highlighted = 3,
   },
+  attributes = {
+    'modify_card',
+    'enhancements'
+  },
   paperback_credit = {
     artist = { 'ari' },
     coder = { 'metanite' }

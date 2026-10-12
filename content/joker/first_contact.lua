@@ -6,6 +6,14 @@ SMODS.Joker {
     }
   },
 
+  attributes = {
+    'generation',
+    'spectral',
+    'consumable',
+    'suit',
+    'dark'
+  },
+
   paperback_credit = {
     coder = { 'thermo' }
   },
@@ -17,6 +25,20 @@ SMODS.Joker {
   blueprint_compat = true,
   eternal_compat = true,
   perishable_compat = true,
+  unlocked = false,
+
+  check_for_unlock = function(self, args)
+    return PB_UTIL.count_used_consumables('Spectral', true) >= 5
+  end,
+
+  locked_loc_vars = function(self, info_queue, card)
+    return {
+      vars = {
+        5,
+        localize('k_spectral')
+      }
+    }
+  end,
 
   loc_vars = function(self, info_queue, card)
     info_queue[#info_queue + 1] = PB_UTIL.suit_tooltip('dark')
@@ -30,7 +52,7 @@ SMODS.Joker {
   end,
 
   calculate = function(self, card, context)
-    if context.individual and context.cardarea == G.play and PB_UTIL.is_suit(context.other_card, 'dark') then
+    if context.individual and context.cardarea == G.play and context.other_card:is_suit_shade('dark') then
       if G.GAME.paperback.first_contact_count % card.ability.extra.required <= 0 then
         if PB_UTIL.try_spawn_card { set = 'Spectral' } then
           return {

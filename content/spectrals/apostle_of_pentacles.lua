@@ -4,6 +4,10 @@ SMODS.Consumable {
     max_highlighted = 1,
     paperclip = 'paperback_platinum_clip'
   },
+  attributes = {
+    'modify_card',
+    'paperclip'
+  },
   set = 'Spectral',
   atlas = 'spectral_atlas',
   pos = { x = 3, y = 0 },

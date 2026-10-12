@@ -3,6 +3,9 @@ SMODS.Blind {
   boss = {
     showdown = true, min = 1
   },
+  attributes = {
+    'position'
+  },
   dollars = 8,
   mult = 2,
   boss_colour = HEX("ABA89D"),

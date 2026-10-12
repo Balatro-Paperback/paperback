@@ -13,6 +13,10 @@ SMODS.Challenge {
       eternal = true,
     }
   },
+  unlocked = function (self)
+    return G.P_CENTERS['j_paperback_you_are_a_fool'].unlocked and G.P_CENTERS['j_paperback_alert'].unlocked
+    and G.P_CENTERS['j_smiley'].unlocked
+  end,
 
   rules = {
     custom = {

@@ -1,5 +1,9 @@
 SMODS.Joker {
   key = "chaplin",
+  attributes = {
+    'economy',
+    'shop'
+  },
   rarity = 4,
   pos = { x = 12, y = 1 },
   soul_pos = { x = 13, y = 1 },
@@ -12,6 +16,8 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'srockw' }
   },
+  -- dummy unlock condition for the unlock all button
+  check_for_unlock = function(self, args) return false end,
 
   calculate = function(self, card, context)
     if context.buying_card and context.card.ability.set == "Voucher" and not context.blueprint then
@@ -49,16 +55,8 @@ SMODS.Joker {
           func = function()
             -- Only redeem once the first redeem is over
             if G.STATE ~= G.STATES.SMODS_REDEEM_VOUCHER then
-              G.E_MANAGER:add_event(Event {
-                trigger = 'after',
-                delay = 1,
-                func = function()
-                  PB_UTIL.redeem_voucher(voucher)
-                  card:juice_up()
-                  return true
-                end
-              })
-
+              PB_UTIL.redeem_voucher(voucher)
+              card:juice_up()
               return true
             end
           end

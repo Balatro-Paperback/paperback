@@ -11,7 +11,28 @@ position = "before"
 match_indent = true
 payload = '''
 if not SMODS.has_no_rank(scoring_hand[i]) then
-  G.GAME.paperback.ranks_scored_this_ante[scoring_hand[i]:get_id()] = true
+  G.GAME.paperback.round.ranks_scored[scoring_hand[i]:get_id()] = (G.GAME.paperback.round.ranks_scored[scoring_hand[i]:get_id()] or 0) + 1
+  G.GAME.paperback.ranks_scored_this_ante[scoring_hand[i]:get_id()] = (G.GAME.paperback.ranks_scored_this_ante[scoring_hand[i]:get_id()] or 0) + 1
+  G.GAME.paperback.ranks_scored_this_run[scoring_hand[i]:get_id()] = (G.GAME.paperback.ranks_scored_this_run[scoring_hand[i]:get_id()] or 0) + 1
+end
+if not SMODS.has_no_suit(scoring_hand[i]) then
+  if not SMODS.has_any_suit(scoring_hand[i]) then
+    for suit, count in pairs(SMODS.Suits) do
+      if scoring_hand[i]:is_suit(suit) then
+        G.GAME.paperback.round.suits_scored[suit] = (G.GAME.paperback.round.suits_scored[suit] or 0) + 1
+        G.GAME.paperback.suits_scored_this_ante[suit] = (G.GAME.paperback.suits_scored_this_ante[suit] or 0) + 1
+        G.GAME.paperback.suits_scored_this_run[suit] = (G.GAME.paperback.suits_scored_this_run[suit] or 0) + 1
+        break
+      end
+    end
+  end
+  if SMODS.has_any_suit(scoring_hand[i]) then
+    for suit, count in pairs(SMODS.Suits) do
+      G.GAME.paperback.round.suits_scored[suit] = (G.GAME.paperback.round.suits_scored[suit] or 0) + 1
+      G.GAME.paperback.suits_scored_this_ante[suit] = (G.GAME.paperback.suits_scored_this_ante[suit] or 0) + 1
+      G.GAME.paperback.suits_scored_this_run[suit] = (G.GAME.paperback.suits_scored_this_run[suit] or 0) + 1
+    end
+  end
 end
 '''
 
@@ -23,4 +44,5 @@ position = "after"
 match_indent = true
 payload = '''
 G.GAME.paperback.ranks_scored_this_ante = {}
+G.GAME.paperback.suits_scored_this_ante = {}
 '''

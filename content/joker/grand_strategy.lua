@@ -6,11 +6,16 @@ SMODS.Joker {
       card_modifiers_required = 7,
     }
   },
+  attributes = {
+    'xmult',
+    'enhancements',
+    'full_deck'
+  },
   rarity = 3,
   pos = { x = 5, y = 5 },
   atlas = "jokers_atlas",
   cost = 8,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -19,6 +24,20 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'oppositewolf' },
   },
+
+  check_for_unlock = function(self, args)
+    if PB_UTIL.special_cards_in_deck(true, false) >= 7 then
+      return true
+    end
+  end,
+
+  locked_loc_vars = function(self, info_queue, card)
+    return {
+      vars = {
+        7
+      }
+    }
+  end,
 
   loc_vars = function(self, info_queue, card)
     local unique_specials = PB_UTIL.special_cards_in_deck(true, false)

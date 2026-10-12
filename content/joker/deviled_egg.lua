@@ -6,6 +6,12 @@ SMODS.Joker {
       enabled = true
     }
   },
+  attributes = {
+    'modify_card',
+    'enhancements',
+    'position',
+    'food'
+  },
   rarity = 1,
   pos = { x = 16, y = 2 },
   atlas = 'jokers_atlas',
@@ -25,7 +31,7 @@ SMODS.Joker {
   loc_vars = function(self, info_queue, card)
     return {
       vars = { card.ability.extra.rounds_left, },
-  }
+    }
   end,
 
   calculate = function(self, card, context)

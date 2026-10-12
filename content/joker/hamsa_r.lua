@@ -6,6 +6,10 @@ SMODS.Joker {
       ready = false,
     },
   },
+  attributes = {
+    'hands',
+    'mod_chance'
+  },
   rarity = 1,
   pos = { x = 22, y = 6 },
   atlas = "jokers_atlas",
@@ -47,6 +51,8 @@ SMODS.Joker {
   in_pool = function(self, args)
     return false
   end,
+  -- dummy unlock condition for the unlock all button
+  check_for_unlock = function(self, args) return false end,
 
   calculate = function(self, card, context)
     if context.hand_drawn and not context.blueprint then

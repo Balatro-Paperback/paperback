@@ -6,11 +6,17 @@ SMODS.Joker {
       Xchip = 1
     }
   },
+  attributes = {
+    'xchips',
+    'scaling',
+    'minor_arcana',
+    'consumable'
+  },
   rarity = 2,
   pos = { x = 15, y = 9 },
   atlas = 'jokers_atlas',
   cost = 6,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -32,6 +38,14 @@ SMODS.Joker {
         localize('k_paperback_minor_arcana')
       }
     }
+  end,
+
+  locked_loc_vars = function(self, info_queue, card)
+    return { vars = { 50, 
+    PB_UTIL.get_career_stat("minor_arcana_used", 0) } }
+  end,
+  check_for_unlock = function(self, args)
+    return args.type == 'paperback_minor_arcana_used' and args.total >= 50
   end,
 
   calculate = function(self, card, context)

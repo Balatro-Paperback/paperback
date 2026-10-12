@@ -11,6 +11,13 @@ if PB_UTIL.should_load_spectrum_items() then
         }
       }
     },
+    attributes = {
+      'chips',
+      'scaling',
+      'suit',
+      'stars',
+      'crowns'
+    },
     rarity = 1,
     pos = { x = 23, y = 5 },
     atlas = "jokers_atlas",
@@ -25,6 +32,7 @@ if PB_UTIL.should_load_spectrum_items() then
     paperback_credit = {
       coder = { 'thermo' }
     },
+    unlocked = false,
     loc_vars = function(self, info_queue, card)
       return {
         vars = {
@@ -36,6 +44,10 @@ if PB_UTIL.should_load_spectrum_items() then
       }
     end,
 
+    check_for_unlock = function (self, args)
+      return G.GAME.paperback.suits_scored_this_run["paperback_Stars"] and G.GAME.paperback.suits_scored_this_run["paperback_Crowns"]
+    end,
+
     calculate = function(self, card, context)
       if context.before then
         local suit_count = 0
@@ -45,11 +57,12 @@ if PB_UTIL.should_load_spectrum_items() then
           end
         end
         if suit_count > 0 then
-          card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.change
-          return {
-            message = localize("k_upgrade_ex"),
-            colour = G.C.ORANGE
-          }
+          SMODS.scale_card(card, {
+            ref_table = card.ability.extra,
+            ref_value = 'chips',
+            scalar_value = 'change'
+          })
+          return nil, true
         end
       end
       if context.joker_main and card.ability.extra.chips > 0 then

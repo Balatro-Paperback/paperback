@@ -5,6 +5,12 @@ SMODS.Consumable {
       delta = -1
     }
   },
+  attributes = {
+    'modify_card',
+    'editions',
+    'negative',
+    'joker_slot'
+  },
   set = "Spectral",
   atlas = 'spectral_atlas',
   pos = { x = 0, y = 0 },

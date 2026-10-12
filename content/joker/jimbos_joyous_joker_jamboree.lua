@@ -5,6 +5,12 @@ SMODS.Joker {
       required = 13,
     }
   },
+  attributes = {
+    'generation',
+    'minor_arcana',
+    'consumable',
+    'music'
+  },
   pools = {
     Music = true
   },

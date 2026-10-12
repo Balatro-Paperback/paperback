@@ -6,6 +6,10 @@ SMODS.Challenge {
     { id = "j_brainstorm", eternal = true },
     { id = "j_blueprint", eternal = true },
   },
+  unlocked = function (self)
+    return G.P_CENTERS['j_paperback_photocopy'].unlocked and G.P_CENTERS['j_paperback_master_plan'].unlocked
+    and G.P_CENTERS['j_brainstorm'].unlocked and G.P_CENTERS['j_blueprint'].unlocked
+  end,
 
   restrictions = {
     banned_cards = PB_UTIL.banned_challenge_centers {

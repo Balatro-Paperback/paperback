@@ -7,11 +7,16 @@ SMODS.Joker {
       antes = -1,
     },
   },
+  attributes = {
+    'ante',
+    'skip',
+    'red'
+  },
   rarity = 3,
   pos = { x = 15, y = 0 },
   atlas = "jokers_atlas",
   cost = 8,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = false,
   eternal_compat = true,
@@ -40,6 +45,14 @@ SMODS.Joker {
         colours = colours,
       }
     }
+  end,
+
+  locked_loc_vars = function(self, info_queue, card)
+    return { vars = { 20, 
+    PB_UTIL.get_career_stat("skip_blind", 0) } }
+  end,
+  check_for_unlock = function(self, args)
+    return args.type == 'paperback_skip_blind' and PB_UTIL.get_career_stat("skip_blind", 0) >= 20
   end,
 
   calculate = function(self, card, context)

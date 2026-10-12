@@ -6,6 +6,14 @@ SMODS.Joker {
       suit = 'paperback_Stars'
     }
   },
+  attributes = {
+    'generation',
+    'planet',
+    'consumable',
+    'hand_type',
+    'suit',
+    'stars'
+  },
   rarity = 2,
   pos = { x = 14, y = 1 },
   atlas = "jokers_atlas",
@@ -16,10 +24,28 @@ SMODS.Joker {
   paperback = {
     requires_stars = true
   },
-
+  unlocked = false,
   paperback_credit = {
     coder = { 'srockw' }
   },
+
+  locked_loc_vars = function(self, info_queue, center)
+    return {
+      vars = { 5 }
+    }
+  end,
+
+  check_for_unlock = function(self, args)
+    if args.type == 'upgrade_hand' then
+      for k, v in pairs(G.GAME.hands) do
+        if string.find(k, "Spectrum", nil, true) then
+          if G.GAME.hands[k].level >= 5 then
+            return true
+          end
+        end
+      end
+    end
+  end,
 
   loc_vars = function(self, info_queue, card)
     local numerator, denominator = PB_UTIL.chance_vars(card)

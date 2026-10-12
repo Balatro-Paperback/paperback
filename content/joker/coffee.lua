@@ -7,11 +7,17 @@ SMODS.Joker {
       odds = 6
     }
   },
+  attributes = {
+    'hand_size',
+    'skip',
+    'chance',
+    'food'
+  },
   rarity = 2,
   pos = { x = 3, y = 6 },
   atlas = 'jokers_atlas',
   cost = 6,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = false,
   eternal_compat = false,
@@ -37,6 +43,18 @@ SMODS.Joker {
     }
   end,
 
+  locked_loc_vars = function(self, info_queue, card)
+    return {
+      vars = {
+        5
+      }
+    }
+  end,
+
+  check_for_unlock = function(self, args)
+    return G.GAME.skips >= 5
+  end,
+
   add_to_deck = function(self, card, from_debuff)
     G.hand:change_size(card.ability.extra.hand_size)
   end,
@@ -50,12 +68,16 @@ SMODS.Joker {
 
     if context.skip_blind then
       -- Increment the hand size when skipping a blind
-      card.ability.extra.hand_size = card.ability.extra.hand_size + card.ability.extra.increase
-      G.hand:change_size(card.ability.extra.increase)
-
-      return {
-        message = localize('k_upgrade_ex')
-      }
+      SMODS.scale_card(card, {
+        ref_table = card.ability.extra,
+        ref_value = 'hand_size',
+        scalar_value = 'increase',
+        operation = function(ref_table, ref_value, initial, change)
+          ref_table[ref_value] = initial + change
+          G.hand:change_size(change)
+        end,
+      })
+      return nil, true
     end
 
     if context.setting_blind and not context.blind.boss then

@@ -1,6 +1,14 @@
 SMODS.Joker {
   key = 'pool_table',
   config = {},
+  attributes = {
+    'generation',
+    'planet',
+    'consumable',
+    'hand_type',
+    'hands',
+    'face'
+  },
   rarity = 3,
   pos = { x = 9, y = 0 },
   atlas = 'jokers_atlas',
@@ -15,7 +23,7 @@ SMODS.Joker {
     coder = { 'oppositewolf' }
   },
 
-  loc_vars = function (self, info_queue, card)
+  loc_vars = function(self, info_queue, card)
     return {
       vars = { localize('k_planet') }
     }

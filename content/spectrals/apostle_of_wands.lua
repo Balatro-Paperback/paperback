@@ -5,6 +5,10 @@ SMODS.Consumable {
       delta = -1
     }
   },
+  attributes = {
+    'generation',
+    'joker'
+  },
   set = "Spectral",
   atlas = 'spectral_atlas',
   pos = { x = 1, y = 0 },

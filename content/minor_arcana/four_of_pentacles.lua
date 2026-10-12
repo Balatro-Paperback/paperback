@@ -10,6 +10,10 @@ PB_UTIL.MinorArcana {
       denominator = 2
     }
   },
+  attributes = {
+    'destroy_card',
+    'chance'
+  },
   paperback_credit = {
     artist = { 'ari' },
     coder = { 'metanite' }
@@ -22,11 +26,13 @@ PB_UTIL.MinorArcana {
       card.ability.extra.denominator,
       "paperback_four_of_pentacles"
     )
-    return { vars = {
-      card.ability.max_highlighted,
-      num,
-      dem
-    } }
+    return {
+      vars = {
+        card.ability.max_highlighted,
+        num,
+        dem
+      }
+    }
   end,
 
   use = function(self, card, area)
@@ -34,13 +40,13 @@ PB_UTIL.MinorArcana {
 
     for _, v in ipairs(G.hand.cards) do
       if (not v.highlighted)
-          and SMODS.pseudorandom_probability(
-            card,
-            "four_of_pentacles",
-            card.ability.extra.numerator,
-            card.ability.extra.denominator,
-            "paperback_four_of_pentacles")
-          then
+      and SMODS.pseudorandom_probability(
+        card,
+        "four_of_pentacles",
+        card.ability.extra.numerator,
+        card.ability.extra.denominator,
+        "paperback_four_of_pentacles")
+      then
         cards[#cards + 1] = v
       end
     end

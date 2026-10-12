@@ -5,6 +5,12 @@ SMODS.Joker {
       suit_conv = 'paperback_Stars'
     }
   },
+  attributes = {
+    'modify_card',
+    'suit',
+    'dark',
+    'stars'
+  },
   rarity = 3,
   pos = { x = 14, y = 3 },
   atlas = "jokers_atlas",
@@ -18,6 +24,13 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'srockw' }
   },
+  unlocked = false,
+
+  check_for_unlock = function(self, args)
+    if args.type == 'modify_deck' then
+      return PB_UTIL.has_suit_in_deck("paperback_Stars", true)
+    end
+  end,
 
   loc_vars = function(self, info_queue, card)
     info_queue[#info_queue + 1] = PB_UTIL.suit_tooltip('dark')
@@ -37,7 +50,7 @@ SMODS.Joker {
       local cards = {}
 
       for _, v in ipairs(context.scoring_hand) do
-        if PB_UTIL.is_suit(v, 'dark') then
+        if v:is_suit_shade('dark') then
           cards[#cards + 1] = v
         end
       end

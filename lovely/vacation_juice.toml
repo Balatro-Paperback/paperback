@@ -25,10 +25,11 @@ payload = "end"
 [[patches]]
 [patches.pattern]
 target = "functions/state_events.lua"
-pattern = '''if G.GAME.round_resets.blind == G.P_BLINDS.bl_small then
-G.GAME.round_resets.blind_states.Small = 'Defeated'
+pattern = '''
+G.STATE = G.STATES.ROUND_EVAL
+G.STATE_COMPLETE = false
 '''
-position = "before"
+position = "after"
 match_indent = true
 payload = "if not G.GAME.paperback.vacation_juice_trigger then"
 

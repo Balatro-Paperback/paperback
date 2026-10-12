@@ -6,11 +6,16 @@ SMODS.Joker {
       chips = 0
     }
   },
+  attributes = {
+    'chips',
+    'scaling',
+    'paperclip'
+  },
   rarity = 2,
   pos = { x = 25, y = 7 },
   atlas = "jokers_atlas",
   cost = 6,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -28,6 +33,14 @@ SMODS.Joker {
     end
   end,
 
+  check_for_unlock = function (self, args)
+    return PB_UTIL.count_entries(G.GAME.paperback.unique_clips_this_run) >= 5
+  end,
+
+  locked_loc_vars = function (self, info_queue, card)
+    return { vars = { 5 }}
+  end,
+
   loc_vars = function(self, info_queue, card)
     return {
       vars = {
@@ -40,14 +53,18 @@ SMODS.Joker {
   calculate = function(self, card, context)
     if not context.blueprint and context.individual and context.cardarea == G.hand and context.end_of_round then
       if PB_UTIL.has_paperclip(context.other_card) and not context.other_card.debuff then
-        card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.a_chips
-
-        return {
-          message = localize('k_upgrade_ex'),
-          colour = G.C.CHIPS,
-          message_card = card,
-          juice_card = context.other_card
-        }
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'chips',
+          scalar_value = 'a_chips',
+          scaling_message = {
+            message = localize('k_upgrade_ex'),
+            colour = G.C.CHIPS,
+            message_card = card,
+            juice_card = context.other_card
+          }
+        })
+        return nil, true
       end
     end
 

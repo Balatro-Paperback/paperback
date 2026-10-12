@@ -5,6 +5,9 @@ SMODS.Joker {
       dollars = 25
     }
   },
+  attributes = {
+    'economy'
+  },
   paperback_credit = {
     coder = { 'thermo' }
   },
@@ -15,6 +18,15 @@ SMODS.Joker {
   blueprint_compat = false,
   eternal_compat = false,
   perishable_compat = true,
+  unlocked = false,
+
+  locked_loc_vars = function (self, info_queue, card)
+    return { vars = { localize { type = 'name_text', set = 'Tag', key = 'tag_investment' } } }
+  end,
+
+  check_for_unlock = function (self, args)
+    return args.type == "paperback_use_investment_tag"
+  end,
 
   loc_vars = function(self, info_queue, card)
     return {
@@ -26,6 +38,13 @@ SMODS.Joker {
 
   calculate = function(self, card, context)
     if context.end_of_round and context.beat_boss and context.main_eval and not context.blueprint then
+      card.ability.extra.active = true
+      return {
+        message = localize('k_active_ex')
+      }
+    end
+
+    if context.paperback and context.paperback.cashing_out and card.ability.extra.active and not context.blueprint then
       PB_UTIL.destroy_joker(card)
       return {
         dollars = card.ability.extra.dollars,

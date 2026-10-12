@@ -1,10 +1,17 @@
 SMODS.Joker {
   key = 'union_card',
+  attributes = {
+    'xmult',
+    'suit',
+    'light',
+    'sell_value',
+    'red'
+  },
   rarity = 3,
   pos = { x = 8, y = 1 },
   atlas = "jokers_atlas",
   cost = 8,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -13,6 +20,23 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'srockw' }
   },
+
+  locked_loc_vars = function (self, info_queue, card)
+    return {
+      vars = {
+        localize { type = 'name_text', set = 'Tarot', key = 'c_temperance' }
+      }
+    }
+  end,
+
+  check_for_unlock = function(self, args)
+    if args.type == 'win' then
+      if G.GAME.consumeable_usage.c_temperance then
+        return false
+      end
+      return true
+    end
+  end,
 
   loc_vars = function(self, info_queue, card)
     info_queue[#info_queue + 1] = PB_UTIL.suit_tooltip('light')
@@ -51,7 +75,7 @@ SMODS.Joker {
       local suitable_cards = 0
 
       for _, v in ipairs(context.scoring_hand) do
-        if PB_UTIL.is_suit(v, 'light') then
+        if v:is_suit_shade('light') then
           suitable_cards = suitable_cards + 1
         end
       end
@@ -87,7 +111,7 @@ SMODS.Joker {
         local count = 0
         local _, _, scoring_hand = JokerDisplay.evaluate_hand()
         for _, scoring_card in pairs(scoring_hand) do
-          if PB_UTIL.is_suit(scoring_card, 'light') then
+          if scoring_card:is_suit_shade('light')then
             count = count + 1
           end
         end

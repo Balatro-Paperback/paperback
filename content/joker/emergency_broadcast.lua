@@ -6,11 +6,18 @@ SMODS.Joker {
       a_chips = 8,
     }
   },
+  attributes = {
+    'mult',
+    'chips',
+    'rank',
+    'five',
+    'eight'
+  },
   rarity = 1,
   pos = { x = 9, y = 4 },
   atlas = 'jokers_atlas',
   cost = 6,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -18,6 +25,18 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'oppositewolf' },
   },
+
+  check_for_unlock = function (self, args)
+    if G.GAME.consumeable_usage then
+      if G.GAME.consumeable_usage.c_moon and G.GAME.consumeable_usage.c_moon.count >= 3 then
+        return true
+      end
+    end
+  end,
+
+  locked_loc_vars = function (self, info_queue, card)
+    return { vars = { 3 }}
+  end,
 
   loc_vars = function(self, info_queue, card)
     return {

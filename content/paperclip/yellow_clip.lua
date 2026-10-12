@@ -12,6 +12,12 @@ PB_UTIL.Paperclip {
     xmult_odds = 5,
     xmult = 1.5
   },
+  attributes = {
+    'mult',
+    'xmult',
+    'economy',
+    'chance'
+  },
 
   loc_vars = function(self, info_queue, card)
     local clip = card.ability[self.key]

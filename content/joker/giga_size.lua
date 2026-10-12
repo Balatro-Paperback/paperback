@@ -1,5 +1,11 @@
 SMODS.Joker {
   key = 'giga_size',
+  attributes = {
+    'red',
+    'xmult',
+    'hands',
+    'reset'
+  },
   rarity = 3,
   pos = { x = 17, y = 7 },
   atlas = 'jokers_atlas',
@@ -25,23 +31,21 @@ SMODS.Joker {
   end,
 
   locked_loc_vars = function(self, info_queue, card)
-    return { vars = { 50 } }
+    return { vars = { 10 } }
   end,
 
   check_for_unlock = function(self, args)
-    if args.type == 'hand_contents' then
-      for j = 1, #args.cards do
-        if args.cards[j]:get_chip_bonus() >= 50 then
-          return true
-        end
-      end
-    end
-    return false
+    return G.GAME.current_round.hands_left and G.GAME.current_round.hands_left >= 10
   end,
 
   calculate = function(self, card, context)
     if not context.blueprint and context.before then
-      card.ability.extra.xmult = card.ability.extra.xmult + card.ability.extra.xmult_mod
+      SMODS.scale_card(card, {
+        ref_table = card.ability.extra,
+        ref_value = 'xmult',
+        scalar_value = 'xmult_mod',
+        no_message = true
+      })
     end
 
     if context.joker_main then
@@ -51,10 +55,12 @@ SMODS.Joker {
     end
 
     if not context.blueprint and context.end_of_round and context.cardarea == G.jokers then
-      card.ability.extra.xmult = 1
-      return {
-        message = localize('k_reset')
-      }
+      SMODS.reset_card(card, {
+        ref_table = card.ability.extra,
+        ref_value = 'xmult',
+        reset_value = 1
+      })
+      return nil, true
     end
   end,
 

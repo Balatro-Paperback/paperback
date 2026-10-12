@@ -11,6 +11,9 @@ SMODS.Enhancement {
       money = 2
     }
   },
+  attributes = {
+    'economy',
+  },
 
   loc_vars = function(self, info_queue, card)
     return {

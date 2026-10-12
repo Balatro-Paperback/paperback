@@ -1,5 +1,10 @@
 PB_UTIL.MinorArcana {
   key = 'king_of_wands',
+  attributes = {
+    'generation',
+    'joker',
+    'rarity'
+  },
   atlas = 'minor_arcana_atlas',
   pos = { x = 6, y = 3 },
   paperback_credit = {
@@ -22,7 +27,7 @@ PB_UTIL.MinorArcana {
     end
 
     PB_UTIL.use_consumable_animation(card, nil, function()
-      PB_UTIL.try_spawn_card { set = 'Joker', rarity = rarity, instant = true }
+      PB_UTIL.try_spawn_card { set = 'Joker', rarity = rarity, instant = true, key_append = 'king_of_wands_joker' }
     end)
   end
 }

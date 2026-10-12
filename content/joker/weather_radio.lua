@@ -8,11 +8,17 @@ SMODS.Joker {
       xmult_penalty = 2
     }
   },
+  attributes = {
+    'xmult',
+    'scaling',
+    'hand_type',
+    'boss_blind'
+  },
   rarity = 3,
   pos = { x = 6, y = 10 },
   atlas = 'jokers_atlas',
   cost = 9,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -21,6 +27,14 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'srockw' }
   },
+
+  locked_loc_vars = function (self, info_queue, card)
+    return { vars = { 3 }}
+  end,
+
+  check_for_unlock = function (self, args)
+    return G.GAME.paperback.num_blinds_disabled >= 3
+  end,
 
   loc_vars = function(self, info_queue, card)
     local hand = G.GAME.paperback.weather_radio_hand
@@ -39,10 +53,21 @@ SMODS.Joker {
   calculate = function(self, card, context)
     if not context.blueprint and context.before then
       if next(context.poker_hands[G.GAME.paperback.weather_radio_hand]) then
-        card.ability.extra.x_mult = card.ability.extra.x_mult + card.ability.extra.a_xmult
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'x_mult',
+          scalar_value = 'a_xmult',
+          no_message = true
+        })
 
         if G.GAME.blind.boss and not G.GAME.blind.disabled and card.ability.extra.x_mult >= card.ability.extra.xmult_disable then
-          card.ability.extra.x_mult = card.ability.extra.x_mult - card.ability.extra.xmult_penalty
+          SMODS.scale_card(card, {
+            ref_table = card.ability.extra,
+            ref_value = 'x_mult',
+            scalar_value = 'xmult_penalty',
+            operation = '-',
+            no_message = true
+          })
 
           return {
             message = localize('ph_boss_disabled'),
@@ -65,7 +90,13 @@ SMODS.Joker {
 
     if not context.blueprint and context.first_hand_drawn and G.GAME.blind.boss and not G.GAME.blind.disabled then
       if card.ability.extra.x_mult >= card.ability.extra.xmult_disable then
-        card.ability.extra.x_mult = card.ability.extra.x_mult - card.ability.extra.xmult_penalty
+        SMODS.scale_card(card, {
+          ref_table = card.ability.extra,
+          ref_value = 'x_mult',
+          scalar_value = 'xmult_penalty',
+          operation = '-',
+          no_message = true
+        })
 
         G.GAME.blind:disable()
 
@@ -110,3 +141,10 @@ SMODS.Joker {
     end
   end
 }
+
+local disable_ref = Blind.disable
+function Blind:disable()
+  local ret = disable_ref(self)
+  G.GAME.paperback.num_blinds_disabled = G.GAME.paperback.num_blinds_disabled + 1
+  return ret
+end

@@ -10,6 +10,9 @@ SMODS.Challenge {
       eternal = true
     }
   },
+  unlocked = function (self)
+    return G.P_CENTERS['j_paperback_subterfuge'].unlocked and G.P_CENTERS['j_paperback_the_world'].unlocked
+  end,
 
   restrictions = {
     banned_cards = PB_UTIL.banned_challenge_centers {

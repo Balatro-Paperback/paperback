@@ -6,16 +6,27 @@ SMODS.Joker {
       h_size = 3
     }
   },
+  attributes = {
+    'hand_size'
+  },
   pos = { x = 10, y = 4 },
   atlas = 'jokers_atlas',
   cost = 6,
   blueprint_compat = false,
   eternal_compat = true,
   perishable_compat = true,
-
+  unlocked = false,
   paperback_credit = {
     coder = { 'aa7' },
   },
+
+  check_for_unlock = function (self, args)
+    return args.type == 'paperback_discarded_10_times'
+  end,
+
+  locked_loc_vars = function (self, info_queue, card)
+    return { vars = { 10 }}
+  end,
 
   set_ability = function(self, card, initial, delay_sprites)
     card.ability.h_size = card.ability.extra.h_size or 0

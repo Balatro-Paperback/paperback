@@ -1,0 +1,16 @@
+[manifest]
+version = "1.0.0"
+priority = 0
+
+# Intended to patch out any destruction checks that aren't covered by Cross's hooks
+
+# Targeting Glass Joker
+[[patches]]
+[patches.pattern]
+target = "card.lua"
+pattern = "if shattered_glass > 0 then"
+position = "before"
+match_indent = true
+payload = '''
+if next(SMODS.find_card('j_paperback_cross')) then shattered_glass = 0 end
+'''

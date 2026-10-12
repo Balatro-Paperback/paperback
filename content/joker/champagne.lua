@@ -6,11 +6,17 @@ SMODS.Joker {
       rounds_left = 3
     }
   },
+  attributes = {
+    'economy',
+    'boss_blind',
+    'seals',
+    'food'
+  },
   rarity = 1,
   pos = { x = 2, y = 8 },
   atlas = 'jokers_atlas',
   cost = 5,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = false,
@@ -28,6 +34,18 @@ SMODS.Joker {
         card.ability.extra.rounds_left
       }
     }
+  end,
+
+  check_for_unlock = function(self, args)
+    if args.type == 'hand_contents' then
+      local tally = 0
+      for i = 1, #args.cards do
+        if PB_UTIL.is_rank(args.cards[i], "King") or PB_UTIL.is_rank(args.cards[i], "Queen") then
+          if args.cards[i]:get_seal() then return true end
+        end
+      end
+    end
+    return false
   end,
 
   calculate = function(self, card, context)

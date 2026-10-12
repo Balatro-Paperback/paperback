@@ -5,11 +5,17 @@ SMODS.Joker {
       odds = 2,
     },
   },
+  attributes = {
+    'generation',
+    'skip',
+    'tag',
+    'chance'
+  },
   rarity = 3,
   pos = { x = 14, y = 7 },
   atlas = "jokers_atlas",
   cost = 8,
-  unlocked = true,
+  unlocked = false,
   discovered = false,
   blueprint_compat = true,
   eternal_compat = true,
@@ -18,6 +24,20 @@ SMODS.Joker {
   paperback_credit = {
     coder = { 'vitellary' }
   },
+
+  check_for_unlock = function (self, args)
+    local count = 0
+    for _, v in pairs(G.GAME.paperback.sold_jokers) do
+      count = count + v
+      if count >= 10 then
+        return true
+      end
+    end
+  end,
+
+  locked_loc_vars = function(self, info_queue, card)
+    return { vars = { 10 } }
+  end,
 
   loc_vars = function(self, info_queue, card)
     return { vars = { PB_UTIL.chance_vars(card) } }
@@ -46,3 +66,17 @@ SMODS.Joker {
     end
   end
 }
+
+
+local calculate_joker_ref = Card.calculate_joker
+function Card:calculate_joker(context)
+  local ret, ret2 = calculate_joker_ref(self, context)
+
+  if self.ability.set == "Joker" then
+    if context.selling_self then
+      G.GAME.paperback.sold_jokers[self.ability.name] = (G.GAME.paperback.sold_jokers[self.ability.name] or 0) + 1
+    end
+  end
+
+  return ret, ret2
+end

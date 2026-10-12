@@ -6,6 +6,10 @@ SMODS.Joker {
       enhancement = 'm_paperback_sleeved'
     }
   },
+  attributes = {
+    'enhancements',
+    'full_deck'
+  },
   rarity = 1,
   pos = { x = 21, y = 4 },
   atlas = 'jokers_atlas',
