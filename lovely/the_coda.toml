@@ -1,0 +1,17 @@
+[manifest]
+version = "1.0.0"
+priority = 0
+
+# Prevent dragging with controller
+# Thanks N'
+[[patches]]
+[patches.pattern]
+target = "engine/controller.lua"
+pattern = "elseif input_type == 'press' and focused and focused.area and focused == self.dragging.target then"
+position = "before"
+match_indent = true
+payload = '''
+elseif input_type == 'press' and focused and focused.area and focused == self.dragging.target
+and G.GAME.blind and G.GAME.blind.config.blind.key == "bl_paperback_coda" then
+    ret = true
+'''
