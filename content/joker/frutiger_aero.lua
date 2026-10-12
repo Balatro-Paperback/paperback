@@ -51,9 +51,9 @@ SMODS.Joker {
       }
     end
 
-    if (context.buying_card or context.open_booster) and not context.blueprint then
-      if (context.card.cost > 0) then
-        card.ability.extra.spendings = context.card.cost * card.ability.extra.rate
+    if context.money_altered and not context.blueprint then
+      if context.amount < 0 and context.from_shop then
+        card.ability.extra.spendings = -1 * card.ability.extra.rate * context.amount
         SMODS.scale_card(card, {
           ref_table = card.ability.extra,
           ref_value = 'chips',
@@ -66,21 +66,6 @@ SMODS.Joker {
         card.ability.extra.chips = math.max(0, card.ability.extra.chips)
         return nil, true
       end
-    end
-
-    if context.reroll_shop and (G.GAME.round_resets.reroll_cost > 0) then
-      card.ability.extra.spendings = G.GAME.round_resets.reroll_cost * card.ability.extra.rate
-      SMODS.scale_card(card, {
-        ref_table = card.ability.extra,
-        ref_value = 'chips',
-        scalar_value = 'spendings',
-        message_colour = G.C.CHIPS,
-        operation = '-',
-        message_key = 'a_chips_minus'
-      })
-
-      card.ability.extra.chips = math.max(0, card.ability.extra.chips)
-      return nil, true
     end
 
     if context.joker_main then

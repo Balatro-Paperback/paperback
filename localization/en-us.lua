@@ -825,9 +825,10 @@ return {
       j_paperback_frutiger_aero = {
         name = "Frutiger Aero",
         text = {
-          "{C:chips}#1#{} Chips,",
-          "loses {C:chips}#2#{} Chips",
-          "per {C:money}$1{} spent",
+          "{C:chips}#1#{} Chips, loses",
+          "{C:chips}#2#{} Chips per {C:money}$1{} spent.",
+          "{C:attention}Resets{} after defeating",
+          "a {C:attention}Boss Blind{}"
         },
         unlock = {
           "Win a run without",
