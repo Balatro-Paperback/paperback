@@ -15,26 +15,32 @@ SMODS.Back {
   loc_vars = function(self, info_queue, card)
     return {
       vars = {
-        PB_UTIL.force_signed(self.config.extra.mod_joker_slots), 
-        PB_UTIL.force_signed(self.config.extra.mod_hand_size), 
+        PB_UTIL.force_signed(self.config.extra.mod_joker_slots),
+        PB_UTIL.force_signed(self.config.extra.mod_hand_size),
         PB_UTIL.force_signed(self.config.extra.max_hand_size)
       }
     }
   end,
-  calculate = function (self, back, context)
+
+  apply = function(self, back)
+    G.GAME.banned_keys['bl_psychic'] = true
+  end,
+
+  calculate = function(self, back, context)
     if context.round_eval and G.GAME.last_blind and G.GAME.last_blind.boss then
       G.E_MANAGER:add_event(Event({
         func = function()
-            G.jokers.config.card_limit = G.jokers.config.card_limit + self.config.extra.mod_joker_slots
-            if not (self.config.extra.cur_hand_size <= self.config.extra.max_hand_size) then
-              G.hand:change_size(self.config.extra.mod_hand_size)
-              self.config.extra.cur_hand_size = self.config.extra.cur_hand_size + self.config.extra.mod_hand_size
-            end
-            return true
+          G.jokers.config.card_limit = G.jokers.config.card_limit + self.config.extra.mod_joker_slots
+          if not (self.config.extra.cur_hand_size <= self.config.extra.max_hand_size) then
+            G.hand:change_size(self.config.extra.mod_hand_size)
+            self.config.extra.cur_hand_size = self.config.extra.cur_hand_size + self.config.extra.mod_hand_size
+          end
+          return true
         end
       }))
     end
   end,
+
   locked_loc_vars = function(self, info_queue, back)
     return {
       vars = {
