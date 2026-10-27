@@ -22,7 +22,7 @@ SMODS.Joker {
     coder = { 'vitellary' }
   },
 
-  locked_loc_vars = function (self, info_queue, card)
+  locked_loc_vars = function(self, info_queue, card)
     return {
       vars = {
         localize { type = 'name_text', set = 'Spectral', key = 'c_ouija' }
@@ -37,6 +37,7 @@ SMODS.Joker {
   add_to_deck = function(self, card, from_debuff)
     G.GAME.spectral_rate = G.GAME.spectral_rate + 2 -- same rate as ghost deck
     card.ability.extra.allow_soul = G.GAME.selected_back_key.key == 'b_ghost'
+        or G.GAME.selected_sleeve == 'sleeve_casl_ghost'
   end,
 
   remove_from_deck = function(self, card, from_debuff)
