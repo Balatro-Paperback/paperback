@@ -32,7 +32,11 @@ SMODS.current_mod.calculate = function(self, context)
         for k, i in pairs(SMODS.Suits or {}) do
           if v.base.suit == k then
             destroyed.suits[k] = (destroyed.suits[k] or 0) + 1
-            destroyed.suits[i.shade] = (destroyed.suits[i.shade] or 0) + 1
+
+            -- Not all suits must have a shade defined
+            if i.shade then
+              destroyed.suits[i.shade] = (destroyed.suits[i.shade] or 0) + 1
+            end
           end
         end
       else
