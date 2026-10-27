@@ -5,7 +5,6 @@ PB_UTIL.config = SMODS.current_mod.config
 SMODS.current_mod.optional_features = {
   retrigger_joker = true,
   post_trigger = true,
-  quantum_enhancements = true
 }
 
 -- Global mod calculate
@@ -15,30 +14,30 @@ SMODS.current_mod.calculate = function(self, context)
     for _, v in ipairs(context.removed or {}) do
       local destroyed = G.GAME.paperback.destroyed_cards
 
-			destroyed["cards"] = destroyed["cards"] + 1
-			G.GAME.paperback.round.destroyed_cards_this_round = G.GAME.paperback.round.destroyed_cards_this_round + 1
+      destroyed["cards"] = destroyed["cards"] + 1
+      G.GAME.paperback.round.destroyed_cards_this_round = G.GAME.paperback.round.destroyed_cards_this_round + 1
 
-			local rank_obj = not v or SMODS.has_no_rank(v) and nil or PB_UTIL.get_rank_from_id(v:get_id())
-			local rank = rank_obj and rank_obj.key or "rankless"
-			destroyed.ranks[rank] = (destroyed.ranks[rank] or 0) + 1
-			if v:is_face() then destroyed.ranks["face"] = (destroyed.ranks["face"] or 0) + 1 end
+      local rank_obj = not v or SMODS.has_no_rank(v) and nil or PB_UTIL.get_rank_from_id(v:get_id())
+      local rank = rank_obj and rank_obj.key or "rankless"
+      destroyed.ranks[rank] = (destroyed.ranks[rank] or 0) + 1
+      if v:is_face() then destroyed.ranks["face"] = (destroyed.ranks["face"] or 0) + 1 end
 
 
-			local enhancements = SMODS.get_enhancements(v) or {}
-			for k, _ in pairs(enhancements) do
-				destroyed.enhancements[k] = (destroyed.enhancements[k] or 0) + 1
-			end
+      local enhancements = SMODS.get_enhancements(v) or {}
+      for k, _ in pairs(enhancements) do
+        destroyed.enhancements[k] = (destroyed.enhancements[k] or 0) + 1
+      end
 
-			if not SMODS.has_no_suit(v) then
-				for k, i in pairs(SMODS.Suits or {}) do
-					if v.base.suit == k then
-						destroyed.suits[k] = (destroyed.suits[k] or 0) + 1
+      if not SMODS.has_no_suit(v) then
+        for k, i in pairs(SMODS.Suits or {}) do
+          if v.base.suit == k then
+            destroyed.suits[k] = (destroyed.suits[k] or 0) + 1
             destroyed.suits[i.shade] = (destroyed.suits[i.shade] or 0) + 1
-					end
-				end
-			else
-				destroyed.suits["suitless"] = (destroyed.suits["suitless"] or 0) + 1
-			end
+          end
+        end
+      else
+        destroyed.suits["suitless"] = (destroyed.suits["suitless"] or 0) + 1
+      end
     end
   end
   if context.remove_playing_cards then
