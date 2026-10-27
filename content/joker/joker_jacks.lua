@@ -48,7 +48,7 @@ SMODS.Joker {
     return {
       vars = {
         card.ability.extra.dollars,
-        card.ability.extra.rank,
+        localize(card.ability.extra.rank, 'ranks'),
         card.ability.extra.m_dollars
       }
     }
