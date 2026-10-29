@@ -5547,7 +5547,9 @@ return {
         name = "Dreamer's Sleeve",
         text = {
           "Start with an {C:attention}#1#",
-          "of each suit"
+          "of each suit",
+          "Run starts on",
+          "{C:attention}Ante 2{}'s {C:attention}Small Blind"
         }
       },
 
