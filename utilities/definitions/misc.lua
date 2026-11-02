@@ -446,6 +446,7 @@ PB_UTIL.ENABLED_TAGS = {
   'dichrome',
   'high_risk',
   'breaking',
+  'tag'
 }
 
 PB_UTIL.ENABLED_ENHANCEMENTS = {

@@ -4993,7 +4993,16 @@ return {
           "Disables the",
           "{C:attention}Boss Blind"
         }
-      }
+      },
+      tag_paperback_tag = {
+        name = "Tag Tag",
+        text = {
+          "Apply random permanent",
+          "bonuses to {C:attention}5{} random",
+          "cards in the {C:attention}next{}",
+          "{C:attention}drawn hand"
+        }
+      },
     },
     Planet = {
       c_paperback_quaoar = {
