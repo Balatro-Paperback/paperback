@@ -5043,6 +5043,14 @@ return {
           "{C:attention}Boss Blind{} and sets",
           "its {C:blind}requirement{} to 1"
         }
+      },
+      tag_paperback_meltdown = {
+        name = "Meltdown Tag",
+        text = {
+          "{C:paperback_ego_gift}Corrode{} all owned {C:paperback_ego_gift}E.G.O Gifts{},",
+          "and then create {C:attention}3{}",
+          "random {C:dark_edition}Negative{} {C:paperback_ego_gift}E.G.O Gifts"
+        }
       }
     },
     Planet = {

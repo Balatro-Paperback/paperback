@@ -34,3 +34,50 @@ SMODS.Tag {
     end
   end
 }
+
+if next(SMODS.find_mod("allinjest")) then
+  SMODS.Tag {
+    key = "meltdown",
+    config = { aij = { upgrade = "paperback_enkephalin"} },
+    attributes = {
+      "ego_gift",
+      "generation"
+    },
+    atlas = "tags_atlas",
+    pos = { x = 0, y = 3 },
+    discovered = false,
+    min_ante = 2,
+
+    apply = function(self, tag, context)
+      if context.type == "immediate" then
+        local corroded = {}
+        for i, v in ipairs(G.consumeables.cards) do
+          if v.ability.set == "paperback_ego_gift" and not v.ability.paperback_corroded then
+            v:add_sticker("paperback_corroded", true)
+            corroded[#corroded + 1] = v
+          end
+        end
+
+        for i = 1, #corroded do
+          local percent = 0.85 + (i - 0.999) / (#corroded - 0.998) * 0.3
+          G.E_MANAGER:add_event(Event {
+            trigger = "after",
+            delay = 0.15,
+            func = function()
+              play_sound("tarot1", percent, 0.8)
+              corroded[i]:juice_up(0.3, 0.3)
+              return true
+            end
+          })
+        end
+
+        tag:yep("+", G.C.PAPERBACK_EGO_GIFT_RED, function()
+          for i = 1, 3 do SMODS.add_card { set = "paperback_ego_gift", edition = "e_negative" } end
+          return true
+        end)
+        tag.triggered = true
+        return true
+      end
+    end
+  }
+end
