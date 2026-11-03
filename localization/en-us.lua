@@ -5010,11 +5010,21 @@ return {
           "{C:paperback_ego_gift}E.G.O Gift Extraction Pack{}"
         }
       },
+
+      -- AiJ Gold Tags
       tag_paperback_seraphim = {
         name = "Seraphim Tag",
         text = {
           "Doubles {C:gold}payouts{} at the",
           "end of the {C:attention}next #1# round#2#"
+        }
+      },
+      tag_paperback_shattering = {
+        name = "Shattering Tag",
+        text = {
+          "Disables the",
+          "{C:attention}Boss Blind{} and sets",
+          "its {C:blind}requirement{} to 1"
         }
       }
     },
