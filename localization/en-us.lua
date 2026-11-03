@@ -5009,6 +5009,13 @@ return {
           "Gives a free",
           "{C:paperback_ego_gift}E.G.O Gift Extraction Pack{}"
         }
+      },
+      tag_paperback_seraphim = {
+        name = "Seraphim Tag",
+        text = {
+          "Doubles {C:gold}payouts{} at the",
+          "end of the {C:attention}next #1# round#2#"
+        }
       }
     },
     Planet = {
@@ -5937,6 +5944,7 @@ return {
       paperback_fall_ex = "Fall!",
       paperback_prevented_ex = "Prevented!",
       paperback_swoon_ex = "SWOON",
+      paperback_seraphim_cashout = "Seraphic Boon",
 
       paperback_ui_requires_restart = "Requires Restart",
       paperback_ui_no_requires_restart = "Doesn't Require Restart",

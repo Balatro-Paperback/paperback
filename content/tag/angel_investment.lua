@@ -50,3 +50,48 @@ SMODS.Tag {
     end
   end
 }
+
+if next(SMODS.find_mod("allinjest")) then
+  SMODS.Tag {
+    key = "seraphim",
+    config = {
+      rounds = 3,
+      aij = { upgrade = "paperback_angel_investment" }
+    },
+    attributes = {
+      "economy"
+    },
+    atlas = "tags_atlas",
+    pos = { x = 0, y = 1 },
+    discovered = false,
+
+    in_pool = function(self, args)
+      return false
+    end,
+
+    loc_vars = function(self, info_queue, tag)
+      local r = tag.ability.rounds or 3
+      return { vars = { r, r > 1 and "s" or "" } }
+    end,
+
+    set_ability = function(self, tag)
+      tag.ability.rounds = self.config.rounds
+    end,
+
+    apply = function(self, tag, context)
+      if context.type == "paperback_seraphim_cashout" then
+        tag.ability.rounds = tag.ability.rounds - 1
+        if tag.ability.rounds == 0 then
+          tag:yep("+", G.C.GOLD, function() return true end)
+          tag.triggered = true
+        end
+        return {
+          dollars = context.dollars,
+          condition = localize("paperback_seraphim_cashout"),
+          pos = tag.pos,
+          tag = tag
+        }
+      end
+    end
+  }
+end

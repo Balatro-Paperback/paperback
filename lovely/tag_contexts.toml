@@ -1,0 +1,42 @@
+[manifest]
+version = "1.0.0"
+priority = 0
+
+# trigger tags with paperback_first_hand context once the first hand is drawn
+[[patches]]
+[patches.pattern]
+target = 'game.lua'
+match_indent = true
+position = 'after'
+pattern = '''
+-- removed first hand drawn context
+'''
+payload = '''
+G.E_MANAGER:add_event(Event({
+    trigger = 'immediate',
+    func = function()
+        for k, v in ipairs(G.GAME.tags) do
+            v:apply_to_run({type = 'paperback_first_hand'})
+        end
+        return true
+    end
+}))
+'''
+
+# trigger tags with paperback_seraphim_cashout
+[[patches]]
+[patches.pattern]
+target = "functions/state_events.lua"
+match_indent = true
+position = "before"
+pattern = "SMODS.cashout_pitch = pitch; SMODS.cashout_index = i; SMODS.cashout_dollars = dollars"
+payload = '''
+for i = 1, #G.GAME.tags do
+    local ret = G.GAME.tags[i]:apply_to_run({type = 'paperback_seraphim_cashout', dollars = dollars})
+    if ret then
+        add_round_eval_row({dollars = ret.dollars, bonus = true, name='tag'..i, pitch = pitch, condition = ret.condition, pos = ret.pos, tag = ret.tag})
+        pitch = pitch + 0.06
+        dollars = dollars + ret.dollars
+    end
+end
+'''
