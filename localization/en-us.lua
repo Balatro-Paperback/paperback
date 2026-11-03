@@ -5019,6 +5019,15 @@ return {
           "end of the {C:attention}next #1# round#2#"
         }
       },
+      tag_paperback_augury = {
+        name = "Augury Tag",
+        text = {
+          "Create {C:attention}2 copies{} of",
+          "a {C:paperback_minor_arcana}Minor Arcana{} card",
+          "{C:attention}of your choice{}",
+          "{C:inactive}(Does not require room)"
+        }
+      },
       tag_paperback_heterochromia = {
         name = "Heterochromia Tag",
         text = {

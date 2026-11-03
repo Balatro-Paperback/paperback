@@ -807,10 +807,12 @@ G.FUNCS.paperback_select_joker = function(e)
           G.OVERLAY_MENU = nil
         end
 
-        SMODS.add_card {
-          key = c1.config.center_key,
-          area = e.config.data[1]
-        }
+        for i = 1, e.config.copies do
+          SMODS.add_card {
+            key = c1.config.center_key,
+            area = e.config.data[1]
+          }
+        end
 
         return true
       end
@@ -818,7 +820,7 @@ G.FUNCS.paperback_select_joker = function(e)
   end
 end
 
-function PB_UTIL.create_select_card_ui(card, area)
+function PB_UTIL.create_select_card_ui(card, area, copies)
   local t2 = {
     n = G.UIT.ROOT,
     config = {
@@ -833,7 +835,8 @@ function PB_UTIL.create_select_card_ui(card, area)
       one_press = true,
       button = 'paperback_select_joker',
       data = { area },
-      hover = true
+      hover = true,
+      copies = copies or 1
     },
     nodes = {
       {
