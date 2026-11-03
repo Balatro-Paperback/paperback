@@ -46,6 +46,8 @@ if next(SMODS.find_mod("allinjest")) then
             func = function()
               G.GAME.blind:disable()
               G.GAME.blind.chips = 1
+              G.GAME.blind.chip_text = 1
+              G.GAME.blind:wiggle()
               return true
             end
           })
