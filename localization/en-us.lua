@@ -5019,6 +5019,14 @@ return {
           "end of the {C:attention}next #1# round#2#"
         }
       },
+      tag_paperback_heterochromia = {
+        name = "Heterochromia Tag",
+        text = {
+          "Applies {C:dark_edition}Dichrome{} to",
+          "the {C:attention}leftmost{} and {C:attention}rightmost",
+          "uneditioned {C:attention}Jokers"
+        }
+      },
       tag_paperback_shattering = {
         name = "Shattering Tag",
         text = {
