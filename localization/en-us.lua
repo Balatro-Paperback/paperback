@@ -5053,6 +5053,15 @@ return {
           "its {C:blind}requirement{} to 1"
         }
       },
+      tag_paperback_marked = {
+        name = "Marked Tag",
+        text = {
+          "Apply {C:attention}1-3{} random permanent",
+          "bonuses to {C:attention}all{}",
+          "cards in the {C:attention}next{}",
+          "{C:attention}drawn hand"
+        }
+      },
       tag_paperback_meltdown = {
         name = "Meltdown Tag",
         text = {
