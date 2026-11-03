@@ -446,7 +446,8 @@ PB_UTIL.ENABLED_TAGS = {
   'dichrome',
   'high_risk',
   'breaking',
-  'tag'
+  'tag',
+  "enkephalin"
 }
 
 PB_UTIL.ENABLED_ENHANCEMENTS = {

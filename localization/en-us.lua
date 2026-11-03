@@ -5003,6 +5003,13 @@ return {
           "{C:attention}drawn hand"
         }
       },
+      tag_paperback_enkephalin = {
+        name = "Enkephalin Tag",
+        text = {
+          "Gives a free",
+          "{C:paperback_ego_gift}E.G.O Gift Extraction Pack{}"
+        }
+      }
     },
     Planet = {
       c_paperback_quaoar = {

@@ -27,10 +27,6 @@ SMODS.Tag {
   pos = { x = 5, y = 0 },
   discovered = false,
 
-  in_pool = function(self, args)
-    return false
-  end,
-
   apply = function(self, tag, context)
     if context.type == "paperback_first_hand" then
       tag:yep("+", G.C.GREEN, function()
