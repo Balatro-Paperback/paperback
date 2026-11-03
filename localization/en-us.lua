@@ -5036,6 +5036,15 @@ return {
           "uneditioned {C:attention}Jokers"
         }
       },
+      tag_paperback_triple_threat = {
+        name = "Triple Threat Tag",
+        text = {
+          "When selecting {C:attention}Boss",
+          "{C:attention}Blind{}, {C:attention}triple{} its",
+          "score requirement",
+          "and gain {C:money}$#1#"
+        }
+      },
       tag_paperback_shattering = {
         name = "Shattering Tag",
         text = {
