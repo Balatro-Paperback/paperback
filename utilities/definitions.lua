@@ -75,7 +75,8 @@ SMODS.current_mod.calculate = function(self, context)
 
     for _, v in ipairs(context.scoring_hand) do
       -- handle permabonus odds
-      G.GAME.paperback.permabonus_odds = G.GAME.paperback.permabonus_odds + v.ability.perma_paperback_plus_odds
+      -- simple nill check, may need to verify if Card instances should all have a pre-defined ".ability.perma_paperback_plus_odds" if that is intended
+      G.GAME.paperback.permabonus_odds = G.GAME.paperback.permabonus_odds + (v.ability.perma_paperback_plus_odds or 0)
     end
   end
 
