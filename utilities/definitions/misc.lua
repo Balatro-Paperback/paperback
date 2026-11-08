@@ -533,7 +533,8 @@ PB_UTIL.ENABLED_ATTRIBUTES = {
   'music',        -- based on a song/album
   'secret',       -- has a secret trigger
   'red',          -- it's red
-  'stick'         -- it's stick
+  'stick',        -- it's stick
+  'Paperback',    -- for crossmod; appearance rate boosted by Paper Deck/Sleeve
 }
 
 PB_UTIL.ENABLED_SLEEVES = {
