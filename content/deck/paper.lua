@@ -5,6 +5,9 @@ SMODS.Back {
   config = {
     jokers = {
       'j_paperback_shopping_center'
+    },
+    extra = {
+      xweight = 3
     }
   },
 
@@ -18,5 +21,17 @@ SMODS.Back {
         }
       }
     }
+  end,
+  calculate = function(self, back, context)
+    if context.modify_weights then
+      for i, item in ipairs(context.pool) do
+        local center = G.P_CENTERS[item.key]
+        if center and center.set == "Joker" then
+          if item.key:find('j_paperback_') or (center.attributes or {}).Paperback then
+            item.weight = item.weight * self.config.extra.xweight
+          end
+        end
+      end
+    end
   end
 }
