@@ -242,6 +242,13 @@ return {
           "All discards must",
           "contain 5 cards"
         }
+      },
+      bl_paperback_joker = {
+        name = "The Joker",
+        text = {
+          "All Jokers are debuffed",
+          "until a face card is played"
+        }
       }
     },
     Joker = {

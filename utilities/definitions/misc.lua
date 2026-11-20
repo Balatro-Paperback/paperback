@@ -411,7 +411,7 @@ PB_UTIL.ENABLED_BLINDS = {
   "guild",
   "hunger",
   "index",
-  -- "joker",
+  "joker",
   -- "knight",
   -- "lingering",
   -- "mistake",
