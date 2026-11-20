@@ -407,7 +407,7 @@ PB_UTIL.ENABLED_BLINDS = {
   "claw",
   "door",
   "electric",
-  -- "finger",
+  "finger",
   -- "guild",
   -- "hunger",
   -- "index",

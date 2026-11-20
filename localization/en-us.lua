@@ -214,6 +214,13 @@ return {
           "Played hand must contain",
           "an Enhanced card"
         }
+      },
+      bl_paperback_finger = {
+        name = "The Finger",
+        text = {
+          "All Crown cards",
+          "are debuffed"
+        }
       }
     },
     Joker = {
