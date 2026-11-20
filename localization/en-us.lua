@@ -228,6 +228,13 @@ return {
           "When hand is played,",
           "lose {C:money}$1{} per Joker owned"
         }
+      },
+      bl_paperback_hunger = {
+        name = "The Hunger",
+        text = {
+          "All food Jokers",
+          "are debuffed"
+        }
       }
     },
     Joker = {

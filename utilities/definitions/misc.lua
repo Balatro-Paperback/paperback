@@ -409,7 +409,7 @@ PB_UTIL.ENABLED_BLINDS = {
   "electric",
   "finger",
   "guild",
-  -- "hunger",
+  "hunger",
   -- "index",
   -- "joker",
   -- "knight",
