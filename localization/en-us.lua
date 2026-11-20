@@ -235,6 +235,13 @@ return {
           "All food Jokers",
           "are debuffed"
         }
+      },
+      bl_paperback_index = {
+        name = "The Index",
+        text = {
+          "All discards must",
+          "contain 5 cards"
+        }
       }
     },
     Joker = {
