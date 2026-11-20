@@ -221,6 +221,13 @@ return {
           "All Crown cards",
           "are debuffed"
         }
+      },
+      bl_paperback_guild = {
+        name = "The Guild",
+        text = {
+          "When hand is played,",
+          "lose {C:money}$1{} per Joker owned"
+        }
       }
     },
     Joker = {
