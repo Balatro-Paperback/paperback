@@ -413,7 +413,7 @@ PB_UTIL.ENABLED_BLINDS = {
   "index",
   "joker",
   "knight",
-  -- "lingering",
+  "lingering",
   -- "mistake",
   -- "noxious",
   -- "origin",

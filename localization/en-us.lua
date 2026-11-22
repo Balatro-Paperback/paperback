@@ -256,6 +256,13 @@ return {
           "All light suits",
           "are debuffed"
         }
+      },
+      bl_paperback_lingering = {
+        name = "The Lingering",
+        text = {
+          "#1# in #2# cards discarded",
+          "return to hand"
+        }
       }
     },
     Joker = {
