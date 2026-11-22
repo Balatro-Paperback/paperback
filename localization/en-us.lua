@@ -277,6 +277,13 @@ return {
           "All played face",
           "cards are destroyed"
         }
+      },
+      bl_paperback_origin = {
+        name = "The Origin",
+        text = {
+          "Leftmost Joker",
+          "is debuffed"
+        }
       }
     },
     Joker = {
