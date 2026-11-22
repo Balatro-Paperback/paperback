@@ -412,7 +412,7 @@ PB_UTIL.ENABLED_BLINDS = {
   "hunger",
   "index",
   "joker",
-  -- "knight",
+  "knight",
   -- "lingering",
   -- "mistake",
   -- "noxious",

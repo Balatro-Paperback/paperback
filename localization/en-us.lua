@@ -249,6 +249,13 @@ return {
           "All Jokers are debuffed",
           "until a face card is played"
         }
+      },
+      bl_paperback_knight = {
+        name = "The Knight",
+        text = {
+          "All light suits",
+          "are debuffed"
+        }
       }
     },
     Joker = {
