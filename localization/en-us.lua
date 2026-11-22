@@ -263,6 +263,13 @@ return {
           "#1# in #2# cards discarded",
           "return to hand"
         }
+      },
+      bl_paperback_mistake = {
+        name = "The Mistake",
+        text = {
+          "#1# in #2# chance to debuff",
+          "a random Joker when discarding"
+        }
       }
     },
     Joker = {
@@ -5886,6 +5893,7 @@ return {
       paperback_prevented_ex = "Prevented!",
       paperback_swoon_ex = "SWOON",
       paperback_electric_debuff = "Must contain an Enhanced card",
+      paperback_mistake_debuff = "Oops!",
 
       paperback_ui_requires_restart = "Requires Restart",
       paperback_ui_no_requires_restart = "Doesn't Require Restart",

@@ -414,7 +414,7 @@ PB_UTIL.ENABLED_BLINDS = {
   "joker",
   "knight",
   "lingering",
-  -- "mistake",
+  "mistake",
   -- "noxious",
   -- "origin",
   -- "painting",
