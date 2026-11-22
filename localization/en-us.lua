@@ -270,6 +270,13 @@ return {
           "#1# in #2# chance to debuff",
           "a random Joker when discarding"
         }
+      },
+      bl_paperback_noxious = {
+        name = "The Noxious",
+        text = {
+          "All played face",
+          "cards are destroyed"
+        }
       }
     },
     Joker = {
