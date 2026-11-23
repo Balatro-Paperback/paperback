@@ -423,7 +423,7 @@ PB_UTIL.ENABLED_BLINDS = {
   "sowing",
   "taboo",
   "unit",
-  -- "vice",
+  "vice",
   -- "wish",
   -- "x-ray",
   -- "year",

@@ -327,6 +327,14 @@ return {
           "Prime numbered ranks",
           "are debuffed"
         }
+      },
+      bl_paperback_vice = {
+        name = "The Vice",
+        text = {
+          "Cards in the first",
+          "played #1#",
+          "are debuffed"
+        }
       }
     },
     Joker = {
