@@ -87,6 +87,56 @@ return {
           "{C:paperback_ego_gift}E.G.O Gifts{}"
         },
       },
+      b_paperback_commander = {
+        name = "Commander's Deck",
+        text = {
+          "The {C:attention}leftmost Joker{}",
+          "triggers {C:attention}twice{} if possible",
+          "Jokers {C:attention}cannot{} be moved",
+          "while in a {C:attention}blind"
+        },
+        unlock = {
+          "Have a deck with",
+          "at least {C:attention}#1#{} cards"
+        }
+      },
+      b_paperback_potters = {
+        name = "Potter's Deck",
+        text = {
+          "All cards start as {C:attention}Ceramic{}",
+          "{C:Money}Money{} is set to {C:red}0",
+          "upon {C:attention}entering{} a Blind"
+        },
+        unlock = {
+          "Destroy {C:attention}#1# {C:inactive}[#2#]{} Cards"
+        }
+      },
+      b_paperback_enchained = {
+        name = "Enchained Deck",
+        text = {
+          "Only a random {C:attention}25%{}",
+          "of all {C:attention}Jokers{} can",
+          "appear in this run",
+          "Start run with {C:attention,T:v_overstock_norm}#1#{}"
+        },
+        unlock = {
+          "Unlock {C:attention}all{} Jokers"
+        }
+      },
+      b_paperback_sudsy = {
+        name = "Sudsy Deck",
+        text = {
+          "After defeating each",
+          "{C:attention}Boss Blind{}, gain",
+          "{C:attention}#1#{} Joker Slot and",
+          "{C:attention}#2#{} Hand Size",
+          "{C:inactive,s:0.85}(Minimum of #3# Hand Size)"
+        },
+        unlock = {
+          "Win at least {C:attention}#1#{} decks on",
+          "{V:1}#2#{} difficulty",
+        }
+      },
     },
     Blind = {
       bl_paperback_quarter = {
@@ -617,8 +667,8 @@ return {
       j_paperback_pedrillo = {
         name = "Pedrillo",
         text = {
-          "Scored {C:attention}Queens{}",
-          "create a {C:planet}Planet{} card",
+          "First scored {C:attention}Queen{}",
+          "creates a {C:planet}Planet{} card",
           "for played {C:attention}poker hand",
           "{C:inactive}(Must have room)"
         },
@@ -978,9 +1028,10 @@ return {
       j_paperback_frutiger_aero = {
         name = "Frutiger Aero",
         text = {
-          "{C:chips}#1#{} Chips,",
-          "loses {C:chips}#2#{} Chips",
-          "per {C:money}$1{} spent",
+          "{C:chips}#1#{} Chips, loses",
+          "{C:chips}#2#{} Chips per {C:money}$1{} spent.",
+          "{C:attention}Resets{} after defeating",
+          "a {C:attention}Boss Blind{}"
         },
         unlock = {
           "Win a run without",
@@ -2754,8 +2805,8 @@ return {
       j_paperback_grenadine = {
         name = "Grenadine",
         text = {
-          "The next {C:attention}#1#{} scored {V:1}#2#{} permanently gain",
-          "{X:mult,C:white}X#3#{} Mult when scored",
+          "The next {C:attention}#1#{} played and scored {V:1}#2#{}",
+          "permanently gain {X:mult,C:white}X#3#{} Mult when scored",
         },
         unlock = {
           "Play {C:attention,E:1}#1# {C:hearts,E:1}#2#",
@@ -2765,8 +2816,8 @@ return {
       j_paperback_stout = {
         name = "Stout",
         text = {
-          "The next {C:attention}#1#{} scored {V:1}#2#{} permanently gain",
-          "{C:chips}+#3#{} Chips when scored",
+          "The next {C:attention}#1#{} played and scored {V:1}#2#{}",
+          "permanently gain {C:chips}+#3#{} Chips when scored",
         },
         unlock = {
           "Play {C:attention,E:1}#1# {C:spades,E:1}#2#",
@@ -2776,8 +2827,8 @@ return {
       j_paperback_aperol = {
         name = "Aperol",
         text = {
-          "The next {C:attention}#1#{} scored {V:1}#2#{} permanently gain",
-          "{C:money}$#3#{} when scored",
+          "The next {C:attention}#1#{} played and scored {V:1}#2#{}",
+          "permanently gain {C:money}$#3#{} when scored",
         },
         unlock = {
           "Play {C:attention,E:1}#1# {C:diamonds,E:1}#2#",
@@ -2787,8 +2838,8 @@ return {
       j_paperback_blue_curacao = {
         name = "Blue Curaçao",
         text = {
-          "The next {C:attention}#1#{} scored {V:1}#2#{} permanently gain",
-          "{C:mult}+#3#{} Mult when scored",
+          "The next {C:attention}#1#{} played and scored {V:1}#2#{}",
+          "permanently gain {C:mult}+#3#{} Mult when scored",
         },
         unlock = {
           "Play {C:attention,E:1}#1# {C:clubs,E:1}#2#",
@@ -2798,8 +2849,8 @@ return {
       j_paperback_nigori = {
         name = "Nigori",
         text = {
-          "The next {C:attention}#1#{} scored {V:1}#2#{} permanently gain",
-          "{X:chips,C:white}X#3#{} chips when scored",
+          "The next {C:attention}#1#{} played and scored {V:1}#2#{}",
+          "permanently gain {X:chips,C:white}X#3#{} Chips when scored",
         },
         unlock = {
           "Play {C:attention,E:1}#1# {C:paperback_stars,E:1}#2#",
@@ -2809,8 +2860,8 @@ return {
       j_paperback_lager = {
         name = "Lager",
         text = {
-          "The next {C:attention}#1#{} scored {V:1}#2#{} permanently gain",
-          "{C:green}+#3#{} odds when scored",
+          "The next {C:attention}#1#{} played and scored {V:1}#2#{}",
+          "permanently gain {C:green}+#3#{} odds when scored",
         },
         unlock = {
           "Play {C:attention,E:1}#1# {C:paperback_crowns,E:1}#2#",
@@ -5130,6 +5181,82 @@ return {
           "Disables the",
           "{C:attention}Boss Blind"
         }
+      },
+      tag_paperback_tag = {
+        name = "Tag Tag",
+        text = {
+          "Apply random permanent",
+          "bonuses to {C:attention}5{} random",
+          "cards in the {C:attention}next{}",
+          "{C:attention}drawn hand"
+        }
+      },
+      tag_paperback_enkephalin = {
+        name = "Enkephalin Tag",
+        text = {
+          "Gives a free",
+          "{C:paperback_ego_gift}E.G.O Gift Extraction Pack{}"
+        }
+      },
+
+      -- AiJ Gold Tags
+      tag_paperback_seraphim = {
+        name = "Seraphim Tag",
+        text = {
+          "Doubles {C:gold}payouts{} at the",
+          "end of the {C:attention}next #1# round#2#"
+        }
+      },
+      tag_paperback_augury = {
+        name = "Augury Tag",
+        text = {
+          "Create {C:attention}2 copies{} of",
+          "a {C:paperback_minor_arcana}Minor Arcana{} card",
+          "{C:attention}of your choice{}",
+          "{C:inactive}(Does not require room)"
+        }
+      },
+      tag_paperback_heterochromia = {
+        name = "Heterochromia Tag",
+        text = {
+          "Applies {C:dark_edition}Dichrome{} to",
+          "the {C:attention}leftmost{} and {C:attention}rightmost",
+          "uneditioned {C:attention}Jokers"
+        }
+      },
+      tag_paperback_triple_threat = {
+        name = "Triple Threat Tag",
+        text = {
+          "When selecting {C:attention}Boss",
+          "{C:attention}Blind{}, {C:attention}triple{} its",
+          "score requirement",
+          "and gain {C:money}$#1#"
+        }
+      },
+      tag_paperback_shattering = {
+        name = "Shattering Tag",
+        text = {
+          "Disables the",
+          "{C:attention}Boss Blind{} and sets",
+          "its {C:blind}requirement{} to 1"
+        }
+      },
+      tag_paperback_marked = {
+        name = "Marked Tag",
+        text = {
+          "Apply {C:attention}1-3{} random permanent",
+          "bonuses to {C:attention}all{}",
+          "cards in the {C:attention}next{}",
+          "{C:attention}drawn hand"
+        }
+      },
+      tag_paperback_meltdown = {
+        name = "Meltdown Tag",
+        text = {
+          "{C:paperback_ego_gift}Corrode{} all owned {C:paperback_ego_gift}E.G.O Gifts{},",
+          "and then create {C:attention}3{}",
+          "random {C:dark_edition}Negative{} {C:paperback_ego_gift}E.G.O Gifts"
+        }
       }
     },
     Planet = {
@@ -5684,7 +5811,9 @@ return {
         name = "Dreamer's Sleeve",
         text = {
           "Start with an {C:attention}#1#",
-          "of each suit"
+          "of each suit",
+          "Run starts on",
+          "{C:attention}Ante 2{}'s {C:attention}Small Blind"
         }
       },
 
@@ -5735,9 +5864,78 @@ return {
       sleeve_paperback_shimmering_buff = {
         name = "Shimmering Sleeve",
         text = {
-          "TBD"
+          "{C:red}#2#{} Joker Slots",
+          "Selling an {C:paperback_ego_gift}E.G.O Gift",
+          "gives {C:attention}+#1#{} Joker Slots"
         }
-      }
+      },
+      sleeve_paperback_sudsy = {
+        name = "Sudsy Sleeve",
+        text = {
+          "After defeating each",
+          "{C:attention}Boss Blind{}, gain",
+          "{C:attention}#1#{} Joker Slot and",
+          "{C:attention}#2#{} Hand Size",
+          "{C:inactive,s:0.85}(Minimum of #3# Hand Size)"
+        },
+      },
+      sleeve_paperback_sudsy_buff = {
+        name = "Sudsy Sleeve",
+        text = {
+          "After defeating each",
+          "{C:attention}Boss Blind{}, gain a",
+          "{C:attention,T:tag_top_up}#1#"
+        },
+      },
+      sleeve_paperback_enchained = {
+        name = "Enchained Sleeve",
+        text = {
+          "Only a random {C:attention}25%{}",
+          "of all {C:attention}Jokers{} can",
+          "appear in this run",
+          "Start run with {C:attention,T:v_overstock_norm}#1#{}"
+        },
+      },
+      sleeve_paperback_enchained_buff = {
+        name = "Enchained Sleeve",
+        text = {
+          "Only a random {C:attention}25%{}",
+          "of all {C:attention}Consumables{} can",
+          "appear in this run",
+        },
+      },
+      sleeve_paperback_commander = {
+        name = "Commander's Sleeve",
+        text = {
+          "The {C:attention}leftmost Joker{}",
+          "triggers {C:attention}twice{} if possible",
+          "Jokers {C:attention}cannot{} be moved",
+          "while in a {C:attention}blind"
+        },
+      },
+      sleeve_paperback_commander_buff = {
+        name = "Commander's Sleeve",
+        text = {
+          "Trigger {C:attention}leftmost Joker{}",
+          "an {C:attention}additional time{}",
+        },
+      },
+      sleeve_paperback_potters = {
+        name = "Potter's Sleeve",
+        text = {
+          "All cards start as {C:attention}Ceramic{}",
+          "{C:Money}Money{} is set to {C:red}0",
+          "upon {C:attention}entering{} a Blind"
+        }
+      },
+      sleeve_paperback_potters_buff = {
+        name = "Potter's Sleeve",
+        text = {
+          "Start run with",
+          "{C:money,T:v_seed_money}#1#{} and",
+          "{C:money,T:v_money_tree}#2#{} vouchers"
+        },
+      },
     },
     texture_packs = {
       texpack_paperback_spectrans = {
@@ -5990,6 +6188,7 @@ return {
       paperback_electric_debuff = "Must contain an Enhanced card",
       paperback_mistake_debuff = "Oops!",
       paperback_painting_debuff = "Must contain at least 4 different suits",
+      paperback_seraphim_cashout = "Seraphic Boon",
 
       paperback_ui_requires_restart = "Requires Restart",
       paperback_ui_no_requires_restart = "Doesn't Require Restart",

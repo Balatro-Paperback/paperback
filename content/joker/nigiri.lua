@@ -21,7 +21,7 @@ SMODS.Joker {
   blueprint_compat = true,
   eternal_compat = false,
   perishable_compat = true,
-  unlocked = false,
+  unlocked = true,
 
   pools = {
     Food = true

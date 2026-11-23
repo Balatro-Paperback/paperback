@@ -27,6 +27,6 @@ SMODS.Blind {
   end,
 
   recalc_debuff = function(self, card, from_blind)
-    return not next(SMODS.get_enhancements(card))
+    return card.playing_card and not next(SMODS.get_enhancements(card))
   end
 }

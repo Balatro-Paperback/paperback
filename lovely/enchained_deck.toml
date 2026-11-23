@@ -1,0 +1,12 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 0
+
+[[patches]]
+[patches.pattern]
+target = '=[SMODS _ "src/utils/weights.lua"]'
+pattern = "else default = 'j_joker' end"
+position = "before"
+match_indent = true
+payload = "elseif G.GAME and G.GAME.paperback and G.GAME.paperback.new_default_joker then default = G.GAME.paperback.new_default_joker"

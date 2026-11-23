@@ -33,7 +33,7 @@ PB_UTIL.MinorArcana {
   loc_vars = function(self, info_queue, card)
     return {
       vars = {
-        (G.STATE == G.STATES.MENU and 5) or G.GAME.round_resets.reroll_cost,
+        (G.STATE == G.STATES.MENU and 5) or G.GAME.round_resets.temp_reroll_cost or G.GAME.round_resets.reroll_cost,
         (G.STATE == G.STATES.MENU and 5) or G.GAME.current_round.reroll_cost
       }
     }
@@ -49,7 +49,7 @@ PB_UTIL.MinorArcana {
           trigger = "after",
           delay = 2,
           func = function()
-            G.GAME.current_round.reroll_cost = G.GAME.round_resets.reroll_cost
+            G.GAME.current_round.reroll_cost = G.GAME.round_resets.temp_reroll_cost or G.GAME.round_resets.reroll_cost
             G.GAME.current_round.reroll_cost_increase = 0
             local button = find_reroll_button()
             if not button then return true end -- just in case...

@@ -13,13 +13,49 @@ SMODS.Tag {
   apply = function(self, tag, context)
     if context.type == 'round_start_bonus' and G.GAME.blind.boss and not G.GAME.blind.disabled then
       tag:yep('+', G.C.DARK_EDITION, function()
+        G.E_MANAGER:add_event(Event {
+          func = function()
+            G.GAME.blind:disable()
+            return true
+          end
+        })
         return true
       end)
-
-      G.GAME.blind:disable()
 
       tag.triggered = true
       return true
     end
   end
 }
+
+if next(SMODS.find_mod("allinjest")) then
+  SMODS.Tag {
+    key = "shattering",
+    config = { aij = { upgrade = "paperback_breaking" } },
+    attributes = {
+      "boss_blind"
+    },
+    atlas = "tags_atlas",
+    pos = { x = 4, y = 1 },
+    discovered = false,
+
+    apply = function(self, tag, context)
+      if context.type == "round_start_bonus" and G.GAME.blind.boss and not G.GAME.blind.disabled then
+        tag:yep("+", G.C.DARK_EDITION, function()
+          G.E_MANAGER:add_event(Event {
+            func = function()
+              G.GAME.blind:disable()
+              G.GAME.blind.chips = 1
+              G.GAME.blind.chip_text = 1
+              G.GAME.blind:wiggle()
+              return true
+            end
+          })
+          return true
+        end)
+        tag.triggered = true
+        return true
+      end
+    end
+  }
+end

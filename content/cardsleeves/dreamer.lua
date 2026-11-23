@@ -5,7 +5,6 @@ if PB_UTIL.config.spectrals_enabled and PB_UTIL.config.ranks_enabled then
     atlas = 'card_sleeves_atlas',
     pos = { x = 3, y = 0 },
     config = {
-      joker_slot = -1,
       consumables = {
         'c_paperback_apostle_of_wands'
       }
@@ -28,6 +27,12 @@ if PB_UTIL.config.spectrals_enabled and PB_UTIL.config.ranks_enabled then
     apply = function(self, sleeve)
       if self:is_buffed() then
         G.GAME.starting_params.paperback_spawn_apostles = true
+        G.GAME.round_resets.blind_states.Small = "Select"
+        G.GAME.round_resets.blind_states.Big = "Upcoming"
+        G.GAME.blind_on_deck = "Small"
+
+        G.GAME.round_resets.ante = 2
+        G.GAME.round_resets.blind_ante = 2
       else
         -- Apply config
         CardSleeves.Sleeve.apply(self, sleeve)

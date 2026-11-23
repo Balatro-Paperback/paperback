@@ -1362,22 +1362,28 @@ end
 --- @param card (Card)
 --- @param context (CalcContext)
 function PB_UTIL.suit_drink_calculate(self, card, context)
-  if context.individual and context.cardarea == G.play then
-    if context.other_card:is_suit(card.ability.extra.suit) then
-      if card.ability.extra.remaining > 0 then
-        context.other_card.ability[card.ability.extra.upgrade] =
-            (context.other_card.ability[card.ability.extra.upgrade] or 1) + card.ability.extra.amount
+  if context.before then
+    local effects = {}
+    for i, v in ipairs(context.scoring_hand) do
+      if v:is_suit(card.ability.extra.suit) then
+        if card.ability.extra.remaining > 0 then
+          v.ability[card.ability.extra.upgrade] =
+              (v.ability[card.ability.extra.upgrade] or 1) + card.ability.extra.amount
 
-        if not context.blueprint then
-          card.ability.extra.remaining = card.ability.extra.remaining - 1
+          if not context.blueprint then
+            card.ability.extra.remaining = card.ability.extra.remaining - 1
+          end
+
+          effects[#effects + 1] = {
+            message = localize('k_upgrade_ex'),
+            message_card = v,
+            colour = G.C.SUITS[card.ability.extra.suit],
+          }
         end
-
-        return {
-          message = localize('k_upgrade_ex'),
-          colour = G.C.SUITS[card.ability.extra.suit],
-        }
       end
     end
+
+    if #effects > 0 then return SMODS.merge_effects(effects) end
   end
 
   if context.after and not context.blueprint and card.ability.extra.remaining == 0 then
@@ -1516,4 +1522,22 @@ function PB_UTIL.get_career_stat(key, default)
   local profile = G.PROFILES[G.SETTINGS.profile]
   local career_stats = profile and profile.career_stats
   return career_stats and career_stats["paperback_" .. key] or default
+end
+
+--- Register a condition for preventing dragging a card
+--- @param key string
+--- @param hook any
+function PB_UTIL.add_drag_condition(key, hook)
+  PB_UTIL.drag_conditions[key] = hook
+end
+
+PB_UTIL.drag_conditions = {}
+
+--- Whether dragging a card should be prevented, checking all conditions in PB_UTIL.drag_conditions
+--- @param card any
+function PB_UTIL.prevent_drag(card)
+  for _, hook in pairs(PB_UTIL.drag_conditions) do
+    if hook(card) == true then return true end
+  end
+  return false
 end

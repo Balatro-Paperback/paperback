@@ -3,6 +3,7 @@ SMODS.Joker {
   config = {
     extra = {
       rank = 'Queen',
+      triggered = false
     }
   },
 
@@ -34,9 +35,10 @@ SMODS.Joker {
   check_for_unlock = function(self, args) return false end,
 
   calculate = function(self, card, context)
-    if context.individual and context.cardarea == G.play then
+    if context.individual and context.cardarea == G.play and not card.ability.extra.triggered then
       -- Check if each card is a queen
       if PB_UTIL.is_rank(context.other_card, card.ability.extra.rank) and (#G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit) then
+        card.ability.extra.triggered = true
         -- Add the planet corresponding to the played hand type
         G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
         G.E_MANAGER:add_event(Event({
@@ -60,6 +62,10 @@ SMODS.Joker {
         }))
         return { message = localize('k_plus_planet'), colour = G.C.SECONDARY_SET.Planet }
       end
+    end
+
+    if context.after then
+      card.ability.extra.triggered = false
     end
   end,
 }

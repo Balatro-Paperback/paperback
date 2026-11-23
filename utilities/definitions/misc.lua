@@ -446,6 +446,8 @@ PB_UTIL.ENABLED_TAGS = {
   'dichrome',
   'high_risk',
   'breaking',
+  'tag',
+  "enkephalin"
 }
 
 PB_UTIL.ENABLED_ENHANCEMENTS = {
@@ -489,6 +491,10 @@ PB_UTIL.ENABLED_DECKS = {
   'antique',
   'passionate',
   'shimmering',
+  'enchained',
+  'potters',
+  'sudsy',
+  'commander',
 }
 
 PB_UTIL.ENABLED_CHALLENGES = {
@@ -537,5 +543,9 @@ PB_UTIL.ENABLED_SLEEVES = {
   'dreamer',
   'antique',
   'passionate',
-  -- 'shimmering',
+  'shimmering',
+  'enchained',
+  'potters',
+  'sudsy',
+  'commander',
 }

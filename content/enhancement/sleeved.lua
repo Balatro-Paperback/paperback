@@ -21,12 +21,6 @@ SMODS.Enhancement {
     if context.stay_flipped and context.other_card == card then
       return { prevent_stay_flipped = true }
     end
-
-    if context.remove_playing_cards then
-      for _, removed in ipairs(context.removed) do
-        if removed == card then return { dollars = card.ability.extra.money } end
-      end
-    end
   end,
 
   -- the actual center sprite should just be the base unenhanced card
