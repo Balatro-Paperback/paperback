@@ -342,6 +342,14 @@ return {
           "Hand must contain",
           "#1#"
         }
+      },
+      bl_paperback_xray = {
+        name = "The X-Ray",
+        text = {
+          "Discarded ranks are",
+          "drawn face-down for",
+          "the rest of the Blind"
+        }
       }
     },
     Joker = {

@@ -425,7 +425,7 @@ PB_UTIL.ENABLED_BLINDS = {
   "unit",
   "vice",
   "wish",
-  -- "x-ray",
+  "xray",
   -- "year",
   -- "zealot",
 }
