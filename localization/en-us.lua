@@ -299,6 +299,20 @@ return {
           "base Chips and Mult swapped",
           "with another poker hand"
         }
+      },
+      bl_paperback_reaping = {
+        name = "The Reaping",
+        text = {
+          "All ranks played during",
+          "{C:attention}The Sowing{} are debuffed"
+        }
+      },
+      bl_paperback_sowing = {
+        name = "The Sowing",
+        text = {
+          "...You Will Reap",
+          "What You Sow..."
+        }
       }
     },
     Joker = {
