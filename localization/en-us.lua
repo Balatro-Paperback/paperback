@@ -335,6 +335,13 @@ return {
           "played #1#",
           "are debuffed"
         }
+      },
+      bl_paperback_wish = {
+        name = "The Wish",
+        text = {
+          "Hand must contain",
+          "#1#"
+        }
       }
     },
     Joker = {

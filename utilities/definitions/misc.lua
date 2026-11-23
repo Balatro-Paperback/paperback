@@ -424,7 +424,7 @@ PB_UTIL.ENABLED_BLINDS = {
   "taboo",
   "unit",
   "vice",
-  -- "wish",
+  "wish",
   -- "x-ray",
   -- "year",
   -- "zealot",
