@@ -1,7 +1,7 @@
 SMODS.Blind {
   key = "taboo",
   boss = { min = 2 },
-  boss_colour = HEX("5d7dc4"),
+  boss_colour = HEX("8995d6"),
   atlas = "wingding_blinds_atlas",
   pos = { y = 19 },
 
