@@ -310,8 +310,15 @@ return {
       bl_paperback_sowing = {
         name = "The Sowing",
         text = {
-          "...You Will Reap",
-          "What You Sow..."
+          "...You will reap",
+          "what you sow..."
+        }
+      },
+      bl_paperback_taboo = {
+        name = "The Taboo",
+        text = {
+          "Must not play",
+          "secret hands"
         }
       }
     },

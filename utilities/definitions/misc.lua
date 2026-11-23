@@ -421,7 +421,7 @@ PB_UTIL.ENABLED_BLINDS = {
   "quiz",
   "reaping",
   "sowing",
-  -- "taboo",
+  "taboo",
   -- "unit",
   -- "vice",
   -- "wish",
