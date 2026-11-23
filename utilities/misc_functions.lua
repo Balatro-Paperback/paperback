@@ -505,10 +505,11 @@ end
 ---Destroys the provided Joker
 ---@param card table
 ---@param after function?
-function PB_UTIL.destroy_joker(card, after)
+---@param bypass_eternal boolean?
+function PB_UTIL.destroy_joker(card, after, bypass_eternal)
   G.E_MANAGER:add_event(Event {
     func = function()
-      SMODS.destroy_cards(card, { immediate = true, pinch_anim = true })
+      SMODS.destroy_cards(card, { immediate = true, pinch_anim = true, bypass_eternal = bypass_eternal })
 
       G.E_MANAGER:add_event(Event {
         trigger = 'after',

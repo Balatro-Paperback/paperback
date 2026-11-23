@@ -45,6 +45,6 @@ PB_UTIL.MinorArcana {
     PB_UTIL.destroy_joker(joker, function()
       card:juice_up()
       ease_dollars(card.ability.extra.money, true)
-    end)
+    end, true)
   end
 }
