@@ -291,6 +291,14 @@ return {
           "Hand must contain at",
           "least 4 different suits"
         }
+      },
+      bl_paperback_quiz = {
+        name = "The Quiz",
+        text = {
+          "Poker hands have their",
+          "base Chips and Mult swapped",
+          "with another poker hand"
+        }
       }
     },
     Joker = {
