@@ -284,6 +284,13 @@ return {
           "Leftmost Joker",
           "is debuffed"
         }
+      },
+      bl_paperback_painting = {
+        name = "The Painting",
+        text = {
+          "Hand must contain at",
+          "least 4 different suits"
+        }
       }
     },
     Joker = {
@@ -5908,6 +5915,7 @@ return {
       paperback_swoon_ex = "SWOON",
       paperback_electric_debuff = "Must contain an Enhanced card",
       paperback_mistake_debuff = "Oops!",
+      paperback_painting_debuff = "Must contain at least 4 different suits",
 
       paperback_ui_requires_restart = "Requires Restart",
       paperback_ui_no_requires_restart = "Doesn't Require Restart",

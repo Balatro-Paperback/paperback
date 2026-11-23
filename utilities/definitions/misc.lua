@@ -417,7 +417,7 @@ PB_UTIL.ENABLED_BLINDS = {
   "mistake",
   "noxious",
   "origin",
-  -- "painting",
+  "painting",
   -- "quiz",
   -- "reaping",
   -- "sowing",
