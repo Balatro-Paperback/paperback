@@ -228,6 +228,194 @@ return {
           'are debuffed'
         }
       },
+
+      bl_paperback_alphabet = {
+        name = "The Alphabet",
+        text = {
+          "Lettered Cards",
+          "are debuffed",
+          "{s:0.8}(Ace, King, Queen, Jack)"
+        }
+      },
+      bl_paperback_bellcurve = {
+        name = "The Bellcurve",
+        text = {
+          "Excess Score this Ante",
+          "is added to this Blind"
+        }
+      },
+      bl_paperback_claw = {
+        name = "The Claw",
+        text = {
+          "All odd ranks",
+          "are debuffed"
+        }
+      },
+      bl_paperback_door = {
+        name = "The Door",
+        text = {
+          "Played hand must contain",
+          "the first played poker hand"
+        }
+      },
+      bl_paperback_electric = {
+        name = "The Electric",
+        text = {
+          "Played hand must contain",
+          "an Enhanced card"
+        }
+      },
+      bl_paperback_finger = {
+        name = "The Finger",
+        text = {
+          "All Crown cards",
+          "are debuffed"
+        }
+      },
+      bl_paperback_guild = {
+        name = "The Guild",
+        text = {
+          "When hand is played,",
+          "lose $1 per Joker owned"
+        }
+      },
+      bl_paperback_hunger = {
+        name = "The Hunger",
+        text = {
+          "All food Jokers",
+          "are debuffed"
+        }
+      },
+      bl_paperback_index = {
+        name = "The Index",
+        text = {
+          "All discards must",
+          "contain 5 cards"
+        }
+      },
+      bl_paperback_joker = {
+        name = "The Joker",
+        text = {
+          "All Jokers are debuffed",
+          "until a face card is played"
+        }
+      },
+      bl_paperback_knight = {
+        name = "The Knight",
+        text = {
+          "All light suits",
+          "are debuffed"
+        }
+      },
+      bl_paperback_lingering = {
+        name = "The Lingering",
+        text = {
+          "#1# in #2# cards discarded",
+          "return to hand"
+        }
+      },
+      bl_paperback_mistake = {
+        name = "The Mistake",
+        text = {
+          "#1# in #2# chance to debuff",
+          "a random Joker when discarding"
+        }
+      },
+      bl_paperback_noxious = {
+        name = "The Noxious",
+        text = {
+          "All played face",
+          "cards are destroyed"
+        }
+      },
+      bl_paperback_origin = {
+        name = "The Origin",
+        text = {
+          "Leftmost Joker",
+          "is debuffed"
+        }
+      },
+      bl_paperback_painting = {
+        name = "The Painting",
+        text = {
+          "Hand must contain at",
+          "least 4 different suits"
+        }
+      },
+      bl_paperback_quiz = {
+        name = "The Quiz",
+        text = {
+          "Poker hands have their",
+          "base Chips and Mult swapped",
+          "with another poker hand"
+        }
+      },
+      bl_paperback_reaping = {
+        name = "The Reaping",
+        text = {
+          "All ranks played during",
+          "{C:attention}The Sowing{} are debuffed"
+        }
+      },
+      bl_paperback_sowing = {
+        name = "The Sowing",
+        text = {
+          "...You will reap",
+          "what you sow..."
+        }
+      },
+      bl_paperback_taboo = {
+        name = "The Taboo",
+        text = {
+          "Must not play",
+          "secret hands"
+        }
+      },
+      bl_paperback_unit = {
+        name = "The Unit",
+        text = {
+          "Prime numbered ranks",
+          "are debuffed"
+        }
+      },
+      bl_paperback_vice = {
+        name = "The Vice",
+        text = {
+          "Cards in the first",
+          "played #1#",
+          "are debuffed"
+        }
+      },
+      bl_paperback_wish = {
+        name = "The Wish",
+        text = {
+          "Hand must contain",
+          "#1#"
+        }
+      },
+      bl_paperback_xray = {
+        name = "The X-Ray",
+        text = {
+          "Discarded ranks are",
+          "drawn face-down for",
+          "the rest of the Blind"
+        }
+      },
+      bl_paperback_year = {
+        name = "The Year",
+        text = {
+          "+0.2x base Blind size",
+          "for every $5 owned",
+          "at start of Blind"
+        }
+      },
+      bl_paperback_zealot = {
+        name = "The Zealot",
+        text = {
+          "All Star cards",
+          "are debuffed"
+        }
+      }
     },
     Joker = {
       j_paperback_showdown = {
@@ -5997,6 +6185,9 @@ return {
       paperback_fall_ex = "Fall!",
       paperback_prevented_ex = "Prevented!",
       paperback_swoon_ex = "SWOON",
+      paperback_electric_debuff = "Must contain an Enhanced card",
+      paperback_mistake_debuff = "Oops!",
+      paperback_painting_debuff = "Must contain at least 4 different suits",
       paperback_seraphim_cashout = "Seraphic Boon",
 
       paperback_ui_requires_restart = "Requires Restart",
@@ -6128,6 +6319,8 @@ return {
       paperback_a_plus_consumable_slot = "+#1# Consumable Slots",
       paperback_a_minus_consumable_slot = "-#1# Consumable Slots",
       paperback_a_ante = "#1# Ante",
+
+      paperback_door_debuff = "Must contain a #1#",
     },
     ranks = {
       paperback_Apostle = 'Apostle',

@@ -102,6 +102,8 @@ function Game.init_game_object(self)
     shimmering_change = 0,
     second_trumpets = 0,
     second_trumpet_change = 0,
+
+    bellcurve_excess = 0,
   }
 
   return ret

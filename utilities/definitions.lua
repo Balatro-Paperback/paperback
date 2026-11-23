@@ -156,6 +156,12 @@ SMODS.current_mod.calculate = function(self, context)
     G.GAME.paperback.free_purchases = math.max(0,
       G.GAME.paperback.free_purchases - #SMODS.find_card("j_paperback_normalJKR", false))
   end
+
+  -- track excess score for The Bellcurve
+  if context.end_of_round and context.main_eval then
+    G.GAME.paperback.bellcurve_excess = G.GAME.paperback.bellcurve_excess + G.GAME.chips - G.GAME.blind.chips
+    if context.beat_boss then G.GAME.paperback.bellcurve_excess = 0 end
+  end
 end
 
 -- Sleeved cards can't be debuffed
