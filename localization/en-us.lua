@@ -226,7 +226,7 @@ return {
         name = "The Guild",
         text = {
           "When hand is played,",
-          "lose {C:money}$1{} per Joker owned"
+          "lose $1 per Joker owned"
         }
       },
       bl_paperback_hunger = {
@@ -349,6 +349,14 @@ return {
           "Discarded ranks are",
           "drawn face-down for",
           "the rest of the Blind"
+        }
+      },
+      bl_paperback_year = {
+        name = "The Year",
+        text = {
+          "+0.2x base Blind size",
+          "for every $5 owned",
+          "at start of Blind"
         }
       }
     },
