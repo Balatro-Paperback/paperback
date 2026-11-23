@@ -358,6 +358,13 @@ return {
           "for every $5 owned",
           "at start of Blind"
         }
+      },
+      bl_paperback_zealot = {
+        name = "The Zealot",
+        text = {
+          "All Star cards",
+          "are debuffed"
+        }
       }
     },
     Joker = {
