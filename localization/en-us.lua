@@ -320,6 +320,13 @@ return {
           "Must not play",
           "secret hands"
         }
+      },
+      bl_paperback_unit = {
+        name = "The Unit",
+        text = {
+          "Prime numbered ranks",
+          "are debuffed"
+        }
       }
     },
     Joker = {
