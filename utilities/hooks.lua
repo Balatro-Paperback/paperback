@@ -654,6 +654,7 @@ if type(gdav_ref) == "function" then
   SMODS.get_default_ability_vars = function(center, card, no_copy)
     local ret = gdav_ref(center, card, no_copy)
     ret.perma_paperback_plus_odds = card.ability.perma_paperback_plus_odds or 0
+    ret.perma_paperback_h_plus_odds = card.ability.perma_paperback_h_plus_odds or 0
     return ret
   end
 end
