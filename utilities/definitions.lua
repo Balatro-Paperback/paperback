@@ -5,6 +5,7 @@ PB_UTIL.config = SMODS.current_mod.config
 SMODS.current_mod.optional_features = {
   retrigger_joker = true,
   post_trigger = true,
+  object_weights = true,
 }
 
 -- Global mod calculate

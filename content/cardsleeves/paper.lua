@@ -1,10 +1,10 @@
 PB_UTIL.Sleeve {
-  key       = 'paper',
+  key = 'paper',
   deck_buff = 'b_paperback_paper',
-  atlas     = 'card_sleeves_atlas',
-  pos       = { x = 0, y = 0 },
+  atlas = 'card_sleeves_atlas',
+  pos = { x = 0, y = 0 },
 
-  loc_vars  = function(self)
+  loc_vars = function(self)
     return {
       key = self:loc_key(),
       vars = {
@@ -19,7 +19,7 @@ PB_UTIL.Sleeve {
   unlocked = false,
   unlock_condition = { deck = "b_paperback_paper", stake = "stake_red" },
 
-  apply     = function(self, sleeve)
+  apply = function(self, sleeve)
     if self:is_buffed() then
       -- Apply negative to the created Shopping Center
       G.E_MANAGER:add_event(Event {
@@ -43,6 +43,18 @@ PB_UTIL.Sleeve {
           return true
         end
       }))
+    end
+  end,
+  calculate = function(self, sleeve, context)
+    if context.modify_weights and (G.GAME.selected_back_key or {}).key ~= "b_paperback_paper" then
+      for i, item in ipairs(context.pool) do
+        local center = G.P_CENTERS[item.key]
+        if center and center.set == "Joker" then
+          if item.key:find('j_paperback_') or (center.attributes or {}).Paperback then
+            item.weight = item.weight * 3
+          end
+        end
+      end
     end
   end
 }
