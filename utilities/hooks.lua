@@ -647,3 +647,13 @@ function Moveable.drag(self, offset)
   end
   return move_ref(self, offset)
 end
+
+-- Initialize permabonus odds in SMODS versions post 26.1002.0
+local gdav_ref = SMODS.get_default_ability_vars
+if type(gdav_ref) == "function" then
+  SMODS.get_default_ability_vars = function(center, card, no_copy)
+    local ret = gdav_ref(center, card, no_copy)
+    ret.perma_paperback_plus_odds = card.ability.perma_paperback_plus_odds or 0
+    return ret
+  end
+end
