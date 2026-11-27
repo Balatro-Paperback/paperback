@@ -1,6 +1,6 @@
 [manifest]
 version = "1.0.0"
-priority = -2
+priority = 5
 
 # end_round()
 # Prevent logic for advancing to next Blind
