@@ -657,3 +657,13 @@ if type(gdav_ref) == "function" then
     return ret
   end
 end
+
+-- hide Use button on E.G.O Gifts when using mouse controls
+local uasb_ref = G.UIDEF.use_and_sell_buttons
+G.UIDEF.use_and_sell_buttons = function(card)
+  local ret = uasb_ref(card)
+  if PB_UTIL.is_ego_gift(card) and ret.nodes[1].nodes[2] then
+    ret.nodes[1].nodes[2].nodes = nil
+  end
+  return ret
+end

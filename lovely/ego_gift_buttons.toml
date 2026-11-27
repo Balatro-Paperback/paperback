@@ -15,18 +15,3 @@ if PB_UTIL.is_ego_gift(card) then
 end
 '''
 match_indent = true
-
-# G.UIDEF.use_and_sell_buttons()
-# (non controller buy/use/sell/select buttons)
-# Remove the use button from all E.G.O Gifts
-[[patches]]
-[patches.pattern]
-target = "functions/UI_definitions.lua"
-pattern = "local t = {"
-position = "before"
-payload = '''
-if PB_UTIL.is_ego_gift(card) then
-  use = nil
-end
-'''
-match_indent = true
