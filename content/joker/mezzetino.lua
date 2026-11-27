@@ -40,12 +40,12 @@ SMODS.Joker {
         for i, v in ipairs(G.hand.cards) do
           table.insert(hand, i)
         end
-        local discards = math.min(G.GAME.current_round.discards_left, #G.hand.cards)
+        local discards = math.min(G.GAME.current_round.discards_left, #hand)
         while discards > 0 do
-          local c = pseudorandom_element(hand, "mezzetino")
+          local c, idx = pseudorandom_element(hand, "mezzetino")
+          table.remove(hand, idx)
           if not G.hand.cards[c].ability.paperback_mezzetino_mark then
             G.hand.cards[c].ability.paperback_mezzetino_mark = true
-            table.remove(hand, c)
             discards = discards - 1
           end
         end
